@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>广告管理</title>
+
+		<link href="../../css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
+		<link href="../../css/animate.css" rel="stylesheet">
+		<link href="../../css/plugins/jQueryUI/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+		<link href="../../css/style.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/girds.css" />
+		<link rel="stylesheet" href="../../css/iconfont.css" />
+		<link href="../../css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+		<!--<link rel="stylesheet" href="css/paging.css" />-->
+		<link rel="stylesheet" href="../../css/chosen.css" />
+		<link rel="stylesheet" href="../../css/coss.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/advertise.css" />
+
+		<link rel="stylesheet" href="../../css/crepsd.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/message.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/bing_google.css"/>
+		
+	</head>
+
+	<body>
+		<div id="app">
+		<!--这里是提示确认-->
+		<div id="sitch" class="animated dio-close">
+			<div class="sitch-box">
+				<div class="content animated">
+					<input type="hidden" name="" id="Index" value="" />
+					<input type="hidden" name="" id="State" value="" />
+					<input type="hidden" name="" id="picId" value="" />
+					<div class="title">
+						<span>提示</span>
+						<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain">
+						<div class="tip-con">
+							确认启用吗？
+						</div>
+						<div class="set">
+							<button class="btn btn-default can-close">取消</button>
+							<button @click="switche" class="btn btn-success cof-close">确认</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+
+			<!--这里是通过没通过弹窗-->
+			<div id="adopt" class="animated dio-close">
+				<div class="adopt-box">
+					<div class="content animated">
+						<input type="hidden" id="Adver" />
+						<div class="title">
+							<span>新增</span>
+							<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+						</div>
+						<div class="contain">
+
+							<div class="left">
+								<div class="load">
+									<p>图片上传</p>
+									<input class="btn btn-default" type="file" id="upFile" />
+									<img src="" alt="" id="nextview" />
+									<img src="" alt="" id="hideimg" style="display: none;" />
+								</div>
+							</div>
+							<div class="right">
+								<div class="contain-item">
+									<label for=""><i>*</i>所属公司</label><input class="company" type="text" class="form-control" />
+								</div>
+								<div class="contain-item">
+									<label for=""><i>*</i>权重</label><input class="weight" id="number" type="number" class="form-control" />
+								</div>
+								<div class="contain-item">
+									<label for=""><i>*</i>地址</label><input class="address" type="text" placeholder="https://" class="form-control" />
+								</div>
+								<div class="contain-item">
+									<label for=""><i>*</i>状态</label>
+									<select name="" class="form-control state" id="select">
+										<!--<option value="全部">全部</option>-->
+										<option value="0">启用</option>
+										<option value="1">停用</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="new-set">
+								<button class="btn btn-default can-close">关闭</button>
+								<button class="btn btn-success" @click="mescue">保存</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+
+			
+			 <!--这里是头部 -->
+			<div id="header"></div>
+			
+            <div id="bod-com" class="animated" style="animation-delay: 0.5s; opacity: 0;">
+				
+				<div class="row wrapper border-bottom white-bg page-heading">
+					<div class="col-lg-10">
+						<!--<h2>jqGrid</h2>-->
+						<ol class="breadcrumb">
+							<li>
+								<a href="../Member_management/memberList.html">首页</a>
+							</li>
+							<li>
+								<a>广告管理</a>
+							</li>
+						</ol>
+					</div>
+				</div>
+
+				<!--这里是填写资料-->
+				<div class="material">
+					<div class="material-box">
+						<div class="row">
+
+							<div class="col-md-4 col-sm-12">
+								<label for="" class="">所属公司：</label>
+								<input type="text" class="Affiliated form-control" />
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<label for="" class="">状态：</label>
+								<select name="" class="search_status form-control dept_select">
+									<option value="">全部</option>
+									<option value="0">启用</option>
+									<option value="1">停用</option>
+								</select>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<!--这里是设置-->
+
+				<div class="set" style="padding:5px 0px">
+					<div class="setbox">
+						<button class="btn-left btn btn-xs btn-default go creta" type="submit" @click="Addimg" id="addAdver">添加 <span class="iconfont icon-add"></span></button>
+						<!--<button class="btn-left btn btn-xs btn-default no-adopt creta" type="submit">详情  <span class="iconfont icon-xiangqing"></button>-->
+						<button @click="reset" class="btn btn-xs rest right" type="reset" id="btnRest">重置 <span class="iconfont icon-11zhongzhi"></span></button>
+						<button @click="search" class="btn btn-xs search right" id="btnSearch">查询  <span class="iconfont icon-sousuo"></span></button>
+					</div>
+				</div>
+
+				<div class="wrapper wrapper-content  animated fadeInRight" style="background:#f6f6f6 ">
+					<!--<div class="row page-item">
+                     	每页显示
+                     	<select name="" class="form-control dept_select">
+                     		<option value="">10</option>
+                     		<option value="">15</option>
+                     		<option value="">20</option>
+                     	</select>
+                     	条
+                     	
+                     </div>-->
+
+					<div class="row">
+						<div class="col-lg-12 col-md-12">
+							<div class="ibox float-e-margins">
+
+								<div class="ibox-content" style="height: 600px;background:#f6f6f6 ;overflow-y: scroll;" >
+
+									<div class="row">
+										<div class="col-md-4" v-for="(item,index) in databox">
+											<div class="box-item">
+												<div :class="gernerateId(index)">
+												<div class="top"  :style="{backgroundImage:'url(' + item.advertisementPicture + ')', backgroundRepeat:'no-repeat', backgroundPosition:'center center', backgroundSize: 'cover'}" >
+													<i @click="Enable(index)" v-if="item.status==0" class="workButton">启用</i>
+													<i @click="Enable(index)" v-else="item.status==1" style="background:#f399a4;color:inherit" class="stopButton">停用</i>
+													<input type="hidden" class="imgurl"  v-model="databox[index].advertisementPicture"/>
+													<input type="hidden" class="bauId"  v-model="databox[index].bauId"/>
+													<input type="hidden" class="userID"  v-model="databox[index].id"/>
+													<input type="hidden" class="status"  v-model="databox[index].status"/>
+													<input type="hidden" class="affiliatedCompany"  v-model="databox[index].affiliatedCompany"/>
+													<input type="hidden" class="weight"  v-model="databox[index].weight"/>
+													<input type="hidden" class="advertisementUrl"  v-model="databox[index].advertisementUrl"/>
+													<input type="hidden"  class="allVal" v-model="databox[index].id" />
+												</div>
+												<div class="botm">
+													<p>{{item.affiliatedCompany}}</p>
+													<p>{{item.advertisementUrl}}</p>
+													<p>{{item.createTime | time}}</p>
+													<button @click="editpicture(index)" class="btn btn-xs btn-default editorButton" >编辑<i class="iconfont icon-xiugai07"></i></button>
+													<span @click="deletes(index)" class="btn btn-xs btn-success deleteButton">删除<i class="iconfont icon-dustbin_icon"></i></span>
+												</div>
+												</div>
+											</div>
+										</div>
+										
+									</div>
+								</div>
+
+								<!--这里是分页-->
+								<div class="pagss">
+									<input type="hidden" id="total"/>
+									<input type="hidden" id="page"/>
+									<input :value="row" type="hidden" id="rows"/>
+									<!--<div class="left">
+										<label for="">当前显示11到15条，共50条记录</label>
+									</div>-->
+									<div class="right">
+										<div id="pageToolbar" @click="pageTool"></div>
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<!--这里是分页-->
+
+				</div>
+				
+				<!--<div class="footer">
+					<div class="pull-right">
+						10GB of <strong>250GB</strong> Free.
+					</div>
+					<div>
+						<strong>Copyright</strong> Example Company &copy; 2014-2015
+					</div>
+				</div>-->
+
+			</div>
+	</div>
+
+		<!-- Mainly scripts -->
+		<script src="../../js/jquery-2.1.1.js"></script>
+		<script src="http://gosspublic.alicdn.com/aliyun-oss-sdk-4.4.4.min.js"></script>
+		<script src="../../js/bootstrap.min.js"></script>
+		<script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+		<!-- Peity -->
+		<!--<script src="js/plugins/peity/jquery.peity.min.js"></script>-->
+
+		<!-- jqGrid -->
+		<!--<script src="js/plugins/jqGrid/i18n/grid.locale-en.js"></script>
+		<script src="js/plugins/jqGrid/jquery.jqGrid.min.js"></script>-->
+
+		<!-- Custom and plugin javascript -->
+		<script src="../../js/inspinia.js"></script>
+		<script src="../../js/plugins/pace/pace.min.js"></script>
+
+		<!--<script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>-->
+		<script src="../../js/headercom.js"></script>
+		<script src="../../js/common.js"></script>
+		<!--<script src="js/query.js"></script>-->
+		<script src="../../js/query.js"></script>
+		<script src="../../js/paging.js"></script>
+		<script src="../../js/chosen.jquery.js"></script>
+		<script src="../../js/tools.js"></script>
+		<script src="../../js/message.js"></script>
+		<script src="../../js/aliyun-oss-sdk-4.4.4.min.js"></script>
+		<!--<script src="../../js/pictureHandle.js"></script>-->
+		<script type="text/javascript" src="../../js/jquery.qrcode.min.js"></script>
+		<script type="text/javascript" src="../../js/GlobalData.js"></script>
+		
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+		<script type="text/javascript" src="../../js/Consulting_management/advertise.js"></script>
+    
+		<script>
+		
+			//当前登陆用户ID
+			var adminUser = GlobalData.getUerInfo();
+			if(adminUser == null || adminUser.id == null || adminUser.id == "") {
+				location.href = "../../login.html";
+			};
+			if(adminUser.permissionList.indexOf("advertManagerQuery")!= -1){
+				$("#btnRest").show();
+				$("#btnSearch").show();
+				$(".material").show();
+			}else{
+				$("#btnRest").hide();
+				$("#btnSearch").hide();
+				$(".material").hide();
+				$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">您没有权限访问这个页面</div></div>');
+			};
+			
+			if(adminUser.permissionList.indexOf("advertAdd")!= -1){
+				$("#addAdver").show();
+			}else{
+				$("#addAdver").hide();
+			};
+			
+			if(adminUser.permissionList.indexOf("advertDelete")!= -1){
+				$(".deleteButton").show();
+			}else{
+				$(".deleteButton").hide();
+			};
+			
+			if(adminUser.permissionList.indexOf("advertEdit")!= -1){
+				$(".editorButton").show();
+			}else{
+				$(".editorButton").hide();
+			};
+			if(adminUser.permissionList.indexOf("advertStopStatus")!= -1){
+				$(".stopButton").show();
+			}else{
+				$(".stopButton").hide();
+			};
+			if(adminUser.permissionList.indexOf("advertWorkStatus")!= -1){
+				$(".workButton").show();
+			}else{
+				$(".workButton").hide();
+			};
+//		
+			$(document).ready(function() {
+				
+				var ipt = $('#number');
+        ipt.on('keyup',function(){
+          if(! /^\d+$/.test(this.value)){
+            this.value='';
+           }
+         })
+				
+//				$("li[data-page='Infinity']").remove()
+				
+				//这里是侧栏高亮显示
+				setTimeout(function(){
+					$("#side-menu>li").eq(2).addClass("active")
+					$("#side-menu>li").eq(2).find("ul").addClass("in")
+					$("#side-menu li .advertise").addClass("active")
+//					$("#side-menu li").eq(5).find("ul").addClass("in")
+//					$("#side-menu li").eq(5).find("ul a").eq(1).addClass("active")
+					
+				},2000)
+				
+					$(function(){
+                  $('.dept_select').chosen();
+                 });
+	            
+	                //这里是oss上传
+	                
+	                if (!String.prototype.splice) {
+    String.prototype.splice = function(start, delCount, newSubStr) {
+        return this.slice(0, start) + newSubStr + this.slice(start + Math.abs(delCount));
+    };
+}
+//2、重写后代码如下：
+String.prototype.splice = function(idx, rem, str) {
+    return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
+};
+
+	
+    document.getElementById('upFile').addEventListener('change', function (e) {
+    	var _upFile=document.getElementById("upFile");
+    	if (_upFile.files.length === 0) {  
+    		var res='请选择图片'
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+res+'</div></div>')
+    		
+//      alert("请选择图片");  
+        return; }
+    	
+    	 var oFile = _upFile.files[0]; 
+    	
+    	 if(!new RegExp("(jpg|jpeg|png)+","gi").test(oFile.type)){  
+//      alert("照片上传：文件类型必须是JPG、JPEG、PNG");  
+        var rmsg='照片上传：文件类型必须是JPG、JPEG、PNG'
+		$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+rmsg+'</div></div>')
+        
+        return;  
+    }
+    	
+    	
+      var file = e.target.files[0];
+      var storeAs =((new Date()).getTime());
+      console.log(file.name + ' => ' + storeAs);
+      client.multipartUpload(String(storeAs), file).then(function (result) {
+         var ossUrls=result.res.requestUrls[0].split("?")[0]
+         var ossUrl=ossUrls.splice(4,0,"s")
+//       var ossUrl=ossUrls.split("?")[0]
+           $("#nextview").attr("src",ossUrl);  
+         console.log(ossUrl)
+      }).catch(function (err) {
+        console.log(err);
+        console.log()
+      });
+    });
+	
+				
+//				//这里是分页
+//				var p = new Paging();
+//			p.init({target:'#pageToolbar',pagesize:10,count:100, toolbar: true,hash: true,callback:function(page,size,count){
+////				getAdminUserAll(page,$("#rows").val());
+//			},go:function(p){
+////				getAdminUserAll(p,$("#rows").val());
+//			},changePagesize:function(ps){
+////				getAdminUserAll($("#page").val(),ps);
+//			}});
+			   
+				
+
+				//这里是点击按钮选择
+				$("#allchek").click(function() {
+
+					if($(this).is(':checked')) {
+						$(".wrapper-content table .item-check").prop("checked", "true")
+					} else {
+						$(".wrapper-content table .item-check").prop("checked", "")
+
+					}
+				})
+
+//				$(".set .setbox .creta").click(function(evt) {
+//
+//					evt.stopPropagation()
+//
+//					$("#adopt").css("display", "block")
+//
+//					$("#adopt").addClass("fadeIn")
+//					$("#adopt .content").addClass("zoomInDown")
+//				})
+
+				$("#adopt .title a").click(function(evt) {
+
+					evt.stopPropagation()
+
+					$("#adopt").removeClass("fadeIn")
+					$("#adopt .content").removeClass("zoomInDown")
+					$("#adopt").addClass("fadeOut")
+					$("#adopt .content").addClass("zoomOutDown")
+					t = setTimeout(function() {
+						$("#adopt").removeClass("fadeOut")
+						$("#adopt .content").removeClass("zoomOutDown")
+						$("#adopt").css("display", "none")
+					}, 1000)
+
+				})
+
+//				$(".wrapper-content .row .box-item .top i").click(function(evt) {
+//
+//					evt.stopPropagation()
+//
+//					$("#sitch").css("display", "block")
+//
+//					$("#sitch").addClass("fadeIn")
+//					$("#sitch .content").addClass("zoomInDown")
+//				})
+
+				$("#sitch .sitch-box .content .title a").click(function(evt) {
+
+					evt.stopPropagation()
+
+					$("#sitch").removeClass("fadeIn")
+					$("#sitch .content").removeClass("zoomInDown")
+					$("#sitch").addClass("fadeOut")
+					$("#sitch .content").addClass("zoomOutDown")
+					t = setTimeout(function() {
+						$("#sitch").removeClass("fadeOut")
+						$("#sitch .content").removeClass("zoomOutDown")
+						$("#sitch").css("display", "none")
+					}, 1000)
+
+				})
+
+			});
+		</script>
+
+	</body>
+
+</html>

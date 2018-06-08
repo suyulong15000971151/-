@@ -1,0 +1,35 @@
+	/* Additional style to fix warning dialog position */
+			
+			.wrapper-content input[type=checkbox] {
+				vertical-align: middle;
+			}
+			.wrapper-content{padding: 0;background: #fff;}
+			#alertmod_table_list_2 {
+				top: 900px !important;
+			}
+			
+			.ibox-content th{white-space: normal;}
+			.ibox-content td{white-space: normal;}
+			.set .go{border:1px solid #1afa29}
+			.set .go:hover{background:#1afa29;color:#fff}
+			.set .no-adopt:hover{background:red;color:#fff}
+			.set .search:hover{background:#e3b375;color:#fff}
+			.set .rest:hover{background:#50b595;color:#fff}
+			.set .btn-left{background: none;color:#1afa29}
+			#adopt{width:100%;height:100%;position: fixed;top:0;left:0;background:rgba(0,0,0,.6);z-index: 99999;display:none;}
+			#adopt .adopt-box{display: flex;justify-content: center;align-items: center;width:100%;height:100%}
+			#adopt .adopt-box .content{width:40%;height:300px;background:#fff;border-radius: 5px;}
+			#adopt .adopt-box .content .title{width:100%;height:30px;border-bottom: 1px solid #ccc;line-height: 30px;background:#1ab394;color:#000}
+			#adopt .adopt-box .content .title span{text-indent: 10px;display: inline-block;}
+			#adopt .adopt-box .content .contain{width:100%;margin-top:40px;text-align: center;}
+			#adopt .adopt-box .content .contain a{font-size: 14px;border:1px solid #eee;padding:5px 10px;border-radius: 5px;margin:0 10px}
+			#adopt .adopt-box .content .contain .contain-item{width:80%;margin:0 auto;display: flex;line-height: 30px;margin-bottom:10px}
+			#adopt .adopt-box .content .contain .contain-item label{margin-right:0px;width: 60px;text-align: left;}
+			#adopt .adopt-box .content .contain .contain-item input{flex: 1;border-radius: 5px;}
+			#adopt .adopt-box .content .contain .new-set{text-align: center;width:90%;overflow: hidden;border-top:1px solid #ccc;margin:0 auto;padding-top:20px;margin-top:20px}
+			#adopt .adopt-box .content .contain .new-set button{margin:0 10px}
+			
+			#adopt .adopt-box .content .contain .new-set button.btn-default{background: #fff;border:1px solid #eee;color:#000}
+			#adopt .adopt-box .content .contain .new-set button.btn-default:hover{background: #eee;}
+			#adopt .adopt-box .content .contain .new-set button.btn-success{background: #1ab394;border:1px solid #eee}
+			.material-box .row label{width: auto;}

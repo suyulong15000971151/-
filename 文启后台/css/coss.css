@@ -1,0 +1,59 @@
+.page-item{padding-left: 35px;box-sizing: border-box;}
+.page-item .form-control{width:60px;border-radius: 5px;display: inline-block;padding:0 5px !important}
+.pagss{overflow: hidden;box-sizing: border-box;padding-left:20px}
+.pagss .left {float:left;display: inline-block;line-height: 30px;font-size: 13px;font-weight: 100;color:#999}
+.pagss .left label{line-height: 40px;font-size: 13px;font-weight: 400;color:#000;padding-top:15px}
+.pagss .right{float:right;display: inline-block;margin:20px 30px}
+.pagss .right .pagination{padding: 0;}
+.pagination > li > span{display: none;}
+.wrapper-content{background: #fff;}
+.wrapper-content .page-item{padding-top:10px;padding-bottom: 10px;}
+.date .form-control{padding:0 10px !important}
+.material .material-box .row{margin-bottom:10px}
+.set .setbox button span{display: inline-block;width:12px;height:12px;font-size: 12px;}
+/*.set .setbox button span:after{content: '';display: block;width:12px;height:12px;}*/
+/*.set .setbox button span:before{content: '';display: block;width:12px;height:12px;font-size: 12px;vertical-align: middle;}*/
+.set .setbox button i{vertical-align: middle;}
+
+button.btn{transition: all 0.5s linear;}
+.pagss .right .pagination li.active a{background:#eee !important;color:#000 !important;}
+
+/*#bod-com{animation: infade 0.5s linear;}*/
+
+.material-box .chosen-container-single{width:60% !important}
+/*.ibox .ibox-box .table-con{height:300px !important;overflow: scroll;}*/
+/*.ibox .ibox-content table{max-height:300px !important;overflow-y: scroll;}*/
+
+
+/*这里是分页的也的*/
+.ui-paging-container{color:#666;font-size: 12px;}
+.ui-paging-container ul{overflow: hidden;text-align: center;}
+.ui-paging-container ul,.ui-paging-container li{list-style: none;}
+.ui-paging-container li{display: inline-block;padding:3px 6px;margin-left: 5px;color:#666;}
+.ui-paging-container li.ui-pager{cursor: pointer; border:1px solid #ddd;border-radius: 2px;}
+.ui-paging-container li.ui-pager:hover,.ui-paging-container li.focus{background-color: #288df0;color:#FFFFFF;}
+.ui-paging-container li.ui-paging-ellipse{border:none;}
+.ui-paging-container li.ui-paging-toolbar{padding:0;}
+.ui-paging-container li.ui-paging-toolbar select{height:22px;border:1px solid #ddd;color: #666;}
+.ui-paging-container li.ui-paging-toolbar input{line-height: 20px; height:20px;padding:0;border:1px solid #ddd;text-align: center;width: 30px;margin:0 0 0 5px;vertical-align: middle;}
+.ui-paging-container li.ui-paging-toolbar a{vertical-align: middle; text-decoration: none;display: inline-block;height:20px;border:1px solid #ddd;vertical-align: top;border-radius: 2px;line-height: 20px;padding:0 3px;cursor: pointer;margin-left: 5px;color: #666;}
+.ui-paging-container li.ui-pager-disabled,.ui-paging-container li.ui-pager-disabled:hover{background-color: #f6f6f6;;cursor: default;border:none;color:#ddd;}
+.ui-paging-container li.ui-pager-disabled,.ui-paging-container li.ui-pager-disabled:hover{background-color: #f6f6f6;;cursor: default;border:none;color:#ddd;}
+.wrapper-content table tr td{max-width: 150px !important;word-wrap:break-word; }
+
+
+/*这里是提示消息*/
+.tips{max-width:300px;height:40px;position: fixed;top:-50px;left:50%;margin-left:-40px;z-index: 999999999;box-shadow: 0 0 5px #000;white-space: nowrap;overflow: hidden;}
+.slideInDowns{animation: slidedow 2s ease;}
+.warm i{background:#f0ad4e;color:#fff}
+.win i{background:#5cb85c;color:#fff}
+.error i{background:#d9534f;color:#fff}
+.tips i{display: inline-block;width:40px;height:40px;text-align: center;line-height: 40px;font-size: 20px;float: left;}
+.tips .tip_text{display: block;margin-left:40px ;text-align: center;line-height: 40px;background:#fff;padding:0 10px;min-width: 100px;}
+
+
+
+@keyframes slidedow{
+	from{display: none;opacity:0 ;transform:translateY(0px);}
+	to{display: block;opacity:1 ;transform:translateY(200px);}
+}

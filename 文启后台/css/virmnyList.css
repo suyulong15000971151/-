@@ -1,0 +1,192 @@
+#text{margin:50px auto;width:500px;}
+ .hotspot{color:#900;padding-bottom:1px;border-bottom:1px dotted #900;cursor:pointer;}
+ #tt{position:absolute;display:block;background:url(img/tt_left.gif) top left no-repeat}
+ #tttop{display:block;height:5px;margin-left:5px;background:url(img/tt_top.gif) top right no-repeat;overflow:hidden}
+ #ttcont{display:block;padding:2px 12px 3px 7px;margin-left:5px;background:#666;color:#FFF}
+ #ttbot{display:block;height:5px;margin-left:5px;background:url(img/tt_bottom.gif) top right no-repeat;overflow:hidden}
+			/* Additional style to fix warning dialog position */
+select option{border:1px solid red !important}
+.onoffswitch{margin:0 auto;text-align: center;}
+.onoffswitch-inner:before{padding-left:0}
+.wrapper-content table tr .tst{}
+
+
+/*这里是生成钱包地址链接*/
+			#generateM {width: 100%;height: 100%;position: fixed;top: 0;left: 0;background: rgba(0, 0, 0, .6);z-index: 99999;display: none;}
+			
+			#generateM .generate-box {display: flex;justify-content: center;align-items: center;width: 100%;height: 100%}
+			
+			#generateM .generate-box .content {width: 40%;height:260px;background: #fff;border-radius: 5px;}
+			#generateM .generate-box .content .item{width:40%;overflow: hidden;margin:0 auto;display: flex;line-height: 30px;}
+			#generateM .generate-box .content .item input{flex: 1;border-radius: 5px;}
+			
+			#generateM .generate-box .content .title {width: 100%;height: 40px;border-bottom: 1px solid #ccc;line-height: 40px;background: #1ab394;color:#000}
+			#generateM .generate-box .content .title span{text-indent: 10px;display: inline-block;}
+			#generateM .generate-box .content .contain {width: 100%;margin-top: 20px;text-align: center;overflow: hidden;position: relative;height:100px}
+		    #generateM .generate-box .content .bot-set{height:50px;padding-top:10px;border-top:1px solid #ccc;width:90%;margin:0 auto;text-align: center;overflow: hidden;}
+		    #generateM .generate-box .content .bot-set button{margin: 0 40px;}
+			#generateM .generate-box .content .bot-set button.btn-default{background:#fff;border:1px solid #ccc;color:#000}
+			#generateM .generate-box .content .bot-set button.btn-default:hover{background: #ccc;}
+			#generateM .generate-box .content .bot-set button.btn-success{background:#1ab394}
+	
+
+	 /*这类似是修改钱包链接*/
+            #test-money {width: 100%;height: 100%;position: fixed;top: 0;left: 0;background: rgba(0, 0, 0, .6);z-index: 99999;display: none;}
+			
+			#test-money .modify-box {display: flex;justify-content: center;align-items: center;width: 100%;height: 100%}
+			
+			#test-money .modify-box .content {width: 40%;height: 180px;background: #fff;border-radius: 5px;overflow: hidden;}
+			#test-money .modify-box .content .title {width: 100%;height: 40px;border-bottom: 1px solid #ccc;line-height: 40px;background: #1ab394;color:#000}
+			#test-money .modify-box .content .title span{text-indent: 10px;display: inline-block;color:#000;cursor: pointer;}
+			#test-money .modify-box .content .contain .address{width:80%;display: flex;margin:0 auto}
+			#test-money .modify-box .content .contain .address label{display: inline-block;margin-right:10px;line-height: 30px;width:80px}
+			#test-money .modify-box .content .contain input{flex: 1;border-radius: 5px;}
+			#test-money .modify-box .content .contain textarea{flex: 1;border-radius: 5px;height:50px !important}
+			#test-money .modify-box .content .contain{margin:20px auto}
+			#test-money .modify-box .content .contain .addres-set{margin-top:20px}
+			#test-money .modify-box .content .contain .addres-set>div{width:100%;border-top:1px solid #eee;text-align: center;padding-top:10px}
+			#test-money .modify-box .content .contain .addres-set button{margin: 0 40px;}
+			#test-money .modify-box .content .contain .addres-set button.btn-default{background:#fff;border:1px solid #ccc;color:#000}
+			#test-money .modify-box .content .contain .addres-set button.btn-default:hover{background:#ccc}
+			#test-money .modify-box .content .contain .addres-set button.btn-success{background:#1ab394;}
+			
+            #service .service-box .content {width: 650px;height: 400px;background: #fff;border-radius: 5px;}
+            #service .service-box .content tr td.edt{max-width: 150px;white-space: normal;box-sizing: border-box;max-height: 60px;padding:0px;vertical-align: middle;}
+            #service .service-box .content tr td.border{border: 1px solid #006600;box-sizing: border-box;}
+             #service .service-box .content tr td button{display: inline-block;padding:2px}
+             #service .service-box .content tr td span{display: none;padding:3px;background: #1ab394;color:#fff;text-align: center;}
+           #editable tr th{white-space: nowrap;}
+           #serviceFeeList tr td input.form-control{padding:0 5px !important;width:80% !important;margin:0 auto}
+           #serviceFeeList tr td select{padding:0 5px !important;width:80% !important;margin:0 auto}
+           #serviceFeeList tr td>button.crets{background: #fff !important;color:#000;border:1px solid #eee}
+           /*#serviceFeeList tr td button.btn-success{background: #1ab394 !important;}*/
+          
+           #add .add-box .content .contain .contain-box label>i{color:#ff4949}
+           #add .add-box .content .contain .item{overflow: hidden;}
+           #generateM .generate-box .content .con-item{text-align: center;}
+           #generateM .generate-box .content .con-item>label{display: inline-block;width:100px;text-align: right;margin-right:10px}
+           #generateM .generate-box .content .con-item .tai{width:100px}
+           #generateM .generate-box .content .con-item .tai input+label{margin: 10px 10px;display: inline-block;}
+           
+           
+           #sitchDown{width:100%;height:100%;position: fixed;top:0;left:0;background:rgba(0,0,0,.6);z-index: 999599;display:none;}
+#sitchDown .sitch-box{display: flex;justify-content: center;align-items: center;width:100%;height:100%}
+#sitchDown .sitch-box .content{width:30%;height:200px;background:#fff;border-radius: 5px;}
+#sitchDown .sitch-box .content .title{width:100%;height:40px;border-bottom: 1px solid #ccc;line-height: 40px;background:#1ab394;color:#000}
+#sitchDown .sitch-box .content .title span{text-indent: 10px;display: inline-block;}
+#sitchDown .sitch-box .content .contain{width:90%;margin-top:40px;margin:0 auto;line-height: 30px;overflow: hidden;position: relative;height:150px;}
+#sitchDown .sitch-box .content .contain .tip-con{text-align: center;line-height: 30px;margin:30px 0 30px;background: url(../img/tips.png) no-repeat 25% center;background-size: 30px 30px;}
+#sitchDown .sitch-box .content .contain .set{text-align: center;}
+#sitchDown .sitch-box .content .contain .set button{margin:0 20px}
+#sitchDown .sitch-box .content .contain .set button.btn-default{background: #fff;border:1px solid #eee;color:#000}
+#sitchDown .sitch-box .content .contain .set button.btn-default:hover{background: #eee;}
+#sitchDown .sitch-box .content .contain .set button.btn-success{background: #1ab394;border:1px solid #eee}
+
+
+#sitchRecharge {width: 100%;height: 100%;position: fixed;top: 0;left: 0;background: rgba(0, 0, 0, .6);z-index: 99999;display: none;}
+			
+			#sitchRecharge .sitch-box {display: flex;justify-content: center;align-items: center;width: 100%;height: 100%}
+			
+			#sitchRecharge .sitch-box .content {width: 40%;height: 220px;background: #fff;border-radius: 5px;}
+			#sitchRecharge .sitch-box .content .item{width:40%;overflow: hidden;margin:0 auto;display: flex;line-height: 30px;}
+			#sitchRecharge .sitch-box .content .item input{flex: 1;border-radius: 5px;}
+			
+			#sitchRecharge .sitch-box .content .title {width: 100%;height: 40px;border-bottom: 1px solid #ccc;line-height: 40px;background: #1ab394;color:#000}
+			#sitchRecharge .sitch-box .content .title span{text-indent: 10px;display: inline-block;}
+			#sitchRecharge .sitch-box .content .contain {width: 100%;margin-top: 20px;text-align: center;overflow: hidden;position: relative;height:100px}
+		    #sitchRecharge .sitch-box .content .bot-set{height:50px;padding-top:10px;border-top:1px solid #ccc;width:90%;margin:0 auto;text-align: center;overflow: hidden;}
+		    #sitchRecharge .sitch-box .content .bot-set button{margin: 0 40px;}
+			#sitchRecharge .sitch-box .content .bot-set button.btn-default{background:#fff;border:1px solid #ccc;color:#000}
+			#sitchRecharge .sitch-box .content .bot-set button.btn-default:hover{background: #ccc;}
+			#sitchRecharge .sitch-box .content .bot-set button.btn-success{background:#1ab394}
+			#sitchRecharge .sitch-box .content .con-item{text-align: center;}
+           #sitchRecharge .sitch-box .content .con-item>label{display: inline-block;width:100px;text-align: right;margin-right:10px}
+           #sitchRecharge .sitch-box .content .con-item .tai{width:100px}
+           #sitchRecharge .sitch-box .content .con-item .tai input+label{margin: 10px 10px;display: inline-block;}
+
+
+#sitchWithdraw {width: 100%;height: 100%;position: fixed;top: 0;left: 0;background: rgba(0, 0, 0, .6);z-index: 99999;display: none;}
+			
+			#sitchWithdraw .sitch-box {display: flex;justify-content: center;align-items: center;width: 100%;height: 100%}
+			
+			#sitchWithdraw .sitch-box .content {width: 40%;height: 220px;background: #fff;border-radius: 5px;}
+			#sitchWithdraw .sitch-box .content .item{width:40%;overflow: hidden;margin:0 auto;display: flex;line-height: 30px;}
+			#sitchWithdraw .sitch-box .content .item input{flex: 1;border-radius: 5px;}
+			
+			#sitchWithdraw .sitch-box .content .title {width: 100%;height: 40px;border-bottom: 1px solid #ccc;line-height: 40px;background: #1ab394;color:#000}
+			#sitchWithdraw .sitch-box .content .title span{text-indent: 10px;display: inline-block;}
+			#sitchWithdraw .sitch-box .content .contain {width: 100%;margin-top: 20px;text-align: center;overflow: hidden;position: relative;height:100px}
+		    #sitchWithdraw .sitch-box .content .bot-set{height:50px;padding-top:10px;border-top:1px solid #ccc;width:90%;margin:0 auto;text-align: center;overflow: hidden;}
+		    #sitchWithdraw .sitch-box .content .bot-set button{margin: 0 40px;}
+			#sitchWithdraw .sitch-box .content .bot-set button.btn-default{background:#fff;border:1px solid #ccc;color:#000}
+			#sitchWithdraw .sitch-box .content .bot-set button.btn-default:hover{background: #ccc;}
+			#sitchWithdraw .sitch-box .content .bot-set button.btn-success{background:#1ab394}
+			#sitchWithdraw .sitch-box .content .con-item{text-align: center;}
+           #sitchWithdraw .sitch-box .content .con-item>label{display: inline-block;width:100px;text-align: right;margin-right:10px}
+           #sitchWithdraw .sitch-box .content .con-item .tai{width:100px}
+           #sitchWithdraw .sitch-box .content .con-item .tai input+label{margin: 10px 10px;display: inline-block;}
+
+
+
+
+#sitchWithdraw {width: 100%;height: 100%;position: fixed;top: 0;left: 0;background: rgba(0, 0, 0, .6);z-index: 99999;display: none;}
+			
+			#sitchWithdraw .sitch-box {display: flex;justify-content: center;align-items: center;width: 100%;height: 100%}
+			
+			#sitchWithdraw .sitch-box .content {width: 40%;height: 220px;background: #fff;border-radius: 5px;}
+			#sitchWithdraw .sitch-box .content .item{width:40%;overflow: hidden;margin:0 auto;display: flex;line-height: 30px;}
+			#sitchWithdraw .sitch-box .content .item input{flex: 1;border-radius: 5px;}
+			
+			#sitchWithdraw .sitch-box .content .title {width: 100%;height: 40px;border-bottom: 1px solid #ccc;line-height: 40px;background: #1ab394;color:#000}
+			#sitchWithdraw .sitch-box .content .title span{text-indent: 10px;display: inline-block;}
+			#sitchWithdraw .sitch-box .content .contain {width: 100%;margin-top: 20px;text-align: center;overflow: hidden;position: relative;height:100px}
+		    #sitchWithdraw .sitch-box .content .bot-set{height:50px;padding-top:10px;border-top:1px solid #ccc;width:90%;margin:0 auto;text-align: center;overflow: hidden;}
+		    #sitchWithdraw .sitch-box .content .bot-set button{margin: 0 40px;}
+			#sitchWithdraw .sitch-box .content .bot-set button.btn-default{background:#fff;border:1px solid #ccc;color:#000}
+			#sitchWithdraw .sitch-box .content .bot-set button.btn-default:hover{background: #ccc;}
+			#sitchWithdraw .sitch-box .content .bot-set button.btn-success{background:#1ab394}
+			#sitchWithdraw .sitch-box .content .con-item{text-align: center;}
+           #sitchWithdraw .sitch-box .content .con-item>label{display: inline-block;width:100px;text-align: right;margin-right:10px}
+           #sitchWithdraw .sitch-box .content .con-item .tai{width:100px}
+           #sitchWithdraw .sitch-box .content .con-item .tai input+label{margin: 10px 10px;display: inline-block;}
+
+
+#sitchTransaction {width: 100%;height: 100%;position: fixed;top: 0;left: 0;background: rgba(0, 0, 0, .6);z-index: 99999;display: none;}
+			
+			#sitchTransaction .sitch-box {display: flex;justify-content: center;align-items: center;width: 100%;height: 100%}
+			
+			#sitchTransaction .sitch-box .content {width: 40%;height: 220px;background: #fff;border-radius: 5px;}
+			#sitchTransaction .sitch-box .content .item{width:40%;overflow: hidden;margin:0 auto;display: flex;line-height: 30px;}
+			#sitchTransaction .sitch-box .content .item input{flex: 1;border-radius: 5px;}
+			
+			#sitchTransaction .sitch-box .content .title {width: 100%;height: 40px;border-bottom: 1px solid #ccc;line-height: 40px;background: #1ab394;color:#000}
+			#sitchTransaction .sitch-box .content .title span{text-indent: 10px;display: inline-block;}
+			#sitchTransaction .sitch-box .content .contain {width: 100%;margin-top: 20px;text-align: center;overflow: hidden;position: relative;height:100px}
+		    #sitchTransaction .sitch-box .content .bot-set{height:50px;padding-top:10px;border-top:1px solid #ccc;width:90%;margin:0 auto;text-align: center;overflow: hidden;}
+		    #sitchTransaction .sitch-box .content .bot-set button{margin: 0 40px;}
+			#sitchTransaction .sitch-box .content .bot-set button.btn-default{background:#fff;border:1px solid #ccc;color:#000}
+			#sitchTransaction .sitch-box .content .bot-set button.btn-default:hover{background: #ccc;}
+			#sitchTransaction .sitch-box .content .bot-set button.btn-success{background:#1ab394}
+			#sitchTransaction .sitch-box .content .con-item{text-align: center;}
+           #sitchTransaction .sitch-box .content .con-item>label{display: inline-block;width:100px;text-align: right;margin-right:10px}
+           #sitchTransaction .sitch-box .content .con-item .tai{width:100px}
+           #sitchTransaction .sitch-box .content .con-item .tai input+label{margin: 10px 10px;display: inline-block;}
+           
+           
+           /*添加class*/
+          #add{/*display: block;*/}
+          #add .add-box .content{width:800px !important}
+          #add .add-box .content .contain .top label{width:120px !important;text-align: left;display: inline-block;}
+          #add .add-box .content .contain .item .lab-title{width:120px !important;text-align: left;display: inline-block;}
+          #add .add-box .content .contain .item .tai{margin-right: 10px;}
+          #add .add-box .content .contain .item label{display: inline-block;width: 120px;}
+          #add .add-box .content .contain .top .lab-title{width: 120px !important;}
+          .ibox-content table tr td span{overflow: hidden;
+         background: none;color:#000;padding: 0;line-height: 20px;height:62px !important;    text-overflow: ellipsis;display: -webkit-box;
+    /*display: inline-block;*/
+    -webkit-line-clamp: 3;white-space: normal;
+    -webkit-box-orient: vertical;}
+    .ibox-content table tr td{word-wrap:break-word;white-space: nowrap;}
+           
+           #text{display: none;padding:20px;background: rgba(0,0,0,.6);position: absolute;top:50%;left: 50%;max-width: 200px;z-index: 999;border-radius: 5px;}
+         .tex-box .fadeIn{display: block !important;}

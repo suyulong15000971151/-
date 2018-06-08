@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>登陆</title>
+
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+		<link href="css/animate.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<link href="css/message.css" rel="stylesheet">
+		<link href="css/log.css" rel="stylesheet">
+	</head>
+
+	<body class="gray-bg">
+
+		<div class="middle-box text-center loginscreen animated fadeInDown">
+			<div>
+				<div>
+					<!--<h1 class="logo-name">BIG.TOP</h1>-->
+				</div>
+				<h3>系统登陆</h3>
+				<div class="m-t" role="form">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="账号" required="" maxlength="11" id="name" onkeyup="googleStatus();" required="">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" placeholder="密码" maxlength="32" id="password">
+					</div>
+					<div class="form-group vertical">
+						<input type="text" class="form-control" placeholder="验证码" id="vaildatecode" maxlength="6" id="vaildatecode">
+						<button onclick="sendCode();" id='codeBtn'>
+							发送验证码
+						</button>
+					</div>
+					<div class="form-group goodle" id='googleDiv' style="display:none">
+						<label for="">谷歌验证码</label>
+						<input type="text" class="form-control" placeholder="" maxlength="6" id="googleCode">
+					</div>
+					<button type="submit" class="btn btn-primary block full-width m-b" onclick="login();">
+						登陆
+					</button>
+
+					<a href="forgot_password.html"><small>忘记密码</small></a>
+				</div>
+			</div>
+		</div>
+		<!-- Mainly scripts -->
+		<script src="js/jquery-2.1.1.js"></script>
+		<script src="http://gosspublic.alicdn.com/aliyun-oss-sdk-4.4.4.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/canvas.js"></script>
+		<script type="text/javascript" src="js/GlobalData.js"></script>
+		<script type="text/javascript" src="js/md5.js"></script>
+		<script type="text/javascript" src="js/message.js"></script>
+		
+
+		<canvas id="c_n35" width="1038" height="770" style="position: fixed; top: 0px; left: 0px; z-index: -1; opacity: 0.5;"></canvas>
+	</body>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#name').val('');	
+			$('#password').val('');	
+			$('#vaildatecode').val('');	
+			$('#googleCode').val('');
+		});
+
+		function sendCode() {
+			//用户名
+			var name = $('#name').val();
+
+			//用户名校验
+			var isPhone = GlobalUtils.checkStr(name, 0);
+			if (name == "") {
+				$.message({message:"请输入用户名",type:"warning"});
+			} else if (!isPhone) {
+				$('#name').val('');	
+				$.message({message:"手机号格式不正确",type:"warning"});
+			} else {
+				var data = {
+					"name" : name,
+				};
+				$.ajax({
+					type : 'POST',
+					url : GlobalData.ADMIN_URL + 'adminuser/sendcode',
+					data : JSON.stringify(data),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+						console.log(data);
+						if (data.code != "200") {
+							$.message({message:data.message,type:"error"});
+							$('#name').val('');	
+						} else {
+							$.message('成功');
+							codeTimeInit();
+							$('#vaildatecode').val('');	
+						}
+					},
+					error : function(e) {
+						$.message({message:"请求错误",type:"error"});
+						console.log(e);
+					}
+				});
+			}
+		}
+
+		var codeTime = 120;
+		var codeId = null;
+		function codeTimeInit() {
+			var index = codeTime;
+			var go = function() {
+				if (index < 0) {
+					clearInterval(codeId);
+					codeId = null;
+				} else {
+					if(index==0){
+						$('#codeBtn').html('发送验证码');
+					}else{
+						$('#codeBtn').html('已发送(' + index + ')');
+					}
+					index--;
+				}
+			};
+			go();
+			codeId = setInterval(go, 1000);
+		};
+		
+		
+		function googleStatus(){
+			//用户名
+			var name = $('#name').val();
+			var isPhone = GlobalUtils.checkStr(name, 0);
+			 if(name==null||name==""||name.length!=11){
+			 	return false;
+			 }else if (!isPhone) {
+				return false;
+			 }else{
+			 	var data = {
+					"name" : name,
+				};
+			 	//查询谷歌认证状态
+			 	$.ajax({
+					type : 'POST',
+					url : GlobalData.ADMIN_URL + 'adminuser/querygooglestatus',
+					data : JSON.stringify(data),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+						console.log(data);
+						if (data.code != "200") {
+							return false;
+						} else {
+							if(data.data!=null&&data.data==1){
+								$('#googleDiv').show();
+							}else{
+								$('#googleDiv').hide();
+							}
+						}
+					},
+					error : function(e) {
+						console.log(e);
+					}
+				});
+			 }
+		}
+		
+		function login(){
+			//用户名
+			var name = $('#name').val();
+			//用户名校验
+			var isPhone = GlobalUtils.checkStr(name, 0);
+			
+			//用户密码
+			var password=$('#password').val();
+			
+			//验证码
+			var vaildatecode=$('#vaildatecode').val();
+			var isNum = GlobalUtils.checkStr(vaildatecode,3);
+	
+			//谷歌验证码
+			var googleCode=$('#googleCode').val();
+			
+			if (name == "") {
+				$.message({message:"请输入用户名",type:"warning"});
+			}else if (!isPhone) {
+				$('#name').val('');	
+				$.message({message:"手机号格式不正确",type:"warning"});
+			}else if (password == "") {
+				$.message({message:"请输入密码",type:"warning"});
+			}else if (vaildatecode == "") {
+				$.message({message:"请输入验证码",type:"warning"});
+			}else if (!isNum) {
+				$('#vaildatecode').val('');
+				$.message({message:"验证码格式不正确",type:"warning"});
+			}else {
+				if(googleCode!=null&&googleCode!=""){
+					var isNumG = GlobalUtils.checkStr(googleCode,3);
+					if(!isNumG) {
+						$('#googleCode').val('');
+						$.message({message:"谷歌验证码格式不正确",type:"warning"});
+					}
+				};
+				var data = {
+					"name" : name,
+					"password" : hex_md5(password),
+					"vaildatecode" : vaildatecode,
+					"googleCode" : googleCode
+				};
+				console.log(data);
+				//用户登陆
+			 	$.ajax({
+					type : 'POST',
+					url : GlobalData.ADMIN_URL + 'adminuser/login',
+					data : JSON.stringify(data),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+						console.log(data);
+						if (data.code != "200") {
+							$.message({message:data.message,type:"error"});
+						} else {
+							$.message('成功');
+							GlobalData.setUserInfo(data.data);
+							
+							var dataNew = {
+								"roleId" : data.data.role.id
+							};
+							//获取此用户的所有权限
+							$.ajax({
+								type : 'POST',
+								url : GlobalData.ADMIN_URL + 'adminuser/modulepermission',
+								data : JSON.stringify(dataNew),
+								contentType : "application/json",
+								dataType : 'json',
+								success : function(data) {
+									console.log(data);
+									if (data.code != "200") {
+										$.message({message:data.message,type:"error"});
+									} else {
+										$.message('成功');
+										var permissionList = new Array();
+										if(data.data!=null&&data.data.length>0){
+											var res=data.data;
+											for (var i = 0; i < res.length; i++) {
+												var permissions=res[i].permissions;
+												if(permissions!=null&&permissions.length>0){
+													for (var j = 0; j < permissions.length; j++) {
+														if(permissions[j].isChoose!=null&&permissions[j].isChoose==1){
+															permissionList.push(permissions[j].permissionName);
+														}		  
+													};
+												}
+											};
+										}
+										
+										var adminUser = GlobalData.getUerInfo();
+										adminUser.permissionList=permissionList;
+										GlobalData.setUserInfo(adminUser);
+										location.href = "view/Member_management/memberList.html";
+									}
+								},
+								error : function(e) {
+									$.message({message:'请求错误',type:"error"});
+									console.log(e);
+								}
+							});
+						}
+					},
+					error : function(e) {
+						$.message({message:'请求错误',type:"error"});
+						console.log(e);
+					}
+				});
+			}
+		}
+		//end ready
+
+	</script>
+
+</html>

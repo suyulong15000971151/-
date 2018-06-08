@@ -1,0 +1,11 @@
+.m-t .vertical{display: flex;}
+.m-t .goodle{display: flex;}
+.m-t .vertical input{flex: 1;}
+.m-t .vertical button{display: inline-block;width:100px;height:30px;text-align: center;margin-left:10px}
+.m-t .goodle label{display: inline-block;width:100px;height:30px;text-align: center;margin-right:10px;line-height: 30px;font-weight: 400;color:#fff}
+.middle-box{background:rgba(0,0,0,.5) !important;padding:20px 60px}
+.loginscreen.middle-box{width:460px;margin-top:100px}
+.middle-box h1{font-size:80px;text-align: center;color:#fff}
+.middle-box h3{color:#fff}
+.m-t .form-control{border-radius: 5px !important;padding:0 5px !important}
+.m-t a{color:#fff}

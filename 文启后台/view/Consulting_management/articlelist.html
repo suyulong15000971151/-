@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>文章管理</title>
+		<link href="../../css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
+		<link href="../../css/animate.css" rel="stylesheet">
+		<link href="../../css/plugins/jQueryUI/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+		<link href="../../css/style.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/girds.css" />
+		<link rel="stylesheet" href="../../css/iconfont.css" />
+		<link href="../../css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/chosen.css" />
+		<link rel="stylesheet" href="../../css/coss.css" />
+		<link rel="stylesheet" href="../../css/articlelist.css" />
+		<link rel="stylesheet" href="../../css/summernote.css" />
+		
+		<link rel="stylesheet" href="../../css/default.css" />
+		<link rel="stylesheet" href="../../css/crepsd.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/message.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/bing_google.css"/>
+		
+	</head>
+
+	<body>
+
+
+		<!--这里是提示确认-->
+		<div id="sitch" class="animated dio-close">
+			<div class="sitch-box">
+				<div class="content animated">
+					<div class="title">
+						<span>提示</span>
+						<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain">
+						<div class="tip-con" id="topstatusText">
+					
+						</div>
+						<div class="set">
+							<input type="hidden" id="setArticleId" value=""/>
+							<input type="hidden" id="setTopStatus" value="" />
+							<button class="btn btn-default can-close">取消</button>
+							<button class="btn btn-success cof-close" onclick="setArticleTop()">确认</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--这里是提示确认-->
+		<div id="deleteDiv" class="animated dio-close">
+			<div class="sitch-box">
+				<div class="content animated">
+					<div class="title">	
+						<span>提示</span>
+						<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain">
+						<div class="tip-con">
+							确定删除此文章吗？
+						</div>
+						<div class="set">
+							<input type="hidden" id="delArticleId" />
+							<button class="btn btn-default can-close">取消</button>
+							<button class="btn btn-success cof-close" onclick="delArticle();">确认</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+			<!--这里是通过没通过弹窗-->
+			<div id="adopt" class="animated dio-close">
+				<div class="adopt-box">
+					<div class="content animated">
+						<div class="title">
+							<span id="title">新增</span>
+							<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+						</div>
+						<div class="contain">
+							<div class="contain-box">
+								<input type="hidden" id="id">
+								<div class="contain-item">
+									<label for=""><i>*</i>来源</label><input type="text" class="form-control" id="sourceOfTheArticle" />
+								</div>
+								<div class="contain-item">
+									<label for=""><i>*</i>类型</label><input type="text" class="form-control" id="articleType"/>
+								</div>
+								<div class="contain-item">
+									<label for=""><i>*</i>标题</label><input type="text" class="form-control" id="titleOfArticle" />
+								</div>
+								<div class="contain-item">
+									<label for=""><i>*</i>权重</label><input type="number" class="form-control" id="weight" />
+								</div>
+								<div class="contain-item">
+									<label for=""><i>*</i>是否置顶</label>
+									<select name="" class="form-control " id="topStatus">
+										<option value="1" selected="selected">是</option>
+										<option value="0">否</option>
+									</select>
+								</div>
+								<div class="contain-item">
+									<label for="">广告链接地址</label>
+									<select name="" class="form-control " id="baaId">
+									</select>
+								</div>
+								<div class="contain-item">
+									<label for=""><i>*</i>广告内容</label>
+								</div>
+								<div class="text-edit" style="width:90%;margin:0 auto;min-height: 400px;">
+									<div id="summernote"></div>
+								</div>
+							</div>
+
+							<div class="new-set">
+								<button class="btn btn-default can-close">关闭</button>
+								<button class="btn btn-success cof-close" onclick="setArticle();">保存</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+             
+             
+		   
+		    <!--这里是头部 -->
+			<div id="header"></div>
+			
+			
+            <div id="bod-com" class="animated" style="animation-delay: 0.5s; opacity: 0; ">
+			
+				<div class="row wrapper border-bottom white-bg page-heading">
+					<div class="col-lg-10">
+						<!--<h2>jqGrid</h2>-->
+						<ol class="breadcrumb">
+							<li>
+								<a href="../Member_management/memberList.html">首页</a>
+							</li>
+							<li>
+								<a>文章管理</a>
+							</li>
+						</ol>
+					</div>
+				</div>
+
+				<!--这里是填写资料-->
+				<div class="material">
+					<div class="material-box">
+						<div class="row">
+
+							<div class="col-md-4 col-sm-12">
+								<label for="" class="">文章标题：</label>
+								<input type="text" class="form-control" id="querytitleOfArticle"/>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<label for="" class="">文章类型：</label>
+								<input type="text" class="form-control" id="queryarticleType"/>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<label for="" class="">文章来源：</label>
+								<input type="text" class="form-control" id="querysourceOfTheArticle"/>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+
+				<!--这里是设置-->
+
+				<div class="set" style="padding: 5px 0px;">
+					<div class="setbox">
+						<button class="btn-left btn btn-xs btn-default go creta" type="submit" id='addArticle'>新增 <span class="iconfont icon-add"></span></button>
+						<button class="btn-left btn btn-xs btn-default go creta" type="submit" id='moidfyArticle'>修改 <span class="iconfont icon-xiugai07"></span></button>
+						<button class="btn-left btn btn-xs btn-default no-adopt" id='deleteArticle'>删除  <span class="iconfont icon-dustbin_icon"></button>
+						<button class="btn btn-xs rest right" type="reset" id="resetArticle">重置 <span class="iconfont icon-11zhongzhi"></span></button>
+						<button class="btn btn-xs search right" id="queryArticle">查询  <span class="iconfont icon-sousuo"></span></button>
+					</div>
+				</div>
+
+				<div class="wrapper wrapper-content  animated fadeInRight">
+					<div class="row">
+						<div class="col-lg-12 col-md-12">
+							<div class="ibox float-e-margins">
+
+								<div class="ibox-content" style="height:450px;overflow-y:scroll;">
+									<input type="hidden" id="total"/>
+									<input type="hidden" id="page"/>
+									<input type="hidden" id="rows"/>
+									
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>
+													<div class="checkbox"><input type="checkbox" id="allchek" class="" /><label for="checkboxs25"></label></div>
+												</th>
+												<th>文章来源</th>
+												<th>是否置顶</th>
+												<th>文章类型</th>
+												<th>文章标题</th>
+												<th>文章权重</th>
+												<th>浏览次数</th>
+												<th>有用次数</th>
+												<th>没用次数</th>
+											</tr>
+										</thead>
+										<tbody id='resultBox'>
+										</tbody>
+									</table>
+
+								</div>
+
+								<!--这里是分页-->
+								<div class="pagss">
+									<div class="right">
+										<div id="pageToolbar"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	
+
+		<!-- Mainly scripts -->
+		<script src="../../js/jquery-2.1.1.js"></script>
+		<script src="../../js/bootstrap.min.js"></script>
+		
+		<script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+		<!-- Peity -->
+		<script src="../../js/plugins/peity/jquery.peity.min.js"></script>
+
+		<!-- Custom and plugin javascript -->
+		<script src="../../js/inspinia.js"></script>
+		<script src="../../js/plugins/pace/pace.min.js"></script>
+
+		<!--<script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script>-->
+		<script src="../../js/query.js"></script>
+		<script src="../../js/paging.js"></script>
+		<script src="../../js/common.js"></script>
+		<script src="../../js/headercom.js"></script>
+		<script src="../../js/chosen.jquery.js"></script>
+		<script src="../../js/summernote.js"></script>
+		<script src="../../js/message.js"></script>
+		<!--<script src="../../js/zh_CN.js"></script>-->
+		<script type="text/javascript" src="../../js/jquery.qrcode.min.js"></script>
+		
+		<script src="../../js/aliyun-oss-sdk-4.4.4.min.js"></script>
+		<script type="text/javascript" src="../../js/GlobalData.js"></script>
+
+		<script type="text/javascript">
+				//当前登陆用户ID
+				var adminUser=GlobalData.getUerInfo();
+				if(adminUser==null||adminUser.id==null||adminUser.id==""){
+					location.href = "../../login.html";
+				};
+				var bauId=adminUser.id;
+						
+
+				if(adminUser.permissionList.indexOf("articleManagerQuery")!= -1){
+					$("#resetArticle").show();
+					$("#queryArticle").show();
+					$(".material").show();
+				}else{
+					$("#resetArticle").hide();
+					$("#queryArticle").hide();
+					$(".material").hide();
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">您没有权限访问这个页面</div></div>');
+				};
+				if(adminUser.permissionList.indexOf("articleAdd")!= -1){
+					$("#addArticle").show();
+				}else{
+					$("#addArticle").hide();
+				};
+				if(adminUser.permissionList.indexOf("articleDelete")!= -1){
+					$("#deleteArticle").show();
+				}else{
+					$("#deleteArticle").hide();
+				};
+				if(adminUser.permissionList.indexOf("articleEdit")!= -1){
+					$("#moidfyArticle").show();
+				}else{
+					$("#moidfyArticle").hide();
+				};
+				
+			
+				//存储对象的map
+				var objectMap ={};
+				
+				
+				$(document).ready(function() {
+					
+				
+					//文本编辑器
+				$('#summernote').summernote();
+				
+				$(".note-btn-group").click(function(){
+					  	$(this).toggleClass("open")
+					  })
+					  
+					  
+	  $(".note-image-input").attr("id",'upFile')
+        
+                     //这里是oss上传
+                      if (!String.prototype.splice) {
+    String.prototype.splice = function(start, delCount, newSubStr) {
+        return this.slice(0, start) + newSubStr + this.slice(start + Math.abs(delCount));
+    };
+}
+//2、重写后代码如下：
+String.prototype.splice = function(idx, rem, str) {
+    return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
+};
+   
+	
+	$(".btn").click(function(){
+		
+    document.getElementById('upFile').addEventListener('change', function (e) {
+    	var _upFile=document.getElementById("upFile");
+    	if (_upFile.files.length === 0) {  
+    		var res='请选择图片'
+							$("body").append('<div class="tips error slideInDowns"><i></i><div class="tip_text warm-box">'+res+'</div></div>')
+    		
+//      alert("请选择图片");  
+        return; }
+    	
+    	 var oFile = _upFile.files[0]; 
+    	
+    	 if(!new RegExp("(jpg|jpeg|png)+","gi").test(oFile.type)){  
+//      alert("照片上传：文件类型必须是JPG、JPEG、PNG");  
+        var rmsg='照片上传：文件类型必须是JPG、JPEG、PNG'
+		$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+rmsg+'</div></div>')
+        
+        return;  
+    }
+    	
+    	var length=$(".note-editable img").size()
+      var file = e.target.files[0];
+      var storeAs =((new Date()).getTime());
+      console.log(file.name + ' => ' + storeAs);
+      client.multipartUpload(String(storeAs), file).then(function (result) {
+         var ossUrls=result.res.requestUrls[0].split("?")[0]
+         var ossUrl=ossUrls.splice(4,0,"s")
+//       var ossUrl=ossUrls.split("?")[0]
+//         $("#nextview").attr("src",ossUrls);  
+               $(".note-editable img").eq(length).attr("src",ossUrl);
+         console.log(ossUrl)
+      }).catch(function (err) {
+        console.log(err);
+        console.log()
+      });
+    });
+        
+			})		  
+					  
+					  
+					  
+					  
+					  
+					  
+					  
+				
+			
+				getArticleAll(1,10);
+				
+				//侧栏显示高亮
+				setTimeout(function(){
+					$("#side-menu>li").eq(2).addClass("active");
+					$("#side-menu>li").eq(2).find("ul").addClass("in");
+					$("#side-menu li .articlelist").addClass("active");
+				},2000);
+				
+				$(function() {
+					$('.dept_select').chosen();
+				});
+
+				
+				
+				//这里是 是否启用弹窗
+				// $("table td span").click(function(evt) {
+					// evt.stopPropagation();
+					// $("#sitch").css("display", "block");
+					// $("#sitch").addClass("fadeIn");
+					// $("#sitch .content").addClass("zoomInDown");
+				// });
+
+				$("#sitch .title a").click(function(evt) {
+					evt.stopPropagation();
+					$("#sitch").removeClass("fadeIn");
+					$("#sitch .content").removeClass("zoomInDown");
+					$("#sitch").addClass("fadeOut");
+					$("#sitch .content").addClass("zoomOutDown");
+					t = setTimeout(function() {
+						$("#sitch").removeClass("fadeOut");
+						$("#sitch .content").removeClass("zoomOutDown");
+						$("#sitch").css("display", "none");
+					}, 1000);
+				});
+
+				//这里是点击按钮选择
+				$("#allchek").click(function() {
+					if($(this).is(':checked')) {
+						$(".wrapper-content table .item-check").prop("checked", "true");
+					} else {
+						$(".wrapper-content table .item-check").prop("checked", "");
+					}
+				});
+				
+				$("#queryArticle").click(function(evt) {
+					getArticleAll(1,$("#rows").val());
+				});
+				
+				$("#addManager").click(function(evt) {
+					$("span[data-name='image']").css("display","none");
+					evt.stopPropagation();
+					$("#adopt").css("display", "block");
+					$("#adopt").addClass("fadeIn");
+					$("#adopt .content").addClass("zoomInDown");
+					$("#title").html("新增");
+					
+					$("#sourceOfTheArticle").val("");
+					$("#articleType").val("");
+					$("#titleOfArticle").val("");
+					$("#weight").val("");
+					$("#topStatus").show();
+					$("#baaId").val("");
+					$("#redisKey").val("");
+					$("#id").val("");
+				});
+				
+				$("#moidfyArticle").click(function(evt) {			
+					var res=$("input[type='checkbox'][class='item-check']:checked");
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');					
+					}else{
+						evt.stopPropagation();
+						$("#adopt").css("display", "block");
+						$("#adopt").addClass("fadeIn");
+						$("#adopt .content").addClass("zoomInDown");
+						$("#title").html("修改");
+						
+						var obiect=objectMap[res[0].value];
+						
+						$("#id").val(obiect.id);
+						$("#sourceOfTheArticle").val(GlobalUtils.changeBlank(obiect.sourceOfTheArticle));
+						$("#articleType").val(GlobalUtils.changeBlank(obiect.articleType));
+						$("#titleOfArticle").val(GlobalUtils.changeBlank(obiect.titleOfArticle));
+						$("#weight").val(obiect.weight);
+						$("#topStatus").find("option[value = '"+obiect.topStatus+"']").attr("selected","selected"); 
+						$("#baaId").find("option[value = '"+obiect.baaId+"']").attr("selected","selected"); 
+						$(".note-editable").html(GlobalUtils.changeBlank(obiect.redisKey));
+						
+					}					
+				});
+				
+				
+				$("#addArticle").click(function(evt) {	
+					var strr=$(".note-editable").html("")
+					
+					console.log(strr)
+//					var res=$("input[type='checkbox'][class='item-check']:checked");
+//					if(res==null||res.length<1){
+//						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+//					}else if(res.length>1){
+//						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');					
+//					}else{
+	
+	
+	
+//	                    $("#id").val(obiect.id);
+						$("#sourceOfTheArticle").val("");
+						$("#articleType").val("");
+						$("#titleOfArticle").val("");
+						$("#weight").val("");
+						$("#baaId").val("");
+						
+						
+						$("iframe").contents().find("body").html("");
+	                    
+	                    $("#id").val("");
+						evt.stopPropagation();
+						$("#adopt").css("display", "block");
+						$("#adopt").addClass("fadeIn");
+						$("#adopt .content").addClass("zoomInDown");
+						$("#title").html("新增");
+						
+//						var obiect=objectMap[res[0].value];
+//						
+//						$("#id").val(obiect.id);
+//						$("#sourceOfTheArticle").val(GlobalUtils.changeBlank(obiect.sourceOfTheArticle));
+//						$("#articleType").val(GlobalUtils.changeBlank(obiect.articleType));
+//						$("#titleOfArticle").val(GlobalUtils.changeBlank(obiect.titleOfArticle));
+//						$("#weight").val(obiect.weight);
+//						$("#topStatus").find("option[value = '"+obiect.topStatus+"']").attr("selected","selected"); 
+//						$("#baaId").find("option[value = '"+obiect.baaId+"']").attr("selected","selected"); 
+//						$("#redisKey").val(GlobalUtils.changeBlank(obiect.redisKey));
+						
+//					}					
+				});
+// 				
+				$("#deleteArticle").click(function(evt) {
+					
+					var res=$("input[type='checkbox'][class='item-check']:checked");
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');
+					}else{
+						evt.stopPropagation();
+						$("#deleteDiv").css("display", "block");
+						$("#deleteDiv").addClass("fadeIn");
+						$("#deleteDiv .content").addClass("zoomInDown");
+						var obiect=objectMap[res[0].value];
+						$("#delArticleId").val(obiect.id);
+					};	
+				});
+				
+				
+
+				$("#adopt .title a").click(function(evt) {
+					evt.stopPropagation();
+					$("#adopt").removeClass("fadeIn");
+					$("#adopt .content").removeClass("zoomInDown");
+					$("#adopt").addClass("fadeOut");
+					$("#adopt .content").addClass("zoomOutDown");
+					t = setTimeout(function() {
+						$("#adopt").removeClass("fadeOut");
+						$("#adopt .content").removeClass("zoomOutDown");
+						$("#adopt").css("display", "none");
+					}, 1000);
+				});
+				
+				$("#resetArticle").click(function(evt) {
+					$("#querytitleOfArticle").val("");
+					$("#querysourceOfTheArticle").val("");
+					$("#queryarticleType").val("");
+					getArticleAll(1,$("#rows").val());
+				});
+				querylistAd();
+			});
+			
+			//获取当前所有的广告
+			function querylistAd(){
+				var data = {
+					"bauId":bauId,
+					"rows" :10,
+					"page" : 1,
+					"roleStatus" :0
+				};
+				$.ajax({
+					type : 'POST',
+					url : GlobalData.INFORMATION_URL + 'info/getadvertise',
+					data : JSON.stringify(data),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+						console.log(data);
+						if(data.code=="200"){
+							   $("#baaId").empty();
+							   var select = $("#baaId").append('<option value="">请选择</option>');
+							   var res=data.data.objectList;
+							   for (var i = 0; i < res.length; i++) {
+							   		if(res[i].status==0){
+							   			select.append('<option value="'+ res[i].id +'">' + res[i].advertisementUrl + '</option>');
+							   		}
+							   };
+						}else{
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+						}
+					},
+					error : function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+						console.log(e);
+					}
+				});
+			};
+			
+			
+			
+			
+			//设置文章是否置顶
+			function setTopStatus(id,status){
+				
+				if(adminUser.permissionList.indexOf("articleIsTop")!= -1){
+					if(status!=null&&status==0){
+						$("#sitch").css("display", "block");
+						$("#sitch").addClass("fadeIn");
+						$("#sitch .content").addClass("zoomInDown");
+						$("#topstatusText").html("确定置顶此文章吗？");
+						$("#setTopStatus").val(1);
+						$("#setArticleId").val(id);
+					}
+				}
+				
+				if(adminUser.permissionList.indexOf("articleNoTop")!= -1){
+					if(status!=null&&status==1){
+						$("#sitch").css("display", "block");
+						$("#sitch").addClass("fadeIn");
+						$("#sitch .content").addClass("zoomInDown");
+						$("#topstatusText").html("确定取消置顶此文章吗？");
+						$("#setTopStatus").val(0);
+						$("#setArticleId").val(id);
+					}	 
+				}
+			};
+			
+			
+			var p = new Paging();
+			p.init({target:'#pageToolbar',pagesize:10,count:$('#total').val(), toolbar: true,hash: true,callback:function(page,size,count){
+				getArticleAll(page,$("#rows").val());
+			},go:function(p){
+				getArticleAll(p,$("#rows").val());
+			},changePagesize:function(ps){
+				getArticleAll($("#page").val(),ps);
+			}});
+			
+			
+			//获取所有的文章
+			function getArticleAll(page,rows){
+				var data = {
+					"page" : page==null||page==""?1:page,
+					"rows" : rows==null||rows==""?10:rows,
+					"titleOfArticle" :GlobalUtils.changeBlank($("#querytitleOfArticle").val()),
+					"sourceOfTheArticle" :GlobalUtils.changeBlank($("#querysourceOfTheArticle").val()),
+					"articleType":GlobalUtils.changeBlank($("#queryarticleType").val()),
+				};
+				$.ajax({
+					type : 'POST',
+					async: false,
+					url : GlobalData.INFORMATION_URL+ 'info/getarticlepc',
+					data : JSON.stringify(data),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+						console.log(data);
+						$('#resultBox').empty();
+						objectMap={};
+						if(data.code=="200"&&data.data.objectList!=null&&data.data.objectList.length>0){
+//							$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">获取文章列表成功</div></div>');
+							var res=data.data.objectList;
+							console.log("数组"+res);
+							for (var i = 0; i < res.length; i++) {
+								var create_tr = $('<tr></tr>');
+								var _html =
+								        '<td>'+
+											'<div class="checkbox"><input type="checkbox" id="checkboxs2" class="item-check" value="'+res[i].id+'" /><label for="checkboxs2"></label></div>'+
+										'</td>'+
+										'<td>'+res[i].sourceOfTheArticle+'</td>'+
+										'<td>'+(res[i].topStatus!=null&&res[i].topStatus==1?'<span class="label label-primary setTopStatus" onClick="setTopStatus('+res[i].id+','+res[i].topStatus+');">置顶</span>':'<span class="label label-danger cancleTopStatus" onClick="setTopStatus('+res[i].id+','+res[i].topStatus+');">未置顶</span>')+'</td>'+
+										'<td>'+res[i].articleType+'</td>'+
+										'<td>'+res[i].titleOfArticle+'</td>'+
+										'<td>'+res[i].weight+'</td>'+
+										'<td>'+res[i].timesOfBrowsing+'</td>'+
+										'<td>'+res[i].usefulFrequency+'</td>'+
+										'<td>'+res[i].uselessFrequency+'</td>';
+								create_tr.html(_html);
+								$('#resultBox').append(create_tr);
+								objectMap[res[i].id] = res[i];
+							};
+							
+							$('#page').val(page==null||page==""?1:page);
+							$('#total').val(data.data.total);	
+							$('#rows').val(rows==null||rows==""?10:rows);		
+							
+							//重新渲染分页使用render
+							p.render({count:$('#total').val(),pagesize:rows,current:page});
+						}else{
+//							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+						}
+					},
+					error : function(e) {
+//						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+						console.log(e);
+					}
+				});
+			};
+			
+			function setArticle(){
+								
+				var id=$("#id").val();	
+								
+				var sourceOfTheArticle=$("#sourceOfTheArticle").val();//文章来源
+				var articleType=$("#articleType").val();//文章类型
+				var titleOfArticle=$("#titleOfArticle").val();//文章标题
+				var weight=$("#weight").val();//文章权重
+				var topStatus=$("#topStatus").val();//文章置顶
+				var baaId=$("#baaId").val();//文章指向的链接
+				var redisKey=$(".note-editable").html();//文章内容
+				
+				if (sourceOfTheArticle==null||sourceOfTheArticle == "") {
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入文章来源</div></div>');
+				}else if (articleType==null||articleType == "") {
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入文章类型</div></div>');
+				}else if (titleOfArticle==null||titleOfArticle == "") {
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入文章标题</div></div>');
+				}else if(weight==null||weight == ""){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入文章权重</div></div>');
+				}else if(redisKey==null||redisKey == ""){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入文章内容</div></div>');
+				}else{
+					var data = {
+						"id":id,
+						"bauId":bauId,
+						"sourceOfTheArticle" :sourceOfTheArticle,
+						"articleType" : articleType,
+						"titleOfArticle" :titleOfArticle,
+						"weight":weight,
+						"topStatus":topStatus,
+						"baaId":baaId,
+						"redisKey":redisKey,
+					};
+					var url="";
+					if(id==null||id==""||id=="null"||id.length<1){
+						url=GlobalData.INFORMATION_URL + 'info/addarticle';
+					}else{
+						url=GlobalData.INFORMATION_URL + 'info/editarticle';
+					}
+					
+					$.ajax({
+						type : 'POST',
+						url : url,
+						data : JSON.stringify(data),
+						contentType : "application/json",
+						dataType : 'json',
+						success : function(data) {
+							console.log(data);
+							if(data.code=="200"){
+								$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">设置文章成功</div></div>');
+								// $("#querytitleOfArticle").val("");
+								// $("#querysourceOfTheArticle").val("");
+								// $("#queryarticleType").val("");
+								getArticleAll(1,$("#rows").val());
+							}else{
+								$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+							}
+						},
+						error : function(e) {
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+							console.log(e);
+						}
+					});
+				};	
+			}
+			
+			//删除角色
+			function delArticle(){
+				var id=$("#delArticleId").val();	
+				var data = {
+					"bauId":bauId,
+					"id" :id
+				};
+				$.ajax({
+					type : 'POST',
+					url : GlobalData.INFORMATION_URL + 'info/delarticle',
+					data : JSON.stringify(data),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+						console.log(data);
+						if(data.code=="200"){
+							$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">删除文章成功</div></div>');
+							// $("#querytitleOfArticle").val("");
+							// $("#querysourceOfTheArticle").val("");
+							// $("#queryarticleType").val("");
+							getArticleAll(1,$("#rows").val());
+						}else{
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+						}
+					},
+					error : function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+						console.log(e);
+					}
+				});
+			};
+			
+			
+			//停用或者启用用户
+			function setArticleTop(){
+				var id=$("#setArticleId").val();	
+				var topStatus=$("#setTopStatus").val();	
+				
+				var data = {
+					"bauId":bauId,
+					"id" :id,
+					"topStatus":topStatus
+				};
+				$.ajax({
+					type : 'POST',
+					url : GlobalData.INFORMATION_URL + 'info/editarticle',
+					data : JSON.stringify(data),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+						console.log(data);
+						if(data.code=="200"){
+							$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">设置文章成功</div></div>');
+							// $("#querytitleOfArticle").val("");
+							// $("#querysourceOfTheArticle").val("");
+							// $("#queryarticleType").val("");
+							getArticleAll(1,$("#rows").val());
+						}else{
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+						}
+					},
+					error : function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+						console.log(e);
+					}
+				});
+			}
+			
+		</script>
+	</body>
+
+</html>

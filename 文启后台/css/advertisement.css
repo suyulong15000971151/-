@@ -1,0 +1,41 @@
+#myModal .myModal-box .content .title{width:100%;border:1px solid #ccc;margin-bottom:10px}
+#myModal .myModal-box .content .title h1{display: inline-block;text-indent: 10px;line-height: 40px;font-size: 16px;margin:0}
+#myModal .myModal-box .content .advert{width:100%;overflow: hidden;margin-top:10px}
+#myModal .myModal-box .content .advert .left{width:70%;overflow: hidden;float:left}
+#myModal .myModal-box .content .advert .left .art-title{display: flex;}
+#myModal .myModal-box .content .advert .left .art-title .art-left{flex: 1;}
+#myModal .myModal-box .content .advert .left .item{display: flex;margin-bottom:10px}
+#myModal .myModal-box .content .advert .left .item label{display: inline-block;line-height: 30px;margin-right:10px;text-indent: 10px;font-weight: 400;}
+#myModal .myModal-box .content .advert .left .item input{display: inline-block;flex: 1;}
+#myModal .myModal-box .content .advert .left .item textarea{flex: 1;}
+
+#myModal .myModal-box .content .advert .left .art-load{width:100px;height:100px;border:1px solid #ccc;margin-left:10px;font-size: 16px;line-height: 100px;}
+
+/*这里是编辑和设置文本*/
+.search-box .ser{float:right;margin-left:10px}
+.search-box input{float: right;}
+
+
+
+/*文本编辑*/
+#myModal .myModal-box .content .advert .left .float-e-margins{border: 1px solid #ccc;box-sizing: border-box;margin-left:10px}
+.note-editor .note-editable{font-size: 14px;line-height: 20px;padding: 10px !important;max-height: 300px;overflow-y: scroll;}
+ .note-editor .note-editable h3{font-size: 14px !important;padding:0 !important;margin-top:10px !important}
+#myModal .myModal-box .content{border-radius: 5px;}
+#myModal .myModal-box .content .advert .right{width:25%;overflow: hidden;float:left;margin:0 10px}
+#myModal .myModal-box .content .advert .right .fication{width:100%;height:150px;border:1px solid #ccc}
+#myModal .myModal-box .content .advert .right .fication .fica-title{line-height: 30px;background:#f2f2f2;text-indent: 10px;}
+#myModal .myModal-box .content .advert .right .fication .fica-title span{color:#008855;margin-right:5px}
+#myModal .myModal-box .content .advert .right .fication ul li input{}
+#myModal .myModal-box .content .advert .right .fication ul li{position: relative;left:20px}
+
+#myModal .myModal-box .content .advert .right .Release{width:100%;height:200px;border:1px solid #ccc;margin-top:10px}
+#myModal .myModal-box .content .advert .right .Release .Release-title{line-height: 30px;background:#f2f2f2;text-indent: 10px;}
+#myModal .myModal-box .content .advert .right .Release .Release-title i{margin-right:5px}
+#myModal .myModal-box .content .advert .right .Release .release-item{display: flex;line-height: 30px;margin-top:10px}
+#myModal .myModal-box .content .advert .right .Release .release-item label{text-indent: 10px;}
+#myModal .myModal-box .content .advert .right .Release .release-item select{flex: 1;margin-left:20px;margin-right:20px}
+#myModal .myModal-box .content .advert .right .Release .release-item .radio label{text-indent: 0;line-height: 16px !important;}
+#myModal .myModal-box .content .advert .right .Release .release-item .radio{margin-top:0 !important;text-indent: 12px;}
+#myModal .myModal-box .content .advert .right .Release .release-item .switchery{width:30px;height:15px;line-height: 30px;margin-left:20px;margin-top:8px}
+#myModal .myModal-box .content .advert .right .Release .release-item .switchery small{width:15px;height:15px}

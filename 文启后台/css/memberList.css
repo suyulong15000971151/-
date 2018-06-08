@@ -1,0 +1,77 @@
+#text{margin:50px auto;width:500px;}
+ .hotspot{color:#900;padding-bottom:1px;border-bottom:1px dotted #900;cursor:pointer;}
+ #tt{position:absolute;display:block;background:url(img/tt_left.gif) top left no-repeat}
+ #tttop{display:block;height:5px;margin-left:5px;background:url(img/tt_top.gif) top right no-repeat;overflow:hidden}
+ #ttcont{display:block;padding:2px 12px 3px 7px;margin-left:5px;background:#666;color:#FFF}
+ #ttbot{display:block;height:5px;margin-left:5px;background:url(img/tt_bottom.gif) top right no-repeat;overflow:hidden}
+			/* Additional style to fix warning dialog position */
+select option{border:1px solid red !important}
+.onoffswitch{margin:0 auto;text-align: center;}
+.onoffswitch-inner:before{padding-left:0}
+.wrapper-content table tr .tst{}
+
+
+#generate .generate-box .content{height:350px}
+#modify-money .modify-box .content{height:220px}
+
+
+#generate .generate-box .content .contain{height: auto;}
+#generate .generate-box .content .item{width:80%;}
+#generate .generate-box .content .item:after{content: "";display: block;clear: both;}
+#generate .generate-box .content .item .form-control{padding:0 5px !important;flex: 1;border-radius: 5px;}
+#generate .generate-box .content .item label{width:80px;text-align: left;}
+#generate .generate-box .content .item .chosen-container-single{}
+#generate .generate-box .content{height:310px}
+#generate .generate-box .content .bot-set{margin-top:10px}
+#generate .generate-box .content .item textarea.form-control{flex: 1;resize: none;height:40px !important}
+
+
+
+
+#fictitious .fictitious-box .content{width:500px}
+#fictitious .fictitious-box .content .contain .item{width:70%;margin:15px auto;text-align: left;}
+#fictitious .fictitious-box .content .contain .item label{display: inline-block;width:100px;margin-right:50px;font-weight: 400;}
+
+
+#sitchs{width:100%;height:100%;position: fixed;top:0;left:0;background:rgba(0,0,0,.6);z-index: 999599;display:none;}
+#sitchs .sitch-box{display: flex;justify-content: center;align-items: center;width:100%;height:100%}
+#sitchs .sitch-box .content{width:30%;height:200px;background:#fff;border-radius: 5px;}
+#sitchs .sitch-box .content .title{width:100%;height:40px;border-bottom: 1px solid #ccc;line-height: 40px;background:#1ab394;color:#000}
+#sitchs .sitch-box .content .title span{text-indent: 10px;display: inline-block;}
+#sitchs .sitch-box .content .contain{width:90%;margin-top:40px;margin:0 auto;line-height: 30px;overflow: hidden;position: relative;height:150px;}
+#sitchs .sitch-box .content .contain .tip-con{text-align: center;line-height: 30px;margin:30px 0 30px;background: url(../img/tips.png) no-repeat 25% center;background-size: 30px 30px;}
+#sitchs .sitch-box .content .contain .set{text-align: center;}
+#sitchs .sitch-box .content .contain .set button{margin:0 20px}
+ #sitchs .sitch-box .content .contain .set button.btn-default{background: #fff;border:1px solid #eee;color:#000}
+#sitchs .sitch-box .content .contain .set button.btn-default:hover{background: #eee;}
+#sitchs .sitch-box .content .contain .set button.btn-success{background: #1ab394;border:1px solid #eee}
+.set .setbox .set-left button.recharge{border:1px solid #3dba9f;color:#3dba9f}
+.set .setbox .set-left button.recharge:hover{background:#3dba9f !important;color:#fff !important}
+
+#sitchss{width:100%;height:100%;position: fixed;top:0;left:0;background:rgba(0,0,0,.6);z-index: 999599;display:none;}
+#sitchss .sitch-box{display: flex;justify-content: center;align-items: center;width:100%;height:100%}
+#sitchss .sitch-box .content{width:30%;height:200px;background:#fff;border-radius: 5px;}
+#sitchss .sitch-box .content .title{width:100%;height:40px;border-bottom: 1px solid #ccc;line-height: 40px;background:#1ab394;color:#000}
+#sitchss .sitch-box .content .title span{text-indent: 10px;display: inline-block;}
+#sitchss .sitch-box .content .contain{width:90%;margin-top:40px;margin:0 auto;line-height: 30px;overflow: hidden;position: relative;height:150px;}
+#sitchss .sitch-box .content .contain .tip-con{text-align: center;line-height: 30px;margin:30px 0 30px;background: url(../img/tips.png) no-repeat 25% center;background-size: 30px 30px;}
+#sitchss .sitch-box .content .contain .set{text-align: center;}
+#sitchss .sitch-box .content .contain .set button{margin:0 20px}
+#sitchss .sitch-box .content .contain .set button.btn-default{background: #fff;border:1px solid #eee;color:#000}
+#sitchss .sitch-box .content .contain .set button.btn-default:hover{background: #eee;}
+#sitchss .sitch-box .content .contain .set button.btn-success{background: #1ab394;border:1px solid #eee}
+.set .setbox .set-left button.extract{border:1px solid #3dba9f;color:#3dba9f}
+.set .setbox .set-left button.extract:hover{background:#3dba9f !important;color:#fff !important}
+
+
+#fictitious .fictitious-box .content{width:500px}
+#fictitious .fictitious-box .content .contain .item{width:70%;margin:15px auto;text-align: left;}
+#fictitious .fictitious-box .content .contain .item label{display: inline-block;width:100px;margin-right:50px;font-weight: 400;}
+
+#fictitious .fictitious-box .content .contain .item img{width:200px}
+
+#fictitiousCheck .fictitious-box .content{width:500px}
+#fictitiousCheck .fictitious-box .content .contain .item{width:70%;margin:15px auto;text-align: left;}
+#fictitiousCheck .fictitious-box .content .contain .item label{display: inline-block;width:100px;margin-right:50px;font-weight: 400;}
+
+#fictitiousCheck .fictitious-box .content .contain .item img{width:200px}

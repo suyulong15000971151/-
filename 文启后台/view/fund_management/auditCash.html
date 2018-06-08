@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>待审核提现</title>
+
+		<link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+		<link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
+
+		<link href="../../css/plugins/jQueryUI/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+		<link rel="stylesheet" href="../../css/girds.css" />
+		<link rel="stylesheet" href="../../css/iconfont.css" />
+		<link rel="stylesheet" href="../../css/animate.css" />
+		<link href="../../css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/chosen.css" />
+		<link rel="stylesheet" href="../../css/common.css" />
+		<link rel="stylesheet" href="../../css/coss.css" />
+		<link href="../../css/style.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/auditCash.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/message.css"/>
+		<link rel="stylesheet" href="../../css/crepsd.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/bing_google.css"/>
+		
+		<link rel="stylesheet" href="../../css/memberList.css" />
+		<link rel="stylesheet" href="../../css/approvedMember.css" />
+		<link rel="stylesheet" href="../../css/approvingList.css" />
+		
+		
+	</head>
+
+	<body>
+
+
+		<!--会员信息-->
+		<div id="fictitious" class="animated dio-close">
+			<div class="fictitious-box">
+				<div class="content animated " style="overflow: hidden;">
+					<div class="title">
+						<span>会员信息</span>
+						<a href="#" class="close sureBtn" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain">
+						<div class="row" style="height:470px;overflow-x: scroll;">
+							
+							<div class="item">
+								<label for="">昵称：</label><span id="nicknameText"></span>
+							</div>
+							<div class="item">
+								<label for="">姓名：</label><span id="nameText"></span>
+							</div>
+							<div class="item">
+								<label for="">头像：</label><img id="img_4" src="" />
+							</div>
+							<div class="item">
+								<label for="">手机号：</label><span id="phoneText"></span>
+							</div>
+							<div class="item">
+								<label for="">会员等级：</label><span id="membershipLevelText"></span>
+							</div>
+							<div class="item">
+								<label for="">身份证号：</label><span id="idCardText"></span>
+							</div>
+							<div class="item">
+								<label for="">身份证正面：</label><img id="img_1" src="" />
+							</div>
+							<div class="item">
+								<label for="">身份证反面：</label><img id="img_2" src=""/>
+							</div>
+								<div class="item">
+								<label for="">手持身份证：</label><img id="img_3" src=""/>
+							</div>
+							<div class="item">
+								<label for="">是否为代理：</label><span id="agentStatusText"></span>
+							</div>
+							<div class="item">
+								<label for="">实名认证状态：</label><span id="realNameStatusText"></span>
+							</div>
+							<div class="item">
+								<label for="">谷歌认证状态：</label><span id="googleStatusText"></span>
+							</div>
+							<div class="item">
+								<label for="">绑定银行卡状态：</label><span id="bindBankCardStatusText"></span>
+							</div>
+							<div class="item">
+								<label for="">会员状态：</label><span id="memberStatusText"></span>
+							</div>
+							<div class="item">
+								<label for="">充币状态：</label><span id="rechargeStatusText"></span>
+							</div>
+							<div class="item">
+								<label for="">提币状态：</label><span id="withdrawStatusText"></span>
+							</div>
+							<div class="item">
+								<label for="">是否绑定资金密码：</label><span id="fundsStatusText"></span>
+							</div>
+							<div class="item">
+								<label for="">邮箱：</label><span id="mailboxText"></span>
+							</div>
+							<div class="item">
+								<label for="">创建时间：</label><span id="createTimeText"></span>
+							</div>
+							<div class="item">
+								<label for="">更新时间：</label><span id="updateTimeText"></span>
+							</div>
+						</div>
+					</div>
+					<!--<div class="bto">
+						<button class="btn btn-default can-close">取消</button>
+						<button class="btn btn-success cof-close sureBtn">确认</button>
+					</div>-->
+				</div>
+			</div>
+		</div>
+        <!--查看虚拟币详情-->
+		<div id="fictitiouss" class="animated dio-close">
+			<div class="fictitious-box">
+				<div class="content animated">
+					<div class="title">
+						<span>查看会员资金情况</span>
+						<a href="#" class="close sureBtn" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain">
+						<div class="row" style="height:400px;overflow-y: scroll;">
+							<div class="col-lg-12">
+								<div class="ibox float-e-margins">
+									<div class="ibox-content">
+										<table class="table table-stripped toggle-arrow-tiny display" id="capitalAll">
+											<thead>
+												<tr>
+													<th>ID</th>
+													<th>tokenName</th>
+													<th>地址</th>
+													<th>活期金额</th>
+													<th>冻结金额</th>
+													<!--<th>地址金额</th>-->
+												</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--<div class="bto">
+						<button class="btn btn-default can-close">取消</button>
+						<button class="btn btn-success cof-close sureBtn" >确认</button>
+					</div>-->
+				</div>
+			</div>
+		</div>
+		<!--审核-->
+		<div id="sitchsss" class="animated dio-close">
+			<div class="sitch-box">
+				<div class="content animated">
+					<div class="title">
+						<span>提示</span>
+						<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain">
+						<div class="con-box">
+						审核状态：<input type="radio" name="checkInput" value="1">通过&nbsp&nbsp&nbsp&nbsp&nbsp<input type="radio" name="checkInput" value="2">不通过
+				        </div>
+						<div class="set">
+							<input type="hidden" id="setUserId" />
+							<input type="hidden" id="setUserStatus" />
+							<button class="btn btn-default can-close">取消</button>
+							<button class="btn btn-success cof-close" onclick="checkAngecy();">确认</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		
+		<!--这里是头部 -->
+			<div id="header"></div>
+			
+			
+            <div id="bod-com" class="animated" style="animation-delay: 0.5s; opacity: 0; ">
+				
+				<div class="row wrapper border-bottom white-bg page-heading">
+					<div class="col-lg-10">
+						<!--<h2>jqGrid</h2>-->
+						<ol class="breadcrumb">
+							<li>
+								<a href="../Member_management/memberList.html">首页</a>
+							</li>
+							<li>
+								<a>待审核提现</a>
+							</li>
+
+						</ol>
+					</div>
+				</div>
+
+				<!--这里是填写资料-->
+				<div class="material">
+					<div class="material-box">
+						<div class="row">
+							<div class="col-md-4 col-sm-12">
+
+								<label for="" class="">会员ID:</label>
+								<input type="text" class="form-control memberIdInput" />
+
+							</div>
+							<!--<div class="col-md-4 col-sm-12">
+
+								<label for="" class="">会员名称:</label>
+								<input type="text" class="form-control memberNameInput" />
+
+							</div>-->
+							
+							<div class="col-md-4 col-sm-12">
+								<label for="">代币类型：</label>
+								<select name="" class="form-control tokenTypeInput" id="baaId">
+								</select>
+							</div>
+						</div>
+
+					</div>
+					
+				</div>
+
+				<!--这里是设置-->
+
+				<div class="set" style="padding: 5px 0px;">
+					<div class="setbox">
+						<div class="set-left">
+							<button class="btn btn-xs btn-info agency thrr" id="agencyAudit"> 审核 <span class="iconfont icon-tubiaolunkuo-"></span></button>							
+							<button class="btn btn-xs btn-info details thrr" onclick="detailsMessage();" id="userInfo">会员信息<span class="fa fa-envelope"></span></button>
+
+							<button class="btn btn-xs btn-info capital thrr" onclick="capitalAll();" id="capitalInfo"> 会员资金情况 <span class="fa fa-money"></span></button>
+					
+						</div>
+							<button class="btn btn-xs rest right" type="reset" id="btnRest">重置 <span class="iconfont icon-11zhongzhi"></span></button>
+							<button class="btn btn-xs search right" id="btnSearch" onclick="conditionMember()">查询  <span class="iconfont icon-sousuo"></span></button>
+				
+						</div>
+				</div>
+
+				<div class="wrapper wrapper-content  animated fadeInRight" style="background:#fff">
+					<div class="row">
+						<div class="col-lg-12 col-md-12">
+							<div class="ibox float-e-margins">
+
+								<div class="wrapper-content" style="height:500px;overflow-y: scroll;">
+
+									<table class="table table-striped table-bordered table-hover" id="editable">
+										<input type="hidden" id="total" />
+										<input type="hidden" id="page" />
+										<input type="hidden" id="rows" />
+										<thead>
+											<tr>
+												<th class="">
+													<div class="checkbox"><input type="checkbox" id="allcheck" class="" /><label for="allchek"></label> </div>
+												</th>
+												<th class=''>ID</th>
+												<th class=''>用户ID</th>
+												<th class=''>用户名称</th>
+												<th class=''>审核状态</th>
+												<th class=''>转入转出地址</th>
+												<th class=''>数量</th>
+												<th class=''>提现手续费</th>
+												<th class=''>token类型</th>
+												<th class=''>更新时间</th>           
+											</tr>
+										</thead>
+																				<tbody>
+									
+										</tbody>
+									</table>
+
+								</div>
+								<!--这里是分页-->
+								<div class="pagss">
+									<!--<div class="left">
+										<label for="">当前显示11到15条，共50条记录</label>
+									</div>-->
+									<div class="right">
+										<div id="pageToolbar"></div>
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+				
+
+			</div>
+		
+
+		<!-- Mainly scripts -->
+		<script src="../../js/jquery-2.1.1.js"></script>
+		<script src="http://gosspublic.alicdn.com/aliyun-oss-sdk-4.4.4.min.js"></script>
+		<script src="../../js/bootstrap.min.js"></script>
+		<script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+		<!-- Peity -->
+		<script src="../../js/plugins/peity/jquery.peity.min.js"></script>
+
+		<!-- jqGrid -->
+		<!--<script src="js/plugins/jqGrid/i18n/grid.locale-en.js"></script>
+		<script src="js/plugins/jqGrid/jquery.jqGrid.min.js"></script>-->
+
+		<!-- Custom and plugin javascript -->
+		<script src="../../js/inspinia.js"></script>
+		<script src="../../js/plugins/pace/pace.min.js"></script>
+		<script src="../../js/headercom.js"></script>
+		<script src="../../js/common.js"></script>
+        
+		<script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script>
+		<script src="../../js/chosen.jquery.js"></script>
+		<script src="../../js/message.js"></script>
+		<script src="../../js/query.js"></script>
+		<script src="../../js/paging.js"></script>
+		<script type="text/javascript" src="../../js/jquery.qrcode.min.js"></script>
+		
+		<!--<script src="../../js/fund_manager/auditCash.js"></script>-->
+		<script type="text/javascript" src="../../js/GlobalData.js"></script>
+		
+		
+		
+
+		<script>
+			//当前登陆用户ID
+			var adminUser = GlobalData.getUerInfo();
+			if(adminUser == null || adminUser.id == null || adminUser.id == "") {
+				location.href = "../../login.html";
+			};
+			var bauId = adminUser.id;
+			
+			if(adminUser.permissionList.indexOf("waitReviewListQuery")!= -1){
+				$("#btnRest").show();
+				$("#btnSearch").show();
+				$(".material").show();
+			}else{
+				$("#btnRest").hide();
+				$("#btnSearch").hide();
+				$(".material").hide();
+				$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">您没有权限访问这个页面</div></div>');
+			};
+			if(adminUser.permissionList.indexOf("waitReviewListApprove")!= -1){
+				$("#agencyAudit").show();
+			}else{
+				$("#agencyAudit").hide();
+			};
+			if(adminUser.permissionList.indexOf("waitReviewListUserinfo")!= -1){
+				$("#userInfo").show();
+			}else{
+				$("#userInfo").hide();
+			};
+			if(adminUser.permissionList.indexOf("waitReviewListFund")!= -1){
+				$("#capitalInfo").show();
+			}else{
+				$("#capitalInfo").hide();
+			};
+			
+			//存储对象的map
+			var objectMap ={};
+
+			$(document).ready(function() {
+				getAdminUserAll(1, 10);
+				
+				//这里是侧栏高亮显示
+				setTimeout(function(){
+					$("#side-menu>li").eq(3).addClass("active")
+					$("#side-menu>li").eq(3).find("ul").addClass("in")
+					$("#side-menu li .auditCash").addClass("active")
+//					$("#side-menu li").eq(5).find("ul").addClass("in")
+//					$("#side-menu li").eq(5).find("ul a").eq(1).addClass("active")
+					
+				},2000)
+
+				//这里是公共的取消模态框
+
+				
+				$(function() {
+					$('.dept_select').chosen();
+				});
+
+				//这里是点击按钮选择
+				$("#allcheck").click(function() {
+
+					if($(this).is(':checked')) {
+						$(".wrapper-content table .item-check").prop("checked", "true")
+					} else {
+						$(".wrapper-content table .item-check").prop("checked", "")
+
+					}
+				})
+
+				$(".set .setbox .creat-add").click(function(evt) {
+
+					evt.stopPropagation()
+
+					$("#sitch").css("display", "block")
+
+					$("#sitch").addClass("fadeIn")
+					$("#sitch .content").addClass("zoomInDown")
+				})
+
+				$("#sitch .sitch-box .content .title a").click(function(evt) {
+
+					evt.stopPropagation()
+
+					$("#sitch").removeClass("fadeIn")
+					$("#sitch .content").removeClass("zoomInDown")
+					$("#sitch").addClass("fadeOut")
+					$("#sitch .content").addClass("zoomOutDown")
+					t = setTimeout(function() {
+						$("#sitch").removeClass("fadeOut")
+						$("#sitch .content").removeClass("zoomOutDown")
+						$("#sitch").css("display", "none")
+					}, 1000)
+
+				})
+				//这里是会员信息
+				$(".set .setbox .details ").click(function(evt) {
+					var res=$("input[type='checkbox'][class='item-check']:checked");
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');					
+					}else{
+						evt.stopPropagation()
+	
+						$("#fictitious").css("display", "block")
+	
+						$("#fictitious").addClass("fadeIn")
+						$("#fictitious .content").addClass("zoomInDown")
+						$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">获取会员信息成功</div></div>');
+						
+					}
+				})
+				
+				$("#sitch .sitch-box .content .title a").click(function(evt) {
+
+					evt.stopPropagation()
+
+					$("#sitch").removeClass("fadeIn")
+					$("#sitch .content").removeClass("zoomInDown")
+					$("#sitch").addClass("fadeOut")
+					$("#sitch .content").addClass("zoomOutDown")
+					t = setTimeout(function() {
+						$("#sitch").removeClass("fadeOut")
+						$("#sitch .content").removeClass("zoomOutDown")
+						$("#sitch").css("display", "none")
+					}, 1000)
+
+				})
+				//这里是审核弹窗
+				$(".set .setbox .agency ").click(function(evt) {
+					var res=$("input[type='checkbox'][class='item-check']:checked");
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');					
+					}else{
+						evt.stopPropagation()
+	
+						$("#sitchsss").css("display", "block")
+	
+						$("#sitchsss").addClass("fadeIn")
+						$("#sitchsss .content").addClass("zoomInDown")
+					}
+				})
+				//这里是资产信息
+				$(".set .setbox .capital ").click(function(evt) {
+					var res=$("input[type='checkbox'][class='item-check']:checked");
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');					
+					}else{
+						evt.stopPropagation()
+		
+						$("#fictitiouss").css("display", "block")
+		
+						$("#fictitiouss").addClass("fadeIn")
+						$("#fictitiouss .content").addClass("zoomInDown")
+						$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">获取资金详情成功</div></div>');
+						
+					}
+				})
+				
+				$("#sitch .sitch-box .content .title a").click(function(evt) {
+
+					evt.stopPropagation()
+
+					$("#sitch").removeClass("fadeIn")
+					$("#sitch .content").removeClass("zoomInDown")
+					$("#sitch").addClass("fadeOut")
+					$("#sitch .content").addClass("zoomOutDown")
+					t = setTimeout(function() {
+						$("#sitch").removeClass("fadeOut")
+						$("#sitch .content").removeClass("zoomOutDown")
+						$("#sitch").css("display", "none")
+					}, 1000)
+
+				})
+				//会员信息确认
+				$(".sureBtn").click(function(){
+					$("input[type='checkbox']").removeAttr('checked');
+				})
+				//审核
+				$(".agency").click(function(evt) {
+					$("input[type='radio']").removeAttr('checked');
+					
+				});
+				//重置
+				$("#btnRest").click(function(evt) {
+					$(".memberIdInput").val("");
+					$(".memberNameInput").val("");
+					$(".tokenTypeInput").val("");
+					getAdminUserAll(1, $("#rows").val());
+
+			  });
+			  
+			  queryTokenList();
+		});//结束
+		
+		
+		//获取当前所有的代币类型
+		function queryTokenList(){
+			$.ajax({
+				type : 'GET',
+				url : GlobalData.TOKEN_URL + 'bigToken/tokenNameId',
+				contentType : "application/json",
+				dataType : 'json',
+				success : function(data) {
+					console.log(data);
+					if(data.code=="200"){
+						   $("#baaId").empty();
+						   var select = $("#baaId").append('<option value="">全部</option>');
+						   var res=data.data;
+						   for (var i = 0; i < res.length; i++) {
+						   		select.append('<option value="'+ res[i].tokenId +'">' + res[i].tokenName + '</option>');
+						   };
+					}else{
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+					}
+				},
+				error : function(e) {
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+					console.log(e);
+				}
+			});
+		};
+		
+		
+		
+		var p = new Paging();
+			p.init({
+				target: '#pageToolbar',
+				pagesize: 10,
+				count: $('#total').val(),
+				toolbar: true,
+				hash: true,
+				callback: function(page, size, count) {
+					getAdminUserAll(page, $("#rows").val());
+				},
+				go: function(p) {
+					getAdminUserAll(p, $("#rows").val());
+				},
+				changePagesize: function(ps) {
+					getAdminUserAll($("#page").val(), ps);
+				}
+			});
+
+		//待审核提现
+			function getAdminUserAll(page, rows) {
+				var data = {
+					"page": page == null || page == "" ? 1 : page,
+					"rows": rows == null || rows == "" ? 10 : rows,
+					"auditingType": 0,
+		            "type": 1,
+		            "bauId":$(".memberIdInput").val(),
+		            "batId":$(".tokenTypeInput").val(),
+		            "userName":$(".memberNameInput").val(),
+
+				};
+				$.ajax({
+					type: 'POST',
+					async: false,
+			        url: GlobalData.TOKENRECORD_URL +"tokenRecord/adminselectBigAppChargeProvidedList",			
+					data: JSON.stringify(data),
+					contentType: "application/json",
+					dataType: 'json',
+					success: function(data) { 
+						console.log(data);
+						$("#editable tbody tr").remove();
+						objectMap={};
+						if(data.code == "200") {
+
+							var rdo = data.data && data.data.objectList || [];
+							for(var i = 0; i < rdo.length; i++) {
+								var creatTr = $("<tr><td><div class='checkbox'><input type='checkbox' class='item-check' value='"+rdo[i].id+"'/><label for='allchek1'></label> </div></td></tr>");
+								var creatTdf = "<td class='tst'>" + rdo[i].id + "</td><td class='tst'>" + rdo[i].bauId + "</td><td class='tst'>" + GlobalUtils.changeBlank(rdo[i].userName) + "</td><td class='tst'>" + (rdo[i].auditingType!=null&&rdo[i].auditingType==0?"审核中":rdo[i].auditingType!=null&&rdo[i].auditingType==1?"审核通过":rdo[i].auditingType!=null&&rdo[i].auditingType==2?"审核不通过":"") + "</td>";
+								var creatTdc = "<td class='tst'>" + rdo[i].address + "</td><td class='tst'>" + rdo[i].num+ "</td><td class='tst'>" + rdo[i].serviceCharge + "</td>";
+								var creatTdl1 = "<td class='tst'>" + rdo[i].tokenType + "</td><td class='tst'>" + GlobalUtils.getTimeFull(rdo[i].updateTime,"-") + "</td>";
+								$(creatTdf  + creatTdc + creatTdl1).appendTo(creatTr);
+								$("#editable tbody").append(creatTr);
+								objectMap[rdo[i].id] = rdo[i];
+							}
+
+							$('#page').val(page == null || page == "" ? 1 : page);
+							$('#total').val((data.data==null?"0":data.data.total));
+							$('#rows').val(rows == null || rows == "" ? 10 : rows);
+
+							//重新渲染分页使用render
+							p.render({
+								count: $('#total').val(),
+								pagesize: rows,
+								current: page
+							});
+
+						}
+						else{
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');				
+						}
+					},
+					error: function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');				
+						console.log(e);
+					}
+				});
+			};
+			//查询
+			function conditionMember() {
+				getAdminUserAll(1, $("#rows").val());
+			}
+			
+			//显示会员详情
+			function detailsMessage() {
+				var res=$("input[type='checkbox'][class='item-check']:checked");
+				if(res==null||res.length<1){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+				}else if(res.length>1){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');					
+				}else{
+					var obiect=objectMap[res[0].value];
+					var data = {
+						"bauId": bauId,
+						"id":obiect.bauId
+					};
+					$.ajax({
+						type: 'POST',
+						url:GlobalData.APPUSER_URL+"appuser/usersByParams",
+						contentType: "application/json",
+						data : JSON.stringify(data),
+						dataType: 'json',
+						success: function(data) {
+							console.log(data);
+							if(data.code == "200") {
+								
+								$(".item span").empty();
+								var rdo = data.data.objectList[0];
+						
+								$("#nicknameText").text(GlobalUtils.changeBlank(rdo.nickname));
+								$("#nameText").text(GlobalUtils.changeBlank(rdo.name));
+								$("#img_4").attr("src",GlobalUtils.changeBlank(rdo.avatar));
+								$("#phoneText").text(GlobalUtils.changeBlank(rdo.phone));
+								$("#membershipLevelText").text(rdo.membershipLevel);
+								$("#idCardText").text(GlobalUtils.changeBlank(rdo.idCard));
+								$("#img_1").attr("src",GlobalUtils.changeBlank(rdo.idCardPositive)); 
+								$("#img_2").attr("src",GlobalUtils.changeBlank(rdo.idCardBack));
+								$("#img_3").attr("src",GlobalUtils.changeBlank(rdo.handheldIdCard));
+								$("#agentStatusText").text((rdo.agentStatus!=null&&rdo.agentStatus==0?"否":rdo.agentStatus!=null&&rdo.agentStatus==1?"是":""));
+								$("#realNameStatusText").text(rdo.realNameStatus!=null&&rdo.realNameStatus==0?"未认证":rdo.realNameStatus!=null&&rdo.realNameStatus==1?"已认证":rdo.realNameStatus!=null&&rdo.realNameStatus==2?"审核中":"");
+								$("#googleStatusText").text(rdo.googleStatus!=null&&rdo.googleStatus==0?"未认证":rdo.googleStatus!=null&&rdo.googleStatus==1?"已认证":"");
+								$("#bindBankCardStatusText").text(rdo.bindBankCardStatus!=null&&rdo.bindBankCardStatus==0?"未绑定":rdo.bindBankCardStatus!=null&&rdo.bindBankCardStatus==1?"已绑定":"");
+							    $("#memberStatusText").text(rdo.memberStatus!=null&&rdo.memberStatus==0?"禁用":rdo.memberStatus!=null&&rdo.memberStatus==1?"正常":"");
+								$("#rechargeStatusText").text(rdo.rechargeStatus!=null&&rdo.rechargeStatus==0?"禁用":rdo.rechargeStatus!=null&&rdo.rechargeStatus==1?"正常":"");
+								$("#withdrawStatusText").text(rdo.withdrawStatus!=null&&rdo.withdrawStatus==0?"禁用":rdo.withdrawStatus!=null&&rdo.withdrawStatus==1?"正常":"");
+								$("#fundsStatusText").text(rdo.fundsStatus!=null&&rdo.fundsStatus==0?"未绑定":rdo.fundsStatus!=null&&rdo.fundsStatus==1?"已绑定":"");
+								$("#mailboxText").text(GlobalUtils.changeBlank(rdo.mailbox));
+								$("#createTimeText").text(GlobalUtils.getTimeFull(rdo.createTime,"-"));
+								$("#updateTimeText").text(GlobalUtils.getTimeFull(rdo.updateTime,"-"));
+								}
+							else{
+								$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');				
+							}
+						},
+	
+						error: function(e) {
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');				
+							console.log(e);
+						}
+					});
+				}
+			};
+			//会员资金情况列表
+			function capitalAll( ) {
+				var res=$("input[type='checkbox'][class='item-check']:checked");
+				if(res==null||res.length<1){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+				}else if(res.length>1){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');					
+				}else{
+					var obiect=objectMap[res[0].value];
+
+					$.ajax({
+						type: 'GET',
+						async: false,
+						url: GlobalData.TOKEN_URL +"bigToken/bigAppAddressVOListSelect?bauId="+obiect.bauId,
+						contentType: "application/json",
+						dataType: 'json',
+						success: function(data) {
+							console.log(data);
+							$("#capitalAll tbody tr").remove();
+							if(data.code == "200") {
+								var rdo = (data.data==null?[]:data.data);
+								for(var i = 0; i < rdo.length; i++) {
+									var creatTr = $("<tr></tr>");
+									var creatTdf = "<td class='tst'>" + rdo[i].id + "</td><td class='tst'>" + rdo[i].tokenName + "</td><td class='tst'>" + rdo[i].address + "</td><td class='tst'>"+ rdo[i].currentBalance +"</td>";
+									var creatTdl = "<td class='tst'>"+rdo[i].freezeTheBalance+"</td>";
+									$(creatTdf + creatTdl).appendTo(creatTr);
+									$("#capitalAll tbody").append(creatTr);
+								};
+							}
+						},
+						error: function(e) {
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');				
+							console.log(e);
+						}
+					});
+				}
+			};
+			//代理审核
+			function checkAngecy() {
+				var  id = $('input[type=checkbox]:checked').parent().parent().next().text();
+//				$(".sendPhoneInput").val(phoneArr.join(","));
+				var auditingType = parseInt($('input[type=radio]:checked').val());
+				var data = {
+					"id": id,
+					"auditingType": auditingType
+				};
+				$.ajax({
+					type: 'POST',
+					url: GlobalData.TOKENRECORD_URL +"tokenRecord/withdraw",
+					data: JSON.stringify(data),
+					contentType: "application/json",
+					dataType: 'json',
+					success: function(data) {
+						console.log(data);
+						if(data.code == "200") {
+							//$.message('成功');
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">审核成功</div></div>');				
+					    
+							//成功之后需要刷新列表
+							getAdminUserAll(1, $("#rows").val());
+						} else {
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');				
+						
+						}
+					},
+					error: function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');				
+						
+						console.log(e);
+					}
+				});
+			}
+			
+		</script>
+
+	</body>
+
+</html>

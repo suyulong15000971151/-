@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>用户交易单子</title>
+
+		<link href="../../css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
+		<link href="../../css/animate.css" rel="stylesheet">
+		<link href="../../css/plugins/jQueryUI/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+		<link href="../../css/style.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/girds.css" />
+		<link rel="stylesheet" href="../../css/iconfont.css" />
+		<link href="../../css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/chosen.css" />
+		<link rel="stylesheet" href="../../css/coss.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/agentTrade.css" />
+		<link rel="stylesheet" href="../../css/crepsd.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/message.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/bing_google.css"/>
+		
+	</head>
+
+	<body>
+
+
+		
+
+			<!--这里是通过没通过弹窗-->
+			<div id="adopt" class="animated">
+				<div class="adopt-box">
+					<div class="content animated">
+						<div class="title">
+							<span>代理单详情</span>
+							<a href="#" class="close sureBtn" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+						</div>
+						<div class="contain">
+							<div class="contain-box">
+								<div class="left">
+									<p>ID:<span id="idText"></span></p>
+									<p>代理ID：<span id="bauAgentIdText"></span></p>
+									<p>订单编号：<span id="numberText"></span></p>
+									<p>卖出类型：<span id="sellOutTypeText"></span></p>
+									<p>卖出数量：<span id="sellOutNumText"></span></p>
+									<p>姓名：<span id="nameText"></span></p>
+									<p>微信账号：<span id="weChatText"></span></p>
+									<p>金额：<span id="amountOfMoneyText"></span></p>
+									<p>备注：<span id="remarksText"></span></p>
+								</div>
+								<div class="right">
+									<p>代理单ID:<span id="baa_idText"></span></p>
+									<p>用户ID:<span id="bau_idText"></span></p>
+									<p>c2c单子状态：<span id="statusText"></span></p>
+									<p>买入类型：<span id="sellInputTypeText"></span></p>
+									<p>买入数量：<span id="sellInputNumText"></span></p>
+									<p>支付宝账号：<span id="alipayText"></span></p>
+									<p>银行卡账号：<span id="bankCardText"></span></p>
+									<p>创建时间：<span id="createTimeText"></span></p>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+           <!--这里是头部 -->
+			<div id="header"></div>
+			
+			
+            <div id="bod-com" class="animated" style="animation-delay: 0.5s; opacity: 0;">
+				
+				<div class="row wrapper border-bottom white-bg page-heading">
+					<div class="col-lg-10">
+						<!--<h2>jqGrid</h2>-->
+						<ol class="breadcrumb">
+							<li>
+								<a href="../Member_management/memberList.html">首页</a>
+							</li>
+							<li>
+								<a>用户交易单子</a>
+							</li>
+						</ol>
+					</div>
+				</div>
+
+				<!--这里是填写资料-->
+				<div class="material">
+					<div class="material-box">
+						<div class="row">
+
+							<div class="col-md-4 col-sm-12">
+								<label for="" class="">代理ID：</label>
+								<input type="text" class="form-control" id="bauAgentId" />
+							</div>
+
+							<div class="col-md-4 col-sm-12">
+								<label for="" class="">姓名：</label>
+								<input type="text" class="form-control" id="name"/>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<label for="" class="">订单编号：</label>
+								<input type="text" class="form-control" id="number"/>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4 col-sm-12">
+								<label for="" class="">状态：</label>
+								<select name="" class="form-control" id="status">
+									<option value="">请选择</option>
+									<option value="0">托管中</option>
+									<option value="1">审核不通过</option>
+									<option value="2">审核通过</option>
+									<option value="3">用户取消</option>
+								</select>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+
+				<!--这里是设置-->
+
+				<div class="set" style="padding:5px 0px">
+					<div class="setbox">
+						<button class="btn-left btn btn-xs btn-default go creta" type="submit" id="detail">详情 <span class="iconfont icon-xiangqing"></span></button>
+						<button class="btn btn-xs rest right" type="reset" onclick="resetAudit();" id="btnRest">重置 <span class="iconfont icon-11zhongzhi"></span></button>
+						<button class="btn btn-xs search right" onclick="queryAudit();" id="btnSearch">查询  <span class="iconfont icon-sousuo"></span></button>
+					</div>
+				</div>
+
+				<div class="wrapper wrapper-content  animated fadeInRight">
+					<div class="row">
+						<div class="col-lg-12 col-md-12">
+							<div class="ibox float-e-margins">
+
+								<div class="ibox-content" style="height:450px;overflow-y:scroll;">
+									<input type="hidden" id="total"/>
+									<input type="hidden" id="page"/>
+									<input type="hidden" id="rows"/>
+									
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th class="">
+													<div class="checkbox"><input type="checkbox" id="allchek" class="" /><label for="allchek"></label> </div>
+												</th>
+												<th>id</th>
+												<th>代理单ID</th>
+												<th>代理id</th>
+												<th>订单编号</th>
+												<th>用户名</th>
+												<th>卖出类型</th>
+												<th>买入类型</th>
+												<th>卖出数量</th>
+												<th>买入数量</th>
+												<th>金额</th>
+												<th>单子状态</th>
+												<th>备注</th>
+												<th>创建时间</th>
+											</tr>
+										</thead>
+										<tbody id='resultBox'>
+										</tbody>
+									</table>
+
+								</div>
+
+								<!--这里是分页-->
+								<div class="pagss">
+									<div class="right">
+										<div id="pageToolbar"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+		<!-- Mainly scripts -->
+		<script src="../../js/jquery-2.1.1.js"></script>
+		<script src="http://gosspublic.alicdn.com/aliyun-oss-sdk-4.4.4.min.js"></script>
+		<script src="../../js/bootstrap.min.js"></script>
+		<script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+		<!-- Peity -->
+		<script src="../../js/plugins/peity/jquery.peity.min.js"></script>
+
+		<!-- Custom and plugin javascript -->
+		<script src="../../js/inspinia.js"></script>
+		<script src="../../js/plugins/pace/pace.min.js"></script>
+        
+		<script src="../../js/headercom.js"></script>
+        
+		<script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script>
+		<script src="../../js/chosen.jquery.js"></script>
+		<script src="../../js/common.js"></script>
+		<script src="../../js/query.js"></script>
+		<script src="../../js/paging.js"></script>
+		<script src="../../js/chosen.jquery.js"></script>
+		<script src="../../js/message.js"></script>
+		<script type="text/javascript" src="../../js/jquery.qrcode.min.js"></script>
+		<script type="text/javascript" src="../../js/GlobalData.js"></script>
+
+		<script>
+			//当前登陆用户ID
+			var adminUser=GlobalData.getUerInfo();
+			if(adminUser==null||adminUser.id==null||adminUser.id==""){
+				location.href = "../../login.html";
+			};
+
+			if(adminUser.permissionList.indexOf("userBillListQuery")!= -1){
+				$("#btnRest").show();
+				$("#btnSearch").show();
+				$(".material").show();
+			}else{
+				$("#btnRest").hide();
+				$("#btnSearch").hide();
+				$(".material").hide();
+				$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">您没有权限访问这个页面</div></div>');	
+			};	
+			if(adminUser.permissionList.indexOf("userBillListDetail")!= -1){
+				$("#detail").show();
+			}else{
+				$("#detail").hide();
+			};	
+			
+			
+			
+			
+			//存储对象的map
+			var objectMap ={};
+		
+		
+		
+			$(document).ready(function() {
+				getTradesAll(1,10);
+				//这里是侧栏高亮显示
+				setTimeout(function(){
+					$("#side-menu>li").eq(5).addClass("active");
+					$("#side-menu>li").eq(5).find("ul").addClass("in");
+					$("#side-menu li .agentTrade").addClass("active");
+				},2000);
+
+				$(function() {
+					$('.dept_select').chosen();
+				});
+
+				//这里是点击按钮选择
+				$("#allchek").click(function() {
+					if($(this).is(':checked')) {
+						$(".wrapper-content table .item-check").prop("checked", "true");
+					} else {
+						$(".wrapper-content table .item-check").prop("checked", "");
+					}
+				});
+				//会员信息确认
+				$(".sureBtn").click(function(){
+					$("input[type='checkbox']").removeAttr('checked');
+				})
+				$("#detail").click(function(evt) {
+					
+					var res=$("input[type='checkbox'][class='item-check']:checked");
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');				
+					}else{
+						evt.stopPropagation();
+						$("#adopt").css("display", "block");
+						$("#adopt").addClass("fadeIn");
+						$("#adopt .content").addClass("zoomInDown");
+						var obiect=objectMap[res[0].value];
+				
+						$("#idText").html(obiect.id);
+						$("#bauAgentIdText").html(obiect.bauAgentId);
+						$("#numberText").html(obiect.number);
+						$("#sellOutTypeText").html(obiect.sellOutType);
+						$("#sellOutNumText").html(obiect.sellOutNum);
+						$("#nameText").html(obiect.name);
+						$("#weChatText").html(obiect.weChat);
+						$("#amountOfMoneyText").html(obiect.amountOfMoney);
+						$("#remarksText").html(obiect.remarks);
+						$("#baa_idText").html(obiect.baa_id);
+						$("#bau_idText").html(obiect.bau_id);
+						
+						
+						if(obiect.status===""||obiect.status==null){
+							$("#statusText").html("");
+						}else if(obiect.status==0){
+							$("#statusText").html("托管中");
+						}else if(obiect.status==1){
+							$("#statusText").html("审核不通过");
+						}else if(obiect.status==2){
+							$("#statusText").html("审核通过");
+						}else if(obiect.status==3){
+							$("#statusText").html("用户取消");
+						}
+						$("#sellInputTypeText").html(obiect.sellInputType);
+						$("#sellInputNumText").html(obiect.sellInputNum);
+						$("#alipayText").html(obiect.alipay);
+						$("#bankCardText").html(obiect.bankCard);
+						$("#createTimeText").html(GlobalUtils.getTimeFull(obiect.createTime,"-"));
+					}
+				});
+				
+				$("#adopt .title a").click(function(evt) {
+					evt.stopPropagation();
+					$("#adopt").removeClass("fadeIn");
+					$("#adopt .content").removeClass("zoomInDown");
+					$("#adopt").addClass("fadeOut");
+					$("#adopt .content").addClass("zoomOutDown");
+					t = setTimeout(function() {
+						$("#adopt").removeClass("fadeOut");
+						$("#adopt .content").removeClass("zoomOutDown");
+						$("#adopt").css("display", "none");
+					}, 1000);
+				});
+			});
+			
+			var p = new Paging();
+			p.init({target:'#pageToolbar',pagesize:10,count:$('#total').val(), toolbar: true,hash: true,callback:function(page,size,count){
+				getTradesAll(page,$("#rows").val());
+			},go:function(p){
+				getTradesAll(p,$("#rows").val());
+			},changePagesize:function(ps){
+				getTradesAll($("#page").val(),ps);
+			}});
+				
+			//获取所有的统计数据
+			function getTradesAll(page,rows){
+				var bauAgentId=$("#bauAgentId").val();
+				bauAgentId=(bauAgentId==""?null:bauAgentId);
+				
+				var name=$("#name").val();
+				name=(name==""?null:name);
+				
+				var number=$("#number").val();
+				number=(number==""?null:number);
+				
+				
+				var data = {
+					"page" : page==null||page==""?1:page,
+					"rows" : rows==null||rows==""?10:rows,
+					"status":$("#status").val(),
+					"bauAgentId":bauAgentId,
+					"name":GlobalUtils.changeBlank(name),
+					"number":number
+				};
+				console.log(data);
+				$.ajax({
+					type : 'POST',
+					async: false,
+					url : GlobalData.AGENT_URL + 'agent/selectListBigAdminAgentTransaction',
+					data : JSON.stringify(data),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+						console.log(data);
+						$('#resultBox').empty();
+						objectMap={};
+						if(data.code=="200"){
+							//$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">获取用户交易单子列表成功</div></div>');
+							var res = data.data && data.data.objectList || [];
+							console.log("数组"+res);
+							for (var i = 0; i < res.length; i++) {
+								var create_tr = $('<tr></tr>');
+								
+								var _html = '<td>'+
+												'<div class="checkbox"><input type="checkbox" id="audit'+res[i].id+'" class="item-check" value="'+res[i].id+'"/><label for="checkboxs2"></label></div>'+
+											'</td>'+
+											'<td>'+res[i].id+'</td>'+
+											'<td>'+(res[i].baa_id)+'</td>'+
+											'<td>'+res[i].bauAgentId+'</td>'+
+											'<td>'+res[i].number+'</td>'+
+											'<td>'+GlobalUtils.changeBlank(res[i].name)+'</td>'+
+											'<td>'+res[i].sellOutType+'</td>'+
+											'<td>'+res[i].sellInputType+'</td>'+
+											'<td>'+res[i].sellOutNum+'</td>'+
+											'<td>'+res[i].sellInputNum+'</td>'+
+											'<td>'+res[i].amountOfMoney+'</td>'+
+											'<td>'+(res[i].status!=null&&res[i].status===0?"托管中":res[i].status!=null&&res[i].status==1?"审核不通过":res[i].status!=null&&res[i].status==2?"审核通过":res[i].status!=null&&res[i].status==3?"用户取消":"")+'</td>'+													
+											'<td>'+res[i].remarks+'</td>'+
+										    '<td>'+GlobalUtils.getTimeFull(res[i].createTime,"-")+'</td>';
+										   
+								create_tr.html(_html);
+								$('#resultBox').append(create_tr);
+								objectMap[res[i].id] = res[i];
+							};
+							
+							$('#page').val(page==null||page==""?1:page);
+							$('#total').val(data.data.total);
+							$('#rows').val(rows==null||rows==""?10:rows);
+							
+							//重新渲染分页使用render
+							p.render({count:$('#total').val(),pagesize:rows,current:page});
+						}else{
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+						}
+					},
+					error : function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+						console.log(e);
+					}
+				});
+			};
+			
+			function queryAudit(){
+				getTradesAll(1,$("#rows").val());
+			};
+			
+			function resetAudit(){
+		        $("#status").val(""),
+			 	$("#bauAgentId").val(""),
+				$("#name").val(""),
+				$("#number").val(""),
+		 		getTradesAll(1,$("#rows").val());
+			};
+		</script>
+
+	</body>
+
+</html>

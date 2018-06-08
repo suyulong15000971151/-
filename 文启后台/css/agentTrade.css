@@ -1,0 +1,40 @@
+/* Additional style to fix warning dialog position */
+			
+			.wrapper-content input[type=checkbox] {
+				vertical-align: middle;
+			}
+			.wrapper-content{padding: 0;}
+			#alertmod_table_list_2 {
+				top: 900px !important;
+			}
+			.material .row label{display: inline-block;width:80px !important;white-space: nowrap;}
+			
+			.ibox-content th{white-space: normal;}
+			.ibox-content td{white-space: normal;}
+			.set .go{border:1px solid #1afa29}
+			.set .go:hover{background:#1afa29;color:#fff}
+			.set .no-adopt:hover{background:red;color:#fff}
+			.set .search:hover{background:#e3b375;color:#fff}
+			.set .rest:hover{background:#50b595;color:#fff}
+			.set .btn-left{background: none;color:#1afa29}
+			#adopt{width:100%;height:100%;position: fixed;top:0;left:0;background:rgba(0,0,0,.6);z-index: 99999;display:none;}
+			#adopt .adopt-box{display: flex;justify-content: center;align-items: center;width:100%;height:100%}
+			#adopt .adopt-box .content{width:40%;height:400px;background:#fff;border-radius: 5px;}
+			#adopt .adopt-box .content .title{width:100%;height:30px;border-bottom: 1px solid #ccc;line-height: 30px;background:#1ab394;color:#000}
+			#adopt .adopt-box .content .title span{text-indent: 10px;display: inline-block;}
+			#adopt .adopt-box .content .contain{width:100%;margin-top:40px;text-align: center;box-sizing: border-box;padding:0 10px;overflow: hidden;}
+			#adopt .adopt-box .content .contain .contain-box{width:105%;height: 300px;overflow-y: scroll;}
+	        #adopt .adopt-box .content .contain .left{width:50%;float:left;text-align: left;text-indent: 10px;}
+	        #adopt .adopt-box .content .contain .right{width:50%;float:left;text-align: left;}
+	         #adopt .adopt-box .content .contain .methods{margin:20px 0;border-bottom:1px solid #eee;width:90%;overflow: hidden;padding-bottom:10px}
+	         #adopt .adopt-box .content .contain .methods .item{line-height: 20px;overflow: hidden;}
+	         #adopt .adopt-box .content .contain .methods .item span{float: left;text-indent:10px}
+	         #adopt .adopt-box .content .contain .methods .item i{float: right;font-style: normal;}
+	         #adopt .adopt-box .content .contain .detal{overflow: hidden;width:95%;margin:0 auto}
+	         #adopt .adopt-box .content .contain .detal .detal-left{width:50%;float: left;text-align: left;}
+	         #adopt .adopt-box .content .contain .detal .detal-right{width:50%;float: left;text-align: right;text-indent: 10px;box-sizing: border-box;padding-right: 10px;}
+	          #adopt .adopt-box .content .contain .Explain{width:95%;margin: 0 auto;line-height: 20px;}
+			/*#adopt .adopt-box .content .contain .new-set{text-align: center;width:90%;overflow: hidden;border-top:1px solid #ccc;margin:0 auto;padding-top:20px;margin-top:20px}
+			#adopt .adopt-box .content .contain .new-set button{margin:0 10px}*/
+			
+			.material-box .row label{width: auto;}

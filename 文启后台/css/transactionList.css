@@ -1,0 +1,75 @@
+/* Additional style to fix warning dialog position */
+			
+				.chosen-container{flex: 1;}
+			#adopt .adopt-box .content .contain .chosen-container a.chosen-single{padding: 0 !important;margin-left:0;text-align: left;text-indent: 10px;}
+			
+			
+			.wrapper-content input[type=checkbox] {
+				vertical-align: middle;
+			}
+			.wrapper-content{padding:0px}
+			
+			#alertmod_table_list_2 {
+				top: 900px !important;
+			}
+			
+			.ibox-content th{white-space: normal;}
+			.ibox-content td{white-space: normal;}
+			.set .go{border:1px solid #1afa29}
+			.set .go:hover{background:#1afa29;color:#fff}
+			.set .no-adopt:hover{background:red;color:#fff}
+			.set .search:hover{background:#e3b375;color:#fff}
+			.set .rest:hover{background:#50b595;color:#fff}
+			.set .btn-left{background: none;color:#000000;margin-left:10px}
+			#adopt{width:100%;height:100%;position: fixed;top:0;left:0;background:rgba(0,0,0,.6);z-index: 99999;display:none;}
+			#adopt .adopt-box{display: flex;justify-content: center;align-items: center;width:100%;height:100%}
+			#adopt .adopt-box .content{width:40%;height:200px;background:#fff;border-radius: 5px;}
+			#adopt .adopt-box .content .title{width:100%;height:30px;border-bottom: 1px solid #ccc;line-height: 30px;background:#1ab394;color:#000}
+			#adopt .adopt-box .content .title span{text-indent: 10px;display: inline-block;}
+			#adopt .adopt-box .content .contain{width:100%;margin-top:40px;text-align: center;}
+			#adopt .adopt-box .content .contain a{font-size: 14px;border:1px solid #eee;padding:5px 10px;border-radius: 5px;margin:0 10px}
+			#adopt .adopt-box .content .contain .contain-item{width:80%;margin:0 auto;display: flex;line-height: 30px;margin-bottom:10px}
+			#adopt .adopt-box .content .contain .contain-item label{margin-right:0px;width: 60px;text-align: left;}
+			#adopt .adopt-box .content .contain .contain-item input{flex: 1;border-radius: 5px;}
+			#adopt .adopt-box .content .contain .contain-item select{flex: 1;border-radius: 5px;}
+			#adopt .adopt-box .content .contain .new-set{text-align: center;width:90%;overflow: hidden;border-top:1px solid #ccc;margin:0 auto;padding-top:20px;margin-top:20px}
+			#adopt .adopt-box .content .contain .new-set button{margin:0 20px}
+			#adopt .adopt-box .content .contain .new-set button.btn-default{background: #fff;border:1px solid #eee;color:#000}
+			#adopt .adopt-box .content .contain .new-set button.btn-default:hover{background: #eee;}
+			#adopt .adopt-box .content .contain .new-set button.btn-success{background: #1ab394;border:1px solid #eee}
+			
+			
+			/*这里是权限分配权限*/
+			#Allocation{width:100%;height:100%;position: fixed;top:0;left:0;background:rgba(0,0,0,.6);z-index: 999599;display:none;}
+			#Allocation .Allocation-box{display: flex;justify-content: center;align-items: center;width:100%;height:100%}
+			#Allocation .Allocation-box .content{width:40%;height:250px;background:#fff;border-radius: 5px;}
+			#Allocation .Allocation-box .content .title{width:100%;height:40px;border-bottom: 1px solid #ccc;line-height: 40px;background:#1ab394;color:#000}
+			#Allocation .Allocation-box .content .title span{text-indent: 10px;display: inline-block;}
+			#Allocation .Allocation-box .content .contain{width:90%;margin-top:40px;margin:0 auto;line-height: 30px;overflow: hidden;position: relative;height:190px}
+		
+			#Allocation .Allocation-box .content .contain .bom-set{height:50px;text-align: center;width:100%;margin: 0 auto;position: absolute;border-top:1px solid #eee;bottom: 0;background: #fff;padding-top:10px}
+			#Allocation .Allocation-box .content .contain .bom-set button{margin:0 20px;}
+			#Allocation .Allocation-box .content .contain .bom-set button.btn-default{background: #fff;border:1px solid #eee;color:#000}
+			#Allocation .Allocation-box .content .contain .bom-set button.btn-default:hover{background: #eee;}
+			#Allocation .Allocation-box .content .contain .bom-set button.btn-success{background: #1ab394;border:1px solid #eee}
+			.material-box .row label{}
+			
+			
+			#sitch{width:100%;height:100%;position: fixed;top:0;left:0;background:rgba(0,0,0,.6);z-index: 999599;display:none;}
+			#sitch .sitch-box{display: flex;justify-content: center;align-items: center;width:100%;height:100%}
+			#sitch .sitch-box .content{width:30%;height:200px;background:#fff;border-radius: 5px;}
+			#sitch .sitch-box .content .title{width:100%;height:40px;border-bottom: 1px solid #ccc;line-height: 40px;background:#1ab394;color:#000}
+			#sitch .sitch-box .content .title span{text-indent: 10px;display: inline-block;}
+			#sitch .sitch-box .content .contain{width:90%;margin-top:40px;margin:0 auto;line-height: 30px;overflow: hidden;position: relative;height:150px;}
+				#sitch .sitch-box .content .contain .tip-con{text-align: center;line-height: 30px;margin:30px 0 30px;background: url(../img/tips.png) no-repeat left center;background-size: 30px 30px;}
+				#sitch .sitch-box .content .contain .set{text-align: center;}
+			    #sitch .sitch-box .content .contain .set button{margin:0 20px}
+			    #sitch .sitch-box .content .contain .set button.btn-default{background: #fff;border:1px solid #eee;color:#000}
+			    #sitch .sitch-box .content .contain .set button.btn-default:hover{background: #eee;}
+			    #sitch .sitch-box .content .contain .set button.btn-success{background: #1ab394;border:1px solid #eee}
+			table{text-align: center;}
+			table th{text-align: center;}
+			table td span{padding:2px 5px;background:#1ab394;color:#fff;border-radius: 5px;cursor: pointer;}
+			table td i{margin:0 5px}
+			
+          #modify-money .modify-box .content{height:220px}

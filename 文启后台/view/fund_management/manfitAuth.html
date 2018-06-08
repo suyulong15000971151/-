@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>待审核手动充值</title>
+
+		<link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+		<link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
+		<link href="../../css/plugins/jQueryUI/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+		<link rel="stylesheet" href="../../css/girds.css" />
+		<link rel="stylesheet" href="../../css/iconfont.css" />
+		<link rel="stylesheet" href="../../css/animate.css" />
+		<link href="../../css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/chosen.css" />
+		<link rel="stylesheet" href="../../css/common.css" />
+		<link rel="stylesheet" href="../../css/coss.css" />
+		<link href="../../css/style.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/manfitAuth.css" />
+
+		<link rel="stylesheet" href="../../css/crepsd.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/message.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/bing_google.css" />
+		
+		<link rel="stylesheet" href="../../css/memberList.css" />
+		<link rel="stylesheet" href="../../css/approvedMember.css" />
+		<link rel="stylesheet" href="../../css/approvingList.css" />
+
+
+	</head>
+
+	<body>
+
+		<div id="sitchsss" class="animated dio-close">
+			<div class="sitch-box">
+				<div class="content animated">
+					<div class="title">
+						<span>提示</span>
+						<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain">
+						<div class="con-box">
+						<label for="">审核状态：</label><input type="radio" name="checkInput" value="1">通过&nbsp&nbsp&nbsp&nbsp&nbsp<input type="radio" name="checkInput" value="2">不通过
+							
+						</div>
+				
+						<div class="set">
+							<input type="hidden" id="setUserId" />
+							<input type="hidden" id="setUserStatus" />
+							<button class="btn btn-default can-close">取消</button>
+							<button class="btn btn-success cof-close" onclick="checkAngecy();">确认</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!--这里是编辑弹窗-->
+		<div id="generate" class="animated dio-close">
+			<div class="generate-box">
+				<div class="content animated">
+					<div class="title">
+						<span>编辑</span>
+						<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain">
+						<div class="item">
+							<label for="">ID</label>
+							<input type="number" name="" id="" value="" class="form-control editIdInput" disabled="disabled"/>
+						</div>
+						<div class="item">
+							<label for="">汇款方式</label>
+							<input type="text" name="" id="" value="" class="form-control remittanceModeInput" />
+						</div>
+						<div class="item">
+							<label for="">数量</label>
+							<input type="number" name="" id="" value="" class="form-control numInput" />
+						</div>
+						<div class="item">
+							<label for="">描述</label>
+							<textarea name="" rows="" cols="" class="form-control remarksInput"></textarea>
+						</div>
+
+					</div>
+					<div class="bot-set">
+						<button class="btn btn-default can-close">取消</button>
+						<button class="btn btn-success cof-close" onclick="editMessage()">确认</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--这里是头部 -->
+		<div id="header"></div>
+
+		<div id="bod-com" class="animated" style="animation-delay: 0.5s; opacity: 0; ">
+
+			<div class="row wrapper border-bottom white-bg page-heading">
+				<div class="col-lg-10">
+					<!--<h2>jqGrid</h2>-->
+					<ol class="breadcrumb">
+						<li>
+							<a href="../Member_management/memberList.html">首页</a>
+						</li>
+						<li>
+							<a>待审核手动充值</a>
+						</li>
+
+					</ol>
+				</div>
+			</div>
+
+			<!--这里是填写资料-->
+				<div class="material">
+					<div class="material-box">
+						<div class="row">
+							<div class="col-md-4 col-sm-12">
+
+								<label for="" class="">会员ID:</label>
+								<input type="text" class="form-control memberIdInput" />
+
+							</div>
+							<div class="col-md-4 col-sm-12">
+
+								<label for="" class="">会员名称:</label>
+								<input type="text" class="form-control memberNameInput" />
+
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<label for="" class="">代币类型：</label>
+								<select name="" class="form-control  tokenTypeInput" id="tokenTypeInput">
+								</select>
+							</div>
+
+
+						</div>
+
+					</div>
+					
+				</div>
+
+			<!--这里是设置-->
+
+			<div class="set" style="padding: 5px 0px;">
+				<div class="setbox">
+					<div class="set-left">
+						<button class="btn btn-xs btn-info agency thrr" id="auditDo"> 审核 <span class="iconfont icon-tubiaolunkuo-"></span></button>							
+						<button class="btn btn-xs btn-info  thrr" id="editBtn">编辑 <span class="iconfont icon-xiugai07"></span></button>
+						<!--<button class="btn btn-xs btn-info details thrr"> 查看会员信息 <span class="fa fa-user-md"></span></button>-->
+					</div>
+					<button class="btn btn-xs rest right" type="reset" id="btnRest">重置 <span class="iconfont icon-11zhongzhi"></span></button>
+					<button class="btn btn-xs search right" id="btnSearch" onclick="conditionMember()">查询  <span class="iconfont icon-sousuo"></span></button>
+				</div>
+			</div>
+
+			<div class="wrapper wrapper-content  animated fadeInRight" style="background:#fff">
+				<div class="row">
+					<div class="col-lg-12 col-md-12">
+						<div class="ibox float-e-margins">
+
+							<div class="wrapper-content" style="height:450px;overflow-y: scroll;">
+
+								<table class="table table-striped table-bordered table-hover" id="editable">
+									<input type="hidden" id="total" />
+									<input type="hidden" id="page" />
+									<input type="hidden" id="rows" />
+									<thead>
+										<tr>
+											<th class="">
+												<div class="checkbox"><input type="checkbox" id="allcheck" class="" /><label for="allchek"></label> </div>
+											</th>
+											<th class=''>ID</th>
+											<th class=''>会员ID</th>
+											<th class=''>昵称</th>
+											<th class=''>姓名</th>
+											<th class=''>汇款方式</th>
+											<th class=''>状态</th>
+											<th class=''>代币类型</th>
+											<th class=''>数量</th>
+											<th class=''>描述</th>
+											<th class=''>更新时间</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+
+							</div>
+							<!--这里是分页-->
+							<div class="pagss">
+								<!--<div class="left">
+										<label for="">当前显示11到15条，共50条记录</label>
+									</div>-->
+								<div class="right">
+									<div id="pageToolbar"></div>
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<!-- Mainly scripts -->
+		<script src="../../js/jquery-2.1.1.js"></script>
+		<script src="http://gosspublic.alicdn.com/aliyun-oss-sdk-4.4.4.min.js"></script>
+		<script src="../../js/bootstrap.min.js"></script>
+		<script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+		<!-- Peity -->
+		<script src="../../js/plugins/peity/jquery.peity.min.js"></script>
+
+		<!-- Custom and plugin javascript -->
+		<script src="../../js/inspinia.js"></script>
+		<script src="../../js/plugins/pace/pace.min.js"></script>
+
+		<script src="../../js/headercom.js"></script>
+		<script src="../../js/common.js"></script>
+
+		<script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script>
+		<script src="../../js/chosen.jquery.js"></script>
+		<script src="../../js/query.js"></script>
+		<script src="../../js/paging.js"></script>
+		<script src="../../js/message.js"></script>
+		<script type="text/javascript" src="../../js/jquery.qrcode.min.js"></script>
+
+		<!--<script src="../../js/fund_manager/manfitAuth.js"></script>-->
+		<script type="text/javascript" src="../../js/GlobalData.js"></script>
+
+		<script>
+						//当前登陆用户ID
+						var adminUser = GlobalData.getUerInfo();
+						if(adminUser == null || adminUser.id == null || adminUser.id == "") {
+							location.href = "../../login.html";
+						};
+						var bauId = adminUser.id;
+						
+						if(adminUser.permissionList.indexOf("waitHandListQuery")!= -1){
+							$("#btnRest").show();
+							$("#btnSearch").show();
+							$(".material").show();
+						}else{
+							$("#btnRest").hide();
+							$("#btnSearch").hide();
+							$(".material").hide();
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">您没有权限访问这个页面</div></div>');
+						};
+						if(adminUser.permissionList.indexOf("waitHandListApprove")!= -1){
+							$("#auditDo").show();
+						}else{
+							$("#auditDo").hide();
+						};
+						if(adminUser.permissionList.indexOf("waitHandListEdit")!= -1){
+							$("#editBtn").show();
+						}else{
+							$("#editBtn").hide();
+						};
+					
+					
+						
+
+						$(document).ready(function() {
+							getAdminUserAll(1, 10);
+							//这里是侧栏高亮显示
+							setTimeout(function() {
+								$("#side-menu>li").eq(3).addClass("active")
+								$("#side-menu>li").eq(3).find("ul").addClass("in")
+								$("#side-menu li .manfitAuth").addClass("active")
+								//					$("#side-menu li").eq(5).find("ul").addClass("in")
+								//					$("#side-menu li").eq(5).find("ul a").eq(1).addClass("active")
+
+							}, 2000)
+
+							//这里是公共的取消模态框
+
+							$(function() {
+								$('.dept_select').chosen();
+							});
+
+							//这里是点击按钮选择
+							$("#allcheck").click(function() {
+
+								if($(this).is(':checked')) {
+									$(".wrapper-content table .item-check").prop("checked", "true")
+								} else {
+									$(".wrapper-content table .item-check").prop("checked", "")
+
+								}
+							})
+
+							$(".set .setbox .creat-add").click(function(evt) {
+
+								evt.stopPropagation()
+
+								$("#sitch").css("display", "block")
+
+								$("#sitch").addClass("fadeIn")
+								$("#sitch .content").addClass("zoomInDown")
+							})
+
+							$("#sitch .sitch-box .content .title a").click(function(evt) {
+
+								evt.stopPropagation()
+
+								$("#sitch").removeClass("fadeIn")
+								$("#sitch .content").removeClass("zoomInDown")
+								$("#sitch").addClass("fadeOut")
+								$("#sitch .content").addClass("zoomOutDown")
+								t = setTimeout(function() {
+									$("#sitch").removeClass("fadeOut")
+									$("#sitch .content").removeClass("zoomOutDown")
+									$("#sitch").css("display", "none")
+								}, 1000)
+
+							})
+
+							//这里是生成钱包
+							$(".set .setbox .pro-money").click(function(evt) {
+
+								evt.stopPropagation()
+
+								$("#generate").css("display", "block")
+
+								$("#generate").addClass("fadeIn")
+								$("#generate .content").addClass("zoomInDown")
+							})
+
+							$("#generate .generate-box .content .title a").click(function(evt) {
+
+								evt.stopPropagation()
+
+								$("#generate").removeClass("fadeIn")
+								$("#generate .content").removeClass("zoomInDown")
+								$("#generate").addClass("fadeOut")
+								$("#generate .content").addClass("zoomOutDown")
+								t = setTimeout(function() {
+									$("#generate").removeClass("fadeOut")
+									$("#generate .content").removeClass("zoomOutDown")
+									$("#generate").css("display", "none")
+								}, 1000)
+
+							})
+							//这里是审核弹窗
+							$(".set .setbox .agency ").click(function(evt) {
+								var res=$("input[type='checkbox'][class='item-check']:checked");
+								if(res==null||res.length<1){
+									$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+								}else if(res.length>1){
+									$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');					
+								}else{
+								evt.stopPropagation()
+			
+								$("#sitchsss").css("display", "block")
+			
+								$("#sitchsss").addClass("fadeIn")
+								$("#sitchsss .content").addClass("zoomInDown")
+								$("input[type='radio']").removeAttr('checked');
+								}
+							})
+
+							//这里是修改钱包地址弹窗
+							$(".set .setbox .creat-money ").click(function(evt) {
+
+								evt.stopPropagation()
+
+								$("#modify-money").css("display", "block")
+
+								$("#modify-money").addClass("fadeIn")
+								$("#modify-money .content").addClass("zoomInDown")
+							})
+
+							$("#modify-money .modify-box .content .title a").click(function(evt) {
+
+								evt.stopPropagation()
+
+								$("#modify-money").removeClass("fadeIn")
+								$("#modify-money .content").removeClass("zoomInDown")
+								$("#modify-money").addClass("fadeOut")
+								$("#modify-money .content").addClass("zoomOutDown")
+								t = setTimeout(function() {
+									$("#modify-money").removeClass("fadeOut")
+									$("#modify-money .content").removeClass("zoomOutDown")
+									$("#modify-money").css("display", "none")
+								}, 1000)
+
+							})
+							//编辑
+							$("#editBtn").click(function(evt) {
+								var res=$("input[type='checkbox'][class='item-check']:checked");
+								if(res==null||res.length<1){
+									$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+								}else if(res.length>1){
+									$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');					
+								}else{
+								var b = $('input[type=checkbox]:checked').parent().parent().next().next().next().next().next().text();
+								var c = $('input[type=checkbox]:checked').parent().parent().next().next().next().next().next().next().next().next().text();
+								var d = $('input[type=checkbox]:checked').parent().parent().next().next().next().next().next().next().next().next().next().text();
+								var a = $('input[type=checkbox]:checked').parent().parent().next().text();
+								$(".editIdInput").val(a);
+								$(".remittanceModeInput").val(b);
+								$(".numInput").val(c);
+								$(".remarksInput").val(d)
+								$("#generate").css("display", "block")
+
+								$("#generate").addClass("fadeIn")
+								$("#generate .content").addClass("zoomInDown")
+								}
+								  
+							});
+//							//审核
+//							$(".agency").click(function(evt) {
+//								$("input[type=radio]:checked").val("");
+//								
+//							});
+							//重置
+							$("#btnRest").click(function(evt) {
+								$(".memberIdInput").val("");
+								$(".memberNameInput").val("");
+								$(".tokenTypeInput").val("");
+								getAdminUserAll(1, $("#rows").val());
+
+							});
+							
+							 queryTokenList();
+							
+						}); //结束
+						
+						//获取当前所有的代币类型
+						function queryTokenList(){
+							$.ajax({
+								type : 'GET',
+								url : GlobalData.TOKEN_URL + 'bigToken/tokenNameId',
+								contentType : "application/json",
+								dataType : 'json',
+								success : function(data) {
+									console.log(data);
+									if(data.code=="200"){
+										   $("#tokenTypeInput").empty();
+										   var select = $("#tokenTypeInput").append('<option value="">全部</option>');
+										   var res=data.data;
+										   for (var i = 0; i < res.length; i++) {
+										   		select.append('<option value="'+ res[i].tokenId +'">' + res[i].tokenName + '</option>');
+										   };
+									}else{
+										$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+									}
+								},
+								error : function(e) {
+									$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+									console.log(e);
+								}
+							});
+						};
+						
+						var p = new Paging();
+						p.init({
+							target: '#pageToolbar',
+							pagesize: 10,
+							count: $('#total').val(),
+							toolbar: true,
+							hash: true,
+							callback: function(page, size, count) {
+								getAdminUserAll(page, $("#rows").val());
+							},
+							go: function(p) {
+								getAdminUserAll(p, $("#rows").val());
+							},
+							changePagesize: function(ps) {
+								getAdminUserAll($("#page").val(), ps);
+							}
+						});
+		    //充值列表
+			function getAdminUserAll(page, rows) {
+				var data = {
+					"page": page == null || page == "" ? 1 : page,
+					"rows": rows == null || rows == "" ? 10 : parseInt(rows),
+					"status": 0,
+		            "bau_id":$(".memberIdInput").val()==""?null:$(".memberIdInput").val(),
+		            "bat_id":$("#tokenTypeInput").val()==""?null:parseInt($("#tokenTypeInput").val()),
+		            "name":$(".memberNameInput").val()==""?null:$(".memberNameInput").val()
+				};
+				$.ajax({
+					type: 'POST',
+					async: false,
+			        url: GlobalData.TOKENRECORD_URL +"tokenRecord/selectBigAdminLogRechargeList",			
+					data: JSON.stringify(data),
+					contentType: "application/json",
+					dataType: 'json',
+					success: function(data) {
+						console.log(data);
+						$("tbody tr").remove();
+						if(data.code == "200") {
+
+							
+							var rdo = data.data && data.data.objectList || [];
+							for(var i = 0; i < rdo.length; i++) {
+								var creatTr = $("<tr><td><div class='checkbox'><input type='checkbox' class='item-check' /><label for='allchek1'></label> </div></td></tr>");
+								var creatTdf = "<td class='tst'>" + rdo[i].id+ "</td><td class='tst'>" + rdo[i].bau_id+ "</td><td class='tst'>" + GlobalUtils.changeBlank(rdo[i].nickname) + "</td><td class='tst'>" + GlobalUtils.changeBlank(rdo[i].name) + "</td><td class='tst'>" + rdo[i].remittanceMode + "</td>"
+								var creatTdc = "<td class='tst'>" + (rdo[i].status!=null&&rdo[i].status==0?"待审核":rdo[i].status!=null&&rdo[i].status==1?"审核通过":rdo[i].status!=null&&rdo[i].status==2?"审核不通过":"") + "</td><td class='tst'>" + GlobalUtils.changeBlank(rdo[i].tokenType) + "</td><td class='tst'>" + rdo[i].num + "</td>"
+								var creatTdl = "<td class='tst'>" + GlobalUtils.changeBlank(rdo[i].remarks) + "</td><td class='tst'>" + GlobalUtils.getTimeFull(rdo[i].updateTime,"-") + "</td>"
+								$(creatTdf  + creatTdc + creatTdl).appendTo(creatTr);//tokeidn类型未找到
+								$("tbody").append(creatTr);
+							}
+
+							$('#page').val(page == null || page == "" ? 1 : page);
+							$('#total').val(data.data.total);
+							$('#rows').val(rows == null || rows == "" ? 10 : rows);
+
+							//重新渲染分页使用render
+							p.render({
+								count: $('#total').val(),
+								pagesize: rows,
+								current: page
+							});
+
+						}
+					},
+					error: function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');				
+						
+						console.log(e);
+					}
+				});
+			};
+			//查询
+			function conditionMember() {
+				getAdminUserAll(1, $("#rows").val());
+			}
+			//代理审核
+			function checkAngecy() {
+				var  id = $('input[type=checkbox]:checked').parent().parent().next().text();
+//				$(".sendPhoneInput").val(phoneArr.join(","));
+				var status = parseInt($('input[type=radio]:checked').val());
+				var data = {
+					"id": id,
+					"status": status,
+					"bauToExamineId":bauId
+				};
+				$.ajax({
+					type: 'POST',
+					url: GlobalData.TOKENRECORD_URL +"tokenRecord/auditBigAdminLogRecharge",
+					data: JSON.stringify(data),
+					contentType: "application/json",
+					dataType: 'json',
+					success: function(data) {
+						console.log(data);
+						if(data.code == "200") {
+							//$.message('成功');
+							$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">审核成功</div></div>');
+							
+							//成功之后需要刷新列表
+							getAdminUserAll(1, $("#rows").val());
+						} else {
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');				
+
+						}
+					},
+					error: function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');				
+						
+						console.log(e);
+					}
+				});
+			}
+			//编辑
+			function editMessage() {
+				var  id = $('input[type=checkbox]:checked').parent().parent().next().text();
+//				$(".sendPhoneInput").val(phoneArr.join(","));
+				var status = parseInt($('input[type=radio]:checked').val());   
+				var data = {
+					"id": $(".editIdInput").val(),
+					"remittanceMode": $(".remittanceModeInput").val(),
+					"num":$(".numInput").val(),
+					"remarks":$(".remarksInput").val()
+				};
+				$.ajax({
+					type: 'POST',
+					url: GlobalData.TOKENRECORD_URL +"tokenRecord/updateBigAdminLogRecharge",
+					data: JSON.stringify(data),
+					contentType: "application/json",
+					dataType: 'json',
+					success: function(data) {
+						console.log(data);
+						if(data.code == "200") {
+							//成功之后需要刷新列表
+							getAdminUserAll(1, $("#rows").val());
+							$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">修改成功</div></div>');
+						} else {
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');				
+						
+						}
+					},
+					error: function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');				
+						
+						console.log(e);
+					}
+				});
+			}
+
+		</script>
+
+	</body>
+
+</html>

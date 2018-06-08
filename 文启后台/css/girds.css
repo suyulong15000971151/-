@@ -1,0 +1,287 @@
+.page-heading{background:#f3f3f3}
+.page-heading .breadcrumb{background:#fff;line-height: 40px;}
+.material{box-sizing:border-box;padding:0 0px}
+.material .material-box{background: #fff;line-height: 30px;padding:15px 0;font-size: 12px;}
+.material .material-box .form-control{display: inline-block;width:60%;height:30px;box-sizing: border-box;line-height: 30px;border-radius: 5px;padding:0 5px !important}
+.material .material-box label{text-indent: 10px;width:35%}
+.material .material-box input{display: inline-block;width:40%;height:30px;box-sizing: border-box;line-height: 30px;padding:0;border-radius: 5px;text-indent: 5px;}
+.material .material-box input.dates{width:20%}
+.material .material-box input.dalst{margin-right:3px}
+.material .material-box label.tow{text-indent: 0;}
+
+.set{padding:5px 0;box-sizing: border-box;}
+.set .setbox{background:#fff;box-sizing: border-box;padding:10px;overflow: hidden;}
+.set .setbox .set-left{display: inline-block; overflow: hidden;width:70%}
+.set .setbox .set-left span{margin-left:0px}
+.set .setbox .set-left button{margin-right:5px;margin-bottom:5px;}
+.set .setbox .set-left button.btn{background:#fff !important;color:#000000;transition: all 0.5s linear;}
+.set .setbox .set-left button.creat-add{border:1px solid #3dba9f;color:#3dba9f}
+.set .setbox .set-left button.creat-add:hover{background:#3dba9f !important;color:#fff !important}
+
+.set .setbox .set-left button.sed{border:1px solid #f6ab60;color:#f6ab60}
+.set .setbox .set-left button.sed:hover{background:#f6ab60 !important;color:#fff !important}
+
+.set .setbox .set-left button.thrr{border:1px solid #f399a4;color:#f399a4}
+.set .setbox .set-left button.thrr:hover{background:#f399a4 !important;color:#fff !important}
+/*.set .setbox .btn{background:no-repeat;border:1px solid #ccc;color:#000}*/
+.set .setbox .right{background:no-repeat;border:1px solid #ccc;color:#000}
+.set .setbox .no-adopt{margin-left:10px;border:1px solid #f399a4;color:#f399a4}
+
+.set .setbox .right{float:right}
+.set .setbox .rest{border:1px solid #50b595;color:#50b595;margin-left:10px}
+.set .setbox .search{border:1px solid #e3b375;color:#e3b375;transition: all 0.5s linear;}
+
+
+			.wrapper-content input[type=checkbox] {
+				vertical-align: middle;
+			}
+			
+			#alertmod_table_list_2 {
+				top: 900px !important;
+			}
+			
+			.ibox-content th {
+				white-space: normal;
+			}
+			
+			.ibox-content td {
+				white-space: normal;
+			}
+			.set .go{border-color:#3dba9f !important; color:#3dba9f !important}
+			.set .go:hover {
+				background: #3dba9f !important;
+				color: #fff !important
+			}
+			
+			.set .no-adopt:hover {
+				background: #f399a4 !important;
+				color: #fff
+			}
+			
+			.set .search:hover {
+				background: #e3b375;
+				color: #fff
+			}
+			
+			.set .rest:hover {
+				background: #50b595;
+				color: #fff
+			}
+			
+			#adopt {
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				top: 0;
+				left: 0;
+				background: rgba(0, 0, 0, .6);
+				z-index: 99999;
+				display: none;
+			}
+			
+			#adopt .adopt-box {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 100%;
+				height: 100%
+			}
+			
+			#adopt .adopt-box .content {
+				width: 300px;
+				height: 150px;
+				background: #fff;
+				border-radius: 5px;
+			}
+			
+			#adopt .adopt-box .content .title {
+				width: 100%;
+				height: 30px;
+				border-bottom: 1px solid #ccc;
+				line-height: 30px;
+			}
+			
+			#adopt .adopt-box .content .contain {
+				width: 100%;
+				margin-top: 80px;
+				text-align: center;
+			}
+			
+			#adopt .adopt-box .content .contain a {
+				font-size: 14px;
+				border: 1px solid #eee;
+				padding: 5px 10px;
+				border-radius: 5px;
+				margin: 0 10px
+			}
+			
+			.man-table tr td,
+			.man-table tr th {
+				white-space: nowrap !important;
+			}
+			
+			#add {
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				top: 0;
+				left: 0;
+				background: rgba(0, 0, 0, .6);
+				z-index: 99999;
+				display: none;
+			}
+			
+			#add .add-box {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 100%;
+				height: 100%
+			}
+			
+			#add .add-box .content {
+				width: 40%;
+				height: 400px;
+				background: #fff;
+				border-radius: 5px;
+				overflow: hidden;
+			}
+			
+			#add .add-box .content .title {
+				width: 100%;
+				height: 40px;
+				border-bottom: 1px solid #ccc;
+				line-height: 40px;
+				background: #1ab394;
+				color: #000;
+				box-sizing: border-box;
+				text-indent: 10px;
+			}
+			#add .add-box .content .title a{color:#000}
+			
+			#add .add-box .content .contain {
+				width: 100%;
+				margin-top: 20px;
+				text-align: center;
+				height: 350px;
+				overflow-y: scroll;
+				padding-bottom:20px
+			}
+			
+			#add .add-box .content .contain .contain-box {
+				width: 80%;
+				overflow: hidden;
+				margin: 0 auto
+			}
+			#add .add-box .content .contain .top:after{content: "";display: block;clear: both;}
+			
+			#add .add-box .content .contain .top>div {
+				display: flex;
+				justify-content: center;
+				line-height: 35px;
+			}
+			
+			#add .add-box .content .contain .top input {
+				display: inline-block !important;
+				flex: 1;
+				border-radius: 5px;
+			}
+			
+			#add .add-box .content .contain .top label {
+				margin-right: 10px
+			}
+			#add .add-box .content .contain .top .lab-title{width:80px !important;text-align: left !important;}
+			#add .add-box .content .contain .item{clear: both;text-align: left;margin-bottom:5px}
+			#add .add-box .content .contain .item .lab-title{margin-right:10px}
+			#add .add-box .content .contain .item .tai{display: inline-block !important;}
+            #add .add-box .content .contain .config-set{overflow: hidden;width:95%;margin:30px auto;border-top:1px solid #bfcbd9;padding-top:20px}
+            #add .add-box .content .contain .config-set button{margin:0 40px}
+            #add .add-box .content .contain .config-set button.btn-default{background:#fff;border:1px solid #ccc;color:#000}
+            #add .add-box .content .contain .config-set button.btn-default:hover{background:#ccc}
+            #add .add-box .content .contain .config-set button.btn-success{background:#1ab394;}
+
+
+
+           #service {width: 100%;height: 100%;position: fixed;top: 0;left: 0;background: rgba(0, 0, 0, .6);z-index: 99999;display: none;}
+			
+			#service .service-box {display: flex;justify-content: center;align-items: center;width: 100%;height: 100%}
+			
+			#service .service-box .content {width: 40%;height: 400px;background: #fff;border-radius: 5px;}
+			
+			#service .service-box .content .title {width: 100%;height: 40px;border-bottom: 1px solid #ccc;line-height: 40px;background: #1ab394;color:#000}
+			#service .service-box .content .title span{text-indent: 10px;display: inline-block;}
+			#service .service-box .content .contain {width: 100%;margin-top: 20px;text-align: center;overflow: hidden;position: relative;height:340px}
+			#service .service-box .content .contain .ser-table{width:100%;height:260px;overflow: scroll;margin:20px auto;box-sizing:border-box;padding:0 10px}
+			#service .service-box .content .contain .ser-table tr td .cret{background:#1ab394;color:#fff}
+			#service .service-box .content .contain .set-box{overflow: hidden;width:100%;height:75px;text-align: center;border-top:1px solid #ccc;position: absolute;bottom:0;padding-top:20px;background:#fff;margin:0 auto;box-sizing: border-box;}
+			#service .service-box .content .contain .set-box button{margin: 0 40px;}
+			#service .service-box .content .contain .set-box button.btn-default{background:#fff;border:1px solid #ccc;color:#000}
+			#service .service-box .content .contain .set-box button.btn-default:hover{background: #ccc;}
+			#service .service-box .content .contain .set-box button.btn-success{background:#1ab394}
+			
+			/*这里是生成钱包地址链接*/
+			#generate {width: 100%;height: 100%;position: fixed;top: 0;left: 0;background: rgba(0, 0, 0, .6);z-index: 99999;display: none;}
+			
+			#generate .generate-box {display: flex;justify-content: center;align-items: center;width: 100%;height: 100%}
+			
+			#generate .generate-box .content {width: 40%;height: 220px;background: #fff;border-radius: 5px;}
+			#generate .generate-box .content .item{width:40%;overflow: hidden;margin:0 auto;display: flex;line-height: 30px;}
+			#generate .generate-box .content .item input{flex: 1;border-radius: 5px;}
+			
+			#generate .generate-box .content .title {width: 100%;height: 40px;border-bottom: 1px solid #ccc;line-height: 40px;background: #1ab394;color:#000}
+			#generate .generate-box .content .title span{text-indent: 10px;display: inline-block;}
+			#generate .generate-box .content .contain {width: 100%;margin-top: 20px;text-align: center;overflow: hidden;position: relative;height:100px}
+		    #generate .generate-box .content .bot-set{height:50px;padding-top:10px;border-top:1px solid #ccc;width:90%;margin:0 auto;text-align: center;}
+		    #generate .generate-box .content .bot-set button{margin: 0 40px;}
+			#generate .generate-box .content .bot-set button.btn-default{background:#fff;border:1px solid #ccc;color:#000}
+			#generate .generate-box .content .bot-set button.btn-default:hover{background: #ccc;}
+			#generate .generate-box .content .bot-set button.btn-success{background:#1ab394}
+			
+			/*#service .service-box .content .contain a {font-size: 14px;border: 1px solid #eee;padding: 5px 10px;border-radius: 5px;margin: 0 10px}*/
+
+             /*这类似是修改钱包链接*/
+             #modify-money {width: 100%;height: 100%;position: fixed;top: 0;left: 0;background: rgba(0, 0, 0, .6);z-index: 99999;display: none;}
+			
+			#modify-money .modify-box {display: flex;justify-content: center;align-items: center;width: 100%;height: 100%}
+			
+			#modify-money .modify-box .content {width: 40%;height: 180px;background: #fff;border-radius: 5px;overflow: hidden;}
+			#modify-money .modify-box .content .title {width: 100%;height: 40px;border-bottom: 1px solid #ccc;line-height: 40px;background: #1ab394;color:#000}
+			#modify-money .modify-box .content .title span{text-indent: 10px;display: inline-block;color:#000;cursor: pointer;}
+			#modify-money .modify-box .content .contain .address{width:80%;display: flex;margin:0 auto}
+			#modify-money .modify-box .content .contain .address label{display: inline-block;margin-right:10px;line-height: 30px;width:80px}
+			#modify-money .modify-box .content .contain input{flex: 1;border-radius: 5px;}
+			#modify-money .modify-box .content .contain textarea{flex: 1;border-radius: 5px;height:50px !important}
+			#modify-money .modify-box .content .contain{margin:20px auto}
+			#modify-money .modify-box .content .contain .addres-set{margin-top:20px}
+			#modify-money .modify-box .content .contain .addres-set>div{width:100%;border-top:1px solid #eee;text-align: center;padding-top:10px}
+			#modify-money .modify-box .content .contain .addres-set button{margin: 0 40px;}
+			#modify-money .modify-box .content .contain .addres-set button.btn-default{background:#fff;border:1px solid #ccc;color:#000}
+			#modify-money .modify-box .content .contain .addres-set button.btn-default:hover{background:#ccc}
+			#modify-money .modify-box .content .contain .addres-set button.btn-success{background:#1ab394;}
+			/*这里是币种详情弹窗*/
+			#fictitious {width: 100%;height: 100%;position: fixed;top: 0;left: 0;background: rgba(0, 0, 0, .6);z-index: 99999;display: none;}
+			
+			#fictitious .fictitious-box {display: flex;justify-content: center;align-items: center;width: 100%;height: 100%}
+			
+			#fictitious .fictitious-box .content {width: 60%;height: 520px;background: #fff;border-radius: 5px;position: relative;}
+			
+			#fictitious .fictitious-box .content .title {width: 100%;height: 40px;border-bottom: 1px solid #ccc;line-height: 40px;background: #1ab394;color:#000}
+			#fictitious .fictitious-box .content .title span{text-indent: 10px;display: inline-block;}
+			#fictitious .fictitious-box .content .contain {width: 100%;margin-top: 20px;text-align: center;overflow: hidden;}
+			#fictitious .fictitious-box .content .contain .left{width:45%;float:left;text-align: left;text-indent: 10px;}
+			#fictitious .fictitious-box .content .contain .right{width:45%;float:right;text-align: left;}
+			#fictitious .fictitious-box .content .contain .right .checks{display: flex;line-height: 30px;margin-bottom:5px}
+			#fictitious .fictitious-box .content .contain .right .checks label{display: inline-block;width:80px}
+			#fictitious .fictitious-box .content .contain .right .checks select{flex: 1;border-radius: 5px;margin-right:20px}
+			#fictitious .fictitious-box .content .bto{text-align: center;width:95%;margin:0 auto;border-top:1px solid #eee;line-height: 50px;position: absolute;bottom: 0;left:2%}
+			#fictitious .fictitious-box .content .bto button{margin:0 40px}
+			#fictitious .fictitious-box .content .bto button.btn-default{background:#fff;border:1px solid #ccc;color:#000}
+			#fictitious .fictitious-box .content .bto button.btn-default:hover{background:#ccc}
+			#fictitious .fictitious-box .content .bto button.btn-success{background:#1ab394;}
+			
+			/*审核信息*/
+			
+@media only screen and (min-width: 100px) and (max-width: 900px) {
+	
+	.material .material-box label{text-indent: 0 !important;}
+}

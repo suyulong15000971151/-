@@ -1,0 +1,2282 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>虚拟币列表</title>
+
+		<link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+		<link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
+		<link href="../../css/plugins/jQueryUI/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+		<link rel="stylesheet" href="../../css/girds.css" />
+		<link rel="stylesheet" href="../../css/iconfont.css" />
+		<link rel="stylesheet" href="../../css/animate.css" />
+		<link href="../../css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/chosen.css" />
+		<link rel="stylesheet" href="../../css/common.css" />
+		<link rel="stylesheet" href="../../css/coss.css" />
+		<link href="../../css/style.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/virmnyList.css" />
+		<link rel="stylesheet" href="../../css/crepsd.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/message.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/bing_google.css"/>
+		<link rel="stylesheet" href="../../css/plugins/datapicker/datepicker3.css">
+		<link href="../../css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
+	</head>
+
+	<body>
+		
+		<!--这里是提示上下线状态-->
+		<div id="sitch" class="animated dio-close">
+			<div class="sitch-box">
+				<div class="content animated">
+					<div class="title">
+						<span>提示</span>
+						<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain">
+						<div class="tip-con">
+							<input type="hidden" id="onLineTokenId">
+							<span id="changeMemeberStatus">确定上线该代币吗？</span>
+						</div>
+						<div class="set">
+							<button class="btn btn-default can-close">取消</button>
+							<button class="btn btn-success cof-close" onclick="onLineDo();">确认</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--这里是提示上下线状态-->
+		<div id="sitchDown" class="animated dio-close">
+			<div class="sitch-box">
+				<div class="content animated">
+					<div class="title">
+						<span>提示</span>
+						<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain">
+						<div class="tip-con">
+							<input type="hidden" id="downTokenId">
+							<span id="changeMemeberStatus">确定下线该代币吗？</span>
+						</div>
+						<div class="set">
+							<button class="btn btn-default can-close">取消</button>
+							<button class="btn btn-success cof-close" onclick="downDo();">确认</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--这里是提示充值状态-->
+		<div id="sitchRecharge" class="animated dio-close">
+			<div class="sitch-box">
+				<div class="content animated">
+					<div class="title">
+						<span>提示</span>
+						<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain">
+						<div class="col-xs-12 col-md-12 con-item" >
+							<input type="hidden" id="rechargeId" />
+							<label for="" class="lab-title">充值状态:</label>
+							<div class="radio radio-success tai" style="display:inline">
+								<input id="checkbox7" type="radio" name="rechargeStatus" value="1">
+								<label for="checkbox7">
+	                                    	能
+	                                    </label>
+							</div>
+							<div class="radio radio-success tai" style="display:inline">
+								<input id="checkbox8" type="radio" name="rechargeStatus" value="0">
+								<label for="checkbox8">
+	                                                                                    不能
+	                                    </label>
+							</div>
+						</div>
+						<div class="set">
+							<button class="btn btn-default can-close">取消</button>
+							<button class="btn btn-success cof-close" onclick="rechargeDo();">确认</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--这里是提示提现状态-->
+		<div id="sitchWithdraw" class="animated dio-close">
+			<div class="sitch-box">
+				<div class="content animated">
+					<div class="title">
+						<span>提示</span>
+						<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain">
+						<div class="col-xs-12 col-md-12 con-item" >
+							<input type="hidden" id="withdrawalsId" />
+							<label for="" class="lab-title">提现状态:</label>
+							<div class="radio radio-success tai" style="display:inline">
+								<input id="checkbox7" type="radio" name="withdrawalsStatus" value="1">
+								<label for="checkbox7">
+	                                    	能
+	                                    </label>
+							</div>
+							<div class="radio radio-success tai" style="display:inline">
+								<input id="checkbox8" type="radio" name="withdrawalsStatus" value="0">
+								<label for="checkbox8">
+	                                                                                    不能
+	                                    </label>
+							</div>
+						</div>
+						<div class="set">
+							<button class="btn btn-default can-close">取消</button>
+							<button class="btn btn-success cof-close" onclick="withdrawalsDo();">确认</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
+		<!--这里是提示提现状态-->
+		<div id="sitchTransaction" class="animated dio-close">
+			<div class="sitch-box">
+				<div class="content animated">
+					<div class="title">
+						<span>提示</span>
+						<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain">
+						<div class="col-xs-12 col-md-12 con-item" >
+							<input type="hidden" id="transactionId" />
+							<label for="" class="lab-title">交易状态:</label>
+							<div class="radio radio-success tai" style="display:inline">
+								<input id="checkbox7" type="radio" name="transactionStatus" value="1">
+								<label for="checkbox7">
+	                                    	能
+	                                    </label>
+							</div>
+							<div class="radio radio-success tai" style="display:inline">
+								<input id="checkbox8" type="radio" name="transactionStatus" value="0">
+								<label for="checkbox8">
+	                                                                                    不能
+	                                    </label>
+							</div>
+						</div>
+						<div class="set">
+							<button class="btn btn-default can-close">取消</button>
+							<button class="btn btn-success cof-close" onclick="transactionDo();">确认</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="tex-box">
+			<div id="text" class="animated"></div>
+		</div>
+		
+		
+		<!--查看虚拟币详情-->
+		<div id="fictitious" class="animated dio-close">
+			<div class="fictitious-box">
+				<div class="content animated">
+					<div class="title">
+						<span>虚拟币详情</span>
+						<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain">
+						<div class="row" style="height:400px;overflow-y: scroll;">
+							<div class="col-lg-6">
+								<div class="ibox float-e-margins">
+									<div class="ibox-content">
+
+										<table class="table table-stripped toggle-arrow-tiny display">
+											<thead>
+												<tr>
+													<th>name</th>
+													<th>value</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>英文名称</td>
+													<td id="englishAbbreviationsText"></td>
+
+												</tr>
+												<tr>
+													<td>中文名称</td>
+													<td id="chineseAbbreviationText"></td>
+
+												</tr>
+												<tr>
+													<td>状态</td>
+													<td id="tokenStatusText"></td>
+
+												</tr>
+												<tr>
+													<td>合约</td>
+													<td id="contractText"> </td>
+
+												</tr>
+												<tr>
+													<td>白皮书</td>
+													<td id="whitePaperText"></td>
+												</tr>
+												<tr>
+													<td>发行时间</td>
+													<td id="tokenCreateTimeText"></td>
+												</tr>
+												<tr>
+													<td>官网地址</td>
+													<td id="theOfficialWebsiteText"></td>
+												</tr>
+												<tr>
+													<td>币种介绍地址</td>
+													<td id="tokenIntroduceUrlText"></td>
+												</tr>
+												<tr>
+													<td>币种简介</td>
+													<td id="tokenBriefIntroductionText"></td>
+												</tr>
+												<tr>
+													<td>币种全称</td>
+													<td id="tokenNameText"></td>
+
+												</tr>
+												<tr>
+													<td>区块查询</td>
+													<td id="blockQueryText"></td>
+												</tr>
+											</tbody>
+										</table>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="ibox float-e-margins">
+									<div class="ibox-content">
+
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th>name</th>
+													<th>value</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>流通总量</td>
+													<td id="totalAmountOfCirculationText"></td>
+												</tr>
+												<tr>
+													<td>发行总量</td>
+													<td id="totalAmountOfDistributionText"></td>
+												</tr>
+												<tr>
+													<td>众筹价格</td>
+													<td id="raiseThePriceText"></td>
+												</tr>
+												<tr>
+													<td>是否以太坊</td>
+													<td id="belongingStatusText"></td>
+												</tr>
+												<tr>
+													<td>充值状态</td>
+													<td id="rechargeStatusText">
+														<!-- <div class="onoffswitch">
+															<input type="checkbox" checked class="onoffswitch-checkbox" id="example1">
+															<label class="onoffswitch-label" for="example1">
+						                                          <span class="onoffswitch-inner"></span>
+						                                          <span class="onoffswitch-switch"></span>
+                                          					</label>
+														</div> -->
+													</td>
+												</tr>
+												<tr>
+													<td>交易状态</td>
+													<td id="transactionStatusText">
+														<!-- <div class="onoffswitch">
+															<input type="checkbox" checked class="onoffswitch-checkbox" id="example2">
+															<label class="onoffswitch-label" for="example2">
+					                                          <span class="onoffswitch-inner"></span>
+					                                          <span class="onoffswitch-switch"></span>
+                                          					</label>
+														</div> -->
+													</td>
+												</tr>
+												<tr>
+													<td>提现状态</td>
+													<td id="withdrawalsStatusText">
+														<!-- <div class="onoffswitch">
+															<input type="checkbox" checked class="onoffswitch-checkbox" id="example3">
+															<label class="onoffswitch-label" for="example3">
+                                          <span class="onoffswitch-inner"></span>
+                                          <span class="onoffswitch-switch"></span>
+                                          </label>
+														</div> -->
+													</td>
+												</tr>
+												
+												<tr>
+													<td>提现内容</td>
+													<td id="withdrawalsConetxtText">
+													</td>
+												</tr>
+												<tr>
+													<td>充值内容</td>
+													<td id="rechargeConetxtText">
+													</td>
+												</tr>
+												<tr>
+													<td>请求地址</td>
+													<td id="tokenAddressText">
+													</td>
+												</tr>
+											</tbody>
+										</table>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--这里是新增弹窗-->
+		<div id="add" class="animated dio-close">
+			<div class="add-box">
+				<div class="content animated">
+					<div class="title">
+						<span>新增</span>
+						<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain">
+						<div class="contain-box">
+							<input type="hidden" id="id">
+							<div class="top">
+								<div class="col-xs-6 col-md-6"><label for=""> <i>*</i>英文简称</label> <input type="text" class="form-control" id="englishAbbreviations"/></div>
+								<div class="col-xs-6 col-md-6"><label for=""><i>*</i>中文简称</label> <input type="text" class="form-control" id="chineseAbbreviation"/></div>
+							</div>
+							<div class="item">
+								<!--<div class="col-xs-6 col-md-6" id="tokenStatusDis">
+									<label for="">上下线状态</label>
+									<select name="" class="" id="tokenStatus" >
+										<option class="" value="">全部</option>
+										<option class="" value="0">下线</option>
+										<option class="" value="1">异常</option>
+										<option class="" value="2">上线</option>
+									</select>
+								</div>-->
+								<div class="col-xs-12 col-md-12">
+									<label for="" class="lab-title"><i>*</i>是否以太坊</label>
+									<div class="radio radio-success tai">
+										<input id="checkbox7" type="radio" name="belongingStatus" value="0">
+										<label for="checkbox7">
+	                                            	属于
+	                                            </label>
+									</div>
+									<div class="radio radio-success tai">
+										<input id="checkbox8" type="radio" name="belongingStatus" value="1">
+										<label for="checkbox8">
+	                                                                                                 不属于
+	                                            </label>
+									</div>
+								</div>
+							</div>
+
+							<div class="top">
+								<div class="col-xs-6 col-md-6"><label for=""><i>*</i>发行总量</label> <input type="text" class="form-control" id="totalAmountOfDistribution" /></div>
+								<div class="col-xs-6 col-md-6"><label for=""><i>*</i>流通总量</label> <input type="text" class="form-control" id="totalAmountOfCirculation"/></div>
+							</div>
+							<div class="item" id="setStatus" style="">
+								<!--<div class="col-xs-6 col-md-6">
+									<label for="" class="lab-title">充值状态</label>
+									<div class="radio radio-success tai">
+										<input id="checkbox7" type="radio" name="rechargeStatus" value="1">
+										<label for="checkbox7">
+	                                            	能
+	                                            </label>
+									</div>
+									<div class="radio radio-success tai">
+										<input id="checkbox8" type="radio" name="rechargeStatus" value="0">
+										<label for="checkbox8">
+	                                                                                                 不能
+	                                            </label>
+									</div>
+								</div>-->
+								<!--<div class="col-xs-6 col-md-6">
+									<label for="" class="lab-title">提现状态</label>
+									<div class="radio radio-success tai">
+										<input id="checkbox7" type="radio" name="withdrawalsStatus" value="1">
+										<label for="checkbox7">
+	                                            	能
+	                                            </label>
+									</div>
+									<div class="radio radio-success tai">
+										<input id="checkbox8" type="radio" name="withdrawalsStatus" value="0">
+										<label for="checkbox8">
+	                                                                                                 不能
+	                                            </label>
+									</div>
+								</div>-->
+							</div>
+							
+							
+							<div class="top">
+								<div class="col-xs-12 col-md-12"><label for=""><i>*</i>众筹价格</label> <input type="text" class="form-control" id="raiseThePrice"/></div>
+
+							</div>
+							<div class="top">
+								<div class="col-xs-12 col-md-12"><label for=""><i>*</i>提现内容</label> <textarea  type="text" class="form-control" id="withdrawalsConetxt"/ style="height:70px !important;width:515px;margin-bottom: 10px;"></textarea></div>
+								
+							</div>
+							<div class="top">
+								<div class="col-xs-12 col-md-12"><label for="">充值内容</label> <textarea type="text" class="form-control" id="rechargeConetxt"/style="height:70px !important;width:515px;margin-bottom: 10px;"></textarea></div>
+								
+							</div>
+							<div class="top">
+
+								<div class="col-xs-12 col-md-12"><label for=""><i>*</i>币种全称</label> <textarea type="text" class="form-control" id="tokenName"/style="height:70px !important;width:515px;margin-bottom: 10px;"></textarea></div>
+							</div>
+							<div class="item">
+								<div class="col-xs-12 col-md-12">
+									<label for="" style="display: inline-block;float: left;margin-right:5px;margin-bottom: 10px;"><i>*</i>发行时间</label>
+									<div class="input-group date" style="float: left;width:150px">
+					                    <span class="input-group-addon fl "><i class="fa fa-calendar"></i></span>
+					                    <input type="text" class="form-control" value="" name="startDateTimeS" id="startDateTimeS" />
+					                </div>
+					                </div>
+					                
+					                <!--<div class="col-xs-6 col-md-6" id="transactionStatusDis">
+									<label for="" class="lab-title">交易状态</label>
+									<div class="radio radio-success tai">
+										<input id="checkbox7" type="radio" name="transactionStatus" value="1">
+										<label for="checkbox7">
+	                                            	能
+	                                            </label>
+									</div>
+									<div class="radio radio-success tai">
+										<input id="checkbox8" type="radio" name="transactionStatus" value="0">
+										<label for="checkbox8">
+	                                                                                                 不能
+	                                            </label>
+									</div>
+								</div>-->
+					                
+					                
+					                
+								</div>
+								
+								
+							<div class="top">
+								<div class="col-xs-12 col-md-12"><label class="lab-title" for="">合约&nbsp;&nbsp;&nbsp;&nbsp;</label> <textarea type="text" class="form-control" id="contract"// style="height:70px !important;width:515px;margin-bottom: 10px;"></textarea></div>
+								<div class="col-xs-12 col-md-12"><label class="lab-title" for=""><i>*</i>白皮书&nbsp;&nbsp;&nbsp;</label> <textarea type="text" class="form-control" id="whitePaper" // style="height:70px !important;width:515px;margin-bottom: 10px;"></textarea></div>
+								<div class="col-xs-12 col-md-12"><label class="lab-title" for="">区块查询&nbsp;&nbsp;</label> <input type="text" class="form-control" id="blockQuery" /></div>
+								<div class="col-xs-12 col-md-12"><label class="lab-title" for=""><i>*</i>官网地址&nbsp;&nbsp;</label> <input type="text" class="form-control" id="theOfficialWebsite"/></div>
+								<div class="col-xs-12 col-md-12"><label class="lab-title" for=""><i>*</i>币种介绍地址</label> <input type="text" class="form-control" id="tokenIntroduceUrl"/></div>
+								<div class="col-xs-12 col-md-12"><label class="lab-title" for=""><i>*</i>请求地址&nbsp;&nbsp;</label> <input type="text" class="form-control" id="tokenAddress" /></div>
+								<div class="col-xs-12 col-md-12"><label class="lab-title" for="">币种简介&nbsp;&nbsp;</label> <textarea type="text" class="form-control" id="tokenBriefIntroduction"/style="height:70px !important;width:515px"></textarea></div>
+							</div>
+
+							<div class="config-set">
+								<button class="btn btn-default can-close">取消</button>
+								<button class="btn btn-success cof-close" onclick="saveToken()">提交</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<!--交易区弹窗-->
+		<div id="generateM" class="animated dio-close">
+			<div class="generate-box">
+				<div class="content animated">
+					<input type="hidden" id="bataId"/>
+					<input type="hidden" id="batId"/>
+					
+					<div class="title">
+						<span>交易区管理</span>
+						<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="col-xs-12 col-md-12 con-item" id="bigStatus"  >
+						<label for="" class="lab-title">BIGT状态:</label>
+						<div class="radio radio-success tai" style="display:inline">
+							<input id="checkboxT7" type="radio" name="bigStatus" value="1">
+							<label for="checkboxT7">
+                                    	能
+                                    </label>
+						</div>
+						<div class="radio radio-success tai" style="display:inline">
+							<input id="checkboxT8" type="radio" name="bigStatus" value="0">
+							<label for="checkboxT8">
+                                                                                    不能
+                                    </label>
+						</div>
+					</div>
+					<div class="col-xs-12 col-md-12 con-item" id="btcStatus"  >
+						<label for="" class="lab-title">BTC状态:</label>
+						<div class="radio radio-success tai" style="display:inline">
+							<input id="checkboxC7" type="radio" name="btcStatus" value="1">
+							<label for="checkboxC7">
+                                    	能
+                                    </label>
+						</div>
+						<div class="radio radio-success tai" style="display:inline">
+							<input id="checkboxC8" type="radio" name="btcStatus" value="0">
+							<label for="checkboxC8">
+                                                                                         不能
+                                    </label>
+						</div>
+					</div>
+					<div class="col-xs-12 col-md-12 con-item" id="ethStatus" >
+						<label for="" class="lab-title">ETH状态:</label>
+						<div class="radio radio-success tai" style="display:inline">
+							<input id="checkboxH7" type="radio" name="ethStatus" value="1">
+							<label for="checkboxH7">
+                                    	能
+                                    </label>
+						</div>
+						<div class="radio radio-success tai" style="display:inline">
+							<input id="checkboxH8" type="radio" name="ethStatus" value="0">
+							<label for="checkboxH8">
+                                                                                         不能
+                                    </label>
+						</div>
+					</div>
+					<div class="col-xs-12 col-md-12 con-item" id="cndtStatus" >
+						<label for="" class="lab-title">CNDT状态:</label>
+						<div class="radio radio-success tai" style="display:inline">
+							<input id="checkboxCT7" type="radio" name="cndtStatus" value="1">
+							<label for="checkboxCT7">
+                                    	能
+                                    </label>
+						</div>
+						<div class="radio radio-success tai" style="display:inline">
+							<input id="checkboxCT8" type="radio" name="cndtStatus" value="0">
+							<label for="checkboxCT8">
+                                                                                         不能
+                                    </label>
+						</div>
+					</div>
+					<div class="bot-set">
+						<button class="btn btn-default can-close">取消</button>
+						<button class="btn btn-success cof-close sureBtn" onclick="tradeArea();">确认</button>
+					</div>
+				</div>
+			</div>
+		</div>
+				
+		
+		<!--这里是生成钱包地址 弹窗-->
+		<div id="generate" class="animated dio-close">
+			<div class="generate-box">
+				<div class="content animated">
+					<div class="title">
+						<span>生成钱包地址</span>
+						<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain">
+						<input type="hidden" id="tokenId" />
+						<div class="item">
+							<label for="">数量：</label>
+							<input type="number" name="" id="walletNum" value="" class="form-control" />
+						</div>
+
+					</div>
+					<div class="bot-set">
+						<button class="btn btn-default can-close">取消</button>
+						<button class="btn btn-success cof-close" onclick="CreateWallet();">确认</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--这里是手续费弹窗-->
+		<div id="service" class="animated dio-close">
+			<div class="service-box">
+				<div class="content animated" style="width:950px;height:450px; ">
+					<div class="title">
+						<span>手续费管理</span>
+						<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain" style="height:450px;overflow-y:scroll;">
+						<div class="col-lg-12 col-md-12">
+							<div class="ibox float-e-margins">
+									<div class="ibox-content">
+							<table class="table table-stripped toggle-arrow-tiny " style="width:100%;overflow-x: scroll;white-space: nowrap;">
+								<thead>
+									<tr>
+										<th>会员等级</th>
+										<th>提现类型</th>
+										<th>交易分类</th>
+										<th>最小提现数量</th>
+										<th>按数量收取</th>
+										<th>按百分比收取(%)</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody id="serviceFeeList">
+								</tbody>
+							</table>
+						</div>
+						</div>
+						</div>
+						<div class="set-box">
+							<button class="btn btn-default can-close">取消</button>
+							<button class="btn btn-success cof-close sureBtn">确认</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="modify-money" class="animated dio-close">
+			<div class="modify-box">
+				<div class="content animated">
+					<div class="title">
+						<span>修改钱包链接</span>
+						<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain">
+						<input type="hidden" id="idM" />
+						<div class="address">
+							<label for="">钱包链接地址</label><input type="text" class="form-control" id="tokenAddressM" />
+						</div>
+						<div class="addres-set">
+							<div class="box">
+								<button class="btn btn-default can-close">取消</button>
+								<button class="btn btn-success cof-close" onclick="modifyTokenAddress();">确定</button>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+		<!--这里是通过没通过弹窗-->
+		<div id="adopt" class="animated dio-close">
+			<div class="adopt-box">
+				<div class="content animated">
+					<div class="title">
+						<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain">
+						<a href="javascript:;">取消</a>
+						<a href="javascript:;">确认</a>
+					</div>
+				</div>
+			</div>
+		</div>
+            
+           <!--这里是头部 -->
+			<div id="header"></div>
+			
+			
+            <div id="bod-com" class="animated" style="animation-delay: 0.5s; opacity: 0; ">
+				<div class="row wrapper border-bottom white-bg page-heading">
+					<div class="col-lg-10">
+						<!--<h2>jqGrid</h2>-->
+						<ol class="breadcrumb">
+							<li>
+								<a href="../Member_management/memberList.html">首页</a>
+							</li>
+							<li>
+								<a>虚拟币列表</a>
+							</li>
+
+						</ol>
+					</div>
+				</div>
+
+				<!--这里是填写资料-->
+				<div class="material">
+					<div class="material-box">
+						<div class="row">
+							<div class="col-md-4 col-sm-12">
+
+								<label for="" class="">ID:</label>
+								<input type="text" class="form-control" id="queryId"/>
+
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<label for="" class="">英文简称：</label>
+								<input type="text" class="form-control" id="queryenglishAbbreviations"/>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<label for="">中文简称：</label>
+								<input type="text" class="form-control" id="querychineseAbbreviation" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4 col-sm-12">
+
+								<label for="" class="">上下线状态:</label>
+								<select name="" class="form-control " id="querytokenStatus">
+									<option class="" value="">全部</option>
+									<option class="" value="0">下线</option>
+									<option class="" value="1">异常</option>
+									<option class="" value="2">上线</option>
+								</select>
+
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<label for="" class="">是否为以太坊：</label>
+								<select name="" class="form-control " id="querybelongingStatus">
+									<option value="">全部</option>
+									<option value="0">属于</option>
+									<option value="1">不属于</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--这里是设置-->
+
+				<div class="set" style="padding: 5px 0px;">
+					<div class="setbox">
+						<div class="set-left">
+							<button class="btn btn-xs btn-success creat-add" id="addToken">新增<span class="iconfont icon-add"></span></button>
+							<button class="btn btn-xs btn-success creat-add" id="modifyToken">编辑<span class="iconfont icon-xiugai07"></span></button>
+							
+							<button class="btn btn-xs btn-success creat-add" id="online">上线<span class="iconfont icon-xianshang"></span></button>
+							<button class="btn btn-xs btn-success creat-add" id="Downline">下线<span class="iconfont icon-xianxiachongzhi"></span></button>
+							<button class="btn btn-xs btn-success creat-add" id="Recharge">充值状态<span class="iconfont icon-chongzhi"></span></button>
+							<button class="btn btn-xs btn-success creat-add" id="Withdraw">提现状态<span class="iconfont icon-tixian"></span></button>
+							<button class="btn btn-xs btn-success creat-add" id="transaction">交易状态<span class="iconfont icon-wodetouzi"></span></button>
+							
+							<button class="btn btn-xs btn-success sed" id="tokenArea">交易区<span class="iconfont icon-jiaoyijilu"></span></button>
+							<button class="btn btn-xs btn-default Service sed" style="background: #13ce66;" id="serviceSet">手续费<span class="iconfont icon-fuwushouxufei"></span></button>
+							<button class="btn btn-xs btn-default details sed" style="background: #13ce66;" id="detail">查看虚拟币详情<span class="iconfont icon-6"></span></button>
+							<button class="btn btn-xs btn-info thrr" id="test">测试钱包地址<span class="iconfont icon-biaoshilei_ceshi"></span></button>
+							<!--<button class="btn btn-xs btn-info creat-money thrr" id="modifyMoneyAdress">修改钱包链接 <span class="iconfont icon-lianjie"></span></button>-->
+							<button class="btn btn-xs btn-info pro-money thrr" id="createMoneyAdress"> 生成钱包地址 <span class="iconfont icon-dizhi"></span></button>
+						</div>
+						<button class="btn btn-xs rest right" type="reset" onclick="resetToken();" id="btnRest">重置 <span class="iconfont icon-11zhongzhi"></span></button>
+						<button class="btn btn-xs search right" onclick="queryToken();" id="btnSearch">查询  <span class="iconfont icon-sousuo"></span></button>
+					</div>
+				</div>
+
+
+				<div class="wrapper wrapper-content  animated fadeInRight" style="background:#fff">
+					<div class="row">
+						<div class="col-lg-12 col-md-12">
+							<div class="ibox float-e-margins">
+
+								<div class="ibox-content" style="height:450px;overflow-y:scroll;">
+									<input type="hidden" id="total"/>
+									<input type="hidden" id="page"/>
+									<input type="hidden" id="rows"/>
+									<table class="table table-striped table-bordered table-hover " id="editable">
+										<thead>
+											<tr>
+												<th class="">
+													<div class="checkbox"><input type="checkbox" id="allchek" class="" /><label for="allchek"></label> </div>
+												</th>
+												<th class=''>ID</th>
+												<th class=''>英文简称</th>
+												<th class=''>中文简称</th>
+												<th class=''>状态</th>
+												<th class=''>是否以太坊</th>
+												<th class=''>合约</th>
+												<th class=''>币种全称</th>
+												<th class=''>发行时间</th>
+												<th class=''>发行总量</th>
+												<th class=''>流通总量</th>
+												<th class=''>众筹价格</th>
+												<th class=''>白皮书</th>
+												<th class=''>官网地址</th>
+												<th class=''>区块查询</th>
+												<th class=''>币种介绍地址</th>
+												<th class=''>提现内容</th>
+												<th class=''>充值内容</th>
+												<th class=''>请求地址</th>
+												<th class=''>充值状态</th>
+												<th class=''>提现状态</th>
+												<th class=''>交易状态</th>
+												<th class=''>创建时间</th>
+												<th class=''>更新时间</th>
+											</tr>
+										</thead>
+										<tbody id='resultBox'>
+										</tbody>
+									</table>
+
+								</div>
+								<!--这里是分页-->
+								<div class="pagss">
+									<div class="right">
+										<div id="pageToolbar"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+
+		<!-- Mainly scripts -->
+		<script src="../../js/jquery-2.1.1.js"></script>
+		<script src="http://gosspublic.alicdn.com/aliyun-oss-sdk-4.4.4.min.js"></script>
+		<script src="../../js/bootstrap.min.js"></script>
+		<script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+		<!-- Peity -->
+		<script src="../../js/plugins/peity/jquery.peity.min.js"></script>
+
+		<!-- Custom and plugin javascript -->
+		<script src="../../js/inspinia.js"></script>
+		<script src="../../js/plugins/pace/pace.min.js"></script>
+         
+		<script src="../../js/headercom.js"></script>
+		<script src="../../js/common.js"></script>
+         
+		<script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script>
+		<script src="../../js/plugins/datapicker/bootstrap-datepicker.js"></script>
+		<script src="../../js/plugins/daterangepicker/daterangepicker.js"></script>
+		<script src="../../js/chosen.jquery.js"></script>
+		<script src="../../js/query.js"></script>
+		<script src="../../js/paging.js"></script>
+		<script src="../../js/message.js"></script>
+		<script type="text/javascript" src="../../js/jquery.qrcode.min.js"></script>
+		<script type="text/javascript" src="../../js/GlobalData.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap-datepicker.zh-CN.js"></script>
+
+		<script>
+			//当前登陆用户ID
+			var adminUser=GlobalData.getUerInfo();
+			if(adminUser==null||adminUser.id==null||adminUser.id==""){
+				location.href = "../../login.html";
+			};
+			
+			if(adminUser.permissionList.indexOf("tokenListQuery")!= -1){
+				$("#btnRest").show();
+				$("#btnSearch").show();
+				$(".material").show();
+			}else{
+				$("#btnRest").hide();
+				$("#btnSearch").hide();
+				$(".material").hide();
+				$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">您没有权限访问这个页面</div></div>');
+			};
+			if(adminUser.permissionList.indexOf("tokenAdd")!= -1){
+				$("#addToken").show();
+			}else{
+				$("#addToken").hide();
+			};
+			
+			if(adminUser.permissionList.indexOf("tokenEdit")!= -1){
+				$("#modifyToken").show();
+			}else{
+				$("#modifyToken").hide();
+			};
+	
+			if(adminUser.permissionList.indexOf("tokenExchangeArea")!= -1){
+				$("#tokenArea").show();
+			}else{
+				$("#tokenArea").hide();
+			};
+			
+			if(adminUser.permissionList.indexOf("tokenServiceCharge")!= -1){
+				$("#serviceSet").show();
+			}else{
+				$("#serviceSet").hide();
+			};
+			
+			if(adminUser.permissionList.indexOf("tokenDetail")!= -1){
+				$("#detail").show();
+			}else{
+				$("#detail").hide();
+			};
+			
+			if(adminUser.permissionList.indexOf("tokenTestAdress")!= -1){
+				$("#test").show();
+			}else{
+				$("#test").hide();
+			};
+			if(adminUser.permissionList.indexOf("tokenModifyLink")!= -1){
+				$("#modifyMoneyAdress").show();
+			}else{
+				$("#modifyMoneyAdress").hide();
+			};
+			if(adminUser.permissionList.indexOf("tokenGenerateAdress")!= -1){
+				$("#createMoneyAdress").show();
+			}else{
+				$("#createMoneyAdress").hide();
+			};
+
+              $("#online").click(function(evt) {
+              		var res=$("input[type='checkbox'][class='item-check']:checked");
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');						
+					}else{
+					
+						var obiect=objectMap[res[0].value];
+						var tokenStatus=obiect.tokenStatus;
+						if(tokenStatus!=null&&tokenStatus==2){
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">该代币已经上线</div></div>');
+						}else{
+							$("#sitch").css("display", "block");
+							$("#sitch").addClass("fadeIn");
+							$("#sitch .content").addClass("zoomInDown");
+							$("#onLineTokenId").val(obiect.id);
+							
+						}
+					}
+				});
+				
+				 $("#Downline").click(function(evt) {
+					var res=$("input[type='checkbox'][class='item-check']:checked");
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');						
+					}else{
+					
+						var obiect=objectMap[res[0].value];
+						var tokenStatus=obiect.tokenStatus;
+						if(tokenStatus!=null&&tokenStatus==0){
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">该代币已经下线</div></div>');
+						}else{
+							$("#sitchDown").css("display", "block");
+							$("#sitchDown").addClass("fadeIn");
+							$("#sitchDown .content").addClass("zoomInDown");
+							$("#downTokenId").val(obiect.id);
+						}
+					}
+				});
+				
+				 $("#Recharge").click(function(evt) {
+					var res=$("input[type='checkbox'][class='item-check']:checked");
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');						
+					}else{
+						var obiect=objectMap[res[0].value];
+						$("#sitchRecharge").css("display", "block");
+						$("#sitchRecharge").addClass("fadeIn");
+						$("#sitchRecharge .content").addClass("zoomInDown");
+						$(":radio[name='rechargeStatus'][value='"+obiect.rechargeStatus+"']").prop("checked", "checked");
+						$("#rechargeId").val(obiect.id);
+					}
+				});
+				 $("#Withdraw").click(function(evt) {
+				 	var res=$("input[type='checkbox'][class='item-check']:checked");
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');						
+					}else{
+						var obiect=objectMap[res[0].value];
+						$("#sitchWithdraw").css("display", "block");
+						$("#sitchWithdraw").addClass("fadeIn");
+						$("#sitchWithdraw .content").addClass("zoomInDown");
+						$(":radio[name='withdrawalsStatus'][value='"+obiect.withdrawalsStatus+"']").prop("checked", "checked");
+						$("#withdrawalsId").val(obiect.id);
+					}
+				});
+				 $("#transaction").click(function(evt) {
+					var res=$("input[type='checkbox'][class='item-check']:checked");
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');						
+					}else{
+						var obiect=objectMap[res[0].value];
+						$("#sitchTransaction").css("display", "block");
+						$("#sitchTransaction").addClass("fadeIn");
+						$("#sitchTransaction .content").addClass("zoomInDown");
+						$(":radio[name='transactionStatus'][value='"+obiect.transactionStatus+"']").prop("checked", "checked");
+						$("#transactionId").val(obiect.id);
+					}
+				});
+                
+			
+			
+			
+			$('#startDateTimeS').datepicker({
+		        language: 'zh-CN',
+		        autoclose: true,
+		        todayHighlight: true,
+		        todayBtn: "linked",
+		        keyboardNavigation: false,
+		        forceParse: false,
+		        calendarWeeks: false,
+		        autoclose: true,
+		        format: "yyyy-mm-dd",
+		        showWeek:false,
+		    });
+			
+			
+			//这里是点击编辑
+			$("#service .service-box .content .contain table tr td button").click(function(){
+				$(this).parents("tr").find(".edt").prop("contenteditable",true)
+				$(this).parents("tr").find(".edt").addClass("border")
+				$(this).css("display","none")
+				$(this).next().css("display","block")
+			})
+			
+			$("#service .service-box .content .contain table tr td span").click(function(){
+				$(this).parents("tr").find(".edt").prop("contenteditable",false)
+				$(this).parents("tr").find(".edt").removeClass("border")
+				$(this).css("display","none")
+				$(this).prev().css("display","block")
+			})
+			
+			
+			//存储对象的map
+			var objectMap ={};
+		
+		
+			$(document).ready(function() {
+				getTokenAll(1,10);
+				//这里是左侧菜单显示高亮
+				setTimeout(function(){
+					$("#side-menu>li").eq(4).addClass("active");
+					$("#side-menu>li").eq(4).find("ul").addClass("in");
+					$("#side-menu li .virmnyList").addClass("active");
+				},2000);
+
+				//这里是公共的取消模态框
+
+				$("button.can-close").click(function() {
+					$(this).parents(".dio-close").addClass("fadeIn");
+					$(this).parents(".content").addClass("fadeIn");
+					var _this = this;
+					$(this).parents(".dio-close").removeClass("fadeIn");
+					$(this).parents(".content").removeClass("zoomInDown");
+					$(this).parents(".dio-close").addClass("fadeOut");
+					$(this).parents(".content").addClass("zoomOutDown");
+					t = setTimeout(function() {
+						$(_this).parents(".dio-close").removeClass("fadeOut");
+						$(_this).parents(".content").removeClass("zoomOutDown");
+						$(_this).parents(".dio-close").css("display", "none");
+					}, 1000);
+				});
+
+				$("button.cof-close").click(function() {
+					$(this).parents(".dio-close").addClass("fadeIn");
+					$(this).parents(".content").addClass("fadeIn");
+					var _this = this
+					$(this).parents(".dio-close").removeClass("fadeIn");
+					$(this).parents(".content").removeClass("zoomInDown");
+					$(this).parents(".dio-close").addClass("fadeOut");
+					$(this).parents(".content").addClass("zoomOutDown");
+					t = setTimeout(function() {
+						$(_this).parents(".dio-close").removeClass("fadeOut");
+						$(_this).parents(".content").removeClass("zoomOutDown");
+						$(_this).parents(".dio-close").css("display", "none");
+					}, 1000);
+				});
+
+				$(function() {
+					$('.dept_select').chosen();
+				});
+				//会员信息确认
+				$(".sureBtn").click(function(){
+					$("input[type='checkbox']").removeAttr('checked');
+				})
+				//这里是点击按钮选择
+				$("#allchek").click(function() {
+					if($(this).is(':checked')) {
+						$(".wrapper-content table .item-check").prop("checked", "true");
+					} else {
+						$(".wrapper-content table .item-check").prop("checked", "");
+					}
+				});
+				
+
+				$("#addToken").click(function(evt) {
+					$("#add .add-box .content .title span").text("新增");
+					evt.stopPropagation();
+					$("#add").css("display", "block");
+					$("#add").addClass("fadeIn");
+					$("#add .content").addClass("zoomInDown");
+					
+					$("#englishAbbreviations").val("");
+					$("#chineseAbbreviation").val("");
+					$('input:radio[name=belongingStatus]').attr('checked',false);
+					$("#totalAmountOfDistribution").val("");
+					$("#totalAmountOfCirculation").val("");
+					$("#raiseThePrice").val("");
+					$("#withdrawalsConetxt").val("");
+					$("#rechargeConetxt").val("");
+					$("#tokenName").val("");
+					$("#contract").val("");
+					$("#whitePaper").val("");
+					$("#blockQuery").val("");
+					$("#theOfficialWebsite").val("");
+					$("#tokenIntroduceUrl").val("");
+					$("#tokenAddress").val("");
+					$("#tokenBriefIntroduction").val("");
+					$("#startDateTimeS").val("");
+					
+					$("#id").val("");
+					
+					// $("#tokenStatusDis").hide();
+					// $("#setStatus").hide();
+					// $("#transactionStatusDis").hide();
+					
+				});
+				
+				
+				$("#modifyToken").click(function(evt) {
+					$("#add .add-box .content .title span").text("编辑");
+					
+					var res=$("input[type='checkbox'][class='item-check']:checked");
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');						
+					}else{
+						evt.stopPropagation();
+						$("#add").css("display", "block");
+						$("#add").addClass("fadeIn");
+						$("#add .content").addClass("zoomInDown");
+						
+						
+						$("#englishAbbreviations").val("");
+						$("#chineseAbbreviation").val("");
+						$('input:radio[name=belongingStatus]').attr('checked',false);
+						$("#totalAmountOfDistribution").val("");
+						$("#totalAmountOfCirculation").val("");
+						$("#raiseThePrice").val("");
+						$("#withdrawalsConetxt").val("");
+						$("#rechargeConetxt").val("");
+						$("#tokenName").val("");
+						$("#contract").val("");
+						$("#whitePaper").val("");
+						$("#blockQuery").val("");
+						$("#theOfficialWebsite").val("");
+						$("#tokenIntroduceUrl").val("");
+						$("#tokenAddress").val("");
+						$("#tokenBriefIntroduction").val("");
+						$("#startDateTimeS").val("");
+						$("#id").val("");
+						
+						// $("#tokenStatusDis").show();
+						// $("#setStatus").show();
+						// $("#transactionStatusDis").show();
+						
+						
+						var obiect=objectMap[res[0].value];
+						
+						$("#id").val(obiect.id);
+						$("#englishAbbreviations").val(obiect.englishAbbreviations);
+						$("#chineseAbbreviation").val(obiect.chineseAbbreviation);
+						$("#tokenStatus").find("option[value = '"+obiect.tokenStatus+"']").attr("selected","selected");  
+						$(":radio[name='belongingStatus'][value='"+obiect.belongingStatus+"']").prop("checked", "checked");
+						$("#totalAmountOfDistribution").val(obiect.totalAmountOfDistribution);
+						$("#totalAmountOfCirculation").val(obiect.totalAmountOfCirculation);
+						//$(":radio[name='rechargeStatus'][value='"+obiect.rechargeStatus+"']").prop("checked", "checked");
+						// $(":radio[name='withdrawalsStatus'][value='"+obiect.withdrawalsStatus+"']").prop("checked", "checked");
+						$("#raiseThePrice").val(obiect.raiseThePrice);
+						$("#withdrawalsConetxt").val(obiect.withdrawalsConetxt);
+						$("#rechargeConetxt").val(obiect.rechargeConetxt);
+						$("#tokenName").val(obiect.tokenName);
+						$("#whitePaper").val(obiect.whitePaper);
+						$("#blockQuery").val(obiect.blockQuery);
+						$("#theOfficialWebsite").val(obiect.theOfficialWebsite);
+						$("#tokenIntroduceUrl").val(obiect.theOfficialWebsite);
+						$("#tokenAddress").val(obiect.tokenAddress);
+						$("#tokenBriefIntroduction").val(obiect.tokenBriefIntroduction);
+						$("#startDateTimeS").val(GlobalUtils.getTimeFull(obiect.tokenCreateTime,"-"));
+						$(":radio[name='transactionStatus'][value='"+obiect.transactionStatus+"']").prop("checked", "checked");
+						$("#contract").val(obiect.contract);
+						
+					}
+				});
+
+				$("#add .add-box .content .title a").click(function(evt) {
+					evt.stopPropagation();
+					$("#add").removeClass("fadeIn");
+					$("#add .content").removeClass("zoomInDown");
+					$("#add").addClass("fadeOut");
+					$("#add .content").addClass("zoomOutDown");
+					t = setTimeout(function() {
+						$("#add").removeClass("fadeOut");
+						$("#add .content").removeClass("zoomOutDown");
+						$("#add").css("display", "none");
+					}, 1000);
+				});
+				
+				
+				$("#detail").click(function(evt) {
+					var res=$("input[type='checkbox'][class='item-check']:checked");
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请选择</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');					
+					}else{
+						evt.stopPropagation();
+						$("#fictitious").css("display", "block");
+						$("#fictitious").addClass("fadeIn");
+						$("#fictitious .content").addClass("zoomInDown");
+						
+						var obiect=objectMap[res[0].value];
+						$("#englishAbbreviationsText").html(obiect.englishAbbreviations);
+						$("#chineseAbbreviationText").html(obiect.chineseAbbreviation);
+						$("#contractText").html(obiect.contract);
+						$("#whitePaperText").html(obiect.whitePaper);
+						$("#tokenCreateTimeText").html(GlobalUtils.getTimeFull(obiect.tokenCreateTime,"-"));
+						$("#theOfficialWebsiteText").html(obiect.theOfficialWebsite);
+						$("#tokenIntroduceUrlText").html(obiect.tokenIntroduceUrl);
+						$("#tokenBriefIntroductionText").html(obiect.tokenBriefIntroduction);
+						$("#tokenNameText").html(obiect.tokenName);
+						$("#blockQueryText").html(obiect.blockQuery);
+						$("#tokenStatusText").html((obiect.tokenStatus!=null&&obiect.tokenStatus==0?"下线":obiect.tokenStatus!=null&&obiect.tokenStatus==1?"异常":obiect.tokenStatus!=null&&obiect.tokenStatus==2?"上线":""));
+						$("#totalAmountOfCirculationText").html(obiect.totalAmountOfCirculation);
+						$("#totalAmountOfDistributionText").html(obiect.totalAmountOfDistribution);
+						$("#raiseThePriceText").html(obiect.raiseThePrice);
+						$("#belongingStatusText").html((obiect.belongingStatus!=null&&obiect.belongingStatus==0?"属于":obiect.belongingStatus!=null&&obiect.belongingStatus==1?"不属于":""));
+						$("#rechargeStatusText").html((obiect.rechargeStatus!=null&&obiect.rechargeStatus==0?"不能":obiect.rechargeStatus!=null&&obiect.rechargeStatus==1?"能":""));
+						$("#transactionStatusText").html((obiect.transactionStatus!=null&&obiect.transactionStatus==0?"不能":obiect.transactionStatus!=null&&obiect.transactionStatus==1?"能":""));
+						$("#withdrawalsStatusText").html((obiect.withdrawalsStatus!=null&&obiect.withdrawalsStatus==0?"不能":obiect.withdrawalsStatus!=null&&obiect.withdrawalsStatus==1?"能":""));	$("#withdrawalsConetxtText").html(obiect.withdrawalsConetxt);
+						$("#rechargeConetxtText").html(obiect.rechargeConetxt);					
+						$("#tokenAddressText").html(obiect.tokenAddress);	
+					}
+				});
+				
+				//这里交易区
+				$("#tokenArea").click(function(evt) {
+					
+					var res=$("input[type='checkbox'][class='item-check']:checked");
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');				
+					}else{
+						var obiect=objectMap[res[0].value];
+						if(obiect!=null){
+							var tokenType=obiect.englishAbbreviations;
+							
+							evt.stopPropagation();
+							$("#generateM").css("display", "block");
+							$("#generateM").addClass("fadeIn");
+							$("#generateM .content").addClass("zoomInDown");
+							$.ajax({
+								type : 'GET',
+								url : GlobalData.TOKEN_URL + 'bigToken/bigAdminTradingAreaselectOne?tokenId='+obiect.id,
+								contentType : "application/json",
+								dataType : 'json',
+								success : function(data) {
+									console.log(data);
+									if(data.code=="200"){
+										$("#bataId").val(data.data.id);
+										$("#batId").val(data.data.bat_id);
+										//$.message('成功');
+										//$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">新增成功</div></div>');
+										if(tokenType=="ETH"){
+											$("#ethStatus").hide();
+											$("#btcStatus").show();
+											$("#bigStatus").show();
+											$("#cndtStatus").show();
+											$(":radio[name='btcStatus'][value='"+data.data.btcStatus+"']").prop("checked", "checked");
+											$(":radio[name='bigStatus'][value='"+data.data.bigStatus+"']").prop("checked", "checked");
+											$(":radio[name='cndtStatus'][value='"+data.data.cndtStatus+"']").prop("checked", "checked");
+											$(":radio[name='ethStatus']").prop("checked","");
+										}else if(tokenType=="BTC"){
+											$("#btcStatus").hide();
+											$("#ethStatus").show();
+											$("#bigStatus").show();
+											$("#cndtStatus").show();
+											$(":radio[name='ethStatus'][value='"+data.data.ethStatus+"']").prop("checked", "checked");
+											$(":radio[name='bigStatus'][value='"+data.data.bigStatus+"']").prop("checked", "checked");
+											$(":radio[name='cndtStatus'][value='"+data.data.cndtStatus+"']").prop("checked", "checked");
+											$(":radio[name='btcStatus']").prop("checked","");
+										}else if(tokenType=="BIGT"){
+											$("#bigStatus").hide();
+											$("#btcStatus").show();
+											$("#ethStatus").show();
+											$("#cndtStatus").show();
+											$(":radio[name='ethStatus'][value='"+data.data.ethStatus+"']").prop("checked", "checked");
+											$(":radio[name='btcStatus'][value='"+data.data.btcStatus+"']").prop("checked", "checked");
+											$(":radio[name='cndtStatus'][value='"+data.data.cndtStatus+"']").prop("checked", "checked");
+											$(":radio[name='bigStatus']").prop("checked","");
+										}else if(tokenType=="CNDT"){
+											$("#cndtStatus").hide();
+											$("#bigStatus").show();
+											$("#btcStatus").show();
+											$("#ethStatus").show();
+											$(":radio[name='ethStatus'][value='"+data.data.ethStatus+"']").prop("checked", "checked");
+											$(":radio[name='btcStatus'][value='"+data.data.btcStatus+"']").prop("checked", "checked");
+											$(":radio[name='bigStatus'][value='"+data.data.bigStatus+"']").prop("checked", "checked");
+											$(":radio[name='cndtStatus']").prop("checked","");
+										}else{
+											$("#cndtStatus").show();
+											$("#bigStatus").show();
+											$("#btcStatus").show();
+											$("#ethStatus").show();
+											$(":radio[name='ethStatus'][value='"+data.data.ethStatus+"']").prop("checked", "checked");
+											$(":radio[name='btcStatus'][value='"+data.data.btcStatus+"']").prop("checked", "checked");
+											$(":radio[name='bigStatus'][value='"+data.data.bigStatus+"']").prop("checked", "checked");
+											$(":radio[name='cndtStatus'][value='"+data.data.cndtStatus+"']").prop("checked", "checked");
+										}
+									}else{
+										$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+									}
+								},
+								error : function(e) {
+									$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+									console.log(e);
+								}
+							});
+						}
+					}
+				});
+
+				$("#generateM .generate-box .content .title a").click(function(evt) {
+					evt.stopPropagation();
+					$("#generateM").removeClass("fadeIn");
+					$("#generateM .content").removeClass("zoomInDown");
+					$("#generateM").addClass("fadeOut");
+					$("#generateM .content").addClass("zoomOutDown");
+					t = setTimeout(function() {
+						$("#generateM").removeClass("fadeOut");
+						$("#generateM .content").removeClass("zoomOutDown");
+						$("#generateM").css("display", "none");
+					}, 1000);
+				});
+				
+				
+
+				//这里是生成钱包
+				$(".set .setbox .pro-money").click(function(evt) {
+					
+					var res=$("input[type='checkbox'][class='item-check']:checked");
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');				
+					}else{
+						var obiect=objectMap[res[0].value];
+						if(obiect!=null){
+							evt.stopPropagation();
+							$("#generate").css("display", "block");
+							$("#generate").addClass("fadeIn");
+							$("#generate .content").addClass("zoomInDown");
+							$("#tokenId").val(obiect.id);
+							$("#walletNum").val("");
+						}
+					}
+				});
+
+				$("#generate .generate-box .content .title a").click(function(evt) {
+					evt.stopPropagation();
+					$("#generate").removeClass("fadeIn");
+					$("#generate .content").removeClass("zoomInDown");
+					$("#generate").addClass("fadeOut");
+					$("#generate .content").addClass("zoomOutDown");
+					t = setTimeout(function() {
+						$("#generate").removeClass("fadeOut");
+						$("#generate .content").removeClass("zoomOutDown");
+						$("#generate").css("display", "none");
+					}, 1000);
+				});
+
+				//这里是手续费弹窗
+				$(".set .setbox .Service ").click(function(evt) {
+					var res=$("input[type='checkbox'][class='item-check']:checked");
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');				
+					}else{
+						var obiect=objectMap[res[0].value];
+						if(obiect!=null){
+							evt.stopPropagation();
+							$("#service").css("display", "block");
+							$("#service").addClass("fadeIn");
+							$("#service .content").addClass("zoomInDown");
+							
+							$.ajax({
+								type : 'GET',
+								async: false,
+								url : GlobalData.TOKEN_URL + 'bigToken/bigAdminServiceChargePOList?tokenId='+obiect.id,
+								contentType : "application/json",
+								dataType : 'json',
+								success : function(data) {
+									console.log(data);
+									$('#serviceFeeList').empty();
+									if(data.code=="200"){
+										$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">获取手续费列表成功</div></div>');
+										 var res=data.data;
+										 for (var i = 0; i < res.length; i++) {
+											var create_tr = $('<tr id="showItem'+res[i].id+'"></tr>');
+											var _html ='<td class="edt edts">'+res[i].membershipLevel+'</td>'+
+														'<td class="edt edts">'+(res[i].withdrawType!=null&&res[i].withdrawType==0?"未开启":res[i].withdrawType!=null&&res[i].withdrawType==1?"按百分比收取":res[i].withdrawType!=null&&res[i].withdrawType==2?"按数量收取":"")+'</td>'+
+														'<td class="edt edts">'+(res[i].collectType!=null&&res[i].collectType==0?"未开启":res[i].collectType!=null&&res[i].collectType==1?"按百分比收取":res[i].collectType!=null&&res[i].collectType==2?"按数量收取":"")+'</td>'+
+														'<td class="edt edts">'+res[i].withdrawalsNum+'</td>'+
+														'<td class="edt edts">'+res[i].number+'</td>'+
+														'<td class="edt edts">'+res[i].percentage+'</td>'+
+														'<td><button class="btn btn-success cret edts" onClick="displayItem('+res[i].id+')">编辑</button></td>';
+											create_tr.html(_html);
+											$('#serviceFeeList').append(create_tr);
+											
+											
+											var create_tr2 = $('<tr style="display:none" id="displayItem'+res[i].id+'"></tr>');
+											var _html2 ='<td class="edt edts"><input type="hidden" class="" id="batId'+res[i].id+'" value="'+res[i].bat_id+'"><input type="number" class="form-control" id="membershipLevel'+res[i].id+'" value="'+res[i].membershipLevel+'" readonly></td>';
+											var varSelect="";
+											if(res[i].withdrawType!=null&&res[i].withdrawType==0){
+												varSelect='<td class="edt edts" ><select id="withdrawType'+res[i].id+'"><option value="0" selected="selected">未开启</option><option value="1">按百分比收取</option><option value="2">按数量收取</option></select></td>';
+											}else if(res[i].withdrawType!=null&&res[i].withdrawType==1){
+												varSelect='<td class="edt edts" ><select id="withdrawType'+res[i].id+'"><option value="0">未开启</option><option value="1" selected="selected">按百分比收取</option><option value="2">按数量收取</option></select></td>';
+											}else if(res[i].withdrawType!=null&&res[i].withdrawType==2){
+												varSelect='<td class="edt edts" ><select id="withdrawType'+res[i].id+'"><option value="0">未开启</option><option value="1" >按百分比收取</option><option value="2" selected="selected">按数量收取</option></select></td>';
+											}
+											var varSelect2="";
+											if(res[i].collectType!=null&&res[i].collectType==0){
+												varSelect2='<td class="edt edts" ><select id="collectType'+res[i].id+'"><option value="0" selected="selected">未选中</option><option value="1">按百分比收取</option><option value="2">按数量收取</option></select></td>';
+											}else if(res[i].collectType!=null&&res[i].collectType==1){
+												varSelect2='<td class="edt edts" ><select id="collectType'+res[i].id+'"><option value="0">未选中</option><option value="1" selected="selected">按百分比收取</option><option value="2">按数量收取</option></select></td>';
+											}else if(res[i].collectType!=null&&res[i].collectType==2){
+												varSelect2='<td class="edt edts" ><select id="collectType'+res[i].id+'"><option value="0">未选中</option><option value="1" >按百分比收取</option><option value="2" selected="selected">按数量收取</option></select></td>';
+											}
+											_html2=_html2+varSelect+varSelect2;
+												
+											 var _html3 ='<td class="edt edts" >'+
+															'<input type="number" class="form-control" id="withdrawalsNum'+res[i].id+'" value="'+res[i].withdrawalsNum+'" min=0/>'+
+														 '</td>'+
+														'<td class="edt edts" >'+
+															'<input type="number" class="form-control" id="number'+res[i].id+'"  value="'+res[i].number+'" min=0/>'+
+														'</td>'+
+														'<td class="edt edts" >'+
+															'<input type="number" class="form-control" id="percentage'+res[i].id+'"  value="'+res[i].percentage+'" min=0/>'+
+														'<td><button class="btn btn-success cret crets" onClick="showItem('+res[i].id+')">取消</button><button class="btn btn-success cret" onClick="saveServiceFee('+res[i].id+')">确认</button></td>';
+											 
+											create_tr2.html(_html2+_html3);	
+											$('#serviceFeeList').append(create_tr2);
+										};
+									}else{
+										$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+									}
+								},
+								error : function(e) {
+									$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+									console.log(e);
+								}
+							});
+						}
+					}
+				});
+
+				$("#service .service-box .content .title a").click(function(evt) {
+					evt.stopPropagation();
+
+					$("#service").removeClass("fadeIn");
+					$("#service .content").removeClass("zoomInDown");
+					$("#service").addClass("fadeOut");
+					$("#service .content").addClass("zoomOutDown");
+					t = setTimeout(function() {
+						$("#service").removeClass("fadeOut");
+						$("#service .content").removeClass("zoomOutDown");
+						$("#service").css("display", "none");
+					}, 1000);
+				});
+				
+				//这里是修改钱包地址弹窗
+				$(".set .setbox .creat-money ").click(function(evt) {
+					var res=$("input[type='checkbox'][class='item-check']:checked");
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');				
+					}else{
+						var obiect=objectMap[res[0].value];
+						if(obiect!=null){
+							evt.stopPropagation();
+							$("#modify-money").css("display", "block");
+							$("#modify-money").addClass("fadeIn");
+							$("#modify-money .content").addClass("zoomInDown");
+							$("#idM").val(obiect.id);
+							$("#tokenAddressM").val(obiect.tokenAddress);
+						}
+					}
+				});
+				
+				
+				$("#test").click(function(evt) {
+					var res=$("input[type='checkbox'][class='item-check']:checked");
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');				
+					}else{
+						var obiect=objectMap[res[0].value];
+						if(obiect!=null){
+							$.ajax({
+								type : 'GET',
+								async: false,
+								url : GlobalData.TOKEN_URL + 'bigToken/Balance?tokenId='+obiect.id,
+								contentType : "application/json",
+								dataType : 'json',
+								success : function(data) {
+									console.log(data);
+									if(data.code=="200"){
+										$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">地址测试成功'+data.data+'</div></div>');
+										$("input[type='checkbox']").removeAttr('checked');
+									}else{
+										$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+									}
+								},
+								error : function(e) {
+									$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+									console.log(e);
+									$("input[type='checkbox']").removeAttr('checked');
+								}
+							});
+						}
+					}
+				});
+				
+				$("#modify-money .modify-box .content .title a").click(function(evt) {
+					evt.stopPropagation();
+					$("#modify-money").removeClass("fadeIn");
+					$("#modify-money .content").removeClass("zoomInDown");
+					$("#modify-money").addClass("fadeOut");
+					$("#modify-money .content").addClass("zoomOutDown");
+					t = setTimeout(function() {
+						$("#modify-money").removeClass("fadeOut");
+						$("#modify-money .content").removeClass("zoomOutDown");
+						$("#modify-money").css("display", "none");
+					}, 1000);
+				});
+
+				
+
+				$("#fictitious .fictitious-box .content .title a").click(function(evt) {
+					evt.stopPropagation();
+					$("#fictitious").removeClass("fadeIn");
+					$("#fictitious .content").removeClass("zoomInDown");
+					$("#fictitious").addClass("fadeOut");
+					$("#fictitious .content").addClass("zoomOutDown");
+					t = setTimeout(function() {
+						$("#fictitious").removeClass("fadeOut");
+						$("#fictitious .content").removeClass("zoomOutDown");
+						$("#fictitious").css("display", "none");
+					}, 1000);
+				});
+			});
+			
+			function displayItem(id){
+				var showItemId="showItem"+id;
+				var displayItemId="displayItem"+id;
+				$("#"+showItemId+"").hide();
+				$("#"+displayItemId+"").show();
+			}
+			function showItem(id){
+				var showItemId="showItem"+id;
+				var displayItemId="displayItem"+id;
+				$("#"+showItemId+"").show();
+				$("#"+displayItemId+"").hide();
+			};
+			
+			function saveServiceFee(id){
+				var collectTypeId="collectType"+id;
+				var collectType=$("#"+collectTypeId+"").val();
+				
+				var id=id;
+				var numberId="number"+id;
+				var number=$("#"+numberId+"").val();
+				
+				var percentageId="percentage"+id;
+				var percentage=$("#"+percentageId+"").val();
+				
+				var withdrawTypeId="withdrawType"+id;
+				var withdrawType=$("#"+withdrawTypeId+"").val();
+				
+				var withdrawalsNumId="withdrawalsNum"+id;
+				var withdrawalsNum=$("#"+withdrawalsNumId+"").val();
+				
+				
+				var batId="batId"+id;
+				batId=parseInt($("#"+batId+"").val());
+				
+				var data = {
+					"id" :id,
+					"collectType" :collectType,
+					"number":number,
+					"percentage":percentage,
+					"withdrawType":withdrawType,
+					"withdrawalsNum":withdrawalsNum
+				};
+				
+				$.ajax({
+					type : 'POST',
+					async: false,
+					url : GlobalData.TOKEN_URL + 'bigToken/BigAdminServiceChargeupdate',
+					contentType : "application/json",
+					dataType : 'json',
+					data : JSON.stringify(data),
+					success : function(data) {
+						console.log(data);
+						if(data.code=="200"){
+							$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">修改手续费成功</div></div>');
+							
+							// $("#service").css("display", "block");
+							// $("#service").addClass("fadeIn");
+							// $("#service .content").addClass("zoomInDown");
+							
+							var obiect=objectMap[batId];
+							
+							$.ajax({
+								type : 'GET',
+								async: false,
+								url : GlobalData.TOKEN_URL + 'bigToken/bigAdminServiceChargePOList?tokenId='+obiect.id,
+								contentType : "application/json",
+								dataType : 'json',
+								success : function(data) {
+									console.log(data);
+									$('#serviceFeeList').empty();
+									if(data.code=="200"){
+										$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">获取手续费列表成功</div></div>');
+										 var res=data.data;
+										 for (var i = 0; i < res.length; i++) {
+											var create_tr = $('<tr id="showItem'+res[i].id+'"></tr>');
+											var _html ='<td class="edt">'+res[i].membershipLevel+'</td>'+
+														'<td class="edt">'+(res[i].withdrawType!=null&&res[i].withdrawType==0?"未开启":res[i].withdrawType!=null&&res[i].withdrawType==1?"按百分比收取":res[i].withdrawType!=null&&res[i].withdrawType==2?"按数量收取":"")+'</td>'+
+														'<td class="edt">'+(res[i].collectType!=null&&res[i].collectType==0?"未开启":res[i].collectType!=null&&res[i].collectType==1?"按百分比收取":res[i].collectType!=null&&res[i].collectType==2?"按数量收取":"")+'</td>'+
+														'<td class="edt">'+res[i].withdrawalsNum+'</td>'+
+														'<td class="edt">'+res[i].number+'</td>'+
+														'<td class="edt">'+res[i].percentage+'</td>'+
+														'<td><button class="btn btn-success cret" onClick="displayItem('+res[i].id+')">编辑</button></td>';
+											create_tr.html(_html);
+											$('#serviceFeeList').append(create_tr);
+											
+											
+											var create_tr2 = $('<tr style="display:none" id="displayItem'+res[i].id+'"></tr>');
+											var _html2 ='<td class="edt"><input type="hidden" class="" id="batId'+res[i].id+'" value="'+res[i].bat_id+'"><input type="number" class="form-control" id="membershipLevel'+res[i].id+'" value="'+res[i].membershipLevel+'" readonly></td>';
+											
+											var varSelect="";
+											if(res[i].withdrawType!=null&&res[i].withdrawType==0){
+												varSelect='<td class="edt" ><select id="withdrawType'+res[i].id+'"><option value="0" selected="selected">未选中</option><option value="1">按百分比收取</option><option value="2">按数量收取</option></select></td>';
+											}else if(res[i].withdrawType!=null&&res[i].withdrawType==1){
+												varSelect='<td class="edt" ><select id="withdrawType'+res[i].id+'"><option value="0">未选中</option><option value="1" selected="selected">按百分比收取</option><option value="2">按数量收取</option></select></td>';
+											}else if(res[i].withdrawType!=null&&res[i].withdrawType==2){
+												varSelect='<td class="edt" ><select id="withdrawType'+res[i].id+'"><option value="0">未选中</option><option value="1" >按百分比收取</option><option value="2" selected="selected">按数量收取</option></select></td>';
+											}
+											var varSelect2="";
+											if(res[i].collectType!=null&&res[i].collectType==0){
+												varSelect2='<td class="edt" ><select id="collectType'+res[i].id+'"><option value="0" selected="selected">未选中</option><option value="1">按百分比收取</option><option value="2">按数量收取</option></select></td>';
+											}else if(res[i].collectType!=null&&res[i].collectType==1){
+												varSelect2='<td class="edt" ><select id="collectType'+res[i].id+'"><option value="0">未选中</option><option value="1" selected="selected">按百分比收取</option><option value="2">按数量收取</option></select></td>';
+											}else if(res[i].collectType!=null&&res[i].collectType==2){
+												varSelect2='<td class="edt" ><select id="collectType'+res[i].id+'"><option value="0">未选中</option><option value="1" >按百分比收取</option><option value="2" selected="selected">按数量收取</option></select></td>';
+											}
+											_html2=_html2+varSelect+varSelect2;
+												
+											 var _html3 ='<td class="edt" >'+
+															'<input type="number" class="form-control" id="withdrawalsNum'+res[i].id+'" value="'+res[i].withdrawalsNum+'" />'+
+														 '</td>'+
+														'<td class="edt" >'+
+															'<input type="number" class="form-control" id="number'+res[i].id+'"  value="'+res[i].number+'"/>'+
+														'</td>'+
+														'<td class="edt" >'+
+															'<input type="number" class="form-control" id="percentage'+res[i].id+'"  value="'+res[i].percentage+'"/>'+
+														'<td><button class="btn btn-success cret crets" onClick="showItem('+res[i].id+')">取消</button><button class="btn btn-success cret" onClick="saveServiceFee('+res[i].id+')">确认</button></td>';
+											 
+											create_tr2.html(_html2+_html3);	
+											$('#serviceFeeList').append(create_tr2);
+										};
+									}else{
+										$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+									}
+								},
+								error : function(e) {
+									$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+									console.log(e);
+								}
+							});
+						
+						}else{
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+						}
+					},
+					error : function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+						console.log(e);
+					}
+				});
+			}
+			
+			
+			
+			
+			
+			
+			
+			var p = new Paging();
+			p.init({target:'#pageToolbar',pagesize:10,count:$('#total').val(), toolbar: true,hash: true,callback:function(page,size,count){
+				getTokenAll(page,$("#rows").val());
+			},go:function(p){
+				getTokenAll(p,$("#rows").val());
+			},changePagesize:function(ps){
+				getTokenAll($("#page").val(),ps);
+			}});
+				
+			//获取所有的统计数据
+			function getTokenAll(page,rows){
+				
+				var chineseAbbreviation=$("#querychineseAbbreviation").val();
+				chineseAbbreviation=(chineseAbbreviation==""?null:chineseAbbreviation.trim());
+				
+				var englishAbbreviations=$("#queryenglishAbbreviations").val();
+				englishAbbreviations=(englishAbbreviations==""?null:englishAbbreviations.trim());
+				
+				var data = {
+					"page" : page==null||page==""?1:page,
+					"rows" : rows==null||rows==""?10:rows,
+					"belongingStatus":$("#querybelongingStatus").val(),
+					"chineseAbbreviation":chineseAbbreviation,
+					"englishAbbreviations":englishAbbreviations,
+					"id":$("#queryId").val(),
+					"tokenStatus":$("#querytokenStatus").val()
+				};
+				console.log(data);
+				$.ajax({
+					type : 'POST',
+					async: false,
+					url : GlobalData.TOKEN_URL + 'bigToken/tokenAdminList',
+					data : JSON.stringify(data),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+						console.log(data);
+						$('#resultBox').empty();
+						objectMap={};
+						if(data.code=="200"&&data.data.objectList!=null&&data.data.objectList.length>0){
+							//$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">获取虚拟币列表成功</div></div>');
+							var res=data.data.objectList;
+							console.log("数组"+res);
+							for (var i = 0; i < res.length; i++) {
+								var create_tr = $('<tr></tr>');
+								var _html = '<td>'+
+												'<div class="checkbox"><input type="checkbox" id="audit'+res[i].id+'" class="item-check" value="'+res[i].id+'"/><label for="checkboxs2"></label></div>'+
+											'</td>'+
+											'<td><span>'+res[i].id+'</span></td>'+
+											'<td title='+(res[i].englishAbbreviations)+'><span>'+(res[i].englishAbbreviations)+'</span></td>'+
+											'<td title='+(res[i].chineseAbbreviation)+'><span>'+(res[i].chineseAbbreviation)+'</span></td>'+
+											'<td title='+(res[i].tokenStatus!=null&&res[i].tokenStatus==0?"下线":res[i].tokenStatus!=null&&res[i].tokenStatus==1?"异常":res[i].tokenStatus!=null&&res[i].tokenStatus==2?"上线":"")+'><span>'+(res[i].tokenStatus!=null&&res[i].tokenStatus==0?"下线":res[i].tokenStatus!=null&&res[i].tokenStatus==1?"异常":res[i].tokenStatus!=null&&res[i].tokenStatus==2?"上线":"")+'</span></td>'+
+											'<td title='+(res[i].belongingStatus!=null&&res[i].belongingStatus==0?"属于":res[i].belongingStatus!=null&&res[i].belongingStatus==1?"不属于":"")+'><span>'+(res[i].belongingStatus!=null&&res[i].belongingStatus==0?"属于":res[i].belongingStatus!=null&&res[i].belongingStatus==1?"不属于":"")+'</span></td>'+
+											'<td title='+(res[i].contract==null?"":res[i].contract)+'><span>'+(res[i].contract==null?"":res[i].contract)+'</span></td>'+
+											'<td title='+res[i].tokenName+'><span>'+res[i].tokenName+'</span></td>'+
+											'<td title='+GlobalUtils.getTimeFull(res[i].tokenCreateTime,"-")+'><span>'+GlobalUtils.getTimeFull(res[i].tokenCreateTime,"-")+'</span></td>'+
+											'<td title='+res[i].totalAmountOfDistribution+'><span>'+res[i].totalAmountOfDistribution+'</span></td>'+
+											'<td title='+res[i].totalAmountOfCirculation+'><span>'+res[i].totalAmountOfCirculation+'</span></td>'+
+											'<td title='+res[i].raiseThePrice+'><span>'+res[i].raiseThePrice+'</span></td>'+
+											'<td title='+res[i].whitePaper+'><span>'+res[i].whitePaper+'</span></td>'+
+											'<td title='+res[i].theOfficialWebsite+'><span>'+res[i].theOfficialWebsite+'</span></td>'+
+											'<td title='+res[i].blockQuery+'><span>'+res[i].blockQuery+'</span></td>'+
+											'<td title='+res[i].tokenIntroduceUrl+'><span>'+res[i].tokenIntroduceUrl+'</span></td>'+
+											'<td title='+res[i].withdrawalsConetxt+'><span>'+res[i].withdrawalsConetxt+'</span></td>'+
+											'<td title='+res[i].rechargeConetxt+'><span>'+res[i].rechargeConetxt+'</span></td>'+
+											'<td title='+res[i].tokenAddress+'><span>'+res[i].tokenAddress+'</span></td>'+
+											'<td title='+(res[i].rechargeStatus!=null&&res[i].rechargeStatus==0?"不能":res[i].rechargeStatus!=null&&res[i].rechargeStatus==1?"能":"")+'><span>'+(res[i].rechargeStatus!=null&&res[i].rechargeStatus==0?"不能":res[i].rechargeStatus!=null&&res[i].rechargeStatus==1?"能":"")+'</span></td>'+
+											'<td title='+(res[i].englishAbbreviations)+'><span>'+(res[i].withdrawalsStatus!=null&&res[i].withdrawalsStatus==0?"不能":res[i].withdrawalsStatus!=null&&res[i].withdrawalsStatus==1?"能":"")+'</span></td>'+
+											'<td title='+(res[i].transactionStatus!=null&&res[i].transactionStatus==0?"不能":res[i].transactionStatus!=null&&res[i].transactionStatus==1?"能":"")+'><span>'+(res[i].transactionStatus!=null&&res[i].transactionStatus==0?"不能":res[i].transactionStatus!=null&&res[i].transactionStatus==1?"能":"")+'</span></td>'+
+										   '<td title='+GlobalUtils.getTimeFull(res[i].createTime,"-")+'><span>'+GlobalUtils.getTimeFull(res[i].createTime,"-")+'</span></td>'+
+										   '<td title='+GlobalUtils.getTimeFull(res[i].updateTime,"-")+'><span>'+GlobalUtils.getTimeFull(res[i].updateTime,"-")+'</span></td>';
+								create_tr.html(_html);
+								$('#resultBox').append(create_tr);
+								objectMap[res[i].id] = res[i];
+//								$(".ibox-content table tr td span").click(function(){
+//									if($("#text").hasClass("fadeIn")){
+//										$("#text").removeClass("fadeIn")
+//									}else{
+//										$("#text").addClass("fadeIn")
+//									}
+//			            })
+							};
+							
+							$('#page').val(page==null||page==""?1:page);
+							$('#total').val(data.data.total);
+							$('#rows').val(rows==null||rows==""?10:rows);
+							
+							//重新渲染分页使用render
+							p.render({count:$('#total').val(),pagesize:rows,current:page});
+						}
+					},
+					error : function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+						console.log(e);
+					}
+				});
+			};
+			
+			function queryToken(){
+				getTokenAll(1,$("#rows").val());
+			};
+			
+			function resetToken(){
+		        $("#querychineseAbbreviation").val("");
+		        $("#queryenglishAbbreviations").val("");
+		        $("#querybelongingStatus").val("");
+		        $("#queryId").val("");
+		        $("#querytokenStatus").val("");
+		 		getTokenAll(1,$("#rows").val());
+			};
+			
+			
+			
+			function saveToken(){
+				
+				var id=$("#id").val();
+				id=(id==""?null:id);
+				
+				
+				var englishAbbreviations=$("#englishAbbreviations").val();//英文简称
+				var chineseAbbreviation=$("#chineseAbbreviation").val();//中文简称
+				var belongingStatus = $("input[name='belongingStatus']:checked").val();//是否属于以太坊
+				
+				var totalAmountOfDistribution = $("#totalAmountOfDistribution").val();//发行总量
+				var isNumber = GlobalUtils.checkStr(totalAmountOfDistribution,3);
+				
+				
+				var totalAmountOfCirculation = $("#totalAmountOfCirculation").val();//流通总量
+				var isNumber2 = GlobalUtils.checkStr(totalAmountOfCirculation,3);
+				
+				var raiseThePrice = $("#raiseThePrice").val();//众筹价格
+				var withdrawalsConetxt = $("#withdrawalsConetxt").val();//提现内容
+				var rechargeConetxt = $("#rechargeConetxt").val();//充值内容
+				
+				var tokenName = $("#tokenName").val();//币种全称
+				var contract = $("#contract").val();//合约
+				var whitePaper = $("#whitePaper").val();//白皮书
+				var blockQuery = $("#blockQuery").val();//区块查询
+				var theOfficialWebsite = $("#theOfficialWebsite").val();//官网地址
+				var tokenIntroduceUrl = $("#tokenIntroduceUrl").val();//币种介绍地址
+				var tokenAddress = $("#tokenAddress").val();//请求地址
+				var tokenBriefIntroduction = $("#tokenBriefIntroduction").val();//币种简介
+				var startDateTimeS=$("#startDateTimeS").val();
+				
+				// var tokenStatus=$("#tokenStatus").val();//是否上下线
+				// tokenStatus=(tokenStatus==""?null:tokenStatus);
+				
+				// var rechargeStatus = $("input[name='rechargeStatus']:checked").val();//充值状态
+				// rechargeStatus=(rechargeStatus==""?null:rechargeStatus);
+				// var withdrawalsStatus = $("input[name='withdrawalsStatus']:checked").val();//体现状态
+				// withdrawalsStatus=(withdrawalsStatus==""?null:withdrawalsStatus);
+				// var transactionStatus = $("input[name='transactionStatus']:checked").val();//交易状态
+				// transactionStatus=(transactionStatus==""?null:transactionStatus);
+				
+				if(englishAbbreviations==null||englishAbbreviations==""){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">英文简称不能为空</div></div>');
+				}else if(chineseAbbreviation==null||chineseAbbreviation==""){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">中文简称不能为空</div></div>');
+				}else if(belongingStatus==null||belongingStatus==""){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请选择是否属于以太坊</div></div>');
+				}else if(totalAmountOfDistribution==null||totalAmountOfDistribution==""){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入发行总量</div></div>');
+				}else if(!isNumber){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">发行总量请输入数字</div></div>');
+				}else if(totalAmountOfCirculation==null||totalAmountOfCirculation==""){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入流通总量</div></div>');
+				}else if(!isNumber2){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">流通总量请输入数字</div></div>');
+				}else if(raiseThePrice==null||raiseThePrice==""){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入众筹价格</div></div>');
+				}else if(withdrawalsConetxt==null||withdrawalsConetxt==""){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入提现内容</div></div>');
+				}else if(tokenName==null||tokenName==""){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入币种全称</div></div>');
+				}else if(startDateTimeS==null||startDateTimeS==""){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请选择发行时间</div></div>');
+				}else if(whitePaper==null||whitePaper==""){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入白皮书网址</div></div>');
+				}else if(theOfficialWebsite==null||theOfficialWebsite==""){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入官网地址</div></div>');
+				}else if(tokenIntroduceUrl==null||tokenIntroduceUrl==""){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入币种介绍地址</div></div>');
+				}else if(tokenAddress==null||tokenAddress==""){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入请求地址</div></div>');
+				}else{
+					
+					//新增参数值
+					var data = {
+						"englishAbbreviations":englishAbbreviations,
+						"chineseAbbreviation" : chineseAbbreviation,
+						"belongingStatus" : belongingStatus,
+						"tokenName" :tokenName,
+						"tokenCreateTime":new Date(startDateTimeS.replace(/\-/g, "\/")),
+						"totalAmountOfDistribution":totalAmountOfDistribution,
+						"totalAmountOfCirculation":totalAmountOfCirculation,
+						"raiseThePrice":raiseThePrice,
+						"whitePaper":whitePaper,
+						"theOfficialWebsite":theOfficialWebsite,
+						"tokenIntroduceUrl":tokenIntroduceUrl,
+						"withdrawalsConetxt":withdrawalsConetxt,
+						"rechargeConetxt":rechargeConetxt,
+						"tokenAddress":tokenAddress,
+						"tokenBriefIntroduction":tokenBriefIntroduction,
+						"contract":contract,
+						"blockQuery":blockQuery,
+						"id":id
+					};
+					if(id==null||id==""||id.length<1){
+						$.ajax({
+							type : 'POST',
+							url : GlobalData.TOKEN_URL + 'bigToken/saveBigAdminToken',
+							data : JSON.stringify(data),
+							contentType : "application/json",
+							dataType : 'json',
+							success : function(data) {
+								console.log(data);
+								if(data.code=="200"){
+									//$.message('成功');
+									$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">新增成功</div></div>');
+									// $("#querychineseAbbreviation").val("");
+							        // $("#queryenglishAbbreviations").val("");
+							        // $("#querybelongingStatus").val("");
+							        // $("#queryId").val("");
+							        // $("#querytokenStatus").val("");
+							 		getTokenAll(1,$("#rows").val());
+									//成功之后需要刷新列表
+								}else{
+									$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+								}
+							},
+							error : function(e) {
+								$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+								console.log(e);
+							}
+						});
+					}else{
+						$.ajax({
+							type : 'POST',
+							url : GlobalData.TOKEN_URL + 'bigToken/BigAdminTokenupdate',
+							data : JSON.stringify(data),
+							contentType : "application/json",
+							dataType : 'json',
+							success : function(data) {
+								console.log(data);
+								if(data.code=="200"){
+									$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">修改成功</div></div>');
+									// $("#querychineseAbbreviation").val("");
+							        // $("#queryenglishAbbreviations").val("");
+							        // $("#querybelongingStatus").val("");
+							        // $("#queryId").val("");
+							        // $("#querytokenStatus").val("");
+							 		getTokenAll(1,$("#rows").val());
+								}else{
+									$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+								}
+							},
+							error : function(e) {
+								$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+								console.log(e);
+							}
+						});
+					}
+				}		
+			};
+			
+			
+			//修改交易区
+			function tradeArea(){
+		        var data = {
+					"id" :$("#bataId").val(),
+					"bat_id":$("#batId").val(),
+					"bigStatus":$("input[name='bigStatus']:checked").val(),
+					"btcStatus":$("input[name='btcStatus']:checked").val(),
+					"ethStatus":$("input[name='ethStatus']:checked").val(),
+					"cndtStatus":$("input[name='cndtStatus']:checked").val()
+				};
+				$.ajax({
+					type : 'POST',
+					async: false,
+					url : GlobalData.TOKEN_URL + 'bigToken/BigAdminTradingAreaupdate',
+					data : JSON.stringify(data),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+						console.log(data);
+						if(data.code=="200"){
+							$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">修改成功</div></div>');
+						}else{
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+						}
+					},
+					error : function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+						console.log(e);
+					}
+				});
+			};
+			
+
+			
+			//生成钱包地址
+			function CreateWallet(){
+				var num=$("#walletNum").val();
+				var tokenId=$("#tokenId").val();
+				if(num==null||num==""||num<1){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入数字</div></div>');
+				}else if(parseInt(num)!=num){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入有效的数字</div></div>');
+				}else{
+					$.ajax({
+						type : 'GET',
+						async: false,
+						url : GlobalData.TOKEN_URL + 'bigToken/CreateWallet?tokenId='+tokenId+'&num='+num,
+						contentType : "application/json",
+						dataType : 'json',
+						success : function(data) {
+							console.log(data);
+							if(data.code=="200"){
+								$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">地址生成成功</div></div>');
+								$("input[type='checkbox']").removeAttr('checked');
+							}else{
+								$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+							}
+						},
+						error : function(e) {
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+							console.log(e);
+							$("input[type='checkbox']").removeAttr('checked');
+						}
+					});
+				}
+			};
+			
+	
+			//修改钱包地址
+			function modifyTokenAddress(){
+				var id=$("#idM").val();
+				var tokenAddress=$("#tokenAddressM").val();
+				
+				if(tokenAddress==null||tokenAddress==""){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入钱包地址</div></div>');
+				}else{
+					var data = {
+						"id" :id,
+						"tokenAddress":tokenAddress
+					};
+					$.ajax({
+						type : 'POST',
+						async: false,
+						data : JSON.stringify(data),
+						url : GlobalData.TOKEN_URL + 'bigToken/BigAdminTokenupdate',
+						contentType : "application/json",
+						dataType : 'json',
+						success : function(data) {
+							console.log(data);
+							if(data.code=="200"){
+								$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">地址生成成功</div></div>');
+								// $("#querychineseAbbreviation").val("");
+						        // $("#queryenglishAbbreviations").val("");
+						        // $("#querybelongingStatus").val("");
+						        // $("#queryId").val("");
+						        // $("#querytokenStatus").val("");
+						 		getTokenAll(1,$("#rows").val());
+							}else{
+								$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+							}
+						},
+						error : function(e) {
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+							console.log(e);
+						}
+					});
+				}
+			};
+			
+			
+			
+			function onLineDo(){
+				$.ajax({
+					type : 'GET',
+					async: false,
+					url : GlobalData.TOKEN_URL + 'bigToken/tokenonline?tokenId='+$("#onLineTokenId").val(),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+						console.log(data);
+						if(data.code=="200"){
+							$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">代币上线成功</div></div>');
+							$('#resultBox').empty();
+							// $("#querychineseAbbreviation").val("");
+					        // $("#queryenglishAbbreviations").val("");
+					        // $("#querybelongingStatus").val("");
+					        // $("#queryId").val("");
+					        // $("#querytokenStatus").val("");
+					 		getTokenAll(1,$("#rows").val());
+						}else{
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+						}
+					},
+					error : function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+						console.log(e);
+					}
+				});
+			};
+			
+			function downDo(){
+				
+				var data = {
+					"id" :$("#downTokenId").val(),
+					"tokenStatus":0
+				};
+				
+				$.ajax({
+					type : 'POST',
+					url : GlobalData.TOKEN_URL + 'bigToken/BigAdminTokenupdate',
+					data : JSON.stringify(data),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+						console.log(data);
+						if(data.code=="200"){
+							$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">修改成功</div></div>');
+							$('#resultBox').empty();
+							// $("#querychineseAbbreviation").val("");
+					        // $("#queryenglishAbbreviations").val("");
+					        // $("#querybelongingStatus").val("");
+					        // $("#queryId").val("");
+					        // $("#querytokenStatus").val("");
+					 		getTokenAll(1,$("#rows").val());
+						}else{
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+						}
+					},
+					error : function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+						console.log(e);
+					}
+				});
+			};
+			
+			function rechargeDo(){
+				
+				var data = {
+					"id" :$("#rechargeId").val(),
+					"rechargeStatus":$("input[name='rechargeStatus']:checked").val()
+				};
+				
+				$.ajax({
+					type : 'POST',
+					url : GlobalData.TOKEN_URL + 'bigToken/BigAdminTokenupdate',
+					data : JSON.stringify(data),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+						console.log(data);
+						if(data.code=="200"){
+							$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">修改成功</div></div>');
+							$('#resultBox').empty();
+							// $("#querychineseAbbreviation").val("");
+					        // $("#queryenglishAbbreviations").val("");
+					        // $("#querybelongingStatus").val("");
+					        // $("#queryId").val("");
+					        // $("#querytokenStatus").val("");
+					 		getTokenAll(1,$("#rows").val());
+						}else{
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+						}
+					},
+					error : function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误/div></div>');
+						console.log(e);
+					}
+				});
+			};
+			
+			function withdrawalsDo(){
+				
+				var data = {
+					"id" :$("#withdrawalsId").val(),
+					"withdrawalsStatus":$("input[name='withdrawalsStatus']:checked").val()
+				};
+				
+				$.ajax({
+					type : 'POST',
+					url : GlobalData.TOKEN_URL + 'bigToken/BigAdminTokenupdate',
+					data : JSON.stringify(data),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+						console.log(data);
+						if(data.code=="200"){
+							$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">修改成功</div></div>');
+							$('#resultBox').empty();
+							// $("#querychineseAbbreviation").val("");
+					        // $("#queryenglishAbbreviations").val("");
+					        // $("#querybelongingStatus").val("");
+					        // $("#queryId").val("");
+					        // $("#querytokenStatus").val("");
+					 		getTokenAll(1,$("#rows").val());
+						}else{
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+						}
+					},
+					error : function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+						console.log(e);
+					}
+				});
+			};
+			
+			function transactionDo(){
+				
+				var data = {
+					"id" :$("#transactionId").val(),
+					"transactionStatus":$("input[name='transactionStatus']:checked").val()
+				};
+				
+				$.ajax({
+					type : 'POST',
+					url : GlobalData.TOKEN_URL + 'bigToken/BigAdminTokenupdate',
+					data : JSON.stringify(data),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+						console.log(data);
+						if(data.code=="200"){
+							$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">修改成功</div></div>');
+							$('#resultBox').empty();
+							// $("#querychineseAbbreviation").val("");
+					        // $("#queryenglishAbbreviations").val("");
+					        // $("#querybelongingStatus").val("");
+					        // $("#queryId").val("");
+					        // $("#querytokenStatus").val("");
+					 		getTokenAll(1,$("#rows").val());
+						}else{
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+						}
+					},
+					error : function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+						console.log(e);
+					}
+				});
+			};
+			
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

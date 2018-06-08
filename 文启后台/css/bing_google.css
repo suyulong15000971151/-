@@ -1,0 +1,21 @@
+#sitchg{width:100%;height:100%;position: fixed;top:0;left:0;background:rgba(0,0,0,.6);z-index: 999599;display:none;}
+#sitchg .sitch-box{display: flex;justify-content: center;align-items: center;width:100%;height:100%}
+#sitchg .sitch-box .content{width:40%;height:290px;background:#fff;border-radius: 5px;}
+#sitchg .sitch-box .content .title{width:100%;height:40px;border-bottom: 1px solid #ccc;line-height: 40px;background:#1ab394;color:#000}
+#sitchg .sitch-box .content .title span{text-indent: 10px;display: inline-block;}
+#sitchg .sitch-box .content .contain{width:90%;margin-top:40px;margin:25px auto;line-height: 30px;overflow: hidden;position: relative;height:210px;}
+
+#sitchg .sitch-box .content .contain .con-box{width:100%;margin:0 auto}
+#sitchg .sitch-box .content .contain .con-box .left{width:200px;float: left;display: inline-block;}
+#sitchg .sitch-box .content .contain .con-box .left #output{width:100px;height:100px;margin:0 auto;display: block;}
+#sitchg .sitch-box .content .contain .con-box .left #output canvas{width:100px;height:100px;margin:0 auto;display: block;}
+#sitchg .sitch-box .content .contain .con-box .left p{text-align: center;}
+
+#sitchg .sitch-box .content .contain .con-box .right{margin-left:200px;display: block;}
+#sitchg .sitch-box .content .contain .con-box .right .item label{margin-right:10px;display: inline-block;width:80px;font-weight: 400;}
+
+#sitchg .sitch-box .content .contain .set{text-align: center;clear: both;margin-top:30px}
+#sitchg .sitch-box .content .contain .set button{margin:0 20px}
+ #sitchg .sitch-box .content .contain .set button.btn-default{background: #fff;border:1px solid #eee;color:#000}
+#sitchg.sitch-box .content .contain .set button.btn-default:hover{background: #eee;}
+#sitchg.sitch-box .content .contain .set button.btn-success{background: #1ab394;border:1px solid #eee}

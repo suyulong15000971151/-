@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+		<link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
+		<link href="../../css/plugins/jQueryUI/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+		<!--<link rel="stylesheet" href="../../css/girds.css" />-->
+		<!--<link rel="stylesheet" href="../../css/iconfont.css" />
+		<link rel="stylesheet" href="../../css/animate.css" />-->
+		<link href="../../css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/style.css" />
+		<link rel="stylesheet" href="../../css/crepsd.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/bing_google.css" />
+	</head>
+
+	<body>
+
+		<!-- 这里是谷歌认证 -->
+		<div id="sitchg" class="animated dio-close">
+			<div class="sitch-box">
+				<div class="content animated" style="animation:all 1s linear 1s ;">
+					<div class="title">
+						<span>绑定谷歌身份验证</span>
+						<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain">
+						<div class="con-box">
+							<div class="left">
+								<div id="output"></div>
+								<p>密钥:<span id="googleKey"><span></p>
+							</div>
+							<div class="right">
+								<div class="item">
+									请先扫瞄二维码或手工输入密钥 将 手机 上生成的 动态验证码 填写到下边输入框
+								</div>
+								<div class="item">
+									<div class="item-box">
+										<label for="">设备名称</label>BIG
+									</div>
+								</div>
+								<div class="item">
+									<div class="item-box">
+										<label for="">谷歌验证码</label><input type="" name="" id="googleCode" value="" maxlength="6"/>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="set">
+							<button class="btn btn-default can-close">取消</button>
+							<button class="btn btn-success cof-close" onclick="googleauthdo();">确认</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 这里是修改密码 -->
+		<div id="sitchm" class="animated dio-close">
+			<div class="sitch-box">
+				<div class="content animated">
+					<div class="title">
+						<span>修改密码</span>
+						<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain">
+						<div class="item">
+							<label for="">原始密码</label><input type="password" class="form-control" id="password" maxlength="32"/>
+						</div>
+						<div class="item">
+							<label for="">新密码</label><input type="password" class="form-control" id="newPassword" maxlength="32"/>
+						</div>
+						<div class="item">
+							<label for="">新密码确认</label><input type="password" class="form-control" id="newPasswordS" maxlength="32"/>
+						</div>
+						<div class="set">
+							<button class="btn btn-default can-close">取消</button>
+							<button class="btn btn-success cof-close" onclick="passwordmodify();">确认</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<nav class="navbar-default navbar-static-side" role="navigation">
+			<div class="sidebar-collapse">
+				<ul class="nav metismenu" id="side-menu">
+					<li class="nav-header">
+						<div class="dropdown profile-element">
+							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+								<span class="clear"> <span class="block m-t-xs">
+                             </span> <span class="text-muted text-xs block" id="username"> <b class="caret"></b></span> </span>
+							</a>
+							<ul class="dropdown-menu animated fadeInRight m-t-xs">
+								<li>
+									<a href="" onclick="doLoginOut();">退出</a>
+									<a href="javascript:;" class="cre_psd">修改密码</a>
+									<a href="javascript:;" class="googles">绑定谷歌认证状态</a>
+								</li>
+							</ul>
+						</div>
+						<div class="logo-element">
+							IN+
+						</div>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">会员管理</span> <span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level collapse">
+							<li class="memberList">
+								<a href="../Member_management/memberList.html">未认证会员</a>
+							</li>
+							<li class="approvingList">
+								<a href="../Member_management/approvingList.html">审核中会员</a>
+							</li>
+							<li class="approvedMember">
+								<a href="../Member_management/approvedMember.html">已认证会员</a>
+							</li>
+							<li class="logList">
+								<a href="../Member_management/logList.html">会员登陆日志</a>
+							</li>
+
+						</ul>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-shopping-cart"></i> <span class="nav-label">资讯管理</span><span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level collapse">
+							<li class="advertise">
+								<a href="../Consulting_management/advertise.html">广告管理</a>
+							</li>
+							<li class="promote">
+								<a href="../Consulting_management/promote.html">推广管理</a>
+							</li>
+							<li class="articlelist">
+								<a href="../Consulting_management/articlelist.html">文章管理</a>
+							</li>
+							<!--<li class="pushgl">
+								<a href="../Consulting_management/pushgl.html">推送管理</a>
+							</li>-->
+
+						</ul>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">资金管理</span><span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level collapse">
+							<li class="auditCash">
+								<a href="../fund_management/auditCash.html">待审核提现</a>
+							</li>
+							<li class="cashRecord">
+								<a href="../fund_management/cashRecord.html">已审核提现</a>
+							</li>
+							<li class="fitRecord">
+								<a href="../fund_management/fitRecord.html">用户充值</a>
+							</li>
+							<li class="manfitAuth">
+								<a href="../fund_management/manfitAuth.html">待审核手动充值</a>
+							</li>
+							<li class="manfitLog">
+								<a href="../fund_management/manfitLog.html">已审核手动充值</a>
+							</li>
+							<li class="transferRecord">
+								<a href="../fund_management/transferRecord.html">用户转账记录</a>
+							</li>
+							<li class="transactionList">
+								<a href="../fund_management/transactionList.html">用户交易列表</a>
+							</li>
+
+						</ul>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">虚拟币管理</span><span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level collapse">
+							<li class="virmnyList">
+								<a href="../Virtual_management/virmnyList.html">虚拟币列表</a>
+							</li>
+							<li class="viradr">
+								<a href="../Virtual_management/viradr.html">可用地址列表</a>
+							</li>
+
+						</ul>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-envelope"></i> <span class="nav-label">代理管理 </span><span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level collapse">
+							<li class="agentAudit">
+								<a href="../Agency_management/agentAudit.html">待审核项目</a>
+							</li>
+							<li class="approvedProject">
+								<a href="../Agency_management/approvedProject.html">已审核项目</a>
+							</li>
+							<li class="agentTrade">
+								<a href="../Agency_management/agentTrade.html">用户交易单子</a>
+							</li>
+
+						</ul>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-pie-chart"></i> <span class="nav-label">业绩管理</span><span class="fa arrow"></span> </a>
+						<ul class="nav nav-second-level collapse">
+							<!-- <li class="sxfincome">
+								<a href="../Performance_management/sxfincome.html">手续费收益列表</a>
+							</li> -->
+							<li class="fitstatis">
+								<a href="../Performance_management/fitstatis.html">充值统计</a>
+							</li>
+							<li class="xnbstatis">
+								<a href="../Performance_management/xnbstatis.html">虚拟币流量统计</a>
+							</li>
+							<li class="cashtj">
+								<a href="../Performance_management/cashtj.html">提现统计</a>
+							</li>
+							<li class="sxfstatis">
+								<a href="../Performance_management/sxfstatis.html">手续费统计</a>
+							</li>
+
+						</ul>
+
+					</li>
+
+					<li>
+						<a href="#"><i class="fa fa-edit"></i> <span class="nav-label">系统管理</span><span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level collapse">
+							<li class="syspara">
+								<a href="../system_management/syspara.html">系统参数</a>
+							</li>
+							<li class="permission">
+								<a href="../system_management/permission.html">权限列表</a>
+							</li>
+							<li class="roleList">
+								<a href="../system_management/roleList.html">角色列表</a>
+							</li>
+							<li class="managerList">
+								<a href="../system_management/managerList.html">管理员列表</a>
+							</li>
+
+						</ul>
+					</li>
+
+				</ul>
+
+			</div>
+		</nav>
+
+		<div id="page-wrapper" class="gray-bg">
+			<div class="row border-bottom">
+				<nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+					<div class="navbar-header">
+						<a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+
+					</div>
+					<ul class="nav navbar-top-links navbar-right">
+
+						<li>
+							<a href="" onclick="doLoginOut()">
+								<i class="fa fa-sign-out"></i>退出
+							</a>
+						</li>
+					</ul>
+
+				</nav>
+			</div>
+			</ul>
+
+			</nav>
+		</div>
+
+		<script src="../../js/jquery-2.1.1.js"></script>
+		<script src="../../js/bootstrap.min.js"></script>
+		<script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<!-- Peity -->
+		<script src="../../js/plugins/peity/jquery.peity.min.js"></script>
+		<!-- Custom and plugin javascript -->
+		<script src="../../js/inspinia.js"></script>
+		<script src="../../js/common.js"></script>
+		<script src="../../js/plugins/pace/pace.min.js"></script>
+		<script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.qrcode.min.js"></script>
+		<script type="text/javascript" src="../../js/md5.js"></script>
+		
+		<script type="text/javascript" >
+		
+			//当前登陆用户ID
+			var adminUser=GlobalData.getUerInfo();
+			if(adminUser==null||adminUser.id==null||adminUser.id==""){
+				location.href = "../../login.html";
+			};
+			var bauId=adminUser.id;
+
+			$("#username").html(adminUser.name);
+			
+			function doLoginOut(){
+				location.href = "login.html";
+				localStorage.removeItem('adminUser');
+				var data = {
+					"bauId":bauId
+				};
+				$.ajax({
+					type : 'POST',
+					url : GlobalData.ADMIN_URL + 'adminuser/loginout',
+					data : JSON.stringify(data),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+					},
+					error : function(e) {
+						console.log(e);
+					}
+				});
+				
+			}
+			function googleauthdo(){
+				
+				var googleCode=$("#googleCode").val();
+				var isNumG = GlobalUtils.checkStr(googleCode,3);
+				if (googleCode==""||googleCode=="null") {
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入验证码</div></div>');
+				}else if (!isNumG) {
+					$('#googleCode').val('');
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">验证码格式不正确</div></div>');
+				}else{
+					var data = {
+						"bauId":bauId,
+						"googleCode" :googleCode
+					};
+					$.ajax({
+						type : 'POST',
+						url : GlobalData.ADMIN_URL + 'adminuser/googleauthdo',
+						data : JSON.stringify(data),
+						contentType : "application/json",
+						dataType : 'json',
+						success : function(data) {
+							console.log(data);
+							if(data.code=="200"){
+								$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">谷歌身份认证绑定成功</div></div>');
+							}else{
+								$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+							}
+						},
+						error : function(e) {
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+							console.log(e);
+						}
+					});
+				}
+			}
+			
+			function passwordmodify(){
+				
+				var password=$("#password").val();
+				var newPassword = $("#newPassword").val();
+				var newPasswordS = $("#newPasswordS").val();
+				
+				if(password==null||password==""||password.length<1){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入原始密码</div></div>');
+				}else if(newPassword==null||newPassword==""||newPassword.length<1){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入新密码</div></div>');		
+				}else if(newPasswordS==null||newPasswordS==""||newPasswordS.length<1){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入确认新密码</div></div>');	
+				}else if(newPassword!=newPasswordS){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">新密码与确认密码输入不一致</div></div>');				
+				}else{
+					var data = {
+						"bauId":bauId,
+						"password" :hex_md5(password),
+						"newPassword" :hex_md5(newPassword),
+					};
+					$.ajax({
+						type : 'POST',
+						url : GlobalData.ADMIN_URL + 'adminuser/passwordmodify',
+						data : JSON.stringify(data),
+						contentType : "application/json",
+						dataType : 'json',
+						success : function(data) {
+							console.log(data);
+							if(data.code=="200"){
+								$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">密码成功</div></div>');
+								adminUser.password=hex_md5(newPassword);
+							}else{
+								$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+							}
+						},
+						error : function(e) {
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+							console.log(e);
+						}
+					});	
+				}	
+			}
+			
+			if(adminUser.permissionList.indexOf("waitApproveProjectQuery")!= -1){
+				$(".agentAudit").show();
+			}else{
+				$(".agentAudit").hide();
+			};	
+			if(adminUser.permissionList.indexOf("userBillListQuery")!= -1){
+				$(".agentTrade").show();
+			}else{
+				$(".agentTrade").hide();
+			};
+			if(adminUser.permissionList.indexOf("hasApproveProjectQuery")!= -1){
+				$(".approvedProject").show();
+			}else{
+				$(".approvedProject").hide();
+			};	
+			if(adminUser.permissionList.indexOf("advertManagerQuery")!= -1){
+				$(".advertise").show();
+			}else{
+				$(".advertise").hide();
+			};
+			if(adminUser.permissionList.indexOf("articleManagerQuery")!= -1){
+				$(".articlelist").show();
+			}else{
+				$(".articlelist").hide();
+			};
+			if(adminUser.permissionList.indexOf("extensionManagerQuery")!= -1){
+				$(".promote").show();
+			}else{
+				$(".promote").hide();
+			};
+			if(adminUser.permissionList.indexOf("waitReviewListQuery")!= -1){
+				$(".auditCash").show();
+			}else{
+				$(".auditCash").hide();
+			};
+			if(adminUser.permissionList.indexOf("hasReviewListQuery")!= -1){
+				$(".cashRecord").show();
+			}else{
+				$(".cashRecord").hide();
+			};
+			
+			if(adminUser.permissionList.indexOf("userRechargeListQuery")!= -1){
+				$(".fitRecord").show();
+			}else{
+				$(".fitRecord").hide();
+			};
+			if(adminUser.permissionList.indexOf("waitHandListQuery")!= -1){
+				$(".manfitAuth").show();
+			}else{
+				$(".manfitAuth").hide();
+			};
+			if(adminUser.permissionList.indexOf("hasHandListQuery")!= -1){
+				$(".manfitLog").show();
+			}else{
+				$(".manfitLog").hide();
+			};
+			if(adminUser.permissionList.indexOf("userTransferListQuery")!= -1){
+				$(".transferRecord").show();
+			}else{
+				$(".transferRecord").hide();
+			};
+			if(adminUser.permissionList.indexOf("hrMemberListQuery")!= -1){
+				$(".approvedMember").show();
+			}else{
+				$(".approvedMember").hide();
+			};
+			if(adminUser.permissionList.indexOf("ringMemberListQuery")!= -1){
+				$(".approvingList").show();
+			}else{
+				$(".approvingList").hide();
+			};
+			if(adminUser.permissionList.indexOf("memberLoginLogsQuery")!= -1){
+				$(".logList").show();
+			}else{
+				$(".logList").hide();
+			};
+			if(adminUser.permissionList.indexOf("urMemberListQuery")!= -1){
+				$(".memberList").show();
+			}else{
+				$(".memberList").hide();
+			};
+			if(adminUser.permissionList.indexOf("withdrawalStatisticsQuery")!= -1){
+				$(".cashtj").show();
+			}else{
+				$(".cashtj").hide();
+			};	
+			if(adminUser.permissionList.indexOf("RechargeStatisticsQuery")!= -1){
+				$(".fitstatis").show();
+			}else{
+				$(".fitstatis").hide();
+			};	
+			if(adminUser.permissionList.indexOf("chargeFeeStatisticsQuery")!= -1){
+				$(".sxfstatis").show();
+			}else{
+				$(".sxfstatis").hide();
+				
+			};
+			if(adminUser.permissionList.indexOf("tokenFlowStatisticsQuery")!= -1){
+				$(".xnbstatis").show();
+			}else{
+				$(".xnbstatis").hide();
+			};
+			if(adminUser.permissionList.indexOf("adminUserListQuery")!= -1){
+				$(".managerList").show();
+			}else{
+				$(".managerList").hide();
+			};	
+			if(adminUser.permissionList.indexOf("permissionListQuery")!= -1){
+				$(".permission").show();
+			}else{
+				$(".permission").hide();
+			};		
+			if(adminUser.permissionList.indexOf("roleListQuery")!= -1){
+				$(".roleList").show();
+			}else{
+				$(".roleList").hide();
+			};
+			if(adminUser.permissionList.indexOf("systemParamListQuery")!= -1){
+				$(".syspara").show();
+			}else{
+				$(".syspara").hide();
+			};
+			if(adminUser.permissionList.indexOf("usefulAdressList")!= -1){
+				$(".viradr").show();
+			}else{
+				$(".viradr").hide();
+			};
+			if(adminUser.permissionList.indexOf("tokenListQuery")!= -1){
+				$(".virmnyList").show();
+			}else{
+				$(".virmnyList").hide();
+			};
+			
+			
+		</script>
+
+	</body>
+
+</html>

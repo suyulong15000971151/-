@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>手续费统计</title>
+
+		<link href="../../css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
+		<link href="../../css/plugins/jQueryUI/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+		<link href="../../css/style.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/girds.css" />
+		<link rel="stylesheet" href="../../css/iconfont.css" />
+		<link href="../../css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/animate.css" />
+		<link href="../../css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
+		<link href="../../css/chosen.css" rel="stylesheet">
+		<link href="../../css/coss.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/sxfstatis.css" />
+
+		<link rel="stylesheet" href="../../css/crepsd.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/message.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/bing_google.css"/>
+		<link rel="stylesheet" href="../../css/plugins/datapicker/datepicker3.css">
+		
+	</head>
+
+	<body>
+			<!--这里是头部 -->
+			<div id="header"></div>
+            <div id="bod-com" class="animated" style="animation-delay: 0.5s; opacity: 0; ">
+				
+				<div class="row wrapper border-bottom white-bg page-heading">
+					<div class="col-lg-10">
+						<!--<h2>jqGrid</h2>-->
+						<ol class="breadcrumb">
+							<li>
+								<a href="../Member_management/memberList.html">首页</a>
+							</li>
+							<li>
+								<a>手续费统计</a>
+							</li>
+						</ol>
+					</div>
+				</div>
+
+				<!--这里是填写资料-->
+				<div class="material">
+					<div class="material-box">
+						<div class="row">
+							
+							<div class="col-md-4 col-sm-12" id="data_1">
+								<div class="row">
+									<label for="" class="col-md-4">开始时间：</label>
+									<div class="col-md-8 input-group date">
+					                    <span class="input-group-addon fl "><i class="fa fa-calendar"></i></span>
+					                    <input type="text" class="form-control" value="" name="startDateTimeS" id="startDateTimeS" />
+					                </div>
+								</div>
+								
+							</div>
+							<div class="col-md-4 col-sm-12" id="data_2">
+								<div class="row">
+									<label for="" class="col-md-4">结束时间：</label>
+									<div class="col-md-8 input-group date">
+					                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					                    <input type="text" class="form-control" value="" name="endDateTimeS" id="endDateTimeS"/>
+					                </div>
+								</div>
+								
+							</div>
+						</div>
+						
+						
+					</div>
+				</div>
+
+				<!--这里是设置-->
+
+				<div class="set" style="padding:5px 0px">
+					<div class="setbox">
+						<button class="btn btn-xs rest right" type="reset" onclick="resetSxfStatis();" id="btnRest">重置 <span class="iconfont icon-11zhongzhi"></span></button>
+						<button class="btn btn-xs search right" onclick="querySxfStatis();" id="btnSearch">查询  <span class="iconfont icon-sousuo"></span></button>
+					</div>
+				</div>
+
+				<div class="wrapper wrapper-content  animated fadeInRight" style="padding:0">
+					<div class="row">
+						<div class="col-lg-12 col-md-12">
+							<div class="ibox float-e-margins">
+
+								<div class="ibox-content" style="height:450px;overflow-y:scroll;">
+									<input type="hidden" id="total"/>
+									<input type="hidden" id="page"/>
+									<input type="hidden" id="rows"/>
+									
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>token类型名称</th>
+												<th>token数量</th>
+											</tr>
+										</thead>
+										<tbody id='resultBox'>
+										</tbody>
+									</table>
+								</div>
+								
+								<!--这里是分页-->
+                                <div class="pagss">
+									<div class="right">
+										<div id="pageToolbar"></div>
+									</div>
+								</div>	
+							</div>
+						</div>
+					</div>
+					<!--这里是分页-->
+				</div>
+			</div>
+		
+
+		<!-- Mainly scripts -->
+		<script src="../../js/jquery-2.1.1.js"></script>
+		<script src="http://gosspublic.alicdn.com/aliyun-oss-sdk-4.4.4.min.js"></script>
+		<script src="../../js/bootstrap.min.js"></script>
+		<script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+		<!-- Peity -->
+		<script src="../../js/plugins/peity/jquery.peity.min.js"></script>
+
+	
+
+		<!-- Custom and plugin javascript -->
+		<script src="../../js/inspinia.js"></script>
+		<script src="../../js/plugins/pace/pace.min.js"></script>
+
+		<script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script>
+		<script src="../../js/plugins/datapicker/bootstrap-datepicker.js"></script>
+		 <script src="../../js/plugins/daterangepicker/daterangepicker.js"></script>
+		  <script src="../../js/query.js"></script>
+		  <script src="../../js/paging.js"></script>
+		  <script src="../../js/headercom.js"></script>
+		  <script src="../../js/common.js"></script>
+		  <script src="../../js/chosen.jquery.js"></script>
+		  <script src="../../js/message.js"></script>
+		  <script type="text/javascript" src="../../js/jquery.qrcode.min.js"></script>
+		  <script type="text/javascript" src="../../js/bootstrap-datepicker.zh-CN.js"></script>
+		<script type="text/javascript" src="../../js/GlobalData.js"></script>
+		  
+
+		<script>
+		
+			//当前登陆用户ID
+			var adminUser=GlobalData.getUerInfo();
+			if(adminUser==null||adminUser.id==null||adminUser.id==""){
+				location.href = "../../login.html";
+			};
+			
+			if(adminUser.permissionList.indexOf("chargeFeeStatisticsQuery")!= -1){
+				$("#btnRest").show();
+				$("#btnSearch").show();
+				$(".material").show();
+			}else{
+				$("#btnRest").hide();
+				$("#btnSearch").hide();
+				$(".material").hide();
+				$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">您没有权限访问这个页面</div></div>');
+			};	
+			
+			
+		     $('#startDateTimeS').datepicker({
+		        language: 'zh-CN',
+		        autoclose: true,
+		        todayHighlight: true,
+		        todayBtn: "linked",
+		        keyboardNavigation: false,
+		        forceParse: false,
+		        calendarWeeks: false,
+		        autoclose: true,
+		        format: "yyyy-mm-dd",
+		        showWeek:false,
+		    });
+		    
+		    //结束时间：
+		    $('#endDateTimeS').datepicker({
+		        language: 'zh-CN',
+		        autoclose: true,
+		        todayHighlight: true,
+		        todayBtn: "linked",
+		        keyboardNavigation: false,
+		        forceParse: false,
+		        calendarWeeks: false,
+		        autoclose: true,
+		        format: "yyyy-mm-dd",
+		    });
+		
+			$(document).ready(function() {
+				getSxfStatisAll(1,10);
+				setTimeout(function(){
+					$("#side-menu>li").eq(6).addClass("active");
+					$("#side-menu>li").eq(6).find("ul").addClass("in");
+					$("#side-menu li .sxfstatis").addClass("active");
+				},2000);
+			});
+			
+			var p = new Paging();
+			p.init({target:'#pageToolbar',pagesize:10,count:$('#total').val(), toolbar: true,hash: true,callback:function(page,size,count){
+				getSxfStatisAll(page,$("#rows").val());
+			},go:function(p){
+				getSxfStatisAll(p,$("#rows").val());
+			},changePagesize:function(ps){
+				getSxfStatisAll($("#page").val(),ps);
+			}});
+				
+			//获取所有的统计数据
+			function getSxfStatisAll(page,rows){
+				var data = {
+					"page" : page==null||page==""?1:page,
+					"rows" : rows==null||rows==""?10:rows,
+					"startDate":$("#startDateTimeS").val()==null||$("#startDateTimeS").val()==""?GlobalUtils.getBeforeMonth(new Date(),1,"-"):$("#startDateTimeS").val(),
+					"stopDate":$("#endDateTimeS").val()==null||$("#endDateTimeS").val()==""?GlobalUtils.getNowDate("-"):$("#endDateTimeS").val()
+				};
+				console.log(data);
+				$.ajax({
+					type : 'POST',
+					async: false,
+					url : GlobalData.TRANSACTION_URL + 'transaction/liststartDateAndStopDate',
+					data : JSON.stringify(data),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+						console.log(data);
+						$('#resultBox').empty();
+						if(data.code=="200"){
+							//$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">获取手续费统计列表成功</div></div>');
+							var res = data.data || [];
+							console.log("数组"+res);
+							for (var i = 0; i < res.length; i++) {
+								var create_tr = $('<tr></tr>');
+								var _html ='<td>'+res[i].tokenName+'</td>'+
+										'<td>'+res[i].tokenNum+'</td>';
+								create_tr.html(_html);
+								$('#resultBox').append(create_tr);
+							};
+							
+							$('#page').val(page==null||page==""?1:page);
+							$('#total').val(data.data.length);
+							$('#rows').val(rows==null||rows==""?10:rows);
+							
+							//重新渲染分页使用render
+							p.render({count:$('#total').val(),pagesize:rows,current:page});
+						}else{
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+						}
+					},
+					error : function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+						console.log(e);
+					}
+				});
+			};
+			
+			function querySxfStatis(){
+		        var startDateTimeS = $("#startDateTimeS").val();
+		        var endDateTimeS = $("#endDateTimeS").val();
+		        var d1 = new Date(startDateTimeS.replace(/\-/g, "\/"));
+		        var d2 = new Date(endDateTimeS.replace(/\-/g, "\/"));
+		
+		        if (startDateTimeS != "" && endDateTimeS != "") {
+		        	if(d1 > d2){
+		        		$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">开始日期不能大于结束日期</div></div>');
+		        	}else{
+		        		 getSxfStatisAll(1,$("#rows").val());
+		        	}
+		        }else{
+		        		$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入正确格式的数据查询</div></div>');
+		        }
+			};
+			
+			function resetSxfStatis(){
+		        $("#startDateTimeS").val("");
+		        $("#endDateTimeS").val("");
+		 		getSxfStatisAll(1,$("#rows").val());
+			};
+		</script>
+
+	</body>
+
+</html>
+

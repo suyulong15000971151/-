@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>管理员列表</title>
+
+		<link href="../../css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
+		<link href="../../css/plugins/jQueryUI/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+		<link href="../../css/style.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/girds.css" />
+		<link rel="stylesheet" href="../../css/iconfont.css" />
+		<link href="../../css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/animate.css" />
+		<link rel="stylesheet" href="../../css/chosen.css" />
+		<link rel="stylesheet" href="../../css/coss.css" />
+		<link rel="stylesheet" href="../../css/managerList.css" />
+
+		<link rel="stylesheet" href="../../css/crepsd.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/message.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/bing_google.css"/>
+		
+	</head>
+
+	<body>
+
+		<!--这里是提示确认-->
+		<div id="sitch" class="animated dio-close">
+			<div class="sitch-box">
+				<div class="content animated">
+					<div class="title">
+						<span>提示</span>
+						<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain">
+						<div class="tip-con" id="statusText">
+							确定停用此用户吗？
+						</div>
+						<div class="set">
+							<input type="hidden" id="setUserId" value=""/>
+							<input type="hidden" id="setUserStatus" value="" />
+							<button class="btn btn-default can-close">取消</button>
+							<button class="btn btn-success cof-close" onclick="setAdminUser();">确认</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<!--这里是提示确认-->
+		<div id="deleteDiv" class="animated dio-close">
+			<div class="sitch-box">
+				<div class="content animated">
+					<div class="title">	
+						<span>提示</span>
+						<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain">
+						<div class="tip-con">
+							确定删除此用户吗？
+						</div>
+						<div class="set">
+							<input type="hidden" id="delUserId" />
+							<button class="btn btn-default can-close">取消</button>
+							<button class="btn btn-success cof-close" onclick="delAdminUser();">确认</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--这里是分配角色弹窗-->
+		<div id="Allocation" class="animated dio-close">
+			<div class="Allocation-box">
+				<div class="content animated">
+					<div class="title">
+						<span>分配角色</span>
+						<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+					</div>
+					<div class="contain">
+						<div class="contain-item">
+							<label for="">角色</label>
+							<input type="hidden" id="userId">
+							<select name="" class="form-control" id="roleListNew">
+							</select>
+						</div>
+						
+						<div class="bom-set">
+							<button class="btn btn-default can-close">取消</button>
+							<button class="btn btn-success cof-close" onclick="modifyRole();">确定</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+
+
+			<!--这里是通过没通过弹窗-->
+			<div id="adopt" class="animated dio-close">
+				<div class="adopt-box">
+					<div class="content animated">
+						<div class="title">
+							<span id="title">新增</span>
+							<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+						</div>
+						<div class="contain">
+							<input type="hidden" id="id" value="">
+							<div class="contain-item">
+								<label for="">手机号</label><input type="text" class="form-control" id="name" maxlength="11"/>
+							</div>
+							<div class="contain-item">
+								<label for="">密码</label><input type="password" class="form-control" id="password" maxlength="32"/>
+							</div>
+							<div class="contain-item">
+								<label for="">状态</label>
+								<select name="" class="form-control" id="status">
+									<option value="1" selected="">启用</option>
+									<option value="0">停用</option>
+								</select>
+							</div>
+							<div class="contain-item" id="roleDiv">
+								<label for="">角色</label>
+								<select name="" class="form-control" id="roleList">
+									
+								</select>
+							</div>
+							<div class="new-set">
+								<button class="btn btn-default can-close">关闭</button>
+								<button class="btn btn-success cof-close" onclick="saveManager();">保存</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			
+			
+			
+			<!--这里是头部 -->
+			<div id="header"></div>
+			
+			
+            <div id="bod-com" class="animated" style="animation-delay: 0.5s; opacity: 0; ">
+			
+				<div class="row wrapper border-bottom white-bg page-heading">
+					<div class="col-lg-10">
+						<!--<h2>jqGrid</h2>-->
+						<ol class="breadcrumb">
+							<li>
+								<a href="../Member_management/memberList.html">首页</a>
+							</li>
+							<li>
+								<a>管理员列表</a>
+							</li>
+						</ol>
+					</div>
+				</div>
+
+				<!--这里是填写资料-->
+				<div class="material">
+					<div class="material-box">
+						<div class="row">
+
+							<div class="col-md-4 col-sm-12">
+								<label for="" class="">手机号：</label>
+								<input type="text" class="form-control" id="queryname"/>
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<label for="" class="">状态：</label>
+								<select name="" class="form-control" id="querystatus">
+									<option value="">全部</option>
+									<option value="1">启用</option>
+									<option value="0">停用</option>
+								</select>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+
+				<!--这里是设置-->
+
+				<div class="set" style="padding: 5px 0px;">
+					<div class="setbox">
+						<button class="btn-left btn btn-xs btn-default go creta" type="submit" id='addManager'>新增 <span class="iconfont icon-add"></span></button>
+						<button class="btn-left btn btn-xs btn-default go creta" type="submit" id='moidfyManager'>修改 <span class="iconfont icon-xiugai07"></span></button>
+						<button class="btn-left btn btn-xs btn-default go creta-pow" type="submit" id='setRole'>分配角色  <span class="iconfont icon-fenpei"></button>
+						<button class="btn-left btn btn-xs btn-default no-adopt" id='deleteManager'>删除  <span class="iconfont icon-dustbin_icon"></button>
+						<button class="btn btn-xs rest right" type="reset" id="resetAdminUser">重置 <span class="iconfont icon-11zhongzhi"></span></button>
+						<button class="btn btn-xs search right" onclick="queryAdminUser();" id="queryAdminUser">查询  <span class="iconfont icon-sousuo"></span></button>
+					</div>
+				</div>
+
+				<div class="wrapper wrapper-content  animated fadeInRight">
+					<div class="row">
+						<div class="col-lg-12 col-md-12">
+							<div class="ibox float-e-margins">
+
+								<div class="ibox-content" style="height:450px;overflow-y:scroll;">
+									<input type="hidden" id="total"/>
+									<input type="hidden" id="page"/>
+									<input type="hidden" id="rows"/>
+									
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>
+													<div class="checkbox"><input type="checkbox" id="allchek" class="" /><label for="checkboxs25"></label></div>
+												</th>
+												<th>手机号</th>
+												<th>状态</th>
+												<th>角色名称</th>
+												<th>google二维码状态</th>
+												<th>更新时间</th>
+											</tr>
+										</thead>
+										<tbody id='resultBox'>
+										</tbody>
+									</table>
+
+								</div>
+
+								<div class="pagss">
+									<div class="right">
+										<div id="pageToolbar"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+
+		<!-- Mainly scripts -->
+		<script src="../../js/jquery-2.1.1.js"></script>
+		<script src="http://gosspublic.alicdn.com/aliyun-oss-sdk-4.4.4.min.js"></script>
+		<script src="../../js/bootstrap.min.js"></script>
+		<script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+		<!-- Peity -->
+		<script src="../../js/plugins/peity/jquery.peity.min.js"></script>
+
+		<!-- Custom and plugin javascript -->
+		<script src="../../js/inspinia.js"></script>
+		<script src="../../js/plugins/pace/pace.min.js"></script>
+
+		<script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script>
+		<script src="../../js/chosen.jquery.js"></script>
+		<script src="../../js/query.js"></script>
+		<script src="../../js/paging.js"></script>
+		<script src="../../js/common.js"></script>
+		<script src="../../js/headercom.js"></script>
+		<script src="../../js/chosen.jquery.js"></script>
+		<script src="../../js/message.js"></script>
+		<script type="text/javascript" src="../../js/jquery.qrcode.min.js"></script>
+		<script type="text/javascript" src="../../js/GlobalData.js"></script>
+		<script type="text/javascript" src="../../js/md5.js"></script>
+
+		<script>
+			//当前登陆用户ID
+			var adminUser=GlobalData.getUerInfo();
+			if(adminUser==null||adminUser.id==null||adminUser.id==""){
+				location.href = "../../login.html";
+			};
+			var bauId=adminUser.id;
+			var oldPassword=adminUser.password;
+
+		
+			if(adminUser.permissionList.indexOf("adminUserListQuery")!= -1){
+				$("#resetAdminUser").show();
+				$("#queryAdminUser").show();
+				$(".material").show();
+			}else{
+				$("#resetAdminUser").hide();
+				$("#queryAdminUser").hide();
+				$(".material").hide();
+				$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">您没有权限访问这个页面</div></div>');
+			};	
+			if(adminUser.permissionList.indexOf("adminUserListAdd")!= -1){
+				$("#addManager").show();
+			}else{
+				$("#addManager").hide();
+			};	
+			if(adminUser.permissionList.indexOf("adminUserListEdit")!= -1){
+				$("#moidfyManager").show();
+			}else{
+				$("#moidfyManager").hide();
+			};
+			if(adminUser.permissionList.indexOf("adminUserListRollPermission")!= -1){
+				$("#setRole").show();
+			}else{
+				$("#setRole").hide();
+			};	
+			if(adminUser.permissionList.indexOf("adminUserListDelete")!= -1){
+				$("#deleteManager").show();
+			}else{
+				$("#deleteManager").hide();
+			};
+			
+			$(document).ready(function() {
+				getAdminUserAll(1,10);
+				
+				//侧栏显示高亮
+				setTimeout(function(){
+					$("#side-menu>li").eq(7).addClass("active");
+					$("#side-menu>li").eq(7).find("ul").addClass("in");
+					$("#side-menu li .managerList").addClass("active");
+				},2000);
+				
+				$(function() {
+					$('.dept_select').chosen();
+				});
+
+				//这里是点击权限分配效果
+				$("#Allocation .Allocation-box .content .contain .con-title i").click(function() {
+					if($(this).parents(".con-title").find(".check-item").css("display") == "block") {
+						$(this).css({
+							"transform": "rotate(0deg)"
+						});
+						$(this).parents(".con-title").find(".check-item").slideToggle();
+					} else {
+						$(this).css({
+							"transform": "rotate(90deg)"
+						});
+						$(this).parents(".con-title").find(".check-item").slideToggle();
+					}
+				});
+				
+				//这里是点击按钮选择
+				$("#setRole").click(function(evt) {
+					var res=$("input[type='checkbox'][class='item-check']:checked");
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');				
+					}else{
+						evt.stopPropagation();
+						$("#Allocation").css("display", "block");
+						$("#Allocation").addClass("fadeIn");
+						$("#Allocation .content").addClass("zoomInDown");
+						var resList=res[0].value.split("||");
+						console.log(resList);
+						$("#userId").val(resList[0]);
+						
+						$("#roleListNew option[value="+resList[2]+"]").attr('selected', true);
+					}					
+				});
+
+				$("#Allocation .title a").click(function(evt) {
+					evt.stopPropagation();
+					$("#Allocation").removeClass("fadeIn");
+					$("#Allocation .content").removeClass("zoomInDown");
+					$("#Allocation").addClass("fadeOut");
+					$("#Allocation .content").addClass("zoomOutDown");
+					t = setTimeout(function() {
+						$("#Allocation").removeClass("fadeOut");
+						$("#Allocation .content").removeClass("zoomOutDown");
+						$("#Allocation").css("display", "none");
+					}, 1000);
+				});
+				// //这里是 是否启用弹窗
+				// $("table td span").click(function(evt) {
+					// evt.stopPropagation();
+					// $("#sitch").css("display", "block");
+					// $("#sitch").addClass("fadeIn");
+					// $("#sitch .content").addClass("zoomInDown");
+				// });
+
+				$("#sitch .title a").click(function(evt) {
+					evt.stopPropagation();
+					$("#sitch").removeClass("fadeIn");
+					$("#sitch .content").removeClass("zoomInDown");
+					$("#sitch").addClass("fadeOut");
+					$("#sitch .content").addClass("zoomOutDown");
+					t = setTimeout(function() {
+						$("#sitch").removeClass("fadeOut");
+						$("#sitch .content").removeClass("zoomOutDown");
+						$("#sitch").css("display", "none");
+					}, 1000);
+				});
+
+				//这里是点击按钮选择
+				$("#allchek").click(function() {
+					if($(this).is(':checked')) {
+						$(".wrapper-content table .item-check").prop("checked", "true");
+					} else {
+						$(".wrapper-content table .item-check").prop("checked", "");
+					}
+				});
+				
+				$("#addManager").click(function(evt) {
+					evt.stopPropagation();
+					$("#adopt").css("display", "block");
+					$("#adopt").addClass("fadeIn");
+					$("#adopt .content").addClass("zoomInDown");
+					$("#id").val("");
+					$("#name").val("");
+					$("#password").val("");
+					$("#roleDiv").show();
+				});
+				
+				$("#moidfyManager").click(function(evt) {
+					
+					var res=$("input[type='checkbox'][class='item-check']:checked");
+					
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');				
+					}else{
+						evt.stopPropagation();
+						$("#adopt").css("display", "block");
+						$("#adopt").addClass("fadeIn");
+						$("#adopt .content").addClass("zoomInDown");
+						$("#title").html("修改");
+						
+						var resList=res[0].value.split("||");
+						console.log(resList);
+						$("#id").val(resList[0]);
+						$("#name").val(resList[1]);
+						$("#password").val(resList[3]);
+						$("#roleDiv").hide();
+						$("#roleList option[value='"+resList[2]+"']").attr("selected","selected");
+					}					
+				});
+				
+				$("#deleteManager").click(function(evt) {
+					
+					var res=$("input[type='checkbox'][class='item-check']:checked");
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');					
+					}else{
+						evt.stopPropagation();
+						$("#deleteDiv").css("display", "block");
+						$("#deleteDiv").addClass("fadeIn");
+						$("#deleteDiv .content").addClass("zoomInDown");
+						
+						var resList=res[0].value.split("||");
+						console.log(resList);
+						$("#delUserId").val(resList[0]);
+					};	
+				});
+				
+
+				$("#adopt .title a").click(function(evt) {
+					evt.stopPropagation();
+					$("#adopt").removeClass("fadeIn");
+					$("#adopt .content").removeClass("zoomInDown");
+					$("#adopt").addClass("fadeOut");
+					$("#adopt .content").addClass("zoomOutDown");
+					t = setTimeout(function() {
+						$("#adopt").removeClass("fadeOut");
+						$("#adopt .content").removeClass("zoomOutDown");
+						$("#adopt").css("display", "none");
+					}, 1000);
+				});
+				
+				$("#resetAdminUser").click(function(evt) {
+					$("#queryname").val("");
+					$("#querystatus").val("");
+					getAdminUserAll(1,$("#rows").val());
+				});
+				querylistrole();
+			});
+			
+			
+			//设置用户状态
+			function setUserStatus(id,status){
+				if(adminUser.permissionList.indexOf("adminUserListWorkStatus")!= -1){
+					if(status!=null&&status==0){
+						$("#sitch").css("display", "block");
+						$("#sitch").addClass("fadeIn");
+						$("#sitch .content").addClass("zoomInDown");
+						$("#statusText").html("确定启用此用户吗？");
+						$("#setUserStatus").val(1);
+						$("#setUserId").val(id);
+					}
+				}
+				
+				if(adminUser.permissionList.indexOf("adminUserListStopStatus")!= -1){
+					if(status!=null&&status==1){
+						$("#sitch").css("display", "block");
+						$("#sitch").addClass("fadeIn");
+						$("#sitch .content").addClass("zoomInDown");
+						$("#statusText").html("确定停用此用户吗？");
+						$("#setUserStatus").val(0);
+						$("#setUserId").val(id);
+					}
+				}
+			};
+			
+			
+			var p = new Paging();
+			p.init({target:'#pageToolbar',pagesize:10,count:$('#total').val(), toolbar: true,hash: true,callback:function(page,size,count){
+				getAdminUserAll(page,$("#rows").val());
+			},go:function(p){
+				getAdminUserAll(p,$("#rows").val());
+			},changePagesize:function(ps){
+				getAdminUserAll($("#page").val(),ps);
+			}});
+			
+			//获取所有的后台管理用户
+			function getAdminUserAll(page,rows){
+				var data = {
+					"page" : page==null||page==""?1:page,
+					"rows" : rows==null||rows==""?10:rows,
+					"name" :GlobalUtils.changeBlank($("#queryname").val()),
+					"status" :$("#querystatus").val(),
+					"bauId":bauId
+				};
+				$.ajax({
+					type : 'POST',
+					async: false,
+					url : GlobalData.ADMIN_URL + 'adminuser/querylistadminuser',
+					data : JSON.stringify(data),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+						console.log(data);
+						$('#resultBox').empty();
+						if(data.code=="200"&&data.data.objectList!=null&&data.data.objectList.length>0){
+//							$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">获取后台用户列表成功</div></div>');
+							var res=data.data.objectList;
+							console.log("数组"+res);
+							for (var i = 0; i < res.length; i++) {
+								var create_tr = $('<tr></tr>');
+								var _html =
+								        '<td>'+
+											'<div class="checkbox"><input type="checkbox" id="checkboxs2" class="item-check" value="'+res[i].id+"||"+res[i].name+"||"+res[i].status+"||"+res[i].password+'" /><label for="checkboxs2"></label></div>'+
+										'</td>'+
+										'<td>'+res[i].name+'</td>'+
+										'<td>'+(res[i].status!=null&&res[i].status==1?'<span class="label label-primary" onClick="setUserStatus('+res[i].id+','+res[i].status+');">启用</span>':'<span class="label label-danger" onClick="setUserStatus('+res[i].id+','+res[i].status+');">停用</span>')+'</td>'+
+										'<td>'+res[i].roleName+'</td>'+
+										'<td>'+(res[i].googleStatus!=null&&res[i].googleStatus==1?"已认证":"未认证")+'</td>'+
+										'<td>'+GlobalUtils.getTimeFull(res[i].createtime,"-")+'</td>';
+								create_tr.html(_html);
+								$('#resultBox').append(create_tr);
+							};
+							
+							$('#page').val(page==null||page==""?1:page);
+							$('#total').val(data.data.total);	
+							$('#rows').val(rows==null||rows==""?10:rows);		
+							
+							//重新渲染分页使用render
+							p.render({count:$('#total').val(),pagesize:rows,current:page});
+							
+						}else{
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+						}
+					},
+					error : function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+						console.log(e);
+					}
+				});
+			};
+			
+			function queryAdminUser(){
+				getAdminUserAll(1,$("#rows").val());
+			}
+			
+			//获取当前可用的角色列表
+			function querylistrole(){
+				var data = {
+					"bauId":bauId,
+					"rows" :10,
+					"page" : 1,
+					"roleStatus" :0
+				};
+				$.ajax({
+					type : 'POST',
+					url : GlobalData.ADMIN_URL + 'adminuser/querylistrole',
+					data : JSON.stringify(data),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+						console.log(data);
+						if(data.code=="200"){
+							   $("#roleList").empty();
+							   $("#roleListNew").empty();
+							   var select = $("#roleList").append('<option value="">请选择</option>');
+							   var selectNew = $("#roleListNew").append('<option value="">请选择</option>');
+							   var res=data.data.objectList;
+							   for (var i = 0; i < res.length; i++) {
+									select.append('<option value="'+ res[i].id +'">' + res[i].roleName + '</option>');
+									selectNew.append('<option value="'+ res[i].id +'">' + res[i].roleName + '</option>');
+							   };
+						}else{
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+						}
+					},
+					error : function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+						console.log(e);
+					}
+				});
+			};
+			
+			
+			//新增或者编辑管理员
+			function saveManager(){
+				
+				var id=$("#id").val();
+				
+				var name=$("#name").val();
+				var isPhone = GlobalUtils.checkStr(name, 0);
+				var password=$("#password").val();
+				var status = $('#status').val();
+				var roleId = $('#roleList').val();
+				
+				if (name == "") {
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入手机号</div></div>');
+				}else if (!isPhone) {
+					$('#name').val('');	
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">手机号格式不正确</div></div>');
+				}else if (password == "") {
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请输入密码</div></div>');
+				}else{
+					if(id==null||id==""||id=="null"){
+						if (roleId == "") {
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请选择角色</div></div>');
+						}else{
+							var data = {
+								"bauId":bauId,
+								"name" :GlobalUtils.changeBlank(name),
+								"status" : status,
+								"password" :hex_md5(password),
+								"roleId":roleId
+							};
+							$.ajax({
+								type : 'POST',
+								url : GlobalData.ADMIN_URL + 'adminuser/addadminuser',
+								data : JSON.stringify(data),
+								contentType : "application/json",
+								dataType : 'json',
+								success : function(data) {
+									console.log(data);
+									if(data.code=="200"){
+										$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">增加用户成功</div></div>');
+										getAdminUserAll(1,$("#rows").val());
+									}else{
+										$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+									}
+								},
+								error : function(e) {
+									$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+									console.log(e);
+								}
+							});
+						}	
+					}else{
+						var newPassword="";
+						if(oldPassword!=password){
+							if(oldPassword==hex_md5(password)){
+								newPassword=oldPassword;
+							}else{
+								newPassword=hex_md5(password);
+							}
+						}else{
+							newPassword=password;
+						}
+						var data = {
+							"bauId":bauId,
+							"name" :name,
+							"status" : status,
+							"password" :newPassword,
+							"roleId":roleId,
+							"id":id
+						};
+						
+						$.ajax({
+							type : 'POST',
+							url : GlobalData.ADMIN_URL + 'adminuser/editadminuser',
+							data : JSON.stringify(data),
+							contentType : "application/json",
+							dataType : 'json',
+							success : function(data) {
+								console.log(data);
+								if(data.code=="200"){
+									$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">修改用户成功</div></div>');
+									getAdminUserAll(1,$("#rows").val());
+								}else{
+									$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+								}
+							},
+							error : function(e) {
+								$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+								console.log(e);
+							}
+						});
+					}
+				}
+			};
+			//修改角色
+			function modifyRole(){
+				var id=$("#userId").val();	
+				var roleId=$("#roleListNew").val();	
+				if (roleId==null||roleId == ""||roleId.length<1) {
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请选择角色</div></div>');
+				}else{
+					var data = {
+						"bauId":bauId,
+						"id" :id,
+						"roleId":roleId
+					};
+					$.ajax({
+						type : 'POST',
+						url : GlobalData.ADMIN_URL + 'adminuser/editadminuser',
+						data : JSON.stringify(data),
+						contentType : "application/json",
+						dataType : 'json',
+						success : function(data) {
+							console.log(data);
+							if(data.code=="200"){
+								$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">修改用户成功</div></div>');
+								getAdminUserAll(1,$("#rows").val());
+							}else{
+								$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+							}
+						},
+						error : function(e) {
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+							console.log(e);
+						}
+					});
+				}
+			};
+			
+			//删除角色
+			function delAdminUser(){
+				
+				var id=$("#delUserId").val();	
+				var data = {
+					"bauId":bauId,
+					"id" :id
+				};
+				$.ajax({
+					type : 'POST',
+					url : GlobalData.ADMIN_URL + 'adminuser/deladminuser',
+					data : JSON.stringify(data),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+						console.log(data);
+						if(data.code=="200"){
+							$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">修改用户成功</div></div>');
+							getAdminUserAll(1,$("#rows").val());
+						}else{
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+						}
+					},
+					error : function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+						console.log(e);
+					}
+				});
+			};
+			
+			
+			//停用或者启用用户
+			function setAdminUser(){
+				var id=$("#setUserId").val();	
+				var status=$("#setUserStatus").val();	
+				var data = {
+					"bauId":bauId,
+					"id" :id,
+					"status":status
+				};
+				$.ajax({
+					type : 'POST',
+					url : GlobalData.ADMIN_URL + 'adminuser/editadminuser',
+					data : JSON.stringify(data),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+						console.log(data);
+						if(data.code=="200"){
+							$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">修改用户成功</div></div>');
+							getAdminUserAll(1,$("#rows").val());
+						}else{
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+						}
+					},
+					error : function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+						console.log(e);
+					}
+				});
+			}
+			
+			
+		</script>
+
+	</body>
+
+</html>

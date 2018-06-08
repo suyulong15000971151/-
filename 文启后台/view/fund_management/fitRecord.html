@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>用户充值</title>
+
+		<link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+		<link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
+
+		<link href="../../css/plugins/jQueryUI/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+		<link rel="stylesheet" href="../../css/girds.css" />
+		<link rel="stylesheet" href="../../css/iconfont.css" />
+		<link rel="stylesheet" href="../../css/animate.css" />
+		<link href="../../css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/chosen.css" />
+		<link rel="stylesheet" href="../../css/common.css" />
+		<link rel="stylesheet" href="../../css/coss.css" />
+		<link href="../../css/style.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/auditCash.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/message.css"/>
+		<link rel="stylesheet" href="../../css/crepsd.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/bing_google.css"/>
+		
+		<link rel="stylesheet" href="../../css/memberList.css" />
+		<link rel="stylesheet" href="../../css/approvedMember.css" />
+		<link rel="stylesheet" href="../../css/approvingList.css" />
+		
+		
+	</head>
+
+	<body>
+		
+		<!--这里是头部 -->
+			<div id="header"></div>
+			
+			
+            <div id="bod-com" class="animated" style="animation-delay: 0.5s; opacity: 0; ">
+				
+				<div class="row wrapper border-bottom white-bg page-heading">
+					<div class="col-lg-10">
+						<!--<h2>jqGrid</h2>-->
+						<ol class="breadcrumb">
+							<li>
+								<a href="../Member_management/memberList.html">首页</a>
+							</li>
+							<li>
+								<a>用户充值</a>
+							</li>
+
+						</ol>
+					</div>
+				</div>
+
+				<!--这里是填写资料-->
+				<div class="material">
+					<div class="material-box">
+						<div class="row">
+							<div class="col-md-4 col-sm-12">
+
+								<label for="" class="">会员ID:</label>
+								<input type="text" class="form-control memberIdInput" />
+
+							</div>
+							<div class="col-md-4 col-sm-12">
+								<label for="" class="">代币类型：</label>
+								<select name="" class="form-control tokenTypeInput" id="baaId">
+								</select>
+							</div>
+
+
+						</div>
+
+					</div>
+					
+				</div>
+
+				<!--这里是设置-->
+
+				<div class="set" style="padding: 5px 0px;">
+					<div class="setbox">
+						<div class="set-left">
+							
+						</div>
+							<button class="btn btn-xs rest right" type="reset" id="btnRest">重置 <span class="iconfont icon-11zhongzhi"></span></button>
+							<button class="btn btn-xs search right" id="btnSearch" onclick="conditionMember()">查询  <span class="iconfont icon-sousuo"></span></button>
+				
+						</div>
+				</div>
+
+				<div class="wrapper wrapper-content  animated fadeInRight" style="background:#fff">
+					<div class="row">
+						<div class="col-lg-12 col-md-12">
+							<div class="ibox float-e-margins">
+
+								<div class="wrapper-content" style="height:500px;overflow-y: scroll;">
+
+									<table class="table table-striped table-bordered table-hover" id="editable">
+										<input type="hidden" id="total" />
+										<input type="hidden" id="page" />
+										<input type="hidden" id="rows" />
+										<thead>
+										<tr>
+											<th class="">
+												<div class="checkbox"><input type="checkbox" id="allcheck" class="" /><label for="allchek"></label> </div>
+											</th>
+											<th class=''>ID</th>
+											<th class=''>用户ID</th>
+											<th class=''>用户名称</th>
+											<th class=''>审核状态</th>
+											<th class=''>到账状态</th>
+											<th class=''>提现Hash</th>
+											<th class=''>转入转出地址</th>
+											<th class=''>数量</th>
+											<th class=''>区块确认数</th>
+											<th class=''>token类型</th>
+											<th class=''>更新时间</th>
+
+										</tr>
+									</thead>
+
+								    <tbody>
+										</tbody>
+									</table>
+
+								</div>
+								<!--这里是分页-->
+								<div class="pagss">
+									<!--<div class="left">
+										<label for="">当前显示11到15条，共50条记录</label>
+									</div>-->
+									<div class="right">
+										<div id="pageToolbar"></div>
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+				
+
+			</div>
+		
+
+		<!-- Mainly scripts -->
+		<script src="../../js/jquery-2.1.1.js"></script>
+		<script src="http://gosspublic.alicdn.com/aliyun-oss-sdk-4.4.4.min.js"></script>
+		<script src="../../js/bootstrap.min.js"></script>
+		<script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+		<!-- Peity -->
+		<script src="../../js/plugins/peity/jquery.peity.min.js"></script>
+
+		<!-- jqGrid -->
+		<!--<script src="js/plugins/jqGrid/i18n/grid.locale-en.js"></script>
+		<script src="js/plugins/jqGrid/jquery.jqGrid.min.js"></script>-->
+
+		<!-- Custom and plugin javascript -->
+		<script src="../../js/inspinia.js"></script>
+		<script src="../../js/plugins/pace/pace.min.js"></script>
+		<script src="../../js/headercom.js"></script>
+		<script src="../../js/common.js"></script>
+        
+		<script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script>
+		<script src="../../js/chosen.jquery.js"></script>
+		<script src="../../js/message.js"></script>
+		<script src="../../js/query.js"></script>
+		<script src="../../js/paging.js"></script>
+		<script type="text/javascript" src="../../js/jquery.qrcode.min.js"></script>
+		
+		<!--<script src="../../js/fund_manager/auditCash.js"></script>-->
+		<script type="text/javascript" src="../../js/GlobalData.js"></script>
+		
+		
+		
+
+		<script>
+			//当前登陆用户ID
+			var adminUser = GlobalData.getUerInfo();
+			if(adminUser == null || adminUser.id == null || adminUser.id == "") {
+				location.href = "../../login.html";
+			};
+			var bauId = adminUser.id;
+
+			
+			if(adminUser.permissionList.indexOf("userRechargeListQuery")!= -1){
+				$("#btnRest").show();
+				$("#btnSearch").show();
+				$(".material").show();
+			}else{
+				$("#btnRest").hide();
+				$("#btnSearch").hide();
+				$(".material").hide();
+				$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">您没有权限访问这个页面</div></div>');
+			};
+			
+			$(document).ready(function() {
+				getAdminUserAll(1, 10);
+				
+				//这里是侧栏高亮显示
+				setTimeout(function(){
+					$("#side-menu>li").eq(3).addClass("active")
+					$("#side-menu>li").eq(3).find("ul").addClass("in")
+					$("#side-menu li .fitRecord").addClass("active")
+//					$("#side-menu li").eq(5).find("ul").addClass("in")
+//					$("#side-menu li").eq(5).find("ul a").eq(1).addClass("active")
+					
+				},2000)
+
+				//这里是公共的取消模态框
+
+				
+				$(function() {
+					$('.dept_select').chosen();
+				});
+
+				//这里是点击按钮选择
+				$("#allcheck").click(function() {
+
+					if($(this).is(':checked')) {
+						$(".wrapper-content table .item-check").prop("checked", "true")
+					} else {
+						$(".wrapper-content table .item-check").prop("checked", "")
+
+					}
+				})
+
+				$(".set .setbox .creat-add").click(function(evt) {
+
+					evt.stopPropagation()
+
+					$("#sitch").css("display", "block")
+
+					$("#sitch").addClass("fadeIn")
+					$("#sitch .content").addClass("zoomInDown")
+				})
+
+				$("#sitch .sitch-box .content .title a").click(function(evt) {
+
+					evt.stopPropagation()
+
+					$("#sitch").removeClass("fadeIn")
+					$("#sitch .content").removeClass("zoomInDown")
+					$("#sitch").addClass("fadeOut")
+					$("#sitch .content").addClass("zoomOutDown")
+					t = setTimeout(function() {
+						$("#sitch").removeClass("fadeOut")
+						$("#sitch .content").removeClass("zoomOutDown")
+						$("#sitch").css("display", "none")
+					}, 1000)
+
+				})
+					
+				$("#sitch .sitch-box .content .title a").click(function(evt) {
+
+					evt.stopPropagation()
+
+					$("#sitch").removeClass("fadeIn")
+					$("#sitch .content").removeClass("zoomInDown")
+					$("#sitch").addClass("fadeOut")
+					$("#sitch .content").addClass("zoomOutDown")
+					t = setTimeout(function() {
+						$("#sitch").removeClass("fadeOut")
+						$("#sitch .content").removeClass("zoomOutDown")
+						$("#sitch").css("display", "none")
+					}, 1000)
+
+				})
+				//重置
+				$("#btnRest").click(function(evt) {
+					$(".memberIdInput").val("");
+					$(".tokenTypeInput").val("");
+					getAdminUserAll(1, $("#rows").val());
+
+			  });
+			   queryTokenList();
+			  
+		});//结束
+		
+		//获取当前所有的代币类型
+		function queryTokenList(){
+			$.ajax({
+				type : 'GET',
+				url : GlobalData.TOKEN_URL + 'bigToken/tokenNameId',
+				contentType : "application/json",
+				dataType : 'json',
+				success : function(data) {
+					console.log(data);
+					if(data.code=="200"){
+						   $("#baaId").empty();
+						   var select = $("#baaId").append('<option value="">全部</option>');
+						   var res=data.data;
+						   for (var i = 0; i < res.length; i++) {
+						   		select.append('<option value="'+ res[i].tokenId +'">' + res[i].tokenName + '</option>');
+						   };
+					}else{
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+					}
+				},
+				error : function(e) {
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+					console.log(e);
+				}
+			});
+		};
+		
+		var p = new Paging();
+			p.init({
+				target: '#pageToolbar',
+				pagesize: 10,
+				count: $('#total').val(),
+				toolbar: true,
+				hash: true,
+				callback: function(page, size, count) {
+					getAdminUserAll(page, $("#rows").val());
+				},
+				go: function(p) {
+					getAdminUserAll(p, $("#rows").val());
+				},
+				changePagesize: function(ps) {
+					getAdminUserAll($("#page").val(), ps);
+				}
+			});
+
+		//充值列表
+			function getAdminUserAll(page, rows) {
+				var data = {
+					"page": page == null || page == "" ? 1 : page,
+					"rows": rows == null || rows == "" ? 10 : rows,
+					"auditingType": 1,
+					"type": 0,
+		            "bauId":$(".memberIdInput").val(),
+		            "batId":$(".tokenTypeInput").val()
+				};
+				$.ajax({
+					type: 'POST',
+					async: false,
+			        url: GlobalData.TOKENRECORD_URL +"tokenRecord/adminselectBigAppChargeProvidedList",			
+					data: JSON.stringify(data),
+					contentType: "application/json",
+					dataType: 'json',
+					success: function(data) {
+						console.log(data);
+						$("tbody tr").remove();
+						if(data.code == "200") {
+							var rdo = data.data && data.data.objectList || [];
+							for(var i = 0; i < rdo.length; i++) {
+								var creatTr = $("<tr><td><div class='checkbox'><input type='checkbox' class='item-check' /><label for='allchek1'></label> </div></td></tr>");
+								var creatTdf = "<td class='tst'>" + rdo[i].id + "</td><td class='tst'>" + rdo[i].bauId + "</td><td class='tst'>" + GlobalUtils.changeBlank(rdo[i].userName) + "</td><td class='tst'>" + (rdo[i].auditingType!=null&&rdo[i].auditingType==0?"审核中":rdo[i].auditingType!=null&&rdo[i].auditingType==1?"审核通过":rdo[i].auditingType!=null&&rdo[i].auditingType==2?"审核不通过":"") + "</td>";
+								var creatTdc = "<td class='tst'>" + (rdo[i].arrivalStatus!=null&&rdo[i].arrivalStatus==0?"等待到账":rdo[i].arrivalStatus!=null&&rdo[i].arrivalStatus==1?"到账成功":rdo[i].arrivalStatus!=null&&rdo[i].arrivalStatus==2?"到账失败":"") + "</td><td class='tst'>" + GlobalUtils.changeBlank(rdo[i].withdrawHash) + "</td><td class='tst'>" + rdo[i].address + "</td><td class='tst'>" + rdo[i].num + "</td>"
+								var creatTdl = "<td class='tst'>" + (rdo[i].confirmations==null?"":rdo[i].confirmations) + "</td><td class='tst'>" + rdo[i].tokenType + "</td>";
+								var creatTdl1 = "<td class='tst'>" + GlobalUtils.getTimeFull(rdo[i].updateTime,"-") + "</td>"
+								$(creatTdf  + creatTdc + creatTdl + creatTdl1).appendTo(creatTr);
+								$("tbody").append(creatTr);
+							}
+
+							$('#page').val(page == null || page == "" ? 1 : page);
+							$('#total').val((data.data==null?0:data.data.total));
+							$('#rows').val(rows == null || rows == "" ? 10 : rows);
+
+							//重新渲染分页使用render
+							p.render({
+								count: $('#total').val(),
+								pagesize: rows,
+								current: page
+							});
+
+						}
+					},
+					error: function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');				
+						
+						console.log(e);
+					}
+				});
+			};
+			//查询
+			function conditionMember() {
+				getAdminUserAll(1, $("#rows").val());
+			}
+		
+		</script>
+
+	</body>
+
+</html>

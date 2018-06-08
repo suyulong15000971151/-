@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>权限列表</title>
+
+		<link href="../../css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
+		<link href="../../css/plugins/jQueryUI/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+		<link href="../../css/style.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/girds.css" />
+		<link rel="stylesheet" href="../../css/iconfont.css" />
+		<link href="../../css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/animate.css" />
+		<link rel="stylesheet" href="../../css/chosen.css" />
+		<link rel="stylesheet" href="../../css/coss.css" />
+		<link rel="stylesheet" href="../../css/permission.css" />
+		<link rel="stylesheet" href="../../css/crepsd.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/message.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/bing_google.css"/>
+		
+	</head>
+
+	<body>
+
+			<!--这里是通过没通过弹窗-->
+			<div id="adopt" class="animated dio-close">
+				<div class="adopt-box">
+					<div class="content animated">
+						<div class="title">
+							<span id='title'>修改</span>
+							<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+						</div>
+						<div class="contain">
+							<input type="hidden" id='id'>
+							<div class="contain-item">
+								<label for="">权限名称</label><input type="text" class="form-control" id="permissionName" />
+							</div>
+							<div class="contain-item">
+								<label for="">权限地址</label><input type="text" class="form-control" id="permissionUrl"/>
+							</div>
+							<div class="contain-item">
+								<label for="">权限描述</label><input type="text" class="form-control" id="permissionDescribe"/>
+							</div>
+							<div class="new-set">
+								<button class="btn btn-default can-close">关闭</button>
+								<button class="btn btn-success cof-close" onclick="modifyPermission();">保存</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			
+			<!--这里是头部 -->
+			<div id="header"></div>
+			
+			
+            <div id="bod-com" class="animated" style="animation-delay: 0.5s; opacity: 0; ">
+				
+				<div class="row wrapper border-bottom white-bg page-heading">
+					<div class="col-lg-10">
+						<!--<h2>jqGrid</h2>-->
+						<ol class="breadcrumb">
+							<li>
+								<a href="../Member_management/memberList.html">首页</a>
+							</li>
+							<li>
+								<a>权限列表</a>
+							</li>
+						</ol>
+					</div>
+				</div>
+
+				<!--这里是填写资料-->
+				<div class="material">
+					<div class="material-box">
+						<div class="row">
+
+							<div class="col-md-4 col-sm-12">
+								<label for="" class="">权限名称：</label>
+								<input type="text" class="form-control" id="name"/>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--这里是设置-->
+
+				<div class="set" style="padding:5px 0px">
+					<div class="setbox">
+						<button class="btn-left btn btn-xs btn-default no-adopt creta" type="submit" id="modifyPermission">修改  <span class="iconfont icon-xiugai07"></button>
+						<button class="btn btn-xs rest right" type="reset" id="resetPermission">重置 <span class="iconfont icon-11zhongzhi"></span></button>
+						<button class="btn btn-xs search right" onclick="queryPermission();" id="queryPermission">查询  <span class="iconfont icon-sousuo"></span></button>
+					</div>
+				</div>
+
+				<div class="wrapper wrapper-content  animated fadeInRight">
+
+					<div class="row">
+						<div class="col-lg-12 col-md-12">
+							<div class="ibox float-e-margins">
+
+								<div class="ibox-content" style="height:450px;overflow-y:scroll;">
+									<input type="hidden" id="total"/>
+									<input type="hidden" id="page"/>
+									<input type="hidden" id="rows"/>
+									
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>
+													<div class="checkbox"><input type="checkbox" id="allchek" class="" /><label for="checkboxs25"></label></div>
+												</th>
+												<th>权限名称</th>
+												<th>访问地址</th>
+												<th>描述</th>
+												<th>模块名称</th>
+											</tr>
+										</thead>
+										<tbody id='resultBox'>
+										</tbody>
+									</table>
+
+								</div>
+
+								<!--这里是分页-->
+								<div class="pagss">
+									<div class="right">
+										<div id="pageToolbar"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		<!-- Mainly scripts -->
+		<script src="../../js/jquery-2.1.1.js"></script>
+		<script src="http://gosspublic.alicdn.com/aliyun-oss-sdk-4.4.4.min.js"></script>
+		<script src="../../js/bootstrap.min.js"></script>
+		<script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+		<!-- Peity -->
+		<script src="../../js/plugins/peity/jquery.peity.min.js"></script>
+
+		<!-- Custom and plugin javascript -->
+		<script src="../../js/inspinia.js"></script>
+		<script src="../../js/plugins/pace/pace.min.js"></script>
+
+		<script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script>
+		<script src="../../js/query.js"></script>
+		<script src="../../js/paging.js"></script>
+		<script src="../../js/headercom.js"></script>
+		<script src="../../js/common.js"></script>
+		<script src="../../js/chosen.jquery.js"></script>
+		<script src="../../js/message.js"></script>
+		<script type="text/javascript" src="../../js/jquery.qrcode.min.js"></script>
+		<script type="text/javascript" src="../../js/GlobalData.js"></script>
+
+		<script>
+			//当前登陆用户ID
+			var adminUser=GlobalData.getUerInfo();
+			if(adminUser==null||adminUser.id==null||adminUser.id==""){
+				location.href = "../../login.html";
+			};
+			var bauId=adminUser.id;
+			
+			if(adminUser.permissionList.indexOf("permissionListQuery")!= -1){
+				$("#resetPermission").show();
+				$("#queryPermission").show();
+				$(".material").show();
+			}else{
+				$("#resetPermission").hide();
+				$("#queryPermission").hide();
+				$(".material").hide();
+				$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">您没有权限访问这个页面</div></div>');
+			};	
+			if(adminUser.permissionList.indexOf("permissionListEdit")!= -1){
+				$("#modifyPermission").show();
+			}else{
+				$("#modifyPermission").hide();
+			};	
+	
+			$(document).ready(function() {
+				getPermissionAll(1,10);
+				
+				//这里是左侧菜单显示高亮
+				setTimeout(function(){
+					$("#side-menu>li").eq(7).addClass("active");
+					$("#side-menu>li").eq(7).find("ul").addClass("in");
+					$("#side-menu li .permission").addClass("active");
+				},2000);
+
+
+				//这里是点击按钮选择
+				$("#allchek").click(function() {
+					if($(this).is(':checked')) {
+						$(".wrapper-content table .item-check").prop("checked", "true");
+					} else {
+						$(".wrapper-content table .item-check").prop("checked", "");
+					}
+				});
+
+				$("#adopt .title a").click(function(evt) {
+					evt.stopPropagation()
+					$("#adopt").removeClass("fadeIn");
+					$("#adopt .content").removeClass("zoomInDown");
+					$("#adopt").addClass("fadeOut");
+					$("#adopt .content").addClass("zoomOutDown");
+					t = setTimeout(function() {
+						$("#adopt").removeClass("fadeOut");
+						$("#adopt .content").removeClass("zoomOutDown");
+						$("#adopt").css("display", "none");
+					}, 1000);
+				});
+				
+				$("#resetPermission").click(function(evt) {
+					$("#name").val("");
+					getPermissionAll(1,$("#rows").val());
+				});
+				
+				$("#modifyPermission").click(function(evt) {
+					var res=$("input[type='checkbox'][class='item-check']:checked");
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');						
+					}else{
+						evt.stopPropagation();
+						$("#adopt").css("display", "block");
+						$("#adopt").addClass("fadeIn");
+						$("#adopt .content").addClass("zoomInDown");
+						$("#title").html("修改");
+						
+						var resList=res[0].value.split("||");
+						$("#id").val(resList[0]);
+						$("#permissionName").val(GlobalUtils.changeBlank(resList[1]));
+						$("#permissionUrl").val(GlobalUtils.changeBlank(resList[2]));
+						$("#permissionDescribe").val(GlobalUtils.changeBlank(resList[3]));
+					};
+				});
+			});
+			
+			var p = new Paging();
+			p.init({target:'#pageToolbar',pagesize:10,count:$('#total').val(), toolbar: true,hash: true,callback:function(page,size,count){
+				getPermissionAll(page,$("#rows").val());
+			},go:function(p){
+				getPermissionAll(p,$("#rows").val());
+			},changePagesize:function(ps){
+				getPermissionAll($("#page").val(),ps);
+			}});
+			
+			//获取所有的参数
+			function getPermissionAll(page,rows){
+				
+				var data = {
+					"page" : page==null||page==""?1:page,
+					"rows" : rows==null||rows==""?10:rows,
+					"permissionName" :GlobalUtils.changeBlank($("#name").val()),
+					"bauId":bauId
+				};
+				$.ajax({
+					type : 'POST',
+					async: false,
+					url : GlobalData.ADMIN_URL + 'adminuser/querylistpermission',
+					data : JSON.stringify(data),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+						console.log(data);
+						$('#resultBox').empty();
+						if(data.code=="200"){
+	//						$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">获取权限列表成功</div></div>');
+							var res = data.data && data.data.objectList || [];
+							console.log("数组"+res);
+							for (var i = 0; i < res.length; i++) {
+								var create_tr = $('<tr></tr>');
+								var _html =
+								        '<td>'+
+											'<div class="checkbox"><input type="checkbox" id="'+res[i].id+'" class="item-check" value="'+res[i].id+"||"+res[i].permissionName+"||"+res[i].permissionUrl+"||"+res[i].permissionDescribe+'"/><label for="checkboxs2"></label></div>'+
+										'</td>'+
+										'<td>'+res[i].permissionName+'</td>'+
+										'<td>'+res[i].permissionUrl+'</td>'+
+										'<td>'+res[i].permissionDescribe+'</td>'+
+										'<td>'+res[i].moduleName+'</td>';
+								create_tr.html(_html);
+								$('#resultBox').append(create_tr);
+							};
+							
+							$('#page').val(page==null||page==""?1:page);
+							$('#total').val(data.data.total);	
+							$('#rows').val(rows==null||rows==""?10:rows);		
+							
+							//重新渲染分页使用render
+							p.render({count:$('#total').val(),pagesize:rows,current:page});
+						}else{
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');	
+						}
+					},
+					error : function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');	
+						console.log(e);
+					}
+				});
+			};
+			
+			function queryPermission(){
+				getPermissionAll(1,$("#rows").val());
+			};
+			
+			//修改权限
+			function modifyPermission(){
+					
+				//权限id
+				var id=$("#id").val();
+				//权限名称
+				var permissionName=$("#permissionName").val();
+				//权限访问地址
+				var permissionUrl=$("#permissionUrl").val();
+				//权限描述
+				var permissionDescribe=$("#permissionDescribe").val();
+			
+				if(permissionName==null||permissionName==""){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">权限名称不能为空</div></div>');	
+				}else if(permissionDescribe==null||permissionDescribe==""){
+					$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">权限描述不能为空</div></div>');
+				}else{
+					//修改权限
+					var data = {
+						"bauId":bauId,
+						"id" : id,
+						"permissionName" :GlobalUtils.changeBlank(permissionName),
+						"permissionUrl" :GlobalUtils.changeBlank(permissionUrl),
+						"permissionDescribe" :GlobalUtils.changeBlank(permissionDescribe)
+					};
+					$.ajax({
+						type : 'POST',
+						url : GlobalData.ADMIN_URL + 'adminuser/editpermission',
+						data : JSON.stringify(data),
+						contentType : "application/json",
+						dataType : 'json',
+						success : function(data) {
+							console.log(data);
+							if(data.code=="200"){
+								$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">修改权限成功</div></div>');
+								getPermissionAll(1,$("#rows").val());
+							}else{
+								$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+							}
+						},
+						error : function(e) {
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+							console.log(e);
+						}
+					});
+				};
+			};
+			
+			
+			
+		</script>
+
+	</body>
+
+</html>

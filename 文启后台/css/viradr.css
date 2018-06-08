@@ -1,0 +1,23 @@
+/* Additional style to fix warning dialog position */
+			
+			.wrapper-content input[type=checkbox] {
+				vertical-align: middle;
+			}
+			.wrapper-content{padding-top:0;padding:0}
+			#alertmod_table_list_2 {
+				top: 900px !important;
+			}
+			
+			.ibox-content th{white-space: normal;}
+			.ibox-content td{white-space: normal;}
+			.set .go:hover{background:#1afa29;color:#fff}
+			.set .no-adopt:hover{background:red;color:#fff}
+			.set .search:hover{background:#e3b375;color:#fff}
+			.set .rest:hover{background:#50b595;color:#fff}
+			
+			#adopt{width:100%;height:100%;position: fixed;top:0;left:0;background:rgba(0,0,0,.6);z-index: 99999;display: none;}
+			#adopt .adopt-box{display: flex;justify-content: center;align-items: center;width:100%;height:100%}
+			#adopt .adopt-box .content{width:300px;height:150px;background:#fff;border-radius: 5px;}
+			#adopt .adopt-box .content .title{width:100%;height:30px;border-bottom: 1px solid #ccc;line-height: 30px;}
+			#adopt .adopt-box .content .contain{width:100%;margin-top:80px;text-align: center;}
+			#adopt .adopt-box .content .contain a{font-size: 14px;border:1px solid #eee;padding:5px 10px;border-radius: 5px;margin:0 10px}

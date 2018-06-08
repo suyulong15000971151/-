@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>待审核项目</title>
+
+		<link href="../../css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
+		<link href="../../css/animate.css" rel="stylesheet">
+		<link href="../../css/plugins/jQueryUI/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+		<link href="../../css/style.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/girds.css" />
+		<link rel="stylesheet" href="../../css/iconfont.css" />
+		<link href="../../css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../css/chosen.css" />
+		<link rel="stylesheet" href="../../css/coss.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/agentAudit.css" />
+		<link rel="stylesheet" href="../../css/crepsd.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/message.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/bing_google.css"/>
+		
+	</head>
+
+	<body>
+
+			<!--这里是通过没通过弹窗-->
+			<div id="adopt" class="animated dio-close">
+				<div class="adopt-box">
+					<div class="content animated">
+						<div class="title">
+							<span>代理单审核</span>
+							<a href="#" class="close" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+						</div>
+						<div class="contain">
+							<div class="contain-item">
+								<input type="hidden" id="id" value="" />
+								<label for="">代理单状态</label><input id="r5" type="radio" value="1" name="status" checked="" >审核通过 	<input id="r6" type="radio" value="4" name="status">审核不通过 
+							</div>
+							
+							<div class="new-set">
+								<button class="btn btn-default can-close">关闭</button>
+								<button class="btn btn-success cof-close" onclick="doAudit();">保存</button>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			<!--代理单详情-->
+<div id="fictitious" class="animated dio-close">
+	<div class="fictitious-box">
+		<div class="content animated" style="overflow: hidden;">
+			<div class="title">
+				<span>代理单信息</span>
+				<a href="#" class="close sureBtn" style="font-size: 30px;line-height: 30px;margin-right:10px">&times;</a>
+			</div>
+			<div class="contain">
+				<div class="row" style="height:470px;overflow-x: scroll;">
+
+					<div class="item">
+						<label for="">代理单ID：</label><span id="idText"></span>
+					</div>
+					<div class="item">
+						<label for="">用户ID：</label><span id="bau_idText"></span>
+					</div>
+					<div class="item">
+						<label for="">用户姓名：</label><span id="nameText"></span>
+					</div>
+					<div class="item">
+						<label for="">用户昵称：</label><span id="nicknameText"></span>
+					</div>
+					<div class="item">
+						<label for="">状态：</label><span id="statusText"></span>
+					</div>
+					<div class="item">
+						<label for="">信任人数：</label><span id="trustNumText"></span>
+					</div>
+					<div class="item">
+						<label for="">交易笔数：</label><span id="transactionNumText"></span>
+					</div>
+					<div class="item">
+						<label for="">平均放行：</label><span id="averageTradingTimeText"></span>
+					</div>
+					<div class="item">
+						<label for="">类型：</label><span id="typeText"></span>
+					</div>
+					<div class="item">
+						<label for="">卖出类型：</label><span id="sellOutTypeText"></span>
+					</div>
+					<div class="item">
+						<label for="">买入类型：</label><span id="sellInputTypeText"></span>
+					</div>
+					<div class="item">
+						<label for="">付款期限：</label><span id="termOfPaymentText"></span>
+					</div>
+					<div class="item">
+						<label for="">交易起始范围：</label><span id="startText"></span>
+					</div>
+					<div class="item">
+						<label for="">交易截止范围：</label><span id="endText"></span>
+					</div>
+					<div class="item">
+						<label for="">交易条款：</label><span id="transactionTermsText"></span>
+					</div>
+					<div class="item">
+						<label for="">交易须知：</label><span id="tradeNoticeText"></span>
+					</div>
+				</div>
+			</div>
+			<!--<div class="bto">
+				<button class="btn btn-default can-close">
+					取消
+				</button>
+				<button class="btn btn-success cof-close">
+					确认
+				</button>
+			</div>-->
+		</div>
+	</div>
+</div>
+			
+		
+
+		<!--这里是头部 -->
+			<div id="header"></div>
+			
+			
+            <div id="bod-com" class="animated" style="opacity: 0;">
+				
+				<div class="row wrapper border-bottom white-bg page-heading">
+					<div class="col-lg-10">
+						<!--<h2>jqGrid</h2>-->
+						<ol class="breadcrumb">
+							<li>
+								<a href="../Member_management/memberList.html">首页</a>
+							</li>
+							<li>
+								<a>待审核项目</a>
+							</li>
+						</ol>
+					</div>
+				</div>
+
+				<!--这里是填写资料-->
+				<div class="material">
+					<div class="material-box">
+						<div class="row">
+
+							<div class="col-md-4 col-sm-12">
+								<label for="" class="">会员ID：</label>
+								<input type="text" class="form-control" id="bau_id" />
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+
+				<!--这里是设置-->
+
+				<div class="set" style="padding:5px 0px">
+					<div class="setbox">
+						<button class="btn-left btn btn-xs btn-default go creta" type="submit" id="audit">审核 <span class="iconfont icon-tubiaolunkuo-"></span></button>
+						<button class="btn-left btn btn-xs btn-default no-adopt creta" type="submit" id="detail">详情  <span class="iconfont icon-xiangqing"></button>
+						<button class="btn btn-xs rest right" type="reset" onclick="resetAudit();" id="btnRest">重置 <span class="iconfont icon-11zhongzhi"></span></button>
+						<button class="btn btn-xs search right" onclick="queryAudit();" id="btnSearch">查询  <span class="iconfont icon-sousuo"></span></button>
+					</div>
+				</div>
+
+				<div class="wrapper wrapper-content  animated fadeInRight">
+					<div class="row">
+						<div class="col-lg-12 col-md-12">
+							<div class="ibox float-e-margins">
+
+								<div class="ibox-content" style="height:450px;overflow-y:scroll;">
+									<input type="hidden" id="total"/>
+									<input type="hidden" id="page"/>
+									<input type="hidden" id="rows"/>
+									
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th class="">
+													<div class="checkbox"><input type="checkbox" id="allchek" class="" /><label for="allchek"></label> </div>
+												</th>
+												<th>代理单ID</th>
+												<th>会员id</th>
+												<th>订单类型</th>
+												<th>价格</th>
+												<!-- <th>支付宝状态</th>
+												<th>微信状态</th>
+												<th>银行卡状态</th> -->
+												<th>交易起始范围</th>
+												<th>交易截至范围</th>
+												<!-- <th>付款期限</th> -->
+												<!-- <th>创建时间</th> -->
+												<th>更新时间</th>
+											</tr>
+										</thead>
+										<tbody id='resultBox'>
+										</tbody>
+									</table>
+
+								</div>
+
+								<!--这里是分页-->
+								<div class="pagss">
+									<div class="right">
+										<div id="pageToolbar"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<!--这里是分页-->
+				</div>
+		</div>
+
+		<!-- Mainly scripts -->
+		<script src="../../js/jquery-2.1.1.js"></script>
+		<script src="http://gosspublic.alicdn.com/aliyun-oss-sdk-4.4.4.min.js"></script>
+		<script src="../../js/bootstrap.min.js"></script>
+		<script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+		<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+		<!-- Peity -->
+		<script src="../../js/plugins/peity/jquery.peity.min.js"></script>
+
+		<!-- Custom and plugin javascript -->
+		<script src="../../js/inspinia.js"></script>
+		<script src="../../js/plugins/pace/pace.min.js"></script>
+		<script src="../../js/headercom.js"></script>
+        
+        
+		<script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script>
+		<script src="../../js/common.js"></script>
+		<!--<script src="../../js/pagings.js"></script>-->
+		<script src="../../js/message.js"></script>
+		<script src="../../js/query.js"></script>
+		<script src="../../js/paging.js"></script>
+		<script src="../../js/chosen.jquery.js"></script>
+        <script type="text/javascript" src="../../js/jquery.qrcode.min.js"></script>
+       	<script type="text/javascript" src="../../js/GlobalData.js"></script>
+        
+        
+		<script>
+		
+			//当前登陆用户ID
+			var adminUser=GlobalData.getUerInfo();
+			if(adminUser==null||adminUser.id==null||adminUser.id==""){
+				location.href = "../../login.html";
+			};
+			if(adminUser.permissionList.indexOf("waitApproveProjectQuery")!= -1){
+				$("#btnRest").show();
+				$("#btnSearch").show();
+				$(".material").show();
+			}else{
+				$("#btnRest").hide();
+				$("#btnSearch").hide();
+				$(".material").hide();
+				$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">您没有权限访问这个页面</div></div>');	
+			};	
+			if(adminUser.permissionList.indexOf("waitApproveProjectAudit")!= -1){
+				$("#audit").show();
+			}else{
+				$("#audit").hide();
+			};	
+			if(adminUser.permissionList.indexOf("waitApproveProjectDetail")!= -1){
+				$("#detail").show();
+			}else{
+				$("#detail").hide();
+			};	
+			//存储对象的map
+			var objectMap ={};
+			
+			$(document).ready(function() {
+				getAuditsAll(1,10);
+				setTimeout(function(){
+					$("#side-menu>li").eq(5).addClass("active");
+					$("#side-menu>li").eq(5).find("ul").addClass("in");
+					$("#side-menu li .agentAudit").addClass("active");
+				},2000);
+
+				//这里是点击按钮选择
+				$("#allchek").click(function() {
+					if($(this).is(':checked')) {
+						$(".wrapper-content table .item-check").prop("checked", "true");
+					} else {
+						$(".wrapper-content table .item-check").prop("checked", "");
+					}
+				});
+
+				
+				$("#audit").click(function(evt) {
+					
+					var res=$("input[type='checkbox'][class='item-check']:checked");
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');				
+					}else{
+						evt.stopPropagation();
+						$("#adopt").css("display", "block");
+						$("#adopt").addClass("fadeIn");
+						$("#adopt .content").addClass("zoomInDown");
+						$("#id").val(res[0].value);
+					}
+				});
+				
+				$("#detail").click(function(evt) {
+					
+					var res=$("input[type='checkbox'][class='item-check']:checked");
+					if(res==null||res.length<1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请至少选择一个</div></div>');
+					}else if(res.length>1){
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">不能选择多个</div></div>');						
+					}else{
+						evt.stopPropagation();
+						$("#fictitious").css("display", "block");
+						$("#fictitious").addClass("fadeIn");
+						$("#fictitious .content").addClass("zoomInDown");
+						var obiect=objectMap[res[0].value];
+						var data = {
+							"baaid":obiect.id,
+							"agentStatus":1,
+							"bauId":obiect.bau_id
+						};
+						$.ajax({
+							type : 'POST',
+							async: false,
+							url : GlobalData.AGENT_URL + 'agent/selectBigAdminAgent',
+							data : JSON.stringify(data),
+							contentType : "application/json",
+							dataType : 'json',
+							success : function(data) {
+								console.log(data);
+								if(data.code=="200"&&data.data!=null){
+									var object=data.data;
+									
+									$("#idText").html(object.id);
+									$("#bau_idText").html(object.bau_id);
+									$("#nameText").html(object.name);
+									$("#nicknameText").html(object.nickname);
+									if(object.status===""||object.status==null){
+										$("#statusText").html("");
+									}else if(object.status==0){
+										$("#statusText").html("待审核");
+									}else if(object.status==1){
+										$("#statusText").html("启用");
+									}else if(object.status==2){
+										$("#statusText").html("删除");
+									}else if(object.status==3){
+										$("#statusText").html("停用");
+									}else if(object.status==4){
+										$("#statusText").html("审核不通过");
+									}
+									
+									$("#trustNumText").html(object.trustNum);
+									$("#transactionNumText").html(object.transactionNum);
+									$("#averageTradingTimeText").html(object.averageTradingTime);
+									
+									if(object.type==null||object.type===""||object.type=="null"){
+										$("#typeText").html("");
+									}else if(object.type==1){
+										$("#typeText").html("用户卖出");
+									}else if(object.type==0){
+										$("#typeText").html("用户买入");
+									}
+									
+									$("#sellOutTypeText").html(object.sellOutType);
+									$("#sellInputTypeText").html(object.sellInputType);
+						
+									$("#termOfPaymentText").html(object.termOfPayment);
+									$("#startText").html(object.start);
+									$("#endText").html(object.end);
+									$("#transactionTermsText").html(object.transactionTerms);
+									$("#tradeNoticeText").html(object.tradeNotice);
+								}else{
+									$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+								}
+							},
+							error : function(e) {
+								$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+								console.log(e);
+							}
+						});
+					}
+				});
+				
+				//会员信息确认
+				$(".sureBtn").click(function(){
+					$("input[type='checkbox']").removeAttr('checked');
+				})
+				$("#adopt .title a").click(function(evt) {
+					evt.stopPropagation();
+					$("#adopt").removeClass("fadeIn");
+					$("#adopt .content").removeClass("zoomInDown");
+					$("#adopt").addClass("fadeOut");
+					$("#adopt .content").addClass("zoomOutDown");
+					t = setTimeout(function() {
+						$("#adopt").removeClass("fadeOut");
+						$("#adopt .content").removeClass("zoomOutDown");
+						$("#adopt").css("display", "none");
+					}, 1000);
+				});
+			});
+			
+			var p = new Paging();
+			p.init({target:'#pageToolbar',pagesize:10,count:$('#total').val(), toolbar: true,hash: true,callback:function(page,size,count){
+				getAuditsAll(page,$("#rows").val());
+			},go:function(p){
+				getAuditsAll(p,$("#rows").val());
+			},changePagesize:function(ps){
+				getAuditsAll($("#page").val(),ps);
+			}});
+				
+			//获取所有的统计数据
+			function getAuditsAll(page,rows){
+				var data = {
+					"page" : page==null||page==""?1:page,
+					"rows" : rows==null||rows==""?10:rows,
+					"status":0,
+					"bau_id":$("#bau_id").val()
+				};
+				console.log(data);
+				$.ajax({
+					type : 'POST',
+					async: false,
+					url : GlobalData.AGENT_URL + 'agent/selectListAdminAgent',
+					data : JSON.stringify(data),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+						console.log(data);
+						$('#resultBox').empty();
+							objectMap={};
+						if(data.code=="200"){
+//							$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">获取待审核项目列表成功</div></div>');
+//							var res=data.data.objectList;
+							var res = data.data && data.data.objectList || [];
+							console.log("数组"+res);
+							for (var i = 0; i < res.length; i++) {
+								var create_tr = $('<tr></tr>');
+								
+								var _html = '<td>'+
+												'<div class="checkbox"><input type="checkbox" id="audit'+res[i].id+'" class="item-check" value="'+res[i].id+'"/><label for="checkboxs2"></label></div>'+
+											'</td>'+
+											'<td>'+res[i].id+'</td>'+
+											'<td>'+(res[i].bau_id)+'</td>'+
+										    '<td>'+(res[i].type==1?"用户卖出":"用户买入")+'</td>'+
+										    '<td>'+res[i].num+'</td>'+
+										   //'<td>'+(res[i].paymentMethod1!=null&&res[i].paymentMethod1==0?"启用":res[i].paymentMethod1!=null&&res[i].paymentMethod1==1?"停用":"")+'</td>'+				   
+										   //'<td>'+(res[i].paymentMethod2!=null&&res[i].paymentMethod2==0?"启用":res[i].paymentMethod2!=null&&res[i].paymentMethod2==1?"停用":"")+'</td>'+
+										   //'<td>'+(res[i].paymentMethod3!=null&&res[i].paymentMethod3==0?"启用":res[i].paymentMethod3!=null&&res[i].paymentMethod3==1?"停用":"")+'</td>'+				   
+										   '<td>'+res[i].start+'</td>'+
+										   '<td>'+res[i].end+'</td>'+
+										   //'<td>'+res[i].termOfPayment+'</td>'+
+										  // '<td>'+GlobalUtils.getTimeFull(res[i].createTime,"-")+'</td>'+
+										   '<td>'+GlobalUtils.getTimeFull(res[i].updateTime,"-")+'</td>';
+										   
+								create_tr.html(_html);
+								$('#resultBox').append(create_tr);
+								objectMap[res[i].id] = res[i];
+							};
+							
+							$('#page').val(page==null||page==""?1:page);
+							$('#total').val(data.data.total);
+							$('#rows').val(rows==null||rows==""?10:rows);
+							
+							//重新渲染分页使用render
+							p.render({count:$('#total').val(),pagesize:rows,current:page});
+						}else{
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+						}
+					},
+					error : function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+						console.log(e);
+					}
+				});
+			};
+			
+			function queryAudit(){
+				getAuditsAll(1,$("#rows").val());
+			};
+			
+			function resetAudit(){
+		        $("#bau_id").val("");
+		 		getAuditsAll(1,$("#rows").val());
+			};
+			
+			function doAudit(){
+		        var data = {
+					"id" :$("#id").val(),
+					"status":$('input[name="status"]:checked').val()
+				};
+				$.ajax({
+					type : 'POST',
+					async: false,
+					url : GlobalData.AGENT_URL + 'agent/updateAdminAgentStatus',
+					data : JSON.stringify(data),
+					contentType : "application/json",
+					dataType : 'json',
+					success : function(data) {
+						console.log(data);
+						if(data.code=="200"){
+							$("body").append('<div class="tips win slideInDowns"><i class="iconfont icon-chenggong"></i><div class="tip_text warm-box">审核成功</div></div>');
+							getAuditsAll(1,$("#rows").val());
+						}else{
+							$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">'+data.message+'</div></div>');
+						}
+					},
+					error : function(e) {
+						$("body").append('<div class="tips error slideInDowns"><i class="iconfont icon-zhifushibai"></i><div class="tip_text warm-box">请求错误</div></div>');
+						console.log(e);
+					}
+				});
+			};
+			
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,82 @@
+/* Additional style to fix warning dialog position */
+			
+			.wrapper-content input[type=checkbox] {
+				vertical-align: middle;
+			}
+			/*.wrapper-content{background:#2f4050}*/
+			.wrapper-content{padding: 0;}
+			.ibox-content{padding-right:0}
+			
+			#alertmod_table_list_2 {
+				top: 900px !important;
+			}
+			.ui-paging-container li.ui-paging-ellipse+li.ui-pager{display: none;}
+			li[data-page="Infinity"]{
+				display: none;
+			}
+			/*input[type='button']*/
+			.ibox-content th{white-space: normal;}
+			.ibox-content td{white-space: normal;}
+			.set .go{border:1px solid #1afa29;color:#1afa29}
+			.set .creta{color:#1afa29}
+			.set .go:hover{background:#1afa29;color:#fff}
+			.set .no-adopt:hover{background:red;color:#fff}
+			.set .search:hover{background:#e3b375;color:#fff}
+			.set .rest:hover{background:#50b595;color:#fff}
+			.set .btn-left{background: none;color:#1afa29}
+			#adopt{width:100%;height:100%;position: fixed;top:0;left:0;background:rgba(0,0,0,.6);z-index: 99999;display:none;}
+			#adopt .adopt-box{display: flex;justify-content: center;align-items: center;width:100%;height:100%}
+			#adopt .adopt-box .content{width:40%;height:300px;background:#fff;border-radius: 5px;}
+			#adopt .adopt-box .content .title{width:100%;height:30px;border-bottom: 1px solid #ccc;line-height: 30px;background:#1ab394;color:#000}
+			#adopt .adopt-box .content .title span{text-indent: 10px;display: inline-block;}
+			#adopt .adopt-box .content .contain{width:95%;margin:20px auto;text-align: center;}
+			
+			#adopt .adopt-box .content .contain .left{width:40%;float: left;}
+			#adopt .adopt-box .content .contain .left .load{width:120px;height:100px;background:#ccc;margin:0 auto;position: relative;overflow: hidden;}
+			#adopt .adopt-box .content .contain .left .load p{height: 20px;width:80px;line-height: 20px;background: #1ab394;color:#fff;position: absolute;left:20%;top:40%;cursor: pointer;}
+			#adopt .adopt-box .content .contain .left .load input{width: 100%;height:100%;position: absolute;opacity: 0;z-index: 9999;}
+			#adopt .adopt-box .content .contain .left .load img{display: block;position: absolute;left:0;top;0;height:100px;left:50%;transform: translate(-50%);}
+			
+			#adopt .adopt-box .content .contain .right{width:60%;float: left;}
+			#adopt .adopt-box .content .contain a{font-size: 14px;border:1px solid #eee;padding:5px 10px;border-radius: 5px;margin:0 10px}
+			#adopt .adopt-box .content .contain .contain-item{width:80%;margin:0 auto;display: flex;line-height: 30px;margin-bottom:10px}
+			#adopt .adopt-box .content .contain .contain-item label{margin-right:5px;width: 70px;text-align: left;}
+			#adopt .adopt-box .content .contain .contain-item label i{display: inline;color:#ff4949;margin-right: 3px;}
+			#adopt .adopt-box .content .contain .contain-item input{flex: 1;border-radius: 5px;text-indent: 10px;}
+			#adopt .adopt-box .content .contain .contain-item select{flex: 1;border-radius: 5px;}
+			#adopt .adopt-box .content .contain .new-set{text-align: center;width:95%;overflow: hidden;border-top:1px solid #ccc;margin:0 auto;padding-top:20px;margin-top:20px}
+			#adopt .adopt-box .content .contain .new-set button{margin:0 20px}
+			#adopt .adopt-box .content .contain .new-set button.btn-default{background: #fff;color:#000;border:1px solid #ccc}
+			#adopt .adopt-box .content .contain .new-set button.btn-default:hover{background:#ccc}
+			#adopt .adopt-box .content .contain .new-set button.btn-success{background:#1ab394}
+			.material-box .row label{width: auto;}
+			/*这里是盒子中的图片*/
+			.wrapper-content .row .box-item{width:80%;margin:0 auto 20px;height:300px;box-sizing: border-box;background:#fff;transition: all 0.5s linear;}
+			.wrapper-content .row .box-item:hover{box-shadow: 0 0 5px #000;}
+            .wrapper-content .row .box-item .top{width:100%;height:200px;position: relative;}
+            
+            .wrapper-content .row .box-item:hover .top{opacity: 0.7;transition: all 0.5s linear;}
+            .wrapper-content .row .box-item:hover .top i{display: inline-block;font-style: normal;transition: all 0.5s linear;}
+            /*.wrapper-content .row .box-item .top img{display: block;margin:0 auto;width:100%;height:100%}*/
+            .wrapper-content .row .box-item .top i{cursor: pointer;display: none;width:60px;height:30px;background: #f8ac59;line-height: 30px;text-align: center;position: absolute;bottom: 0;right:0;transition: all 0.5s linear;font-style: normal;}
+            .wrapper-content .row .box-item .botm{box-sizing: border-box;padding:10px;position: relative;}
+           .wrapper-content .row .box-item .botm .btn{background:none;color: #000;font-size: 12px;}
+           .wrapper-content .row .box-item .botm .btn i{font-size: 12px;}
+           .wrapper-content .row .box-item .botm .btn-default{border:1px solid #3dba9f;color:#3dba9f;position: absolute;bottom: 10px;right:10px}
+           .wrapper-content .row .box-item .botm .btn-default:hover{background:#3dba9f;color:#fff}
+           .wrapper-content .row .box-item .botm .btn-success{border:1px solid #f399a4;color:#f399a4;position: absolute;bottom: 10px;right:60px}
+           .wrapper-content .row .box-item .botm .btn-success:hover{color:#fff;background: #f399a4;}
+           
+
+        #sitch{width:100%;height:100%;position: fixed;top:0;left:0;background:rgba(0,0,0,.6);z-index: 999599;display:none;}
+			#sitch .sitch-box{display: flex;justify-content: center;align-items: center;width:100%;height:100%}
+			#sitch .sitch-box .content{width:30%;height:200px;background:#fff;border-radius: 5px;}
+			#sitch .sitch-box .content .title{width:100%;height:40px;border-bottom: 1px solid #ccc;line-height: 40px;background:#1ab394;color:#000}
+			#sitch .sitch-box .content .title span{text-indent: 10px;display: inline-block;}
+			#sitch .sitch-box .content .contain{width:90%;margin-top:40px;margin:0 auto;line-height: 30px;overflow: hidden;position: relative;height:150px;}
+				#sitch .sitch-box .content .contain .tip-con{text-align: center;line-height: 30px;margin:30px 0 30px;background: url(../img/tips.png) no-repeat left center;background-size: 30px 30px;}
+				#sitch .sitch-box .content .contain .set{text-align: center;}
+			    #sitch .sitch-box .content .contain .set button{margin:0 20px}
+			    #sitch .sitch-box .content .contain .set button.btn-default{background: #fff;border:1px solid #eee;color:#000}
+			    #sitch .sitch-box .content .contain .set button.btn-default:hover{background: #eee;}
+			    #sitch .sitch-box .content .contain .set button.btn-success{background: #1ab394;border:1px solid #eee}

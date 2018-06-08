@@ -1,0 +1,12 @@
+.passwordBox .vertical{display: flex;}
+.passwordBox .psd{display: flex;}
+.passwordBox .vertical input{flex: 1;}
+.passwordBox .vertical button{display: inline-block;width:100px;height:30px;text-align: center;line-height: 25px;}
+.passwordBox .psd label{display: inline-block;width:80px;height:30px;text-align: center;line-height: 30px;text-align: left;text-indent: 5px;}
+
+.passwordBox .form-group .form-control{padding: 0 5px !important;height:30px}
+.passwordBox h2{text-align: center;font-size: 16px;color:#fff}
+
+
+.ibox-content{background:rgba(0,0,0,.5) !important;padding:35px !important}
+.passwordBox .form-group {background: #eee;border-radius: 5px; overflow: hidden;height:30px}
