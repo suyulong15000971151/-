@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		
+		<title>币币交易</title>
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+		<link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="../../css/common.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/header.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/Footer.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/animate.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/k_line/k_line.min.css" />
+		<link href="../../css/k_line/bootstrap-slider.min.css" rel="stylesheet">
+    <!-- Hightlight.js Theme Styles -->
+    <link href="../../css/k_line/theme.min.css" rel="stylesheet">
+
+		<style type="text/css">
+			#chart_mainCanvas{width:1100px}
+			#chart_overlayCanvas{width:1190px}
+			.chart_container.light #chart_tabbar{display: none;}
+			#chart_tabbar{display: none !important;}
+			.pson{left: 100px;}
+			.back{background: #fff !important;}
+			/*.small{width:950px !important}*/
+			.chart_container #chart_updated_time{margin-right: 200px !important;}
+			#loading{z-index: 9999;}
+		</style>
+	</head>
+	<body>
+		<img src="../../img/loading.gif" alt="" id="loading" style="width:100px;height:100px;position: fixed;top:50%;left:50%;margin-left:-50px;margin-top:-50px"/>
+		<!--这里是资金密码弹窗-->
+		<div id="Capital" class="">
+			<div class="capital-box animated" >
+				<div class="content">
+					<input type="hidden" id="Type" />
+					<div class="title"><span>输入资金密码</span> <i class="iconfont icon-weibiaoti101"></i></div>
+					<div class="con">
+						<div id="amount"></div>
+						
+						
+						
+						<input type="password" class="form-control" name="" id="fundsPassword" maxlength="13" value="" placeholder="请输入资金密码" />
+					</div>
+					<div class="set">
+						<button class="btn can">取消</button>
+						<button class="btn cof"  id="padWord" onclick="padWord()">确认</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<!--这里是头部-->
+		<div id="header"></div>
+		
+		<!--这里是交易区和代币的值-->
+		<input type="hidden" name="" id="tokenarea" value="" />
+		<input type="hidden" name="" id="token" value="" />
+		<input type="hidden" name="" id="tokenIds" value="" />
+		
+		<div class="shares">
+			<!--这里是币币交易股票行情-->
+			<div class="shares_title">
+				<i class="iconfont icon-xia"></i><div class="currency info"></div><!--<div class="qual info">≈ 59192.28 CNY</div>-->
+				<div class="Increase info">涨幅<span></span></div>
+				<div class="gao info"></div>
+				<div class="di info"></div>
+				<div class="amount info"></div>
+			</div>
+			<!--这里是k线-->
+			<div class="k_line">
+				 <div id="kline_container"></div>
+			</div>
+			<!--这里是限价市价交易和最新价-->
+			
+			<div class="price">
+				<div class="left">
+					<div class="title">
+						<a href="javascript:;" class="tv">限价交易</a>
+						<!--<a href="javascript:;">市价交易</a>-->
+						<!--<span>费率</span>-->
+					</div>
+					<div class="con">
+						<!--限价交易对应的内容-->
+						<div class="con_curren" id="businessInputBox">
+						</div>
+						 <!--限价市价交易对应的内容-->
+						 <!----------------------------------暂时不要的-------------------------------------------------->
+						<!--<div class="con_curren market">
+						<div class="con_left">
+							<div class="con_title">
+								<span>登录</span>或<span style="margin:0 4px">注册</span> 开始交易
+								<div class="line"></div>
+							</div>
+							<div class="con_title" style="display: none;">
+								<div class="limt">可用 0.00000000 CNDT</div> <em>充币</em>
+								<div class="line"></div>
+							</div>
+							<div class="sub">
+								<div class="item">
+								  <label for="">买入价</label>
+								  <div class="pic">
+									<input type="text" name="" id="" value="" placeholder="以市场最优的价格买入" class="form-control" />
+									<span>CNDT</span>
+								  </div>
+								</div>
+								
+								<div class="item">
+								  <label for="">交易额</label>
+								  <div class="pic">
+									<input type="text" name="" id="" value="" class="form-control"  />
+									<span>CNDT</span>
+								  </div>
+								</div>
+								
+								<div class="Purchase">
+									<button class="btn">买入BTC</button>
+								</div>
+								
+								
+							</div>
+						</div>
+						<div class="con_left">
+							<div class="con_title">
+								<span>登录</span>或<span style="margin:0 4px">注册</span> 开始交易
+								<div class="line"></div>
+							</div>
+							<div class="con_title" style="display: none;">
+								<div class="limt">可用 0.00000000 CNDT</div> <em>充币</em>
+								<div class="line"></div>
+							</div>
+							<div class="sub">
+								<div class="item">
+								  <label for="">卖出价</label>
+								  <div class="pic">
+									<input type="text" name="" id="" value="" class="form-control" placeholder="以市场最优的价格卖出" />
+									<span>CNDT</span>
+								  </div>
+								</div>
+								
+								<div class="item">
+								  <label for="">卖出量</label>
+								  <div class="pic">
+									<input type="text" name="" id="" value="" class="form-control" />
+									<span>CNDT</span>
+								  </div>
+								</div>
+							
+								<div class="Purchase">
+									<button class="btn">卖出BTC</button>
+								</div>
+								
+							</div>
+						</div>
+						</div>-->
+						
+						
+					</div>
+				</div>
+				<div class="right">
+					<div class="title">最新价 <span class="latestprice"></span><span id="showTradeArea"></span></div>
+					<div class="table_box">
+						<table class="table purch">
+							<thead>
+								<tr>
+									<th></th>
+									<th id="showPrice">价格( CNDT )</th>
+									<th id="showNum">数量( BTC )</th></tr>
+							</thead>
+							<tbody id="outResultBox">
+							</tbody>
+						</table>
+						<div class="line"></div>
+						<table class="table sell">
+							<thead>
+								<tr style=";">
+									<th></th>
+									<th class="showPrices">价格( CNDT )</th>
+									<th class="showNums">数量( BTC )</th>
+								</tr>
+							</thead>
+							<tbody id="inResultBox">
+							</tbody>
+						</table>
+					</div>
+					
+				</div>
+			</div>
+
+			<div id="trlistSelect">
+			
+			</div>
+
+			
+			<!--这里是深度图和实时成交-->
+			<div class="deap">
+				<div class="left">
+					<div class="title">深度图</div>
+					<div class="deap_con">
+						<div class="layout">
+                          <canvas id="depth" width="600" height="400"></canvas>
+                          <canvas id="x" width="600" height="24"></canvas>
+                          <canvas id="y" width="48" height="400"></canvas>
+                        </div>
+					</div>
+				</div>
+				<div class="right">
+					<div class="title">实时成交</div>
+					<div class="table-box">
+					<div class="real_time">
+						<table class="table">
+						<thead>
+							<tr>
+								<th>时间</th>
+								<th>方向</th>
+								<th id="RealTimeTransactionTradingAreak">价格(CNDT)</th>
+								<th id="RealTimeTransactionToken">数量(BTC)</th>
+							</tr>
+						<thead>
+						<tbody id="realTimeBox">
+
+						</tbody>
+					</table>
+					</div>
+					</div>
+					
+				</div>
+			</div>
+			
+			<!--这里是资料币种资料-->
+			<div class="matrial">
+				<div class="title">
+					<span>币种资料</span> <em><a href="" target="_blank">了解更多</a></em>
+				</div>
+				<div class="text">
+					<div class="titleS">
+						<span></span> <i></i>
+					</div>
+					<div class="pref">简介</div>
+					<div class="pre-con">
+				
+					</div>
+					<div class="issue">
+						<div class="data time"></div>
+						<div class="amount issu"></div>
+						<div class="amount circulation"></div>
+						<div class="amount Crowd"></div>
+					</div>
+					<div class="issue isbot">
+						<div class="data bood"></div>
+						<div class="amount network"></div>
+						<div class="amount block"></div>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+		</div>
+		
+		
+		
+		<!--这里是底部-->
+		<div id="footer"></div>
+		
+		
+		<script type="text/javascript" src="../../js/jquery-2.1.1.js"></script>
+		<script type="text/javascript" src="../../js/aliyun-oss-sdk-4.4.4.min.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../js/common.min.js"></script>
+		<script type="text/javascript" src="../../js/md5.min.js"></script>
+		<script type="text/javascript" src="../../js/bank.min.js"></script>
+		<script type="text/javascript" src="../../js/k_line/k_line.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.mousewheel.min.js"></script>
+		<script type="text/javascript" src="../../js/echarts.min.js"></script>
+		<script type="text/javascript" src="../../js/kline.min.js"></script>
+		<script type="text/javascript" src="../../js/k_line/k_line_select.min.js"></script>
+		<script type='text/javascript' src="../../js/modernizr.min.js"></script>
+		<script type='text/javascript' src="../../js/bootstrap-slider.js"></script>
+        <script type='text/javascript' src="../../js/highlight.min.js"></script>
+		<script type="text/javascript">
+			
+			
+			function Ewindlocation(){
+				window.location.href="Ek_line.html"
+			}
+			
+			
+       $(function(){
+       	
+       	
+//     	window.onload=function(){
+				setTimeout(function(){
+					$("#loading").css("display","none")
+				},2000)
+//			}
+       	
+       
+	   	$("#ex13").slider({
+				ticks: [0, 25, 50, 75, 100],
+				ticks_labels: ['$0', '$100', '$200', '$300', '$400'],
+				ticks_snap_bounds: 30,
+				value: 0
+			});
+			$("#ex14").slider({
+				ticks: [0, 25, 50, 75, 100],
+				ticks_labels: ['$0', '$100', '$200', '$300', '$400'],
+				ticks_snap_bounds: 30,
+				value: 0
+			});
+			
+			
+			window.onresize = function(){
+				var Boxwidth=$(".shares .k_line").get(0).offsetWidth
+				$("#chart_mainCanvas").css("width",(Boxwidth-100)+"px")
+				$("#chart_overlayCanvas").css("width",((Boxwidth-50)+"px"))
+				
+				var deapwidth=$(".shares .deap .left .deap_con").get(0).offsetWidth
+				$("#depth").css("width",(deapwidth-100))
+				$("#x").css("width",(deapwidth-100))
+				var deapheight=$("#depth").get(0).offsetHeight
+				
+				$(".shares .deap .left .deap_con").css("height",(deapheight+50))
+				$(".layout #x").css("top",deapheight)
+				$(".layout #y").css("left",(deapwidth-100))
+				$(".shares .deap .right .table-box").css("height",(deapheight+50))
+               }
+			
+			
+//			window.onload=function(){
+				var Boxwidth=$(".shares .k_line").get(0).offsetWidth
+				
+				$("#chart_mainCanvas").css("width",(Boxwidth-100)+"px")
+				$("#chart_overlayCanvas").css("width",((Boxwidth-50)+"px"))
+				
+				
+				var deapwidth=$(".shares .deap .left .deap_con").get(0).offsetWidth
+				$("#depth").css("width",(deapwidth-100))
+				$("#x").css("width",(deapwidth-100))
+				var deapheight=$("#depth").get(0).offsetHeight
+				
+				$(".shares .deap .left .deap_con").css("height",(deapheight+50))
+				$(".layout #x").css("top",deapheight)
+				$(".layout #y").css("left",(deapwidth-100))
+				$(".shares .deap .right .table-box").css("height",(deapheight+50))
+//			}
+			
+			
+			
+				var kline = new Kline({
+		element: "#kline_container",
+		width: 1526,
+		height: 500,
+		theme: 'light', // light/dark
+		language: 'zh-cn', // zh-cn/en-us/zh-tw
+		ranges: ["1w", "1d", "1h", "30m", "15m", "5m", "1m", "line"],
+		symbol: "BTC",
+		symbolName: token + "/" + tradingArea,
+		type: "poll", // poll/socket
+		url: PCData.PCQUOTATION_TR_URL + 'quotation/PCBIGselectTradingAreaQuotation?tokenarea=' + tradingArea + '&token=' + token,
+		limit: 5000,
+		intervalTime: 8000,
+		debug: true,
+		showTrade: true,
+		onResize: function(width, height) {
+			//          console.log("chart resized: " + width + " " + height);
+		},
+		onRangeChange: function(range) {
+			INterval = range / 60000
+		},
+	});
+
+	kline.draw();
+			
+			
+			});
+				
+//			})
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+
+    $('#resize-btn').click(function () {
+        var height = $('#height').val();
+        var width = $('#width').val();
+        kline.resize(width, height);
+    });
+
+    $('#switch-trade-btn').click(function () {
+        kline.toggleTrade();
+    });
+
+    $('#set-symbol-btn').click(function () {
+        var symbol = $('#symbol').val();
+        var symbolName = $('#symbol-name').val();
+        kline.setSymbol(symbol, symbolName);
+    });
+
+    $('#toggle-theme-btn').click(function () {
+        if(kline.theme == "dark") {
+            kline.setTheme("light");
+        } else {
+            kline.setTheme("dark");
+        }
+    });
+
+    $('#set-lang-btn').click(function () {
+        var lang = $('#lang-select').val();
+        kline.setLanguage(lang);
+    });
+    
+    
+    $("#sizeIcon").click(function(){
+//  	var clinWidth=document.body.clientWidth-100
+//  	$(".pson").css("width",clinWidth)
+    	$("#chart_mainCanvas").toggleClass("pson")
+    	$("#chart_overlayCanvas").toggleClass("pson")
+    	$(".chart_container").toggleClass("back")
+    })
+
+$(".shares .shares_title i").click(function(){
+	$(".shares .k_line").slideToggle()
+	
+})
+
+$(".shares .price .left .title a").click(function(){
+	var index=$(this).index()
+//	$(this).addClass("tv").siblings().removeClass("tv")
+//	console.log(index)
+     $(".shares .price .left .con .con_curren").css("display","none")
+     $(".shares .price .left .con .con_curren").eq(index).css("display","block")
+})
+
+//当前委托和历史委托导航栏点击效果
+$(".Entrust .title .right a").click(function(){
+	$(this).addClass("tv").siblings().removeClass("tv")
+})
+//这里是限价和市价交易点击切换效果
+$("#Capital .capital-box .content .title i").click(function(){
+	$("#Capital").removeClass("fadeIn")
+	$("#fundsPassword").val("")
+})
+$("#Capital .capital-box .content .set button.can").click(function(){
+	$("#Capital").removeClass("fadeIn")
+	$("#fundsPassword").val("")
+})
+
+
+		</script>
+	</body>
+</html>

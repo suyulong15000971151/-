@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>fund management</title>
+		<link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="../../css/common.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/header.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/Footer.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/page.min.css" />
+
+		<link rel="stylesheet" type="text/css" href="../../css/animate.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/fund_manager/fund_manager.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/date.min.css" />
+		<style type="text/css">
+			.conta .con-box .left-con #French .Entrust .Brush .condition label{margin-right: 5px;}
+			.conta .con-box .left-con #French .Entrust .Brush .dataTime input.form-control{width: 98px;}
+			.conta .con-box .left-con #French .Entrust .Brush .condition select.form-control{width: 90px;}
+		</style>
+		
+	</head>
+
+	<body>
+		<!--<div class="notice animated"><i class="iconfont icon-chenggong"></i><span>成功</span></div>-->
+		<!--这里是头部-->
+		<div id="header"></div>
+
+		<!--这里是充币中的二维码弹窗-->
+		<div id="change_code" class="animated">
+			<div class="change_box animated">
+				<div class="content">
+					<div class="code">
+						<div id="output"></div>
+					</div>
+					<i></i>
+				</div>
+			</div>
+		</div>
+
+		<!--这里是中间内容-->
+		<div class="conta">
+			<div class="con-box">
+				<div class="sidebar">
+					<div class="list">
+						<div class="title self">fund management</div>
+						<div class="item info active">Account balance</div>
+						<div class="item security">Charge money</div>
+						<div class="item identity">Withdraw money</div>
+						<div class="item French ">Entrustment</div>
+					</div>
+				</div>
+				<div class="left-con">
+					<!--这里是账户余额-->
+					<div id="self_info" class="self-item animated">
+						<div class="title">Account balance</div>
+						<div class="history">
+							<div class="caption"><span>Total asset conversion</span><span id="balance"></span></div>
+							<table class="table">
+								<tr class="tHead">
+									<th>currency<label for="box"></label> <input id="box" type="checkbox" class="" />Concealment of the 0 balance</th>
+									<th>available</th>
+									<th>frozen</th>
+									<th>BTCvaluation</th>
+									<th>
+										<div class="search"><i class=""></i> <input type="text" class="form-control" id="inputVal" placeholder="currency" /></div>
+									</th>
+
+								</tr>
+								<tbody id="dataList">
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<!--这里是安全设置-->
+					<div id="security" class="self-item animated">
+						<div class="title">Charge money</span>
+						</div>
+						<div class="item" style="display: inline-block;">
+							<label for="" style="line-height: 34px;">currency：</label>
+							<select name="" class="form-control" id="chargeMoneyOptions" onchange="chargeChange()">
+							</select>
+							
+						</div>
+						<div class="item exampleInputId" style="display: inline-block;" >
+							<input type="text" class="form-control" id="exampleInputId" placeholder="用户ID&nbsp:&nbsp"disabled>
+							<input type="text" class="" id="exampleInputId1">
+						</div>
+						<div class="item">
+							<label for="" style="line-height: 44px;">address：</label>
+							<div class="address">
+								<input readonly value='' id="Website"></input>
+								<button onclick='copyUrl()'></button>
+								<i></i>
+							</div>
+						</div>
+						<div class="text" id="getRechargeConetxt">
+							<!--<p><i></i>禁止向btc地址充值除btc之外的资产，任何冲入btc地址的非btc资产讲不可找回</p>
+							<p><i></i>使用btc地址充值需要1个余额网络确认才能到账</p>-->
+						</div>
+
+						<div class="record ">
+							<div class="capital">Recharge record<span>（In order to improve the performance of the system, we will periodically clean up the historical data of users 3 months ago）</span></div>
+							<div class="recode-box">
+								<input type="hidden" id="totalR"/>
+								<input type="hidden" id="pageR"/>
+								<input type="hidden" id="rowsR"/>
+								
+								<table class="table table-striped">
+									<thead>
+									<tr class="Moneyhead">
+										<th>address</th>
+										<th>number</th>
+										<th>time</th>
+										<th>recharge state</th>
+									</tr>
+									</thead>
+									<tbody id="rechargeList">
+
+									</tbody>
+								</table>
+							</div>
+
+							<div class="pagss" style="overflow: hidden;box-sizing: border-box;padding-left: 20px" >
+								<div class="right" style="float:right;display: inline-block;margin: 20px 30px">
+									<div id="pageToolbarR"></div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<!--这里是提币-->
+					<div id="identity" class="self-item animated">
+						<div class="title">Withdraw money</div>
+						<!--未认证的状态-->
+						<div class="undefind" id="undefindDiv" style="display: none">
+							<div class="status"></div>
+							<!--<a href=""></a>-->
+							<div class="info">In order to secure your funds, the operation of currency withdrawal must meet the following requirements</div>
+							<div class="go_read">
+								<div class="left" id="leftDiv">
+									<p>一.identity authentication</p>
+									<div class="go_set">
+										<span>Level certification</span>
+										<a onclick="goAuth()" id="authSetn">To set up</a>
+										<a id="authSets">Set up</a>
+									</div>
+								</div>
+								<div class="line" id="lineDiv"></div>
+								<div class="right" id="rightDiv">
+									<p>二.security setting</p>
+									<div class="go_set">
+										<span>Capital cipher</span>
+										<a onclick="setFundPasswd();" id="fundSetn">To set up</a>
+										<a id="fundSets">Set up</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--<div class="have">
+							
+						</div>-->
+						<!--已经认证过的状态-->
+						<div class="ready" id="readyDiv">
+							<!--24小时无法提币状态-->
+							<div class="modify" id="modifyDiv">
+								<div class="status"></div>
+								<div class="info">Modify the password / cell phone number / Google verification within 24 hours</div>
+							</div>
+							<!--这里是提币添加地址-->
+							<div class="location" id="locationDiv">
+								<div class="ttp" style="width:890px"><i></i>In the process of raising money, you may need advanced video authentication audit. Please note the state reminder in the note recording below</div>
+								<div class="item">
+									<label for="" style="width: 180px;">Choice of currency</label>
+									<div class="currency">
+										<select name="" class="form-control"  id="withdrawMoneyOptions" onchange="numWithdraw();">
+											<!--<option value="">BTC</option>
+											<option value="">GIGT</option>
+											<option value="">LTC</option>-->
+										</select>
+										<div class="quota" style="width: 320px;">
+											Amount of available cash：<span id="currentBalance"></span>
+										</div>
+									</div>
+								</div>
+								<div class="item">
+									<label for="" style="width: 180px;">Currency address</label>
+									<div class="address" style="width: 465px;">
+										<div class="text_adress">
+											<input type="hidden" id="bat_id">
+											<textarea name="" class="form-control" rows="" cols="" id="pretermitAddr" onchange="changeAdress();"></textarea>
+											<i class="iconfont icon-xia" id="addres"></i>
+											<div class="sub-box">
+												<div class="item-box"  id="withdrawAddrs">
+													 
+												</div>
+												<div class="add_item" id="addAddr" style="display:none" ><i class="iconfont icon-tianjia"></i> Add the address</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<div class="item">
+									<label for="" style="width: 180px;">Amount of money</label>
+									<div class="count" style="width:465px">
+										<input type="text" class="form-control" placeholder=""  id="numWithdraw" value=""/>
+										<div class="service">
+											Service Charge：<span id="chargeNum"></span>
+										</div>
+										<div class="account">
+											Actual account：<span id="balanceNum"></span>
+										</div>
+									</div>
+								</div>
+								<div class="item">
+									<label for="" style="width: 180px;">SMS authentication code</label>
+									<div class="vertical" style="width:465px">
+										<input type="text" class="form-control" id= "vaildatecode" value="" maxlength="6"/> <button class="btn" onclick="sendCode();" id="txDiv" style="width:200px;">send authentication code</button>
+									</div>
+								</div>
+								<div class="item">
+									<label for="" style="width: 180px;">Capital cipher</label>
+									<div class="countpsd" style="width: 465px;">
+										<input type="password" class="form-control countpsd" id="fundsPassword" maxlength="32" style="width:465px !important"/>
+										<a onclick="setFundPasswd();" style="width: 130px;right:-135px">Forget the password</a>
+									</div>
+
+								</div>
+
+								<div class="sub_box">
+									<button class="btn" id="commit" style="margin-left: 254px;width: 465px;">Confirmation</button>
+								</div>
+
+							</div>
+
+							<div class="record" id="recordDiv">
+								<div class="capital">Currency record<span>（In order to improve the performance of the system, we will periodically remove some users' historical data 3 months ago according to the space conditions）</span></div>
+								<div class="recode-box">
+									<input type="hidden" id="total"/>
+									<input type="hidden" id="page"/>
+									<input type="hidden" id="rows"/>
+									
+									<table class="table table-striped">
+										<tr class="Withdraw">
+											<th>time</th>
+											<th>flow number</th>
+											<th>number</th>
+											<th>network handling fee</th>
+											<th>address</th>
+											<th>state</th>
+										</tr>
+										
+										<tbody id="transitionSet"></tbody>
+										
+									</table>
+								</div>
+								<div class="pagss" style="overflow: hidden;box-sizing: border-box;padding-left: 20px" >
+									<div class="right" style="float:right;display: inline-block;margin: 20px 30px">
+										<div id="pageToolbar"></div>
+									</div>
+								</div>
+								
+							</div>
+
+						</div>
+
+					</div>
+
+					<!--这里是法币交易设置-->
+					<div id="French" class="self-item animated" id="transitionSet">
+						<div class="title" style="line-height: 20px;">Entrustment Management <span>（In order to improve the performance of the system, we will periodically clean up the historical data of users 3 months ago according to the spatial conditions.）</span></div>
+						<div class="Entrust">
+							<div class="entrust_nav">
+								<a href="javascript:;" class="tv" id="current">Current</a>
+								<a href="javascript:;" id="history">Historical</a>
+							</div>
+							<div class="Brush">
+								<div class="ear condition">
+									<label for="">Trading area</label>
+									<select name="" class="form-control" id="tradingPost" onchange="getCurrencyList('');">
+										<option value="0" selected="">BIGT</option>
+										<option value="2">ETH</option>
+										<option value="1">BTC</option>
+										<option value="3">CNDT</option>
+									</select>
+								</div>
+								<div class="currency condition">
+									<label for="">currency</label>
+									<select name="" class="form-control" id="currency">
+									</select>
+								</div>
+								<div class="direction condition">
+									<label for="">direction</label>
+									<select name="" class="form-control" id="direction">
+										<option value="0" selected="selected">Purchase</option>
+										<option value="1">Sell out</option>
+									</select>
+								</div>
+								<div class="dataTime condition">
+									<i class="iconfont icon-rili"></i>
+									<div class="start">
+										<input type="text" class="form-control" value="" name="startDateTimeS" id="startDateTimeS" />
+									</div>
+									<div class="line"></div>
+									<div class="end">
+										<input type="text" class="form-control" value="" name="endDateTimeS" id="endDateTimeS" />
+									</div>
+
+								</div>
+								<div class="search condition">
+									<button class="btn" id="searchBtn">query</button>
+								</div>
+							</div>
+						</div>
+
+						<div class="record" id="record">
+							<!--<div class="capital">提币记录<span>（为了提升系统性能，我们会根据空间情况，定期清除部分用户3个月前的历史数据）</span></div>-->
+							<div class="recode-box">
+								<input type="hidden" id="totalW"/>
+								<input type="hidden" id="pageW"/>
+								<input type="hidden" id="rowsW"/>
+								
+								<table class="table table-striped">
+									<!--<thead>-->
+									<tr class="Entrusts">
+										<th>entrustment time</th>
+										<th>market</th>
+										<th>direction</th>
+										<th>number of transactions</th>
+										<th>number</th>
+										<th>transaction amount</th>
+										<th>service Charge</th>
+										<th>state</th>
+										<th>operation</th>
+									</tr>
+									<!--</thead>-->
+									<tbody id="tradingList">
+									</tbody>
+								</table>
+							</div>
+
+							<div class="pagss" style="overflow: hidden;box-sizing: border-box;padding-left: 20px" >
+								<div class="right" style="float:right;display: inline-block;margin: 20px 30px">
+									<div id="pageToolbarW"></div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--这里是底部-->
+		<div id="footer"></div>
+		<script type="text/javascript" src="../../js/jquery-2.1.1.js"></script>
+		<script type="text/javascript" src="../../js/aliyun-oss-sdk-4.4.4.min.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../js/Ecommon.min.js"></script>
+		<script type="text/javascript" src="../../js/paging.js"></script>
+		<script type="text/javascript" src="../../js/md5.min.js"></script> 
+		<script type="text/javascript" src="../../js/QRCode.js"></script> 
+		<script type="text/javascript" src="../../js/fund_manager/Efund_manger.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap-datepicker.js"></script>
+		
+
+		<script type="text/javascript">
+			
+			function windlocation(){
+				window.location.href="fund_manger.html"
+			}
+			
+			// $('.M-box').pagination({
+				// callback: function(api) {
+					// //              	api.setPageCount(4)
+					// $('.now').text(api.getCurrent());
+					// //                  console.log(api.getPageCount())
+				// }
+			// }, function(api) {
+				// $('.now').text(api.getCurrent());
+				// //              api.setPageCount(4)
+			// });
+
+			//这里是提币中的添加地址分页
+			// $('.M-boxd').pagination({
+				// callback: function(api) {
+					// //              	api.setPageCount(4)
+					// $('.nowd').text(api.getCurrent());
+					// //                  console.log(api.getPageCount())
+				// }
+			// }, function(api) {
+				// $('.nowd').text(api.getCurrent());
+				// //              api.setPageCount(4)
+			// });
+
+			//这里是委托管理
+			// $('.M-boxen').pagination({
+				// callback: function(api) {
+					// //              	api.setPageCount(4)
+					// $('.nowen').text(api.getCurrent());
+					// //                  console.log(api.getPageCount())
+				// }
+			// }, function(api) {
+				// $('.nowen').text(api.getCurrent());
+				// //              api.setPageCount(4)
+			// });
+
+			//时间插件
+			$('#startDateTimeS').datepicker({
+				language: 'zh-CN',
+				autoclose: true,
+				todayHighlight: true,
+				todayBtn: "linked",
+				keyboardNavigation: false,
+				forceParse: false,
+				calendarWeeks: false,
+				autoclose: true,
+				format: "yyyy-mm-dd",
+				showWeek: false,
+			});
+
+			//结束时间：
+			$('#endDateTimeS').datepicker({
+				language: 'zh-CN',
+				autoclose: true,
+				todayHighlight: true,
+				todayBtn: "linked",
+				keyboardNavigation: false,
+				forceParse: false,
+				calendarWeeks: false,
+				autoclose: true,
+				format: "yyyy-mm-dd",
+			});
+			
+			// var p = new Paging();
+			// p.init({target:'#pageToolbar',pagesize:10,count:$('#total').val(), toolbar: true,hash: true,callback:function(page,size,count){
+				// withdrawMoneyRecord(page);
+			// }});
+			
+			
+		</script>
+	</body>
+
+</html>

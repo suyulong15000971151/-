@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>register</title>
+		<link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="../../css/common.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/header.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/Footer.min.css"/>
+		<!--<link rel="stylesheet" type="text/css" href="../../css/person_cen.css"/>-->	
+		<link href="../../css/register.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<!--这里是头部-->
+		<div id="header"></div>
+		<div id="register">
+			<div class="register_content">
+				<p>Register</p>
+				<div class="register_message">
+					<div class="registerPhone">
+						<div class="registerPhoneLeft">
+							<label id="registerPhoneLabel">Phone</label>
+						    <input type="text" class="form-control registerPhoneInput allInput" id="phone" onkeyup="checkPhone();" maxlength="11"> 
+						</div>
+						<div class="phoneHint"></div>
+						<div class="bottomLine"></div>
+						<div class="changeLinePhone changeLine all"></div>
+					</div>
+					<div class="registerVerify">
+						<div class="registerVerifyLeft">
+							<label>Verification Code</label>
+							<input type="text" class="form-control registerVerifyInput allInput" id="vaildatecode" maxlength="6" onkeyup="checkParams();">
+						</div>
+						<div class="registerVerifyRight"><a style="width: 120px;"> get verifying code</a></div>
+						<div class="bottomLine"></div>
+						<div class="changeLineVerify changeLine all"></div>
+					</div>
+					<div class="loginPassword">
+						<div class="loginPasswordLeft">
+							<label>Password</label>
+							<input type="password" class="form-control loginPasswordInput allInput" id="password" maxlength="32" onkeyup="checkParams();">
+						</div>
+						<div class="loginPasswordRight"><img src="../../img/eyecolse.png" /></div>
+						<div class="closeImg"><img src="../../img/eyeopen.png" /></div>
+						<div class="bottomLine"></div>
+						<div class="changeLinePassword changeLine all"></div>
+					</div>
+					<div class="checkPassword">
+						<div class="checkPasswordLeft">
+							<label>Confirm the password</label>
+							<input type="password" class="form-control checkPasswordInput allInput" id="cpassword" maxlength="32" onkeyup="checkParams();">
+						</div>
+						<div class="checkPasswordRight"><img src="../../img/eyecolse.png" /></div>
+						<div class="closeImg1"><img src="../../img/eyeopen.png" /></div>
+						<div class="bottomLine"></div>
+						<div class="changeLineCheckPassword changeLine all"></div>
+					</div>
+					<div class="registerBtn" style="background-color: #cbcbcb;" >
+						Register
+						<!--<div class="bottomLine"></div>-->
+					</div>
+					<div class="agreement" >
+						<div class="fl agreementLeft" style="width: 350px;"><a href="https://app.big.top/agreement.html" target="_blank">Registration agrees with the "BIGT user agreement"</a></div>
+						<div class="fr agreementRight" style="text-align: right;"><a href="../system_log/Elogin.html">Log in</a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--这里是底部-->
+		<div class="blank30"></div>
+		<div id="footer"></div>
+		<script type="text/javascript" src="../../js/jquery-2.1.1.js"></script>
+		<script type="text/javascript" src="../../js/aliyun-oss-sdk-4.4.4.min.js"></script>
+		<script type="text/javascript" src="../../js/Ecommon.min.js"></script>
+		<script type="text/javascript" src="../../js/md5.min.js"></script>
+		<script type="text/javascript" src="../../js/register.min.js"></script>
+	</body>
+</html>

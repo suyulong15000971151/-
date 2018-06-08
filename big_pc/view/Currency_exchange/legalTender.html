@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>法币交易</title>
+		  <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="../../css/common.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/header.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/Footer.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/animate.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/Currency_exchange/legalTender.min.css"/>
+	</head>
+	<body>
+		<!--支付宝弹窗-->
+		<div id="zhiFuBao">
+			<div class="zhiFuBaoContent animated fadeInDown">
+				<img src="../../img/zfb.png" class="img1"/>
+				<div class="closeImg"> <img src="../../img/close.png"/></div>
+			</div>
+		</div>
+		<!--确认放行弹窗-->
+		<div id="discharged">
+			<div class="dischargedContent animated fadeInDown">
+				<div class="dischargedTitle">
+					<span class="titleText fl">确认放行</span>
+					<span class="titleBtn fr">×</span>
+				</div>
+				<div class="dischargedMessage">
+					<img src="../../img/setno.png" class="fl"/>
+					<div class="fr dischargedMeg">
+						请务必登录网上银行或第三方支付账号确认收到该笔款项。您确认收到此款项了吗？
+				    </div>
+				</div>
+				<div class="dischargedPas">
+					<input type="password"  placeholder="请输入资金密码" class="form-control dischargedPasInput" />
+				</div>
+				<div class="dischargedKnows">
+					<img src="../../img/selecrbox.png" class="dischargedImg hasselect"/>我确认已登录收款账户，并核对收款无误
+				</div>
+				<div class="springBtn">
+					<div class="cancelBtn">取消</div>
+					<div class="confirmBtn" id="dischargedForm">确认</div>
+				</div>
+			</div>
+		</div>
+		<!--拨打电话弹窗-->
+		<div id="call">
+			<div class="callContent animated fadeInDown">
+				<div class="callTitle">
+					<span class="titleText fl">确认拨打</span>
+					<span class="titleBtn fr">×</span>
+				</div>
+				<div class="callMessage">
+					
+				</div>
+				<div class="springBtn">
+					<div class="cancelBtn">取消拨打</div>
+				</div>
+			</div>
+		</div>
+		<!--这里是取消订单窗口-->
+		<div id="cancel">
+			<div class="cancelContent animated fadeInDown">
+				<div class="cancelTitle">
+					<span class="titleText fl">取消订单</span>
+					<span class="titleBtn fr">×</span>
+				</div>
+				<div class="cancelMessage">
+					<span>如果您已经向卖家付款，请千万不要取消交易。</span><br />
+					取消规则：当日累计3笔取消，将会限制当天的交易功能。
+				</div>
+				<div class="springBtn">
+					<div class="cancelBtn">我再想想</div>
+					<div class="confirmBtn" id="cancelForm">确认取消</div>
+				</div>
+			</div>
+		</div>
+
+		<!--这里是确认付款弹窗-->
+		<div id="confirmPay">
+			<div class="position">
+			<div class="confirmPayContent animated fadeInDown">
+				<div class="payTitle">
+					<span class="titleText fl">确认支付</span>
+					<span class="titleBtn fr">×</span>
+				</div>
+				<div class="confirmPayType">
+					<p class="payTypeLeft fl">买入<span class="payTypeLeftNmae"></span></p>
+					<p  class="fr"><label>订单号：</label><span class="payTypeRight"></span></p>
+				</div>
+				<div class="confirmNumber">
+					<p ><label>总金额：</label><span class="totalMoney"></span></p>
+					<p ><label>成交数量：</label><span class="totalNumer"></span></p>
+				</div>
+				<div class="">
+					付款方式：<span class="payImg"></span><span class="payAderess" style="display:none"></span>
+				</div>
+				<div class="payHint">
+					<img src="../../img/setno.png" class="fl"/>
+					<div class="fr payHintMeg">
+					亲爱的用户：<br/>
+					1.如果您已经支付完请点击下方【我已付款】，卖家确认收货后会及时为你放币；<br/>
+					2.对于未支付完成，却点击【我已付款】对的用户将会降低信用权重，甚至冻结账户使用权限，请您知晓；
+					</div>
+				</div>
+				<div class="springBtn">
+					<div class="cancelBtn">取消</div>
+					<div class="confirmBtn" id="payForm">我已付款</div>
+				</div>
+			</div>
+			
+			</div>
+		</div>
+		
+		<!--这里是买入弹窗-->
+		<div id="buying">
+			<div class="buyContent animated fadeInDown">
+				<div class="buyTitle">
+					<span class="titleText fl">确认购买</span><span class="titleTextType">CNDT</span>
+					<span class="titleBtn fr">×</span>
+				</div>
+				<div class="buyText">
+					<div class="item">
+						<label>委托人( 单数 )：</label><span id="buyBtn_nameNum"></span>
+					</div>
+					<div class="item">
+						<label>可支付方式：</label><span  id="buyBtn_imgs"></span>
+					</div>				
+				</div>
+				<div class="buyMessage">
+					<ul >
+						<li><label>限额<span> ( CNY )</span></label><span id="buyBtn_tradeLimit"></span></li>
+						<li><label>价格<span> ( CNY )</span></label><span id="buyBtn_num"></span></li>
+						<li><label>数量<span> ( CNDT )</span></label><span><input type="text" id="buyBtn_tokenNum" maxlength="10" onkeyup="value=value.replace(/[^\d.]/g,'')" ng-pattern="/[^a-zA-Z]/"/></span></li>
+						<li><label>金额<span> ( CNY )</span></label><span id="buyBtn_Money"></span></li>
+					</ul>
+				</div>
+				<div class="springBtn">
+					<div class="cancelBtn">取消</div>
+					<div class="confirmBtn" id="buyingBar">确认</div>
+				</div>
+			</div>
+		</div>
+		<!--这里是头部-->
+		<div id="header"></div>
+		<!--这里是中间内容-->
+		<div id="center">
+			<div id="centerTop">
+				<div class="topNumber" id="topNumber">
+					<!--CNDT可用&nbsp<span>0.00</span>&nbsp&nbsp 冻结313.00
+					<div class="about"><a>关于点对点</a><span style="color: #1660EB;">？</span></div>-->
+				</div>
+				<div class="liDiv">
+					<table class="table table-hover" id="transactionTable">
+						<thead>
+							<tr>
+								<th>排位</th>
+								<th>价格(CNY)</th>
+								<th>成交数量(CNDT)</th>
+								<th class="money">成交金额(CNY)&nbsp&nbsp<img src="../../img/select.png" class="moneyImg"/>
+									<div class="moneyDiv">
+										<ul>
+											<li onclick="judgeMoney(0)">所有金额</li>
+											<li onclick="judgeMoney(50000)">大于5万</li>
+											<li onclick="judgeMoney(10000)">大于10万</li>
+											<li onclick="judgeMoney(150000)">大于15万</li>
+										</ul>
+									</div>
+								</th>
+								<th class="markTh">委托人(单数)&nbsp&nbsp<img src="../../img/mark.png" class="markImg"/>
+									<div class="markDiv">
+										<p>单数= 已完成的订单数 + 取消订单数</p> 
+										<p>注：卖单中因对方超时未取消的订单不计入取消订单数</p>
+									</div>
+								</th>
+								<th>交易范围(CNY)</th>
+								<th class="select">
+									所有支付方式&nbsp&nbsp<img src="../../img/select.png" class="selectImg down"/>
+									<div class="selectDiv">
+										<ul>
+											<li onclick="pay(0)">所有支付方式</li>
+											<li onclick="pay(3)">银行卡转账</li>
+											<li onclick="pay(1)">支付宝</li>
+											<li onclick="pay(2)">微信支付</li>
+										</ul>
+									</div>
+								</th>
+							</tr>
+						</thead>
+						<tbody id="agentList">
+					
+						</tbody>
+					</table>
+				</div>		
+			</div>
+			<div id="centerBottom">
+				<div class="formNav">
+					<ul>
+						<li class="liOne colorLi" onclick="getAll(4)">未完成订单</li>
+						<li class="liTwo" onclick="allUnifished(2,1,10)">已完成订单</li>
+						<li class="liThree" onclick="allUnifished(1,1,10)">取消订单</li>
+						<span class="pro"></span>
+					</ul>
+				</div>
+				<div class="centerDiv" >	
+				<!--无订单时背景框-->
+				
+				<!--未完成订单买入生成窗-->
+				<div class="moneySet" onclick="goPayment();">收付款设置</div>
+				
+				<input type="hidden" id="total"/>
+				<input type="hidden" id="page"/>
+				<input type="hidden" id="rows"/>
+				
+				<input type="hidden" id="totalY"/>
+				<input type="hidden" id="pageY"/>
+				<input type="hidden" id="rowsY"/>	
+				
+				<input type="hidden" id="totalC"/>
+				<input type="hidden" id="pageC"/>
+				<input type="hidden" id="rowsC"/>	
+				
+					<div id="inputhidden">
+						
+						
+					</div>
+					
+				<div id="agentTrList">
+									
+					<div class="reminderText">
+						<p>暂无完成订单</p>
+						<p>温馨提示:超过三笔取消订单，将被冻结当天下单权限</p>
+					</div>
+				</div>
+				</div>
+				<div class="centerDiv orderTable" style="display: none;">
+					<div class="moneySet" onclick="goPayment();">收付款设置</div>	
+					<table class="table table-hover" id="finishedOrderTable">
+						<thead>
+							<tr>
+								<th>订单号</th>
+								<th>类型</th>
+								<th>状态</th>
+								<th>币种对</th>
+								<th>价格</th>
+								<th>数量</th>
+								<th>金额</th>
+								<th>下单时间</th>
+							</tr>
+						</thead>
+						<tbody id="yesTrSelectListTable" >
+							
+						</tbody>
+					</table>
+				</div>		
+				<!--分页-->
+				<div class="pagss" style="overflow: hidden;box-sizing: border-box;padding-left: 20px" >
+					<div class="right" style="float:right;display: inline-block;margin: 20px 30px">
+						<!--<div id="pageToolbar"></div>-->
+						<div id="pageToolbar2" style="display:none"></div>
+						<div id="pageToolbar3" style="display:none"></div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		<!--这里是底部-->
+		<div id="footer"></div>
+		<script type="text/javascript" src="../../js/jquery-2.1.1.js"></script>
+		<script type="text/javascript" src="../../js/aliyun-oss-sdk-4.4.4.min.js"></script>
+		<script type="text/javascript" src="../../js/common.min.js"></script>
+		<script type="text/javascript" src="../../js/legalTender/legalTender_ajax.min.js" ></script>
+		<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+		<!--<script type="text/javascript" src="../../js/person_cen/person_cen.js"></script>-->
+		<script type="text/javascript" src="../../js/legalTender/legalTender.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.qrcode.min.js"></script>
+		<script type="text/javascript" src="../../js/paging.js"></script>
+		<script type="text/javascript" src="../../js/QRCode.js"></script>
+		<script type="text/javascript" src="../../js/md5.min.js"></script>
+		<script type="text/javascript">
+		//分页
+		var p = new Paging();
+
+		var py = new Paging();
+		py.init({target:'#pageToolbar2',pagesize:10,count:$('#totalY').val(), toolbar: false,hash: false,callback:function(page,size,count){
+			allUnifished(2,page,10);
+		},go:function(p){
+			allUnifished(2,p,10);
+		}});
+		
+		var pc = new Paging();
+		pc.init({target:'#pageToolbar3',pagesize:10,count:$('#totalC').val(), toolbar: false,hash: false,callback:function(page,size,count){
+			allUnifished(1,page,10);
+		},go:function(p){
+			allUnifished(1,p,10);
+		}});
+		
+		</script>
+	</body>
+</html>

@@ -1,0 +1,11 @@
+export const HEAD_SHOW_SUCCESS='HEAD_SHOW_SUCCESS';
+export const HEAD_SHOW_FAIL='HEAD_SHOW_FAIL';
+
+export const HIDE_LOADING='HIDE_LOADING';
+export const SHOW_LOADING='SHOW_LOADING';
+
+export const FOOTER_SHOW='FOOTER_SHOW';
+export const FOOTER_HIDE='FOOTER_HIDE'
+
+export const DIAO_SHOW='DIAO_SHOW';
+export const DIAO_HIDE='DIAO_HIDE'

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>首页</title>
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/animate.min.css" rel="stylesheet">
+		<link href="css/Footer.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/common.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/header.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.min.css" />
+		<style type="text/css">
+			.header .header-box .nav-right .language{border-radius: 10px;display: inline-block;float: right;width:80px;height: 20px;box-sizing: border-box;border:1px solid #ccc;line-height: 20px;font-size: 12px;text-align: center;position: relative;margin-left:10px;margin-top:28px}
+		    .header .header-box .nav-right .language p{line-height: 20px;}
+		    .header .header-box .nav-right .language .tongue{display: block;border-radius: 3px;width:80px;height: 40px;background:#fff;2px 2px 6px rgba(80,162,244,0.3);display: none;}
+		    .header .header-box .nav-right .language .tongue .iteml{text-align: center;line-height: 20px;color:#000}
+		</style>
+	</head>
+
+	<body>
+		<div class="header animated">
+			<div class="header-box">
+				<div class="log">
+					<a href="" onclick="location.reload()"><img class="dowlog" src="img/logo_dow.svg" alt="" /></a>
+					<a href="" onclick="location.reload()"><img class="toplog" src="img/logo.svg" alt="" /></a>
+				</div>
+				<div class="nav">
+					<a href="index.html">首页</a>
+					<div class="coin"><a href="view/k_line/k_line.html">币币交易</a>
+						     <div class="coin-sub">
+							     <div class="coin-box">
+								<div class="triangle"></div>
+								<div class="sub_nav">
+                                      <div class="suba atv">BIGT</div>
+                                      <div class="suba">BTC</div>
+                                      <div class="suba">ETH</div>
+                                      <div class="suba">CNDT</div>
+								</div>
+								<div class="tainer_box">
+									<div class="currency">
+										<!--<div class="item">ZB/<span>BTC</span><i class="iconfont icon-dingdanliangzoushi"></i></div>
+										<div class="item">ZB/<span>BTC</span><i class="iconfont icon-dingdanliangzoushi"></i></div>
+										<div class="item">ZB/<span>BTC</span><i class="iconfont icon-dingdanliangzoushi"></i></div>
+										<div class="item">ZB/<span>BTC</span><i class="iconfont icon-dingdanliangzoushi"></i></div>
+										<div class="item">ZB/<span>BTC</span><i class="iconfont icon-dingdanliangzoushi"></i></div>
+										<div class="item">ZB/<span>BTC</span><i class="iconfont icon-dingdanliangzoushi"></i></div>-->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<a href="view/Currency_exchange/legalTender.html" id="c2cDiv">法币交易</a>
+					<a href="view/Consultation/Consultation.html">最新资讯</a>
+				</div>
+				<div class="nav-right">
+					<div class="language"><p>China</p>
+						<div class="tongue">
+							<div class="iteml">China</div>
+							<div class="iteml" onclick="Ewindlocation()">English</div>
+						</div>
+					</div>
+					
+					<a href="view/system_register/register.html" id="registerhref"><div class="register">注册</div></a>
+					<a href="view/system_log/login.html" id="loginherf"><div class="log">登录</div></a>
+					<div class="person" id="personDiv">
+						<p id="loginPhone"></p>
+						<i class="iconfont icon-xia"></i>
+						<div class="sub-box">
+							<a href="view/person_cen/person_cen.html">
+								<div class="item">个人中心</div>
+							</a>
+							<a href="view/fund_manger/fund_manger.html">
+								<div class="item">资金管理</div>
+							</a>
+							
+							<a href="view/fund_manger/fund_manger.html?type=1">
+								<div class="item">充币</div>
+							</a>
+							<a href="view/fund_manger/fund_manger.html?type=2">
+								<div class="item">提币</div>
+							</a>
+							<a onclick="doLoginOut();">
+								<div class="item">退出</div>
+							</a>
+						</div>
+					</div>
+					<div class="capital" id="fundDiv"><a href="view/fund_manger/fund_manger.html">资金管理</a></div>
+					<div class="download"><a href="https://app.big.top/" target="_blank">下载App</a></div>
+				</div>
+			</div>
+		</div>
+		<!--banner-->
+		<div id="banner">
+			<!--这里是banner-->
+			<div class="banner">
+				<div class="index_focus">
+					<div class="bd">
+						<ul style="width:100%">
+							<li style="width: 100%;"  id="img1">
+								<a href="javascript:;" class="pic" name="demo11">
+									<div class="index_focus_info">
+										<input type="hidden" id="banner1" value="">
+										<input type="hidden" id="advertisementUrl1" value="">
+									</div>
+									<img class="pic" src="" id="pcimg" width="100%" alt="" name="demo1">
+								</a>
+							</li>
+							<li id="img2">
+								<a href="javascript:;" class="pic" name="demo22">
+									<div class="index_focus_info">
+										<input type="hidden" id="banner2" value="">
+									    <input type="hidden" id="advertisementUrl2" value="">
+									</div>
+									<img class="pic" src="" width="100%" alt="" name="demo2">
+								</a>
+							</li>
+							<li id="img3">
+								<a href="javascript:;" class="pic" name="demo33">
+									<div class="index_focus_info">
+										<input type="hidden" id="banner3" value="">
+										<input type="hidden" id="advertisementUrl3" value="">
+									</div>
+									<img class="pic" src="" width="100%" alt="" name="demo3">
+								</a>
+							</li>
+
+						</ul>
+					</div>
+
+					<div class="slide_nav">
+						<a href="javascript:;"><i></i></a>
+						<a href="javascript:;"><i></i></a>
+						<a href="javascript:;"><i></i></a>
+					</div>
+
+				</div>
+
+			</div>
+			<!--这里是下通知-->
+			<div id="srollMessage">
+				<div class="apple">
+					<img src="img/messageIcon.png" alt="" />
+					<ul id="tipsId" style="width:300px">
+					</ul>
+				</div>
+			</div>
+
+		</div>
+		<!--交易区-->
+		<div id="transaction">
+			<div class="trading">
+				交易区
+			</div>
+			<div class="navigation">
+				<ul>
+					<li class="li_one">BIGT交易区</li>
+					<li class="li_two">BTC交易区</li>
+					<li class="li_three">ETH交易区</li>
+					<li class="li_four">CNDT交易区</li>
+					<span class="pro"></span>
+				</ul>
+			</div>
+			<div class="liDiv on" id="liDiv">
+				<table class="table table-hover" id="transactionTable">
+					<thead>
+						<tr>
+							<th>币种</th>
+							<th>最新价</th>
+							<th>24H涨跌幅</th>
+							<th>24H最高</th>
+							<th>24H最低</th>
+							<th>24H成交量</th>
+							<th class="textr">操作 &nbsp; &nbsp;</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!--优势-->
+		<div id="advantage">
+			<div class="advantageText">
+				我们的优势
+			</div>
+			<div class="advantageNav">
+				<ul>
+					<li>
+						<div class="safe">
+							<div class="safeDiv">
+								<img src="img/safe.png" />
+								<p>安全透明</p>
+							</div>
+							<span>公司拥有顶级的风控，反欺诈技术，为您的资金保驾护航</span>
+						</div>
+					</li>
+					<li>
+						<div class="flow">
+							<div class="flowDiv">
+								<img src="img/flow.png" />
+								<p>高流动性</p>
+							</div>
+							<span>我们的用户来自世界100多个国家，交易量十分活跃</span>
+						</div>
+					</li>
+					<li>
+						<div class="member">
+							<div class="memberDiv">
+								<img src="img/member.png" />
+								<p>用户第一</p>
+							</div>
+							<span>以用户需求和产品体验为使命，致力于为用户打造极致的数字资产交易平台</span>
+						</div>
+					</li>
+					<li>
+						<div>
+							<div class="teamDiv">
+								<img src="img/team.png" />
+								<p>专业团队</p>
+							</div>
+							<span>团队成员来自于顶级的金融机构、互联网公司，为您提供优质的产品服务</span>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--体验-->
+		<div id="experience" >
+			<div class="experienceText">
+				立刻体验 ，进行你的第一笔交易
+			</div>
+			<div class="experienceReach">
+				<input type="text" class="form-control experienceInput" placeholder="请输入手机号码" id="phone" maxlength="11"><button type="button" class="btn btn-default experienceBtn" onclick="goRegister();">立即体验</button>
+			</div>
+			<div class="experienceImg">
+				<img  src="img/tiyantu.png"  alt="">
+			</div>
+		</div>
+		<!--注册体验-->
+		<div id="experience1" style="display: none;">
+			<div class="experienceReach1">
+				<button type="button" class="btn btn-default experienceBtn" onclick="goKine();">立即交易</button>
+			</div>
+			<div class="experienceImg1">
+				<img  src="img/tiyantu.png"  alt="">
+			</div>
+		</div>
+		<!--底部-->
+		<div id="foot">
+			<div class="foot_content">
+				<div class="foot_left fl">
+					<div>
+						<ul>
+							<li><a href="view/person_cen/person_cen.html?type=6" style="color:white">问题反馈</a></li>
+							<li>
+								<div class="dot"></div>
+							</li>
+							<li><a href="https://app.big.top/Privacy.html" target="_blank" style="color:white">服务条款</a></li>
+							<li>
+								<div class="dot"></div>
+							</li>
+							<li><a href="https://app.big.top/Privacy.html" target="_blank" style="color:white">免责声明</a></li>
+							<li>
+								<div class="dot"></div>
+							</li>
+							<li><a href="https://app.big.top/Privacy.html" target="_blank" style="color:white">隐私保护</a></li>
+						</ul>
+					</div>
+					<div class="blank30"></div>
+					<p><a href="mailto:service@big.top">公司邮箱：service@big.top</a></p>
+					<div class="blank14"></div>
+					<p><a href="https://t.me/BigtopGroup">微信电报群：https://t.me/BigtopGroup</a></p>
+					<div class="blank18"></div>
+					<p>@2018-2021 Big.top All Rights Reserved</p>
+				</div>
+				<div class="foot_center fl">
+					<!--<p>语言</p>
+					<div class="dropBtn">
+						简体中文&nbsp&nbsp&nbsp<img src="img/drop.png" />
+					</div>-->
+				</div>
+				<div class="foot_right fl">
+					<div class="qrcodeLeft fr">
+						<img src="img/QRcode.png" />
+						<p>Big App下载</p>
+					</div>
+					<!--<div class="qrcodeRight fr">
+						<img src="img/Qcode11.png" />
+						<p>CToken下载</p>
+					</div>-->
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="js/jquery-2.1.1.js"></script>
+		<script type="text/javascript" src="js/aliyun-oss-sdk-4.4.4.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/SuperSlide.min.js"></script>
+		<script src="js/common.min.js"></script>
+		<script src="js/index.min.js"></script>
+		<script type="text/javascript">
+			
+			$(".header .header-box .nav-right .language").click(function(){
+				$(".header .header-box .nav-right .language .tongue").slideToggle()
+			})
+			
+				function Ewindlocation(){
+				window.location.href="Eindex.html"
+			}
+			
+			
+			var t = ""
+			var m = null
+			$(".header .header-box .nav-right .person").hover(function() {
+				var _this = this
+				clearTimeout(m)
+				t = setTimeout(function() {
+					$(_this).find(".sub-box").css("display", "block")
+					//				$(".header .header-box .nav-right .person i").animate({transform: 'rotate(-90deg)'})
+
+				}, 300)
+			}, function() {
+				clearTimeout(t)
+				m = setTimeout(function() {
+					$(".header .header-box .nav-right .person .sub-box").css("display", "none")
+					//				$(".header .header-box .nav-right .person i").animate({transform: 'rotate(0deg)'})
+					clearTimeout(t)
+				}, 300)
+			})
+			
+			$(".header .header-box .nav .coin a").mouseover(function(){
+					$(".header .coin-box .tainer_box .currency").empty()
+					var texts="BIGT"
+				$.ajax({
+					type:"get",
+					url:PCData.TOKEN_URL+"bigToken/selectListBigAdminTokenAreaList",
+					async:true,
+					success:function(res){
+//						 console.log(res.data[0])
+//                  var datas=res.data[0];
+                    $(res.data[0]).each(function(i,n){
+                    	 var _html='<div class="item" onclick="Ears('+"'"+n.englishAbbreviations+"'"+","+"'"+texts+"'"+","+n.id+')">'+n.englishAbbreviations+'/<span>'+texts+'</span><i class="iconfont icon-dingdanliangzoushi"></i></div>'
+					  	$(".header .coin-box .tainer_box .currency").append(_html)
+                    })
+//                  console.log(datas)
+                   
+					}
+				});
+			})
+
+			//这里是导航栏滚动效果
+			
+			//币币交易导航栏显示
+			var v=""
+			var s=null
+			$(".header .header-box .nav .coin").hover(function(){
+				var _this=this
+				clearTimeout(s)
+			 v=setTimeout(function(){
+				$(_this).find(".coin-sub").css("display","block")
+//				$(".header .header-box .nav-right .person i").animate({transform: 'rotate(-90deg)'})
+				
+			},300)	
+			},function(){
+			     clearTimeout(v)
+				 s=setTimeout(function(){
+				$(".header .header-box .nav .coin .coin-sub").css("display","none")
+//				$(".header .header-box .nav-right .person i").animate({transform: 'rotate(0deg)'})
+					clearTimeout(v)
+			},300)
+			});
+			
+			$(".header .header-box .nav .coin .coin-sub .sub_nav .suba").mouseover(function(){
+				$(".header .coin-box .tainer_box .currency").empty()
+				var texts=$(this).text()
+				console.log(texts)
+				var _index=$(this).index()
+				$(this).addClass("atv").siblings().removeClass("atv")
+				
+			
+				$.ajax({
+					type:"get",
+					url:PCData.TOKEN_URL+"bigToken/selectListBigAdminTokenAreaList",
+					async:true,
+					dataType : 'json',
+					success:function(res){
+						console.log(res.data)
+						$(".header .coin-box .tainer_box .currency").empty()
+						$(res.data).each(function(i, n) {
+							if(texts=="BIGT"){
+								if(i==0){
+									$(n).each(function(ii, nn) {
+									var _html='<div class="item" onclick="Ears('+"'"+nn.englishAbbreviations+"'"+","+"'"+texts+"'"+","+nn.id+')">'+nn.englishAbbreviations+'/<span>'+texts+'</span><i class="iconfont icon-dingdanliangzoushi"></i></div>'
+					  	$(".header .coin-box .tainer_box .currency").append(_html)
+							})
+								}
+							}
+							if(texts=="BTC"){
+								if(i==1){
+									$(n).each(function(ii, nn) {
+									var _html='<div class="item" onclick="Ears('+"'"+nn.englishAbbreviations+"'"+","+"'"+texts+"'"+","+nn.id+')">'+nn.englishAbbreviations+'/<span>'+texts+'</span><i class="iconfont icon-dingdanliangzoushi"></i></div>'
+					  	$(".header .coin-box .tainer_box .currency").append(_html)
+							})
+								}
+							}
+							if(texts=="ETH"){
+								if(i==2){
+									$(n).each(function(ii, nn) {
+									var _html='<div class="item" onclick="Ears('+"'"+nn.englishAbbreviations+"'"+","+"'"+texts+"'"+","+nn.id+')">'+nn.englishAbbreviations+'/<span>'+texts+'</span><i class="iconfont icon-dingdanliangzoushi"></i></div>'
+					  	$(".header .coin-box .tainer_box .currency").append(_html)
+							})
+								}
+							}
+							if(texts=="CNDT"){
+								if(i==3){
+									$(n).each(function(ii, nn) {
+									var _html='<div class="item" onclick="Ears('+"'"+nn.englishAbbreviations+"'"+","+"'"+texts+"'"+","+nn.id+')">'+nn.englishAbbreviations+'/<span>'+texts+'</span><i class="iconfont icon-dingdanliangzoushi"></i></div>'
+					  	$(".header .coin-box .tainer_box .currency").append(_html)
+							})
+								}
+							}
+							
+						})
+					}
+				});
+				
+			});
+			
+			function Ears(Token,Trading,TokenId){
+//             console.log(Token+Trading)
+             
+               var url='view/k_line/k_line.html?Token='+Token+'&Trading='+Trading+'&TokenId='+TokenId
+               location.href =url
+
+			}
+			
+			
+			
+			
+
+			var sign = 80; //定义默认的向上滚与向下滚的边界
+			window.onscroll = function() {
+				var oScrollTop = $(window).scrollTop();
+				$(".header").css("display", "block")
+				if(oScrollTop > 80) {　　　　　　　　 //write your code
+				}
+				if(oScrollTop < 80) {
+					$(".header").css("display", "block")　　　　　　 //write your code
+					　　　　}
+				if(oScrollTop > sign) {
+					sign = oScrollTop; //更新scrollTop
+					
+					if(oScrollTop<20){
+						$(".header").css("display", "block")
+					$(".header").removeClass("scrollup")
+					$(".header").removeClass("fadeInDown")
+						
+					}else{
+						
+					
+//					console.log('向下');
+					//					$(".header").addClass("fadeInUp")
+					$(".header").addClass("scrollup")
+					
+					$(".header").removeClass("fadeInDown")
+					$(".header").css("display", "none")
+					}
+				}
+				if(oScrollTop < sign) {
+					sign = oScrollTop 
+					if(oScrollTop<=10){
+						$(".header").css("display", "block")
+						$(".header").removeClass("scrollup")
+					$(".header").removeClass("fadeInDown")
+						
+					}else{
+						//更新scrollTop
+//					console.log('向上');
+                    $(".header").addClass("scrollup")
+					$(".header").addClass("fadeInDown")
+					$(".header").css("display", "block")
+					}
+					//					$(".header .header-box .log img.img-up").css("display","block")
+					//					$(".header .header-box .log img.img-dow").css("display","none")
+
+				}
+			}
+		</script>
+	</body>
+
+</html>

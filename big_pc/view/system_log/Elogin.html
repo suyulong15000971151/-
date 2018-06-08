@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Sign in</title>
+		<link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="../../css/common.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/header.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/Footer.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/person_cen/person_cen.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/login.min.css"/>
+	</head>
+	<body>
+		<div id="header"></div>
+		<div id="login">
+			<div class="login_content">
+				<p style="width: 75px;">Sign in</p>
+				<div class="login_message">
+					<div class="loginPhone">
+						<div class="loginPhoneLeft">
+							<label>Phone</label>
+							<input type="text" class="form-control loginPhoneInput allInput" id="phone" maxlength="11" onkeyup="checkParams()" >
+						</div>
+						<div class="phoneHint">Please enter the correct cell phone number</div>
+						<div class="bottomLine"></div>
+						<div class="changeLinePhone changeLine all"></div>
+					</div>
+					<div class="checkPassword">
+						<div class="checkPasswordLeft">
+							Password
+							<input type="password" class="form-control checkPasswordInput allInput" maxlength="32"  id="password" onkeyup="checkParams();">
+						</div>
+						<div class="checkPasswordRight"><img src="../../img/eyecolse.png" /></div>
+						<div class="closeImg"><img src="../../img/eyeopen.png" /></div>
+						<div class="bottomLine"></div>
+						<div class="changeLinePassword changeLine all"></div>
+					</div>
+					<div class="loginBtn" style="background:#cbcbcb">
+						Sign in
+						<!--<div class="bottomLine"></div>-->
+					</div>
+					<div class="agreement">
+						<a href="../systempsd/EfindPassword.html"><div class="fl agreementLeft" style="width: 250px;">Forget the password？</div></a>
+						<div class="fr agreementRight" style="width: 140px;text-align: right;"><a href="../system_register/Eregister.html">Free registration</a></div>
+					</div>
+				</div>
+	
+			</div>
+		</div>
+		<!--这里是底部-->
+		<div class="blank140"></div>
+		<div id="footer"></div>
+		<script type="text/javascript" src="../../js/jquery-2.1.1.js"></script>
+		<script type="text/javascript" src="../../js/aliyun-oss-sdk-4.4.4.min.js"></script>
+		<script type="text/javascript" src="../../js/Ecommon.min.js"></script>
+		<script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
+		<script type="text/javascript" src="../../js/md5.min.js"></script>  
+		<script type="text/javascript" src="../../js/login.min.js"></script>
+	</body>
+</html>

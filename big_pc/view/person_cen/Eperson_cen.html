@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Personal Center</title>
+		<link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="../../css/common.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/header.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/Footer.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/animate.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/person_cen/person_cen.min.css" />
+	</head>
+	<style type="text/css">
+		.conta .con-box .left-con #security .item .item_top label{width:140px}
+		.conta .con-box .left-con #security .item .item_top .status{white-space: nowrap;max-width: 300px;margin:0 80px;}
+		.conta .con-box .left-con #security .item .sub-box .form-box label{width:140px}
+		.conta .con-box .left-con #security .item .sub-box .sub .btn{margin-left:170px}
+		.conta .con-box .left-con #security .item .sub-box .form-box .vertical .form-control{width:228px}
+		.conta .con-box .left-con #security .item .sub-box .form-box .tip{width:490px}
+		.conta .con-box .left-con #French .item .sub-box .form-box label{width:140px}
+		.conta .con-box .left-con #French .item .sub-box .sub .btn{margin-left:170px}
+		.conta .con-box .left-con #French .item .item_top .set{width:40px}
+		.conta .con-box .left-con #French .item .sub-box .form-box .vertical .form-control{width:228px}
+		.conta .con-box .left-con #French .item .sub-box .form-box .form-item .load{margin-left:170px}
+		.conta .con-box .left-con #French .item .item_top label{width:120px}
+		.Authen .authen-box .content button.btn{width:100px}
+	</style>
+
+	<body>
+		<!--这里是先认证再设置弹窗-->
+		<div class="Authen">
+			<div class="authen-box">
+				<div class="content">
+					<div class="status"></div>
+					<p>Please complete the authentication first, then set up the legal tender transaction.</p>
+					<button class="btn" onclick="goAuth();">authenticate</button>
+				</div>
+			</div>
+		</div>
+		
+		
+		<!--这里是头部-->
+		<div id="header"></div>
+
+		<!--这里是中间内容-->
+		<div class="conta">
+			<div class="con-box">
+				<div class="sidebar">
+					<div class="list">
+						<div class="title self"><i class="iconfont icon-gerenzhongxin tv"></i>Personal Center</div>
+						<div class="item info active">information</div>
+						<div class="item security">security</div>
+						<div class="item identity">identity</div>
+					</div>
+					<div class="list">
+						<div class="title set"><i class="iconfont icon-shezhi"></i>Transaction setting</div>
+						<div class="item French ">Currency</div>
+					</div>
+					<div class="list">
+						<div class="title supt"><i class="iconfont icon-yijianfankui01"></i>Support</div>
+						<div class="item problem">Problem</div>
+					</div>
+				</div>
+				<div class="left-con">
+					<!--这里是个人信息-->
+					<div id="self_info" class="self-item animated">
+						<div class="title">Personal information</div>
+						<div class="authen">
+							<div class="adopt" style="display:none" id="noAdopt">
+								<p>Notcertified</p>
+								<span onclick="goAuth();">authenticate</span>
+							</div>
+							<div class="adopt get" style="display:none" id="adopting">
+								<p>Certification</p>
+							</div>
+							<div class="adopt read" style="margin-left:0px;display:none" id="adopted">
+								<p>Certified</p>
+							</div>
+							<div class="dopt-info" style="width:300px">
+								<div class="item" id="authenPhone">
+									<label for="">phone</label>
+								</div>
+								<div class="item" id="authenEmail">
+									<label for="">mailbox</label>
+								</div>
+								<div class="item" id="authenName">
+									<label for="">name</label>
+								</div>
+							</div>
+						</div>
+						<div class="history">
+							<div class="caption">The last ten logged in history</div>
+							<table class="table table-striped">
+                              <thead>
+								<tr class="histen">
+									<th>time</th>
+									<th>IP address</th>
+									<th>Location</th>
+								</tr>
+							  </thead>
+                              <tbody id='resultBox'>
+							  </tbody>
+                             
+                            </table>
+						</div>
+					</div>
+
+					<!--这里是安全设置-->
+					<div id="security" class="self-item animated">
+						<div class="title">security setting <span>（Please do not disclose SMS and Google verification code to anyone.）</span></div>
+						<!--登录密码-->
+						<div class="item">
+							<div class="item_top">
+								<label for="">Login password</label>
+								<div class="status">
+									<img src="../../img/setup.png" alt="" />
+									<span>Set up</span>
+								</div>
+								<div class="set" id="loginModifyDiv">modify</div>
+							</div>
+							<!--下拉隐藏的-->
+							<div class="sub-box" >
+								<div class="form-box">
+									<div class="form-item"><label for="">Original cipher</label><input type="password" class="form-control" maxlength="32" id="orignPasswd" onkeyup="checkEmail(2)"/><span class="orign-text" id="passwordText1">Please enter the original password</span></div>
+									<div class="form-item"><label for="">New password</label><input type="password" class="form-control" maxlength="32" id="newPasswd" onkeyup="checkEmail(2)"/><span class="orign-text" id="passwordText2">Please enter the 6~32 - bit alphabet and number</span></div>
+									<div class="form-item"><label for="">Password confirmation</label><input type="password" class="form-control" maxlength="32" id="conPasswd" onkeyup="checkEmail(2)"/><span class="orign-text" id="passwordText3">Please confirm new password</span></div>
+									<div class="form-item vertical"><label for="">Code</label><input type="text" class="form-control" maxlength="6" id="loginCode"/><button class="btn" onclick="sendCode(2);" id="modifyPasswd">code</button></div>
+									<div class="sub"><button class="btn" onclick="modifyPwd();">confirm</button></div>
+								</div>
+							</div>
+						</div>
+						<!--手机绑定-->
+						<div class="item">
+							<div class="item_top">
+								<label for="">Cell phone binding</label>
+								<div class="status">
+									<img src="../../img/setup.png" alt="" />
+									<span>For verification, password and security settings, it is used to collect verification messages.</span>
+								</div>
+								<div class="set" id="phoneModigyDiv">modify</div>
+							</div>
+							<!--下拉隐藏的-->
+							<div class="sub-box" id='bindPhoneDiv'>
+								<div class="form-box">
+									<div class="tip"> <img src="../../img/from-tip.png" alt="" />In order to secure your assets, it is not allowed to withdraw money in 24 hours.</div>
+									<div class="form-item"><label for="">New phone number</label><input type="text" class="form-control"  id="newPhone" maxlength="11" onkeyup="checkPhone()"/><span class="orign-text" id="phoneText">Please enter the new cell phone number</span></div>
+									<div class="form-item vertical"><label for="">SMS verification</label><input type="text" class="form-control" maxlength="6" id="phoneCode" /><button class="btn" onclick="sendCode(3);" id="modifyPhone" >code</button></div>
+									<div class="sub"><button class="btn"  onclick="modifyPhone();">confirm</button></div>
+								</div>
+							</div>
+						</div>
+
+						<!--谷歌验证-->
+						<div class="item">
+
+							<div class="item_top">
+								<label for="">Google Authenticator</label>
+								<div class="status">
+									<img src="../../img/setno.png" alt=""  id="googlePicture"/>
+									<span>To enter, modify passwords and security settings to input Google verification code</span>
+								</div>
+								<div class="set" id="googleModigyDiv">Set up
+								</div>
+							</div>
+							<!--下拉隐藏的-->
+							<div class="sub-box">
+								<div class="form-box">
+									<div class="tip"> <img src="../../img/from-tip.png" alt="" />In order to secure your assets, binding Google verification is not allowed in 24 hours.</div>
+									<!--<div class="form-item"><label for="">原密码</label><input type="password" class="form-control" /></div>-->
+									<div class="form-item"><label for="">Google two-dimensional code and secret key</label>
+										<div class="code">
+											<div id="output"></div>
+											<p id="googleKey"></p>
+										</div>
+									</div>
+									<div class="form-item" id="googleDiv1"><label for="">Google verification code</label><input type="text" class="form-control" maxlength="6" id="googleNum" onkeyup="checkEmail(4)"/><span class="orign-text" id="googleTishi">Please enter the Google verification code</span></div>
+									<div class="form-item vertical" id="googleDiv2"><label for="">SMS authentication code</label><input type="text" class="form-control" maxlength="6" id="googleCode" /><button class="btn" onclick="sendCode(4);" id="modifyGoogle">Code</button></div>
+									<div class="sub" id="googleDiv3"><button class="btn" onclick="modifyGoogle();">confirm</button></div>
+								</div>
+							</div>
+						</div>
+
+						<!--资金验证-->
+						<div class="item">
+
+							<div class="item_top">
+								<label for="">Capital cipher</label>
+								<div class="status">
+									<img src="../../img/setno.png" alt="" id="fundPicture" />
+									<span>Trade and present use</span>
+								</div>
+								<div class="set" id="fundModifyDiv">Set up</div>
+							</div>
+							<!--下拉隐藏的-->
+							<div class="sub-box" id="modifyFundPwdDiv">
+								<div class="form-box">
+									<div class="tip"> <img src="../../img/from-tip.png" alt="" />In order to secure your assets, it is not allowed to withdraw money within 24 hours.</div>
+									<!--<div class="form-item"><label for="">原密码</label><input type="password" class="form-control" /></div>-->
+									<div class="form-item"><label for="">Capital cipher</label><input type="password" class="form-control" maxlength="32" id="fundsPassword" onkeyup="checkEmail(5)"/><span class="orign-text" id="passwordTishi">Please enter the capital cipher</span></div>
+									<div class="form-item"><label for="">Confirm password</label><input type="password" class="form-control" maxlength="32" id="confundsPassword" onkeyup="checkEmail(5)"/><span class="orign-text" id="conPasswordTishi">Please enter the capital cipher</span></div>
+									<div class="form-item vertical"><label for="">SMS authentication code</label><input type="text" class="form-control" id="fundCode" maxlength="6"/><button class="btn" onclick="sendCode(5);" id="modifyFundpw">code</button></div>
+									<div class="sub"><button class="btn" onclick="modifyFundpw();">confirm</button></div>
+								</div>
+							</div>
+						</div>
+						<!--邮箱验证-->
+						<div class="item">
+
+							<div class="item_top">
+								<label for="">Mailbox verification</label>
+								<div class="status">
+									<img src="../../img/setno.png" alt="" id="emailPicture"/>
+									<span>The mailbox is used for login, currency retrieval and security settings, and can not be modified after activation.</span>
+								</div>
+								<div class="set" id="emailModifyDiv">Set up</div>
+							</div>
+							<!--下拉隐藏的-->
+							<div class="sub-box" id="modifyEmailDiv">
+								<div class="form-box">
+									<!--<div class="tip"> <img src="../img/from-tip.png" alt="" />为了您的资产安全，绑定资金密码24小时内不允许提币</div>-->
+									<!--<div class="form-item"><label for="">原密码</label><input type="password" class="form-control" /></div>-->
+									<!--<div class="form-item"><label for="">资金密码</label><input type="password" class="form-control" /></div>-->
+									<div class="form-item"><label for="">mailbox</label><input type="text" class="form-control"  maxlength="100" id="email" onkeyup="checkEmail(6)"/><span class="orign-text" id="emailTishi">Please enter the mailbox</span></div>
+									<div class="form-item vertical"><label for="">SMS authentication code</label><input type="text" class="form-control" maxlength="6" id="emailCode"/><button class="btn" onclick="sendCode(6);" id="modifyEmail">code</button></div>
+									<div class="sub"><button class="btn" onclick="modifyEmail();">confirm</button></div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<!--这里是安全人份认证-->
+					<div id="identity" class="self-item animated">
+						<div class="title">identity authentication<span>（Authentication information can not be modified once verified, and must be faithfully filled.）</span></div>
+						<div class="level" id="stepTitle">
+							<a href="javascript:;" class="active">Level 1 certification <i>1</i></a>
+							<a href="javascript:;">Level 2 certification <i>2</i></a>
+						</div>
+						<div class="level-con">
+							<div class="first" id="stepOne">
+								<div class="form-item"><label for="">Full name</label><input type="text" placeholder="Please enter the real name" class="form-control" id="userName" maxlength="20" /></div>
+								<div class="form-item"><label for="">ID card No.</label><input type="text" placeholder="Please enter my ID card" class="form-control" id="idCard" maxlength="18" /></div>
+								<div class="sub"><button class="btn">Next step</button></div>
+							</div>
+
+							<div class="second" id="stepTwo">
+								<div class="indety-item">
+									<label for="">Identity witness：</label>
+									
+									<div class="load">
+										<input type="hidden" id="idCardPositive">
+										<div class="load-box" style="background: url(../../img/zhengmian.png) no-repeat;background-size: contain;" id="zmbtn"><img src="" alt="" /></div>
+										<p><img class="lod" src="../../img/load.png" alt="" id="zhimg"/>Upload photos</p>
+										<input type="file" multiple="true" id="zmimgbtn" onchange="uploads(this,1)">
+									</div>
+									<div class="info">
+										<p>Must be able to see the identification number and name, support JPG / jpeg / PNG and so on.</p>
+										<a href="javascript:;" style="color:#999999">Complete frame</a>
+										<a href="javascript:;" style="color:#999999">Clear font</a>
+										<a href="javascript:;" style="color:#999999">Luminance uniformity</a>
+									</div>
+								</div>
+
+								<div class="indety-item">
+									<label for="">National emblem of identity card：</label>
+									<div class="load">
+										<input type="hidden" id="idCardBack">
+										<div class="load-box" style="background: url(../../img/guowei.png) no-repeat;background-size: contain;" id="fmbtn"></div>
+										<p><img class="lod" src="../../img/load.png" alt="" id="fmimg" />Upload photos</p>
+										<input type="file" multiple="true" id="fmimgbtn" onchange="uploads(this,2)">
+									</div>
+									<div class="info">
+										<p>Must be able to see the identification number and name, support JPG / jpeg / PNG and so on.</p>
+										<a href="javascript:;" style="color:#999999">Complete frame</a>
+										<a href="javascript:;" style="color:#999999">Clear font</a>
+										<a href="javascript:;" style="color:#999999">Luminance uniformity</a>
+									</div>
+								</div>
+
+								<div class="indety-item">
+									<label for="">Handheld identity card：</label>
+									<div class="load">
+										<input type="hidden" id="handheldIdCard">
+										<div class="load-box" style="background: url(../../img/shouchi.png) no-repeat;background-size: contain;" id="scbtn"></div>
+										<p><img class="lod" src="../../img/load.png" alt="" id="scimg"  />Upload photos</p>
+										<input type="file" multiple="true" id="scimgbtn" onchange="uploads(this,3)">
+									</div>
+									<div class="info">
+										<p>Please provide a picture of your handheld certificate</p>
+										<a href="javascript:;" style="color:#999999">ID card number, name and other information should be kept clear, and can not be modified or overwritten.</a>
+										<a href="javascript:;" style="color:#999999">Holding ID card and attaching verification slip (BIG.TOP+ verification date)</a>
+									</div>
+								</div>
+								<div class="sub" id="memberAuthDiv"><button class="btn" onclick="memberAuth();">Submission of audit</button></div>
+							</div>
+							
+							<!--这里是身份认证中的三种状态-->
+						<!--第一正在审核中-->
+						<div class="running" id="stepThree">
+							<div class="status"></div>
+							<p>In the process of being audited, please be patient with short message notice</p>
+						</div>
+						<!--这里是审核成功的状态-->
+						<div class="running exa" id="stepFour">
+							<div class="status amizin"></div>
+							<p>Audit success</p>
+						</div>
+						<!--这里是审核失败-->
+						<div class="running fail" id="stepFive">
+							<div class="status"></div>
+							<p>Audit failure</p>
+						</div>
+						
+						
+						
+						</div>
+						
+						
+						
+						
+					</div>
+
+					<!--这里是法币交易设置-->
+					<div id="French" class="self-item animated">
+						<div class="title">Legal currency transaction setting <span></span></div>
+						<!--登录密码-->
+						<div class="item">
+							<div class="item_top">
+								<label for="">Bank transfer</label>
+								<div class="status">
+									<img src="../../img/setno.png" alt="" id="bankPicture"/>
+									<span id="bankText">Setting up a bank card</span>
+								</div>
+								
+								<div class="set" id="bankModifyDiv">Set up</div>
+								<div class="witch" onclick="witch(this,1)" id="witch3"><div class="move"></div></div>
+							</div>
+							<!--下拉隐藏的-->
+							<div class="sub-box">
+								<div class="form-box">
+									<div class="form-item"><label for="">Full name</label><input type="text" class="form-control" maxlength="20" id="name" readonly=""/></div>
+									<div class="form-item"><label for="">Bank card</label><input type="text" class="form-control" maxlength="30" onkeyup="checkBank();" id="bankCard"/><span class="orign-text" id="bankCardTishi"></span></div>
+									<div class="form-item"><label for="">Confirm card</label><input type="text" class="form-control" maxlength="30" id="bankCardC" onkeyup="checkEmail(7)"/><span class="orign-text" id="bankCardCTishi"></span></div>
+									<div class="form-item"><label for="">Opening bank</label><input type="text" class="form-control"  id="bankOfDeposit"/></div>
+									<div class="form-item"><label for="">Account opening branch</label><input type="text" class="form-control"  maxlength="50" id="accountOpeningBranch" onkeyup="checkEmail(7)"/><span class="orign-text" id="accountOpeningBranchTishi"></span></div>
+									<div class="form-item vertical"><label for="">Code</label><input type="text" class="form-control" maxlength="6" id="bankcode"/><button class="btn" id="bankMethodText" onclick="sendCode(7);">code</button></div>
+									<div class="sub"><button class="btn" onclick="changeBank();">confirm</button></div>
+								</div>
+							</div>
+						</div>
+						<!--微信支付-->
+						<div class="item">
+
+							<div class="item_top">
+								<label for="">WeChat payment</label>
+								<div class="status">
+									<img src="../../img/setno.png" alt="" id="wxPicture"/>
+									<span id="wxText">Setting two dimensional code</span>
+								</div>
+								<div class="set" id="wxModifyDiv">Set up</div>
+								<div class="witch" onclick="witch(this,2)" id="witch2"><div class="move"></div></div>
+							</div>
+							<!--下拉隐藏的-->
+							<div class="sub-box">
+								<div class="form-box">
+									<input type="hidden"  id="weChatUrl"/>
+									<div class="form-item"><label for="">Name of the payee</label><input type="text" class="form-control" id="wxname"  maxlength="20" readonly=""/></div>
+									<div class="form-item"><label for="">Account number</label><input type="text" class="form-control" id="weChat"  maxlength="30" onkeyup="checkEmail(8)"/><span class="orign-text" id="weChatTishi"></span>
+										<!--<div class="loadbox" style="display: inline-block;overflow: hidden;background: #fff;">-->
+										<div class="load" style="" id="wxbtn">
+										<!--<div class="loadbox" style="display: block;overflow: hidden;background: #fff;height: 100%;">-->
+											<i></i>
+											<p>Upload receipt code</p>
+											<input type='file' multiple='true' id='wxInput' onchange='Currency(this,1)'>
+										<!--</div>-->
+										</div>
+										<!--</div>-->
+									</div>
+									<!--<div class="form-item"><label for="">新手机号</label><input type="password" class="form-control" /></div>-->
+									<div class="form-item vertical"><label for="">Code</label><input type="text" class="form-control"  maxlength="6" id="wxcode"/><button class="btn" id="wxMethodText" onclick="sendCode(8);">code</button></div>
+									<div class="sub"><button class="btn" onclick="changeWx();">confirm</button></div>
+								</div>
+							</div>
+						</div>
+
+						<!--支付宝-->
+						<div class="item">
+
+							<div class="item_top">
+								<label for="">Alipay</label>
+								<div class="status">
+									<img src="../../img/setno.png" alt="" id="aliPicture"/>
+									<span id="aliText">Setting two dimensional code</span>
+								</div>
+								<div class="set" id="aliModifyDiv">Set up</div>
+								<div class="witch" onclick="witch(this,3)" id="witch1"><div class="move"></div></div>
+							</div>
+							<!--下拉隐藏的-->
+							<div class="sub-box">
+								<div class="form-box">
+									<input type="hidden"  id="alipayUrl"/>
+									<!--<div class="tip"> <img src="../img/from-tip.png" alt="" />为了您的资产安全，修改手机号24小时内不允许提币</div>-->
+									<div class="form-item"><label for="">Name of the payee</label><input type="text" class="form-control" id="aliname"  maxlength="20" readonly=""/></div>
+									<div class="form-item"><label for="">Account number</label><input type="text" class="form-control"  id="alipay"  maxlength="30" onkeyup="checkEmail(9)"/><span class="orign-text" id="alipayTishi"></span>
+										<div class="load" style="" id="alibtn">
+											<i></i>
+											<p>Upload receipt code</p>
+											<input type='file' multiple='true' id='aliInput' onchange='Currency(this,2)'>
+										</div>
+									</div>
+									<!--<div class="form-item"><label for="">新手机号</label><input type="password" class="form-control" /></div>-->
+									<div class="form-item vertical"><label for="">Code</label><input type="text" class="form-control"  maxlength="6" id="alicode"/><button class="btn" id="alMethodText" onclick="sendCode(9);">code</button></div>
+									<div class="sub"><button class="btn" onclick="changeAli();">confirm</button></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!--这里是问题反馈-->
+					<div id="problem" class="self-item animated">
+						<div class="title">Problem feedback</div>
+						<div class="proble-box">
+							<div class="item">
+								<label for="">Problem description</label><textarea name="" id="text" rows="" class="form-control" placeholder="Please enter information" cols=""></textarea><span id="red" style="color: red;"></span>
+							</div>
+							<div class="load">
+								<div class="add_box">
+									<div class="problem_box">
+									<!--<div class="pro_item" style="background: url() no-repeat;background-size: cover;"></div>-->
+								     </div>
+								     <div class="load-box">
+									  <p></p>
+									  <input type='file' multiple='true' id='btnd' onchange='proble(this)'>
+								      </div>
+								</div>
+								
+								<div class='info'>
+									<span>3 attachments can be uploaded，</span>The size of each file must not exceed 5M. The format of the attachment is'jpg','jpeg','bmp','png','gif'.
+
+。
+								</div>
+								<div class="sub">
+									<button class="btn" onClick="button();">Submission</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+
+				</div>
+			</div>
+		</div>
+         <!--<div class="cover"><i class="iconfont icon-dustbin_icon"></i></div>-->
+		<!--这里是底部-->
+		<div id="footer"></div>
+		<script type="text/javascript" src="../../js/jquery-2.1.1.js"></script>
+		<script type="text/javascript" src="../../js/aliyun-oss-sdk-4.4.4.min.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../js/Ecommon.min.js"></script>
+		<script type="text/javascript" src="../../js/md5.min.js"></script>
+		<script type="text/javascript" src="../../js/bank.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.qrcode.min.js"></script>
+		<script type="text/javascript" src="../../js/person_cen/Eperson_cen.min.js"></script>
+	
+		<script type="text/javascript">
+			
+			function windlocation(){
+				window.location.href="person_cen.html"
+			}
+			
+				//这里是法币开关
+			function witch(obj,num) {
+				var payment = pcUser.payment;
+				//银行卡账户
+				var bankCard = payment.bankCard;
+				//微信账户
+				var weChat = payment.weChat;
+				//支付宝
+				var alipay = payment.alipay;
+				if (num == 1 && bankCard != null) {
+				if($(obj).hasClass("togpar")) {
+					if(weChat == null || weChat == ""){
+						if(alipay == null || alipay == ""){
+							Message("至少保留一个支付方式","error");
+							return false;
+						}else{
+							if(payment.paymentMethod1 == 1){
+								Message("至少保留一个支付方式","error");
+								return false;
+							}
+						}
+					}else{
+						if(payment.paymentMethod2 == 1){
+							if(alipay == null || alipay == ""){
+							Message("至少保留一个支付方式","error");
+							return false;
+						}else{
+							if(payment.paymentMethod1 == 1){
+							Message("至少保留一个支付方式","error");
+							return false;
+						}
+						}
+						}
+					}
+						changeBank(1);
+					} else {
+						changeBank(0);
+					}
+				}else if (num == 2 && weChat != null) {
+					if($(obj).hasClass("togpar")) {
+						if(bankCard == null || bankCard == ""){
+						if(alipay == null || alipay == ""){
+							Message("至少保留一个支付方式","error");
+							return false;
+						}else{
+							if(payment.paymentMethod1 == 1){
+								Message("至少保留一个支付方式","error");
+								return false;
+							}
+						}
+					}else{
+						if(payment.paymentMethod3 == 1){
+							if(alipay == null || alipay == ""){
+							Message("至少保留一个支付方式","error");
+							return false;
+						}else{
+							if(payment.paymentMethod1 == 1){
+							Message("至少保留一个支付方式","error");
+							return false;
+						}
+						}
+						}
+					}
+						changeWx(1);
+					} else {
+						changeWx(0);
+					}
+				}else if (num == 3 && alipay != null) {
+					if($(obj).hasClass("togpar")) {
+						if(bankCard == null || bankCard == ""){
+						if(weChat == null || weChat == ""){
+							Message("至少保留一个支付方式","error");
+							return false;
+						}else{
+							if(payment.paymentMethod2 == 1){
+								Message("至少保留一个支付方式","error");
+								return false;
+							}
+						}
+					}else{
+						if(payment.paymentMethod3 == 1){
+							if(weChat == null || weChat == ""){
+							Message("至少保留一个支付方式","error");
+							return false;
+						}else{
+							if(payment.paymentMethod2 == 1){
+							Message("至少保留一个支付方式","error");
+							return false;
+						}
+						}
+						}
+					}
+						changeAli(1);
+					} else {
+						changeAli(0);
+					}
+				}
+			}
+			
+			
+			
+			
+			
+			//这里是身份认证图片上传
+			function uploads(obj,type) {
+				//alert(obj.files.length);
+				console.log("文件"+obj.files);
+				if(!obj.value.match(/.jepg|.jpg|.gif|.jpeg|.png|.bmp/i)) {
+					Message("图片格式不正确！",'error')
+				} else {
+					n = obj.files.length;
+					var html = "";
+					for(var i = 0; i < n; i++) {
+						var url = window.URL.createObjectURL(obj.files[i]);
+						var txt = obj.files[i].name.split(judge(obj.files[i]));
+						//txt = txt.split("")
+						console.log(url);
+//						html += ;
+					}
+					var background="url("+url+")";
+					$(obj).parent().find(".load-box").css("background",background);
+					$(obj).parent().find(".load-box").css("backgroundSize","contain");
+					
+					var file = obj.files[0];
+					var storeAs =((new Date()).getTime());
+					console.log(file.name + ' => ' + storeAs);
+					
+					
+				  client.multipartUpload(String(storeAs), file).then(function (result) {
+			         var ossUrls=result.res.requestUrls[0].split("?")[0];
+			           if(type!=null){
+			           	  if(type==1){
+			           	  	$("#idCardPositive").val((ossUrls!=null?ossUrls:""));
+			           	  }else if(type==2){
+			           	  	$("#idCardBack").val((ossUrls!=null?ossUrls:""));
+			           	  }else if(type==3){
+			           	  	$("#handheldIdCard").val((ossUrls!=null?ossUrls:""));
+			           	  }
+			           }
+			         console.log(ossUrl)
+			      }).catch(function (err) {
+			        console.log(err);
+			        console.log()
+			      });
+				};
+			};
+
+			function judge(obj) {
+				var str = '';
+				if(obj.name.match(/.jpg/i)) {
+					str = ".jpg";
+				} else if(obj.name.match(/.png/i)) {
+					str = ".png";
+				} else if(obj.name.match(/.gif/i)) {
+					str = ".gif";
+				} else if(obj.name.match(/.bmp/i)) {
+					str = ".bmp";
+				} else if(obj.name.match(/.jpeg/i)) {
+					str = ".jpeg";
+				}
+				return str;
+			};
+			
+			//这里是法币法币交易设置上传图片
+			function Currency(obj,type) {
+				//alert(obj.files.length);
+				if(!obj.value.match(/.jepg|.jpg|.jpeg|.gif|.png|.bmp/i)) {
+					Message("图片格式不正确！",'error')
+				} else {
+					n = obj.files.length;
+					var html = "";
+					for(var i = 0; i < n; i++) {
+						var url = window.URL.createObjectURL(obj.files[i]);
+						var txt = obj.files[i].name.split(judge(obj.files[i]));
+						//txt = txt.split("")
+						console.log(url);
+//						html ='<div class="pro_item" style="background: url("'+url+'") no-repeat;background-size: cover;"></div>' ;
+					}
+					var background="url("+url+") no-repeat";
+					$(obj).parent().css("background",background)
+					$(obj).parent().css("backgroundSize","cover")
+//					$("#upload").remove();
+//					$(".newUpload").remove();
+//					$("#imgs").append();
+					
+					var file = obj.files[0];
+					var storeAs =((new Date()).getTime());
+					console.log(file.name + ' => ' + storeAs);
+					
+				 	client.multipartUpload(String(storeAs), file).then(function (result) {
+			         var ossUrls=result.res.requestUrls[0].split("?")[0];
+			           if(type!=null){
+			           	  if(type==1){
+			           	  	$("#weChatUrl").val((ossUrls!=null?ossUrls:""));
+			           	  }else if(type==2){
+			           	  	$("#alipayUrl").val((ossUrls!=null?ossUrls:""));
+			           	  }
+			           }
+			         console.log(ossUrl)
+			      }).catch(function (err) {
+			        console.log(err);
+			        console.log()
+			      });
+				}
+			}
+			
+			//这里是问题反馈上传图片
+			function proble(obj) {
+			 var length=$(".conta .con-box .left-con #problem .proble-box .load .problem_box .pro_item").size()
+				if(!obj.value.match(/.jepg|.jpg|.jpeg|.gif|.png|.bmp/i)) {
+					var str="图片格式不正确！"
+					 Message(str,'error')
+				} else {
+					if(length>=3){
+						 Message("最多可上传三个附件",'error')
+					}else{
+						n = obj.files.length;
+						
+						 var ossUrls="";
+						var file = obj.files[0];
+						var storeAs =((new Date()).getTime());
+						console.log(file.name + ' => ' + storeAs);
+						
+					 	client.multipartUpload(String(storeAs), file).then(function (result) {
+				        	ossUrls=result.res.requestUrls[0].split("?")[0];
+				        	
+				        	var html = "";
+							for(var i = 0; i < n; i++) {
+								var url = window.URL.createObjectURL(obj.files[i]);
+								var txt = obj.files[i].name.split(judge(obj.files[i]));
+								//txt = txt.split("")
+								console.log(url);
+								html ='<div class="pro_item" style="background: url('+url+') no-repeat;background-size: cover;"><input type="hidden" name="propPicture" value='+ossUrls+' /><div class="cover"><i id="prodle" onclick="Delete(this)" class="iconfont icon-dustbin_icon"></i></div></div>' ;
+							}
+							$(obj).parents(".load").find(".problem_box").append(html)
+				         	console.log(ossUrls)
+				      }).catch(function (err) {
+				        console.log(err);
+				        console.log()
+				      });
+					}
+					
+				}
+			};
+			
+			function Delete(dle){
+					$(dle).parents(".pro_item").remove();
+			};
+			
+			
+			
+			
+			
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+		<!--<link rel="stylesheet" type="text/css" href="../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/header.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>-->
+		<style type="text/css">
+			/*.header .header-box .nav a{margin: 0;}*/
+			.header .header-box .nav-right .language{border-radius: 10px;display: inline-block;float: right;width:80px;height: 20px;box-sizing: border-box;border:1px solid #ccc;line-height: 20px;font-size: 12px;text-align: center;position: relative;margin-left:10px;margin-top:28px}
+		    .header .header-box .nav-right .language p{line-height: 20px;}
+		    .header .header-box .nav-right .language .tongue{display: block;border-radius: 3px;width:80px;height: 40px;background:#fff;2px 2px 6px rgba(80,162,244,0.3);display: none;}
+		    .header .header-box .nav-right .language .tongue .iteml{text-align: center;line-height: 20px;color:#000}
+		</style>
+	</head>
+	<body>
+		
+		
+		
+		
+		
+		
+		<div class="header animated">
+			<div class="header-box">
+				<div class="log">
+					<a href="../../Eindex.html"><img src="../../img/logo.svg" alt="" class="img-up" /></a>
+					<a href="../../Eindex.html"><img src="../../img/logo_dow.svg" alt="" class="img-dow" /></a>
+				</div>
+				<div class="nav">
+					<a href="../../Eindex.html">Home</a>
+					<div class="coin"><a href="../k_line/Ek_line.html">Currency</a>
+						<div class="coin-sub">
+							<div class="coin-box">
+								<div class="triangle"></div>
+								<div class="sub_nav">
+                                      <div class="suba atv">BIGT</div>
+                                      <div class="suba">BTC</div>
+                                      <div class="suba">ETH</div>
+                                      <div class="suba">CNDT</div>
+								</div>
+								<div class="tainer_box">
+									<div class="currency">
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<a href="../Currency_exchange/ElegalTender.html" id="fbTrade">French</a>
+					<a href="../Consultation/EConsultation.html" id="Newest">consult</a>
+				</div>
+				<div class="nav-right">
+					<div class="language"><p>English</p>
+						<div class="tongue">
+							<div class="iteml" onclick="windlocation()">China</div>
+							<div class="iteml">English</div>
+						</div>
+					</div>
+					
+					
+					<a href="../system_register/Eregister.html" id="registerHrefN"><div class="register">register</div></a>
+					<a href="../system_log/Elogin.html" id="loginHrefN"><div class="log">Login</div></a>
+					<div class="person" id="personDiv">
+						<p id="loginUser"></p><i class="iconfont icon-xia"></i>
+						<div class="sub-box">
+							<a href="../person_cen/Eperson_cen.html"><div class="item">Personal Center</div></a>
+							<a href="../fund_manger/Efund_manger.html"><div class="item">fund management</div></a>
+							<a href="../fund_manger/Efund_manger.html?type=1"><div class="item">Charge money</div></a>
+							<a href="../fund_manger/Efund_manger.html?type=2"><div class="item">Withdraw money</div></a>
+							<a href="../system_log/Elogin.html"><div class="item">Sign out</div></a>
+						</div>
+					</div>
+					<div class="capital" id="fundDiv"><a href="../fund_manger/Efund_manger.html">fund management</a></div>
+					<div class="download"><a href="https://app.big.top/" target="_blank">download App</a></div>
+					
+					
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="../../js/jquery-2.1.1.js"></script>
+		<!--<script type="text/javascript" src="../../js/common.js"></script>-->
+		<script type="text/javascript">
+			
+			$(".header .header-box .nav-right .language").click(function(){
+				$(".header .header-box .nav-right .language .tongue").slideToggle()
+			})
+			
+			
+			
+			var t=""
+			var m=null
+			$(".header .header-box .nav-right .person").hover(function(){
+				var _this=this
+				clearTimeout(m)
+			 t=setTimeout(function(){
+				$(_this).find(".sub-box").css("display","block")
+//				$(".header .header-box .nav-right .person i").animate({transform: 'rotate(-90deg)'})
+				
+			},300)	
+			},function(){
+			     clearTimeout(t)
+				 m=setTimeout(function(){
+				$(".header .header-box .nav-right .person .sub-box").css("display","none")
+//				$(".header .header-box .nav-right .person i").animate({transform: 'rotate(0deg)'})
+					clearTimeout(t)
+			},300)
+			});
+			
+			//币币交易导航栏显示
+			var v=""
+			var s=null
+			$(".header .header-box .nav .coin").hover(function(){
+				var _this=this
+				clearTimeout(s)
+			 v=setTimeout(function(){
+				$(_this).find(".coin-sub").css("display","block")
+				
+			},300)	
+			},function(){
+			     clearTimeout(v)
+				 s=setTimeout(function(){
+				$(".header .header-box .nav .coin .coin-sub").css("display","none")
+					clearTimeout(v)
+			},300)
+			});
+			
+			
+			//这里是显示
+			$(".header .header-box .nav .coin a").mouseover(function(){
+					$(".header .coin-box .tainer_box .currency").empty()
+					var texts="BIGT"
+				$.ajax({
+					type:"get",
+					url:PCData.TOKEN_URL+"bigToken/selectListBigAdminTokenAreaList",
+					async:true,
+					success:function(res){
+//						 console.log(res.data[0])
+//                  var datas=res.data[0];
+                    $(res.data[0]).each(function(i,n){
+                    	 var _html='<div class="item" onclick="Ears('+"'"+n.englishAbbreviations+"'"+","+"'"+texts+"'"+","+n.id+')">'+n.englishAbbreviations+'/<span>'+texts+'</span><i class="iconfont icon-dingdanliangzoushi"></i></div>'
+					  	$(".header .coin-box .tainer_box .currency").append(_html)
+                    })
+//                  console.log(datas)
+                   
+					}
+				});
+			})
+			
+			
+			
+			$(".header .header-box .nav .coin .coin-sub .sub_nav .suba").mouseover(function(){
+				$(".header .coin-box .tainer_box .currency").empty()
+				var texts=$(this).text()
+				console.log(texts)
+				var _index=$(this).index()
+				$(this).addClass("atv").siblings().removeClass("atv")
+				
+			
+				$.ajax({
+					type:"get",
+					url:PCData.TOKEN_URL+"bigToken/selectListBigAdminTokenAreaList",
+					async:true,
+					dataType : 'json',
+					success:function(res){
+						console.log(res.data)
+						$(".header .coin-box .tainer_box .currency").empty()
+						$(res.data).each(function(i, n) {
+							if(texts=="BIGT"){
+								if(i==0){
+									$(n).each(function(ii, nn) {
+									var _html='<div class="item" onclick="Ears('+"'"+nn.englishAbbreviations+"'"+","+"'"+texts+"'"+","+nn.id+')">'+nn.englishAbbreviations+'/<span>'+texts+'</span><i class="iconfont icon-dingdanliangzoushi"></i></div>'
+					  	$(".header .coin-box .tainer_box .currency").append(_html)
+							})
+								}
+							}
+							if(texts=="BTC"){
+								if(i==1){
+									$(n).each(function(ii, nn) {
+									var _html='<div class="item" onclick="Ears('+"'"+nn.englishAbbreviations+"'"+","+"'"+texts+"'"+","+nn.id+')">'+nn.englishAbbreviations+'/<span>'+texts+'</span><i class="iconfont icon-dingdanliangzoushi"></i></div>'
+					  	$(".header .coin-box .tainer_box .currency").append(_html)
+							})
+								}
+							}
+							if(texts=="ETH"){
+								if(i==2){
+									$(n).each(function(ii, nn) {
+									var _html='<div class="item" onclick="Ears('+"'"+nn.englishAbbreviations+"'"+","+"'"+texts+"'"+","+nn.id+')">'+nn.englishAbbreviations+'/<span>'+texts+'</span><i class="iconfont icon-dingdanliangzoushi"></i></div>'
+					  	$(".header .coin-box .tainer_box .currency").append(_html)
+							})
+								}
+							}
+							if(texts=="CNDT"){
+								if(i==3){
+									$(n).each(function(ii, nn) {
+									var _html='<div class="item" onclick="Ears('+"'"+nn.englishAbbreviations+"'"+","+"'"+texts+"'"+","+nn.id+')">'+nn.englishAbbreviations+'/<span>'+texts+'</span><i class="iconfont icon-dingdanliangzoushi"></i></div>'
+					  	$(".header .coin-box .tainer_box .currency").append(_html)
+							})
+								}
+							}
+							
+						})
+					}
+				});
+				
+			});
+			
+			function Ears(Token,Trading,TokenId){
+//             console.log(Token+Trading)
+             
+               var url='../k_line/Ek_line.html?Token='+Token+'&Trading='+Trading+'&TokenId='+TokenId
+               location.href =url
+
+			}
+			
+			
+			
+			
+			
+			
+			var pcUser=PCData.getUerInfo();
+			if(pcUser!=null&&pcUser.phone!=null){
+				$("#loginUser").text(pcUser.phone);
+			};
+			
+			if(pcUser!=null){
+				$("#registerHrefN").hide();
+				$("#loginHrefN").hide();
+				$("#fundDiv").show();
+				$("#personDiv").show();
+			}else{
+				$("#registerHrefN").show();
+				$("#loginHrefN").show();
+				$("#fundDiv").hide();
+				$("#personDiv").hide();
+			}
+			
+			if(pcUser!=null&&pcUser.agentStatus!=null&&pcUser.agentStatus==1){
+				$("#fbTrade").hide();
+			}
+			
+			
+		</script>
+	</body>
+</html>

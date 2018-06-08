@@ -1,0 +1,24 @@
+#center{
+	height: 729px;
+	width: 100%;
+	padding-top: 130px;
+	min-width: 1200px;
+}
+.center{
+	height: 387px;
+	width: 311px;
+	margin: 0 auto;
+}
+.img1{
+	width: 246px;
+	height: 231px;
+
+	margin-bottom: 65px;
+}
+.img2{
+	width: 276px;
+	height: 91px;
+
+	margin-left: 35px;
+}
+

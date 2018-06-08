@@ -1,0 +1,127 @@
+
+#foot{
+	width:100%;
+	min-width: 1200px;
+	height:268px;
+    background:rgba(28,32,54,1);
+    color:#FFFFFF;
+    font-family: Microsoft YaHei;
+    letter-spacing: 1px;
+}
+.foot_content{
+	width:80%;
+	min-width: 1200px;
+	height:268px;
+	/*background-color: antiquewhite;*/
+	margin:0 auto;
+	padding-top:70px;
+}
+.foot_left{
+	width:32%;
+	height:146px;
+	/*background-color: aliceblue;*/
+}
+.foot_left .memberSupport{
+	list-style: none;
+}
+.foot_left ul{
+	display: flex;
+	justify-content: space-between;
+	margin:0px;
+}
+/*.foot_left ul li:nth-child(1)::after,.foot_left ul li:nth-child(2)::after,
+.foot_left ul li:nth-child(3)::after,.foot_left ul li:nth-child(4)::after
+{
+	content:"";
+	display: inline-block;
+	width:5px;
+	height:5px;
+	border-radius: 5px;
+	background-color: #D8D8D8;
+	margin-left: 1.1rem;
+	margin-right: 1.1rem;
+	vertical-align: middle;
+	top:35px;
+}*/
+.dot{
+	display: inline-block;
+	width:5px;
+	height:5px;
+	border-radius: 5px;
+	background-color: #D8D8D8;
+	margin: 0 auto;
+	vertical-align: middle;
+}
+.foot_left ul li{
+	float: left;
+	height:17px;
+	/*width:20%;*/
+	vertical-align: middle;
+	font-size: 16px;
+	/*background-color: black;*/
+}
+.dot{
+	width:5px;
+	height:5px; 
+	background:rgba(216,216,216,1);
+}
+.foot_left ul li span{
+	width:5px;
+	height:5px; 
+	background:rgba(216,216,216,1)	
+}
+.foot_left p{
+	color: #BBBDC3 !important;
+	font-size: 14px !important;
+	margin-bottom: 10px;
+}
+.foot_left p a{color:#BBBDC3;text-decoration: none;}
+.foot_center{
+	width:40%;
+	height:146px;
+	/*background-color: aquamarine;*/
+	padding-left:11%;
+}
+.foot_center p{
+	font-size: 16px;
+}
+.foot_center .dropBtn{
+	width:138px;
+	height:38px; 
+	border-radius: 4px;
+	/*text-align: center;*/
+	border:1px solid #C3C3C3;
+	margin-top:19px;
+	line-height: 38px;
+	padding-left:15px;
+	font-size: 14px !important;
+}
+.foot_right{
+	width:24%;
+	height:146px;
+	/*background-color: aqua;*/
+}
+.foot_right img{
+	max-height:100%;
+	max-width:100%;
+	/*max-width: 100%;
+	min-width: 50%;*/
+}
+.foot_right .qrcodeLeft,.foot_right .qrcodeRight{
+	height:82%;
+	width:43%;
+}
+.foot_right p{
+	width: 120px;
+	font-size: 14px !important;
+	line-height:26px;
+	text-align: center;
+	padding-left: -10px;
+	color:#BBBDC3 !important ;
+	margin-top: 8px;
+}
+
+.foot_center .dropBtn{
+	color: #BBBDC3;
+}
+.foot_center .dropBtn img{display: inline-block;}

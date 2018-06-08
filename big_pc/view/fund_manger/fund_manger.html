@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>资金管理</title>
+		<link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="../../css/common.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/header.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/Footer.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/page.min.css" />
+
+		<link rel="stylesheet" type="text/css" href="../../css/animate.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/fund_manager/fund_manager.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/date.min.css" />
+		
+	</head>
+
+	<body>
+		<!--<div class="notice animated"><i class="iconfont icon-chenggong"></i><span>成功</span></div>-->
+		<!--这里是头部-->
+		<div id="header"></div>
+
+		<!--这里是充币中的二维码弹窗-->
+		<div id="change_code" class="animated">
+			<div class="change_box animated">
+				<div class="content">
+					<div class="code">
+						<div id="output"></div>
+					</div>
+					<i></i>
+				</div>
+			</div>
+		</div>
+
+		<!--这里是中间内容-->
+		<div class="conta">
+			<div class="con-box">
+				<div class="sidebar">
+					<div class="list">
+						<div class="title self">资金管理</div>
+						<div class="item info active">账户余额</div>
+						<div class="item security">充币</div>
+						<div class="item identity">提币</div>
+						<div class="item French ">委托管理</div>
+					</div>
+				</div>
+				<div class="left-con">
+					<!--这里是账户余额-->
+					<div id="self_info" class="self-item animated">
+						<div class="title">账户余额</div>
+						<div class="history">
+							<div class="caption"><span>总资产折合</span><span id="balance"></span></div>
+							<table class="table">
+								<tr class="tHead">
+									<th>币种<label for="box"></label> <input id="box" type="checkbox" class="" />隐藏0余额 </th>
+									<th>可用</th>
+									<th>冻结</th>
+									<th>BTC估值</th>
+									<th>
+										<div class="search"><i class=""></i> <input type="text" class="form-control" id="inputVal" placeholder="币种" /></div>
+									</th>
+
+								</tr>
+								<tbody id="dataList">
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<!--这里是安全设置-->
+					<div id="security" class="self-item animated">
+						<div class="title">充币</span>
+						</div>
+						<div class="item" style="display: inline-block;">
+							<label for="" style="line-height: 34px;">币种：</label>
+							<select name="" class="form-control" id="chargeMoneyOptions" onchange="chargeChange()">
+							</select>
+							
+						</div>
+						<div class="item exampleInputId" style="display: inline-block;" >
+							<input type="text" class="form-control" id="exampleInputId" placeholder="用户ID&nbsp:&nbsp"disabled>
+							<input type="text" class="" id="exampleInputId1">
+						</div>
+						<div class="item">
+							<label for="" style="line-height: 44px;">地址：</label>
+							<div class="address">
+								<input readonly value='' id="Website"></input>
+								<button onclick='copyUrl()'></button>
+								<i></i>
+							</div>
+						</div>
+						<div class="text" id="getRechargeConetxt">
+							<!--<p><i></i>禁止向btc地址充值除btc之外的资产，任何冲入btc地址的非btc资产讲不可找回</p>
+							<p><i></i>使用btc地址充值需要1个余额网络确认才能到账</p>-->
+						</div>
+
+						<div class="record ">
+							<div class="capital">充值记录<span>（为了提升系统性能，我们会根据控件情况，定期清理用户3个月前的历史数据）</span></div>
+							<div class="recode-box">
+								<input type="hidden" id="totalR"/>
+								<input type="hidden" id="pageR"/>
+								<input type="hidden" id="rowsR"/>
+								
+								<table class="table table-striped">
+									<thead>
+									<tr class="Moneyhead">
+										<th>地址</th>
+										<th>数量</th>
+										<th>时间</th>
+										<th>充值状态</th>
+									</tr>
+									</thead>
+									<tbody id="rechargeList">
+
+									</tbody>
+								</table>
+							</div>
+
+							<div class="pagss" style="overflow: hidden;box-sizing: border-box;padding-left: 20px" >
+								<div class="right" style="float:right;display: inline-block;margin: 20px 30px">
+									<div id="pageToolbarR"></div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<!--这里是提币-->
+					<div id="identity" class="self-item animated">
+						<div class="title">提币</div>
+						<!--未认证的状态-->
+						<div class="undefind" id="undefindDiv" style="display: none">
+							<div class="status"></div>
+							<!--<a href=""></a>-->
+							<div class="info">为了您的资金安全，提币操作需符合以下条件</div>
+							<div class="go_read">
+								<div class="left" id="leftDiv">
+									<p>一.身份认证</p>
+									<div class="go_set">
+										<span>级别1和级别2认证</span>
+										<a onclick="goAuth()" id="authSetn">去设置</a>
+										<a id="authSets">已设置</a>
+									</div>
+								</div>
+								<div class="line" id="lineDiv"></div>
+								<div class="right" id="rightDiv">
+									<p>二.安全设置</p>
+									<div class="go_set">
+										<span>资金密码</span>
+										<a onclick="setFundPasswd();" id="fundSetn">去设置</a>
+										<a id="fundSets">已设置</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--<div class="have">
+							
+						</div>-->
+						<!--已经认证过的状态-->
+						<div class="ready" id="readyDiv">
+							<!--24小时无法提币状态-->
+							<div class="modify" id="modifyDiv">
+								<div class="status"></div>
+								<div class="info">修改资金密码/手机号/谷歌验证24小时之内，无法提现</div>
+							</div>
+							<!--这里是提币添加地址-->
+							<div class="location" id="locationDiv">
+								<div class="ttp"><i></i>提币过程中，可能需要高级视频认证审核，请留意下方提币记录中的状态提醒</div>
+								<div class="item">
+									<label for="">选择币种</label>
+									<div class="currency">
+										<select name="" class="form-control"  id="withdrawMoneyOptions" onchange="numWithdraw();">
+											<!--<option value="">BTC</option>
+											<option value="">GIGT</option>
+											<option value="">LTC</option>-->
+										</select>
+										<div class="quota">
+											可提现额度：<span id="currentBalance"></span>
+										</div>
+									</div>
+								</div>
+								<div class="item">
+									<label for="">提币地址</label>
+									<div class="address">
+										<div class="text_adress">
+											<input type="hidden" id="bat_id">
+											<textarea name="" class="form-control" rows="" cols="" id="pretermitAddr" onchange="changeAdress();"></textarea>
+											<i class="iconfont icon-xia" id="addres"></i>
+											<div class="sub-box">
+												<div class="item-box"  id="withdrawAddrs">
+													 <!-- <div class="his_item">
+														<p>0x3880d3e1b924c73b3fcf1cdce6afae5 97b38bf47 拷贝</p>
+														<i class="iconfont icon-weibiaoti101"></i>
+													</div>
+													<div class="his_item">
+														<p>0x3880d3e1b924c73b3fcf1cdce6afae5 97b38bf47 拷贝</p>
+														<i class="iconfont icon-weibiaoti101"></i>
+													</div>
+													<div class="his_item">
+														<p>0x3880d3e1b924c73b3fcf1cdce6afae5 97b38bf47 拷贝</p>
+														<i class="iconfont icon-weibiaoti101"></i>
+													</div> -->
+												</div>
+												<div class="add_item" id="addAddr" style="display:none" ><i class="iconfont icon-tianjia"></i> 添加地址</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<div class="item">
+									<label for="">提币数量</label>
+									<div class="count">
+										<input type="text" class="form-control" placeholder=""  id="numWithdraw" value=""/>
+										<div class="service">
+											手续费：<span id="chargeNum"></span>
+										</div>
+										<div class="account">
+											实际到账：<span id="balanceNum"></span>
+										</div>
+									</div>
+								</div>
+								<div class="item">
+									<label for="">短信验证码</label>
+									<div class="vertical">
+										<input type="text" class="form-control" id= "vaildatecode" value="" maxlength="6"/> <button class="btn" onclick="sendCode();" id="txDiv">发送验证码</button>
+									</div>
+								</div>
+								<div class="item">
+									<label for="">资金密码</label>
+									<div class="countpsd">
+										<input type="password" class="form-control countpsd" id="fundsPassword" maxlength="32"/>
+										<a onclick="setFundPasswd();">忘记密码</a>
+									</div>
+
+								</div>
+
+								<div class="sub_box">
+									<button class="btn" id="commit">确定提现</button>
+								</div>
+
+							</div>
+
+							<div class="record" id="recordDiv">
+								<div class="capital">提币记录<span>（为了提升系统性能，我们会根据空间情况，定期清除部分用户3个月前的历史数据）</span></div>
+								<div class="recode-box">
+									<input type="hidden" id="total"/>
+									<input type="hidden" id="page"/>
+									<input type="hidden" id="rows"/>
+									
+									<table class="table table-striped">
+										<tr class="Withdraw">
+											<th>时间</th>
+											<th>流水号</th>
+											<th>数量</th>
+											<th>网络手续费</th>
+											<th>地址</th>
+											<th>状态</th>
+										</tr>
+										
+										<tbody id="transitionSet"></tbody>
+										
+									</table>
+								</div>
+								<div class="pagss" style="overflow: hidden;box-sizing: border-box;padding-left: 20px" >
+									<div class="right" style="float:right;display: inline-block;margin: 20px 30px">
+										<div id="pageToolbar"></div>
+									</div>
+								</div>
+								
+							</div>
+
+						</div>
+
+					</div>
+
+					<!--这里是法币交易设置-->
+					<div id="French" class="self-item animated" id="transitionSet">
+						<div class="title">委托管理 <span>（为了提升系统性能，我们会根据空间情况，定期清理用户3个月前的历史数据）</span></div>
+						<div class="Entrust">
+							<div class="entrust_nav">
+								<a href="javascript:;" class="tv" id="current">当前委托</a>
+								<a href="javascript:;" id="history">历史委托</a>
+							</div>
+							<div class="Brush">
+								<div class="ear condition">
+									<label for="">交易区</label>
+									<select name="" class="form-control" id="tradingPost" onchange="getCurrencyList('');">
+										<option value="0" selected="">BIGT</option>
+										<option value="2">ETH</option>
+										<option value="1">BTC</option>
+										<option value="3">CNDT</option>
+									</select>
+								</div>
+								<div class="currency condition">
+									<label for="">币种</label>
+									<select name="" class="form-control" id="currency">
+									</select>
+								</div>
+								<div class="direction condition">
+									<label for="">方向</label>
+									<select name="" class="form-control" id="direction">
+										<option value="0" selected="selected">买入</option>
+										<option value="1">卖出</option>
+									</select>
+								</div>
+								<div class="dataTime condition">
+									<i class="iconfont icon-rili"></i>
+									<div class="start">
+										<input type="text" class="form-control" value="" name="startDateTimeS" id="startDateTimeS" />
+									</div>
+									<div class="line"></div>
+									<div class="end">
+										<input type="text" class="form-control" value="" name="endDateTimeS" id="endDateTimeS" />
+									</div>
+
+								</div>
+								<div class="search condition">
+									<button class="btn" id="searchBtn">查询</button>
+								</div>
+							</div>
+						</div>
+
+						<div class="record" id="record">
+							<!--<div class="capital">提币记录<span>（为了提升系统性能，我们会根据空间情况，定期清除部分用户3个月前的历史数据）</span></div>-->
+							<div class="recode-box">
+								<input type="hidden" id="totalW"/>
+								<input type="hidden" id="pageW"/>
+								<input type="hidden" id="rowsW"/>
+								
+								<table class="table table-striped">
+									<!--<thead>-->
+									<tr class="Entrusts">
+										<th>委托时间</th>
+										<th>市场</th>
+										<th>方向</th>
+										<th>成交数量</th>
+										<th>数量</th>
+										<th>成交金额</th>
+										<th>手续费</th>
+										<th>状态</th>
+										<th>操作</th>
+									</tr>
+									<!--</thead>-->
+									<tbody id="tradingList">
+									</tbody>
+								</table>
+							</div>
+
+							<div class="pagss" style="overflow: hidden;box-sizing: border-box;padding-left: 20px" >
+								<div class="right" style="float:right;display: inline-block;margin: 20px 30px">
+									<div id="pageToolbarW"></div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--这里是底部-->
+		<div id="footer"></div>
+		<script type="text/javascript" src="../../js/jquery-2.1.1.js"></script>
+		<script type="text/javascript" src="../../js/aliyun-oss-sdk-4.4.4.min.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../js/common.min.js"></script>
+		<script type="text/javascript" src="../../js/paging.js"></script>
+		<script type="text/javascript" src="../../js/md5.min.js"></script> 
+		<script type="text/javascript" src="../../js/QRCode.js"></script> 
+		<script type="text/javascript" src="../../js/fund_manager/fund_manger.min.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap-datepicker.js"></script>
+		
+
+		<script type="text/javascript">
+			
+			function Ewindlocation(){
+				window.location.href="Efund_manger.html"
+			}
+			
+			// $('.M-box').pagination({
+				// callback: function(api) {
+					// //              	api.setPageCount(4)
+					// $('.now').text(api.getCurrent());
+					// //                  console.log(api.getPageCount())
+				// }
+			// }, function(api) {
+				// $('.now').text(api.getCurrent());
+				// //              api.setPageCount(4)
+			// });
+
+			//这里是提币中的添加地址分页
+			// $('.M-boxd').pagination({
+				// callback: function(api) {
+					// //              	api.setPageCount(4)
+					// $('.nowd').text(api.getCurrent());
+					// //                  console.log(api.getPageCount())
+				// }
+			// }, function(api) {
+				// $('.nowd').text(api.getCurrent());
+				// //              api.setPageCount(4)
+			// });
+
+			//这里是委托管理
+			// $('.M-boxen').pagination({
+				// callback: function(api) {
+					// //              	api.setPageCount(4)
+					// $('.nowen').text(api.getCurrent());
+					// //                  console.log(api.getPageCount())
+				// }
+			// }, function(api) {
+				// $('.nowen').text(api.getCurrent());
+				// //              api.setPageCount(4)
+			// });
+
+			//时间插件
+			$('#startDateTimeS').datepicker({
+				language: 'zh-CN',
+				autoclose: true,
+				todayHighlight: true,
+				todayBtn: "linked",
+				keyboardNavigation: false,
+				forceParse: false,
+				calendarWeeks: false,
+				autoclose: true,
+				format: "yyyy-mm-dd",
+				showWeek: false,
+			});
+
+			//结束时间：
+			$('#endDateTimeS').datepicker({
+				language: 'zh-CN',
+				autoclose: true,
+				todayHighlight: true,
+				todayBtn: "linked",
+				keyboardNavigation: false,
+				forceParse: false,
+				calendarWeeks: false,
+				autoclose: true,
+				format: "yyyy-mm-dd",
+			});
+			
+			// var p = new Paging();
+			// p.init({target:'#pageToolbar',pagesize:10,count:$('#total').val(), toolbar: true,hash: true,callback:function(page,size,count){
+				// withdrawMoneyRecord(page);
+			// }});
+			
+			
+		</script>
+	</body>
+
+</html>

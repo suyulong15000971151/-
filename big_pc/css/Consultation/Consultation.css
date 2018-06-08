@@ -1,0 +1,132 @@
+body{
+	background-color: #F3F8FC;
+}
+#Newest{color:#1660EB}
+#center{
+	width: 80%;
+	min-width: 1200px;
+	padding-top: 21px;
+	margin: 0 auto;
+	
+	/*border: 1px solid red;*/
+	
+}
+.centerLeft{
+	width: 72%;
+	margin-bottom: 50px;
+}
+.centerLeft .top{
+	width: 100%;
+	height: 218px;	
+	/*border: 1px solid red;*/
+}
+.centerLeft .top img{
+	width: 100%;
+	height: 218px;
+}
+.centerLeft .bottom{
+	width: 100%;
+	margin-top: 21px;
+	/*border: 1px solid red;*/
+	background-color: #FFFFFF;
+}
+.centerLeft .content{
+	padding-left: 30px
+}
+.centerLeft .content ul li{
+	padding: 30px 39px 29px 0px;
+	display: block;
+	border-bottom: 1px solid #EBEDF0;	
+}
+.centerLeft .content ul li span{
+	display: inline-block;
+}
+.centerLeft .content ul li .contentTitle{
+	width:467px;
+	height:17px; 
+	font-size:16px;
+	color:rgba(51,51,51,1);
+	line-height:12px;
+	float: left;
+}
+.contentAddress ,.contentTime{
+	float: right;
+	width:80px;
+	height:15px; 
+	font-size:12px;
+	color:rgba(153,153,153,1);
+	line-height:12px;
+}
+.centerLeft .bottom .title{
+	height: 60px;
+	width:100%;
+	border-bottom: 1px solid #EBEDF0;
+	padding-left: 30px;
+	font-size: 16px;
+	color: #333333;
+	line-height: 60px;
+}
+.goodIntroduction{
+	text-align: left;
+	font-size: 14px;
+	line-height: 22px;
+	margin-top: 40px;
+	color: #666666;
+}
+.centerRight{
+	width: 26%;
+	/*border: 1px solid red;*/
+}
+.centerRight .rightTop{
+	width: 100%;
+	height: 340px;
+	background-color: #FFFFFF;
+	margin-bottom: 30px;
+}
+.centerRight .rightTop p{
+	width: 100%;
+	border-bottom: 1px solid #EBEDF0;
+	height: 60px;
+	padding-left: 30px;
+	font-size: 16px;
+	line-height: 60px;
+}
+/*.centerRight .rightTop p:hover{
+	background-color: #1660eb;
+	color:#FFFFFF ;
+}*/
+.centerRight .rightTop .labelDiv{
+	padding: 30px;
+}
+.centerRight .rightTop .labelDiv span {
+	display: inline-block;
+	width:76px;
+	height:36px; 
+	background:rgba(243,248,252,1);
+	border-radius: 18px;
+	color: #333333;
+	/*display: flex;
+	justify-content: center;
+	align-items: center;	*/
+	line-height: 36px;
+	text-align: center;
+	margin-right: 8px;
+	margin-bottom: 8px;
+}
+.centerRight .rightTop .labelDiv span:hover {
+	background-color: #1660eb;
+	color:#FFFFFF ;
+}
+.rightCenter img{
+	width: 100%;
+	height: 273px;
+}
+.rightBottom{
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+.rightBottom img{
+	width: 100%;
+	height: 281px;
+}
+

@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>个人中心</title>
+		<link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="../../css/common.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/header.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/Footer.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/animate.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/person_cen/person_cen.min.css" />
+	</head>
+
+	<body>
+		<!--这里是先认证再设置弹窗-->
+		<div class="Authen">
+			<div class="authen-box">
+				<div class="content">
+					<div class="status"></div>
+					<p>请先完成身份认证，再来设置法币交易！</p>
+					<button class="btn" onclick="goAuth();">去认证</button>
+				</div>
+			</div>
+		</div>
+		<!--这里是先认证再设置API弹窗-->
+		<div class="authenApi" id="authenApi">
+			<div class="authen-box">
+				<div class="content">
+					<div class="status"></div>
+					<p>请先完成身份认证，再来设置API私有交易！</p>
+					<button class="btn" onclick="goAuth();">去认证</button>
+				</div>
+			</div>
+		</div>
+		
+		<!--这里是头部-->
+		<div id="header"></div>
+
+		<!--这里是中间内容-->
+		<div class="conta">
+			<div class="con-box">
+				<div class="sidebar">
+					<div class="list">
+						<div class="title self"><i class="iconfont icon-gerenzhongxin tv"></i> 个人中心</div>
+						<div class="item info active">个人信息</div>
+						<div class="item security">安全设置</div>
+						<div class="item identity">身份认证</div>
+						<div class="item apiTransaction">API私有交易设置</div>
+					</div>
+					<div class="list">
+						<div class="title set"><i class="iconfont icon-shezhi"></i>交易设置</div>
+						<div class="item French ">法币交易设置</div>
+					</div>
+					<div class="list">
+						<div class="title supt"><i class="iconfont icon-yijianfankui01"></i>支持</div>
+						<div class="item problem">问题反馈</div>
+					</div>
+				</div>
+				<div class="left-con">
+					<!--这里是个人信息-->
+					<div id="self_info" class="self-item animated">
+						<div class="title">个人信息</div>
+						<div class="authen">
+							<div class="adopt" style="display:none" id="noAdopt">
+								<p>暂无认证</p>
+								<span onclick="goAuth();">去认证</span>
+							</div>
+							<div class="adopt get" style="display:none" id="adopting">
+								<p>认证中</p>
+							</div>
+							<div class="adopt read" style="margin-left:0px;display:none" id="adopted">
+								<p>已认证</p>
+							</div>
+							<div class="dopt-info" style="width:300px">
+								<div class="item" id="authenPhone">
+									<label for="">手机号</label>
+								</div>
+								<div class="item" id="authenEmail">
+									<label for="">邮箱</label>
+								</div>
+								<div class="item" id="authenName">
+									<label for="">姓名</label>
+								</div>
+							</div>
+						</div>
+						<div class="history">
+							<div class="caption">最近十条登录历史</div>
+							<table class="table table-striped">
+                              <thead>
+								<tr class="histen">
+									<th>时间</th>
+									<th>IP地址</th>
+									<th>所在地</th>
+								</tr>
+							  </thead>
+                              <tbody id='resultBox'>
+							  </tbody>
+                             
+                            </table>
+						</div>
+					</div>
+
+					<!--这里是安全设置-->
+					<div id="security" class="self-item animated">
+						<div class="title">安全设置 <span>（请不要透露短信和谷歌验证码给任何人）</span></div>
+						<!--登录密码-->
+						<div class="item">
+							<div class="item_top">
+								<label for="">登录密码</label>
+								<div class="status">
+									<img src="../../img/setup.png" alt="" />
+									<span>已设置</span>
+								</div>
+								<div class="set" id="loginModifyDiv">修改</div>
+							</div>
+							<!--下拉隐藏的-->
+							<div class="sub-box" >
+								<div class="form-box">
+									<div class="form-item"><label for="">原密码</label><input type="password" class="form-control" maxlength="32" id="orignPasswd" onkeyup="checkEmail(2)"/><span class="orign-text" id="passwordText1">请输入原密码</span></div>
+									<div class="form-item"><label for="">新密码</label><input type="password" class="form-control" maxlength="32" id="newPasswd" onkeyup="checkEmail(2)"/><span class="orign-text" id="passwordText2">请输入6~32位字母和数字</span></div>
+									<div class="form-item"><label for="">新密码确认</label><input type="password" class="form-control" maxlength="32" id="conPasswd" onkeyup="checkEmail(2)"/><span class="orign-text" id="passwordText3">请确认新密码</span></div>
+									<div class="form-item vertical"><label for="">短信验证码</label><input type="text" class="form-control" maxlength="6" id="loginCode"/><button class="btn" onclick="sendCode(2);" id="modifyPasswd">发送验证码</button></div>
+									<div class="sub"><button class="btn" onclick="modifyPwd();">确认</button></div>
+								</div>
+							</div>
+						</div>
+						<!--手机绑定-->
+						<div class="item">
+							<div class="item_top">
+								<label for="">手机绑定</label>
+								<div class="status">
+									<img src="../../img/setup.png" alt="" />
+									<span>提现、修改密码以及安全设置时用以收取验证短信</span>
+								</div>
+								<div class="set" id="phoneModigyDiv">修改</div>
+							</div>
+							<!--下拉隐藏的-->
+							<div class="sub-box" id='bindPhoneDiv'>
+								<div class="form-box">
+									<div class="tip"> <img src="../../img/from-tip.png" alt="" />为了您的资产安全，修改手机号24小时内不允许提币</div>
+									<div class="form-item"><label for="">新手机号</label><input type="text" class="form-control"  id="newPhone" maxlength="11" onkeyup="checkPhone()"/><span class="orign-text" id="phoneText">请输入新手机号</span></div>
+									<div class="form-item vertical"><label for="">新短信验证码</label><input type="text" class="form-control" maxlength="6" id="phoneCode" /><button class="btn" onclick="sendCode(3);" id="modifyPhone" >发送验证码</button></div>
+									<div class="sub"><button class="btn"  onclick="modifyPhone();">确认</button></div>
+								</div>
+							</div>
+						</div>
+
+						<!--谷歌验证-->
+						<div class="item">
+
+							<div class="item_top">
+								<label for="">谷歌验证</label>
+								<div class="status">
+									<img src="../../img/setno.png" alt=""  id="googlePicture"/>
+									<span>提现、修改密码以及安全设置时用以输入谷歌验证码</span>
+								</div>
+								<div class="set" id="googleModigyDiv">设置
+								</div>
+							</div>
+							<!--下拉隐藏的-->
+							<div class="sub-box">
+								<div class="form-box">
+									<div class="tip"> <img src="../../img/from-tip.png" alt="" />为了您的资产安全，绑定谷歌验证24小时内不允许提币</div>
+									<!--<div class="form-item"><label for="">原密码</label><input type="password" class="form-control" /></div>-->
+									<div class="form-item"><label for="">谷歌二维码 以及秘钥</label>
+										<div class="code">
+											<div id="output"></div>
+											<p id="googleKey"></p>
+										</div>
+									</div>
+									<div class="form-item" id="googleDiv1"><label for="">谷歌验证码</label><input type="text" class="form-control" maxlength="6" id="googleNum" onkeyup="checkEmail(4)"/><span class="orign-text" id="googleTishi">请输入谷歌验证码</span></div>
+									<div class="form-item vertical" id="googleDiv2"><label for="">短信验证码</label><input type="text" class="form-control" maxlength="6" id="googleCode" /><button class="btn" onclick="sendCode(4);" id="modifyGoogle">发送验证码</button></div>
+									<div class="sub" id="googleDiv3"><button class="btn" onclick="modifyGoogle();">确认</button></div>
+								</div>
+							</div>
+						</div>
+
+						<!--资金验证-->
+						<div class="item">
+
+							<div class="item_top">
+								<label for="">资金密码</label>
+								<div class="status">
+									<img src="../../img/setno.png" alt="" id="fundPicture" />
+									<span>交易、提现时使用</span>
+								</div>
+								<div class="set" id="fundModifyDiv">设置</div>
+							</div>
+							<!--下拉隐藏的-->
+							<div class="sub-box" id="modifyFundPwdDiv">
+								<div class="form-box">
+									<div class="tip"> <img src="../../img/from-tip.png" alt="" />为了您的资产安全，绑定资金密码24小时内不允许提币</div>
+									<!--<div class="form-item"><label for="">原密码</label><input type="password" class="form-control" /></div>-->
+									<div class="form-item"><label for="">资金密码</label><input type="password" class="form-control" maxlength="32" id="fundsPassword" onkeyup="checkEmail(5)"/><span class="orign-text" id="passwordTishi">请输入资金密码</span></div>
+									<div class="form-item"><label for="">资金密码确认</label><input type="password" class="form-control" maxlength="32" id="confundsPassword" onkeyup="checkEmail(5)"/><span class="orign-text" id="conPasswordTishi">请确认资金密码</span></div>
+									<div class="form-item vertical"><label for="">短信验证码</label><input type="text" class="form-control" id="fundCode" maxlength="6"/><button class="btn" onclick="sendCode(5);" id="modifyFundpw">发送验证码</button></div>
+									<div class="sub"><button class="btn" onclick="modifyFundpw();">确认</button></div>
+								</div>
+							</div>
+						</div>
+						<!--邮箱验证-->
+						<div class="item">
+
+							<div class="item_top">
+								<label for="">邮箱验证</label>
+								<div class="status">
+									<img src="../../img/setno.png" alt="" id="emailPicture"/>
+									<span>邮箱用于登录、提币以及安全设置时使用，激活后不可修改。</span>
+								</div>
+								<div class="set" id="emailModifyDiv">设置</div>
+							</div>
+							<!--下拉隐藏的-->
+							<div class="sub-box" id="modifyEmailDiv">
+								<div class="form-box">
+									<!--<div class="tip"> <img src="../img/from-tip.png" alt="" />为了您的资产安全，绑定资金密码24小时内不允许提币</div>-->
+									<!--<div class="form-item"><label for="">原密码</label><input type="password" class="form-control" /></div>-->
+									<!--<div class="form-item"><label for="">资金密码</label><input type="password" class="form-control" /></div>-->
+									<div class="form-item"><label for="">邮箱</label><input type="text" class="form-control"  maxlength="100" id="email" onkeyup="checkEmail(6)"/><span class="orign-text" id="emailTishi">请输入邮箱</span></div>
+									<div class="form-item vertical"><label for="">短信验证码</label><input type="text" class="form-control" maxlength="6" id="emailCode"/><button class="btn" onclick="sendCode(6);" id="modifyEmail">发送验证码</button></div>
+									<div class="sub"><button class="btn" onclick="modifyEmail();">确认</button></div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<!--这里是安全人份认证-->
+					<div id="identity" class="self-item animated">
+						<div class="title">身份认证<span>（为了您的资金安全，需验证您的身份才可进行交易；认证信息一经验证不能修改，请务必如实填写）</span></div>
+						<div class="level" id="stepTitle">
+							<a href="javascript:;" class="active">级别1认证 <i>1</i></a>
+							<a href="javascript:;">级别2认证 <i>2</i></a>
+						</div>
+						<div class="level-con">
+							<div class="first" id="stepOne">
+								<div class="form-item"><label for="">姓名</label><input type="text" placeholder="请输入真实姓名" class="form-control" id="userName" maxlength="20" /></div>
+								<div class="form-item"><label for="">身份证号码</label><input type="text" placeholder="请输入本人身份证" class="form-control" id="idCard" maxlength="18" /></div>
+								<div class="sub"><button class="btn">下一步</button></div>
+							</div>
+
+							<div class="second" id="stepTwo">
+								<div class="indety-item">
+									<label for="">身份证人面像：</label>
+									
+									<div class="load">
+										<input type="hidden" id="idCardPositive">
+										<div class="load-box" style="background: url(../../img/zhengmian.png) no-repeat;background-size: contain;" id="zmbtn"><img src="" alt="" /></div>
+										<p><img class="lod" src="../../img/load.png" alt="" id="zhimg"/>上传照片</p>
+										<input type="file" multiple="true" id="zmimgbtn" onchange="uploads(this,1)">
+									</div>
+									<div class="info">
+										<p>必须能看清证件号和姓名，支持jpg／jpeg／png等</p>
+										<a href="javascript:;" style="color:#999999">边框完整</a>
+										<a href="javascript:;" style="color:#999999">字体清晰</a>
+										<a href="javascript:;" style="color:#999999">亮度均匀</a>
+									</div>
+								</div>
+
+								<div class="indety-item">
+									<label for="">身份证国徽面：</label>
+									<div class="load">
+										<input type="hidden" id="idCardBack">
+										<div class="load-box" style="background: url(../../img/guowei.png) no-repeat;background-size: contain;" id="fmbtn"></div>
+										<p><img class="lod" src="../../img/load.png" alt="" id="fmimg" />上传照片</p>
+										<input type="file" multiple="true" id="fmimgbtn" onchange="uploads(this,2)">
+									</div>
+									<div class="info">
+										<p>必须能看清证件号和姓名，支持jpg／jpeg／png等</p>
+										<a href="javascript:;" style="color:#999999">边框完整</a>
+										<a href="javascript:;" style="color:#999999">字体清晰</a>
+										<a href="javascript:;" style="color:#999999">亮度均匀</a>
+									</div>
+								</div>
+
+								<div class="indety-item">
+									<label for="">手持身份证照：</label>
+									<div class="load">
+										<input type="hidden" id="handheldIdCard">
+										<div class="load-box" style="background: url(../../img/shouchi.png) no-repeat;background-size: contain;" id="scbtn"></div>
+										<p><img class="lod" src="../../img/load.png" alt="" id="scimg"  />上传照片</p>
+										<input type="file" multiple="true" id="scimgbtn" onchange="uploads(this,3)">
+									</div>
+									<div class="info">
+										<p>请提供一张您手持证件照的照片</p>
+										<a href="javascript:;" style="color:#999999">身份证号码、姓名等信息应保持清晰，且不可修改或覆盖</a>
+										<a href="javascript:;" style="color:#999999">手持身份证并附加验证纸条（BIG.TOP+验证日期）</a>
+									</div>
+								</div>
+								<div class="sub" id="memberAuthDiv"><button class="btn" onclick="memberAuth();">提交审核</button></div>
+							</div>
+							
+							<!--这里是身份认证中的三种状态-->
+						<!--第一正在审核中-->
+						<div class="running" id="stepThree">
+							<div class="status"></div>
+							<p>正在审核中，请耐心等待短信通知</p>
+						</div>
+						<!--这里是审核成功的状态-->
+						<div class="running exa" id="stepFour">
+							<div class="status amizin"></div>
+							<p>审核成功</p>
+						</div>
+						<!--这里是审核失败-->
+						<div class="running fail" id="stepFive">
+							<div class="status"></div>
+							<p>审核失败</p>
+						</div>
+						
+						
+						
+						</div>
+						
+						
+						
+						
+					</div>
+
+					<!--这里是法币交易设置-->
+					<div id="French" class="self-item animated">
+						<div class="title">法币交易设置 <span></span></div>
+						<!--登录密码-->
+						<div class="item">
+							<div class="item_top">
+								<label for="">银行转账</label>
+								<div class="status">
+									<img src="../../img/setno.png" alt="" id="bankPicture"/>
+									<span id="bankText">设置银行卡</span>
+								</div>
+								
+								<div class="set" id="bankModifyDiv">设置</div>
+								<div class="witch" onclick="witch(this,1)" id="witch3"><div class="move"></div></div>
+							</div>
+							<!--下拉隐藏的-->
+							<div class="sub-box">
+								<div class="form-box">
+									<div class="form-item"><label for="">姓名</label><input type="text" class="form-control" maxlength="20" id="name" readonly=""/></div>
+									<div class="form-item"><label for="">银行卡号</label><input type="text" class="form-control" maxlength="30" onkeyup="checkBank();" id="bankCard"/><span class="orign-text" id="bankCardTishi"></span></div>
+									<div class="form-item"><label for="">确认卡号</label><input type="text" class="form-control" maxlength="30" id="bankCardC" onkeyup="checkEmail(7)"/><span class="orign-text" id="bankCardCTishi"></span></div>
+									<div class="form-item"><label for="">开户行</label><input type="text" class="form-control"  id="bankOfDeposit"/></div>
+									<div class="form-item"><label for="">开户支行</label><input type="text" class="form-control"  maxlength="50" id="accountOpeningBranch" onkeyup="checkEmail(7)"/><span class="orign-text" id="accountOpeningBranchTishi"></span></div>
+									<div class="form-item vertical"><label for="">短信验证码</label><input type="text" class="form-control" maxlength="6" id="bankcode"/><button class="btn" id="bankMethodText" onclick="sendCode(7);">发送验证码</button></div>
+									<div class="sub"><button class="btn" onclick="changeBank();">确认</button></div>
+								</div>
+							</div>
+						</div>
+						<!--微信支付-->
+						<div class="item">
+
+							<div class="item_top">
+								<label for="">微信支付</label>
+								<div class="status">
+									<img src="../../img/setno.png" alt="" id="wxPicture"/>
+									<span id="wxText">设置二维码</span>
+								</div>
+								<div class="set" id="wxModifyDiv">设置</div>
+								<div class="witch" onclick="witch(this,2)" id="witch2"><div class="move"></div></div>
+							</div>
+							<!--下拉隐藏的-->
+							<div class="sub-box">
+								<div class="form-box">
+									<input type="hidden"  id="weChatUrl"/>
+									<div class="form-item"><label for="">收款人姓名</label><input type="text" class="form-control" id="wxname"  maxlength="20" readonly=""/></div>
+									<div class="form-item"><label for="">账号</label><input type="text" class="form-control" id="weChat"  maxlength="30" onkeyup="checkEmail(8)"/><span class="orign-text" id="weChatTishi"></span>
+										<!--<div class="loadbox" style="display: inline-block;overflow: hidden;background: #fff;">-->
+										<div class="load" style="" id="wxbtn">
+										<!--<div class="loadbox" style="display: block;overflow: hidden;background: #fff;height: 100%;">-->
+											<i></i>
+											<p>上传收款码</p>
+											<input type='file' multiple='true' id='wxInput' onchange='Currency(this,1)'>
+										<!--</div>-->
+										</div>
+										<!--</div>-->
+									</div>
+									<!--<div class="form-item"><label for="">新手机号</label><input type="password" class="form-control" /></div>-->
+									<div class="form-item vertical"><label for="">短信验证码</label><input type="text" class="form-control"  maxlength="6" id="wxcode"/><button class="btn" id="wxMethodText" onclick="sendCode(8);">发送验证码</button></div>
+									<div class="sub"><button class="btn" onclick="changeWx();">确认</button></div>
+								</div>
+							</div>
+						</div>
+
+						<!--支付宝-->
+						<div class="item">
+
+							<div class="item_top">
+								<label for="">支付宝</label>
+								<div class="status">
+									<img src="../../img/setno.png" alt="" id="aliPicture"/>
+									<span id="aliText">设置二维码</span>
+								</div>
+								<div class="set" id="aliModifyDiv">设置</div>
+								<div class="witch" onclick="witch(this,3)" id="witch1"><div class="move"></div></div>
+							</div>
+							<!--下拉隐藏的-->
+							<div class="sub-box">
+								<div class="form-box">
+									<input type="hidden"  id="alipayUrl"/>
+									<!--<div class="tip"> <img src="../img/from-tip.png" alt="" />为了您的资产安全，修改手机号24小时内不允许提币</div>-->
+									<div class="form-item"><label for="">收款人姓名</label><input type="text" class="form-control" id="aliname"  maxlength="20" readonly=""/></div>
+									<div class="form-item"><label for="">账号</label><input type="text" class="form-control"  id="alipay"  maxlength="30" onkeyup="checkEmail(9)"/><span class="orign-text" id="alipayTishi"></span>
+										<div class="load" style="" id="alibtn">
+											<i></i>
+											<p>上传收款码</p>
+											<input type='file' multiple='true' id='aliInput' onchange='Currency(this,2)'>
+										</div>
+									</div>
+									<!--<div class="form-item"><label for="">新手机号</label><input type="password" class="form-control" /></div>-->
+									<div class="form-item vertical"><label for="">短信验证码</label><input type="text" class="form-control"  maxlength="6" id="alicode"/><button class="btn" id="alMethodText" onclick="sendCode(9);">发送验证码</button></div>
+									<div class="sub"><button class="btn" onclick="changeAli();">确认</button></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!--这里是问题反馈-->
+					<div id="problem" class="self-item animated">
+						<div class="title">问题反馈</div>
+						<div class="proble-box">
+							<div class="item">
+								<label for="">问题描述</label><textarea name="" id="text" rows="" class="form-control" placeholder="请输入信息" cols=""></textarea><span id="red" style="color: red;"></span>
+							</div>
+							<div class="load">
+								<div class="add_box">
+									<div class="problem_box">
+									<!--<div class="pro_item" style="background: url() no-repeat;background-size: cover;"></div>-->
+								     </div>
+								     <div class="load-box">
+									  <p></p>
+									  <input type='file' multiple='true' id='btnd' onchange='proble(this)'>
+								      </div>
+								</div>
+								
+								<div class='info'>
+									<span>可上传3个附件，</span>每个文件大小不得超过5M。附件支持的格式有：'jpg'，'jpeg'，'bmp'，'png'，'gif'。
+								</div>
+								<div class="sub">
+									<button class="btn" onClick="button();">提交</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!--这里是API交易-->
+					<div id="apiTransaction" class="self-item animated">
+						<div class="title">
+							<div class="fl titleText">API私有交易设置</div>
+							<div class="fr apiBtn openApiBtn">开启API</div>
+							<div class="fr apiBtn closeApiBtn" style="display: none;">关闭API</div>
+						</div>
+						<!--刚进入-->
+						<div class="apiSet" >
+							<div class="messageWarm">
+								<img src="../../img/from-tip.png"/>重要提示：API已关闭！如要启用API，请点击右上角添加“开启API”按钮
+							</div>
+						</div>
+						<!--点击开启API-->
+						<div class="bindApi" style="display: none;">
+							<div class="messageWarm">
+								<img src="../../img/from-tip.png"/>重要提示：通过验证后开启API
+							</div>
+							<div class="messageForm">
+								<table >
+									<tr>
+										<td style="width: 170px;">绑定API交易IP：</td><span class="orign-text" id="apiIdTiShi"></span>
+										<td><input onkeyup="checkEmail(10)" id="apiId" type="text" class="form-control ipInput" placeholder="只能填写一个，为空则不限制" /></td>
+									</tr>
+									<tr>
+										<td>短信验证码：</td>
+										<td>
+											<input type="text" class="form-control verificationInput " id="apiMethodText" />
+											<div id="apiMethod" class="verification" onclick="sendCode(10);">发送验证码</div>
+										</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td>
+											<div class="cancel fl">
+												取消
+											</div>
+											<div class="open fr" >
+												开启
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<!--点击开启后-->
+						<div class="openApi" style="display: none;">
+							<div class="messageWarm">
+								<img src="../../img/from-tip.png"/>重要提示：私有密钥允许您通过BIG开放协议提供API访问您的账户并执行交易指令，我们为您提供的密钥非常重要，请妥善保管
+							</div>
+							<div class="generateApi">
+								<div class="fl generateApiSet">API私有交易设置</div>
+								<div class="fr apiBtn generateBtn">重新生成</div>
+							</div>
+							<div class="generateApiDiv">
+								
+							</div>
+							<div class="modifyApi">
+								<div class="fl generateApiSet">当前密钥绑定IP</div>
+								<div class="fr apiBtn modifyBtn">修改</div>
+							</div>
+							<div class="messageWarm">
+								<img src="../../img/from-tip.png"/>重要提示：只有绑定的IP才能够通过API进行访问，如果不希望限制则留空，变更IP五分钟后生效
+							</div>
+							<div class="modifyApiDiv">
+							</div>
+						</div>
+						<!--关闭API-->
+						<div class="bindCloseApi"style="display: none;" >
+							<div class="messageWarm">
+								<img src="../../img/from-tip.png"/>重要提示：通过验证后关闭API
+							</div>
+							<div class="messageForm">
+								<table >
+									<tr>
+										<td style="width: 170px;">短信验证码：</td>
+										<td>
+											<input type="text" class="form-control verificationInput " id="closeAPI" />
+											<div class="verification" onclick="sendCode(13);" id="closeMethodText">发送验证码</div>
+										</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td>
+											<div class="cancel fl">
+												取消
+											</div>
+											<div class="open fr" onclick="closeAPI();">
+												关闭
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<!--重新生成API-->
+						<div class="bindSetApi" style="display: none;" >
+							<div class="messageForm">
+								<table >
+									<tr>
+										<td style="width: 170px;">短信验证码：</td>
+										<td>
+											<input type="text" class="form-control verificationInput " id="againIp" />
+											<div class="verification" onclick="sendCode(12);" id="againMethodText">发送验证码</div>
+										</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td>
+											<div class="cancel fl">
+												取消
+											</div>
+											<div class="open fr" onclick="againIp();">
+												提交
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<!--修改API-->
+						<div class="bindModifyApi" style="display: none;">
+							<div class="messageWarm">
+								<img src="../../img/from-tip.png"/>重要提示：请确定您要绑定的IP，绑定后，访问API只能通过绑定的IP进行，五分钟后生效
+							</div>
+							<div class="messageForm">
+								<table >
+									<tr>
+										<td style="width: 170px;">绑定API交易IP：</td><span class="orign-text" id="updateIpTiShi">
+										<td><input onkeyup="checkEmail(11)" id="updateIP" type="text" class="form-control ipInput" placeholder="只能填写一个，为空则不限制" /></td>
+									</tr>
+									<tr>
+										<td style="width: 170px;">短信验证码：</td>
+										<td>
+											<input type="text" id="updateMethodText" class="form-control verificationInput "  />
+											<div id="updateMethod" class="verification" onclick="sendCode(11);">发送验证码</div>
+										</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td>
+											<div class="cancel fl">
+												取消
+											</div>
+											<div class="open fr" onclick="updateIp();">
+												修改
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+         <!--<div class="cover"><i class="iconfont icon-dustbin_icon"></i></div>-->
+		<!--这里是底部-->
+		<div id="footer"></div>
+		<script type="text/javascript" src="../../js/jquery-2.1.1.js"></script>
+		<script type="text/javascript" src="../../js/aliyun-oss-sdk-4.4.4.min.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../js/common.min.js"></script>
+		<script type="text/javascript" src="../../js/md5.min.js"></script>
+		<script type="text/javascript" src="../../js/bank.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.qrcode.min.js"></script>
+		<script type="text/javascript" src="../../js/person_cen/person_cen.min.js"></script>
+	
+		<script type="text/javascript">
+			
+			function Ewindlocation(){
+				window.location.href="Eperson_cen.html"
+			}
+			
+				//这里是法币开关
+			function witch(obj,num) {
+				var payment = pcUser.payment;
+				//银行卡账户
+				var bankCard = payment.bankCard;
+				//微信账户
+				var weChat = payment.weChat;
+				//支付宝
+				var alipay = payment.alipay;
+				if (num == 1 && bankCard != null) {
+				if($(obj).hasClass("togpar")) {
+					if(weChat == null || weChat == ""){
+						if(alipay == null || alipay == ""){
+							Message("至少保留一个支付方式","error");
+							return false;
+						}else{
+							if(payment.paymentMethod1 == 1){
+								Message("至少保留一个支付方式","error");
+								return false;
+							}
+						}
+					}else{
+						if(payment.paymentMethod2 == 1){
+							if(alipay == null || alipay == ""){
+							Message("至少保留一个支付方式","error");
+							return false;
+						}else{
+							if(payment.paymentMethod1 == 1){
+							Message("至少保留一个支付方式","error");
+							return false;
+						}
+						}
+						}
+					}
+						changeBank(1);
+					} else {
+						changeBank(0);
+					}
+				}else if (num == 2 && weChat != null) {
+					if($(obj).hasClass("togpar")) {
+						if(bankCard == null || bankCard == ""){
+						if(alipay == null || alipay == ""){
+							Message("至少保留一个支付方式","error");
+							return false;
+						}else{
+							if(payment.paymentMethod1 == 1){
+								Message("至少保留一个支付方式","error");
+								return false;
+							}
+						}
+					}else{
+						if(payment.paymentMethod3 == 1){
+							if(alipay == null || alipay == ""){
+							Message("至少保留一个支付方式","error");
+							return false;
+						}else{
+							if(payment.paymentMethod1 == 1){
+							Message("至少保留一个支付方式","error");
+							return false;
+						}
+						}
+						}
+					}
+						changeWx(1);
+					} else {
+						changeWx(0);
+					}
+				}else if (num == 3 && alipay != null) {
+					if($(obj).hasClass("togpar")) {
+						if(bankCard == null || bankCard == ""){
+						if(weChat == null || weChat == ""){
+							Message("至少保留一个支付方式","error");
+							return false;
+						}else{
+							if(payment.paymentMethod2 == 1){
+								Message("至少保留一个支付方式","error");
+								return false;
+							}
+						}
+					}else{
+						if(payment.paymentMethod3 == 1){
+							if(weChat == null || weChat == ""){
+							Message("至少保留一个支付方式","error");
+							return false;
+						}else{
+							if(payment.paymentMethod2 == 1){
+							Message("至少保留一个支付方式","error");
+							return false;
+						}
+						}
+						}
+					}
+						changeAli(1);
+					} else {
+						changeAli(0);
+					}
+				}
+			}
+			
+			
+			
+			
+			
+			//这里是身份认证图片上传
+			function uploads(obj,type) {
+				//alert(obj.files.length);
+				console.log("文件"+obj.files);
+				if(!obj.value.match(/.jepg|.jpg|.gif|.jpeg|.png|.bmp/i)) {
+					Message("图片格式不正确！",'error')
+				} else {
+					n = obj.files.length;
+					var html = "";
+					for(var i = 0; i < n; i++) {
+						var url = window.URL.createObjectURL(obj.files[i]);
+						var txt = obj.files[i].name.split(judge(obj.files[i]));
+						//txt = txt.split("")
+						console.log(url);
+//						html += ;
+					}
+					var background="url("+url+")";
+					$(obj).parent().find(".load-box").css("background",background);
+					$(obj).parent().find(".load-box").css("backgroundSize","contain");
+					
+					var file = obj.files[0];
+					var storeAs =((new Date()).getTime());
+					console.log(file.name + ' => ' + storeAs);
+					
+					
+				  client.multipartUpload(String(storeAs), file).then(function (result) {
+			         var ossUrls=result.res.requestUrls[0].split("?")[0];
+			           if(type!=null){
+			           	  if(type==1){
+			           	  	$("#idCardPositive").val((ossUrls!=null?ossUrls:""));
+			           	  }else if(type==2){
+			           	  	$("#idCardBack").val((ossUrls!=null?ossUrls:""));
+			           	  }else if(type==3){
+			           	  	$("#handheldIdCard").val((ossUrls!=null?ossUrls:""));
+			           	  }
+			           }
+			         console.log(ossUrl)
+			      }).catch(function (err) {
+			        console.log(err);
+			        console.log()
+			      });
+				};
+			};
+
+			function judge(obj) {
+				var str = '';
+				if(obj.name.match(/.jpg/i)) {
+					str = ".jpg";
+				} else if(obj.name.match(/.png/i)) {
+					str = ".png";
+				} else if(obj.name.match(/.gif/i)) {
+					str = ".gif";
+				} else if(obj.name.match(/.bmp/i)) {
+					str = ".bmp";
+				} else if(obj.name.match(/.jpeg/i)) {
+					str = ".jpeg";
+				}
+				return str;
+			};
+			
+			//这里是法币法币交易设置上传图片
+			function Currency(obj,type) {
+				//alert(obj.files.length);
+				if(!obj.value.match(/.jepg|.jpg|.jpeg|.gif|.png|.bmp/i)) {
+					Message("图片格式不正确！",'error')
+				} else {
+					n = obj.files.length;
+					var html = "";
+					for(var i = 0; i < n; i++) {
+						var url = window.URL.createObjectURL(obj.files[i]);
+						var txt = obj.files[i].name.split(judge(obj.files[i]));
+						//txt = txt.split("")
+						console.log(url);
+//						html ='<div class="pro_item" style="background: url("'+url+'") no-repeat;background-size: cover;"></div>' ;
+					}
+					var background="url("+url+") no-repeat";
+					$(obj).parent().css("background",background)
+					$(obj).parent().css("backgroundSize","cover")
+//					$("#upload").remove();
+//					$(".newUpload").remove();
+//					$("#imgs").append();
+					
+					var file = obj.files[0];
+					var storeAs =((new Date()).getTime());
+					console.log(file.name + ' => ' + storeAs);
+					
+				 	client.multipartUpload(String(storeAs), file).then(function (result) {
+			         var ossUrls=result.res.requestUrls[0].split("?")[0];
+			           if(type!=null){
+			           	  if(type==1){
+			           	  	$("#weChatUrl").val((ossUrls!=null?ossUrls:""));
+			           	  }else if(type==2){
+			           	  	$("#alipayUrl").val((ossUrls!=null?ossUrls:""));
+			           	  }
+			           }
+			         console.log(ossUrl)
+			      }).catch(function (err) {
+			        console.log(err);
+			        console.log()
+			      });
+				}
+			}
+			
+			//这里是问题反馈上传图片
+			function proble(obj) {
+			 var length=$(".conta .con-box .left-con #problem .proble-box .load .problem_box .pro_item").size()
+				if(!obj.value.match(/.jepg|.jpg|.jpeg|.gif|.png|.bmp/i)) {
+					var str="图片格式不正确！"
+					 Message(str,'error')
+				} else {
+					if(length>=3){
+						 Message("最多可上传三个附件",'error')
+					}else{
+						n = obj.files.length;
+						
+						 var ossUrls="";
+						var file = obj.files[0];
+						var storeAs =((new Date()).getTime());
+						console.log(file.name + ' => ' + storeAs);
+						
+					 	client.multipartUpload(String(storeAs), file).then(function (result) {
+				        	ossUrls=result.res.requestUrls[0].split("?")[0];
+				        	
+				        	var html = "";
+							for(var i = 0; i < n; i++) {
+								var url = window.URL.createObjectURL(obj.files[i]);
+								var txt = obj.files[i].name.split(judge(obj.files[i]));
+								//txt = txt.split("")
+								console.log(url);
+								html ='<div class="pro_item" style="background: url('+url+') no-repeat;background-size: cover;"><input type="hidden" name="propPicture" value='+ossUrls+' /><div class="cover"><i id="prodle" onclick="Delete(this)" class="iconfont icon-dustbin_icon"></i></div></div>' ;
+							}
+							$(obj).parents(".load").find(".problem_box").append(html)
+				         	console.log(ossUrls)
+				      }).catch(function (err) {
+				        console.log(err);
+				        console.log()
+				      });
+					}
+					
+				}
+			};
+			
+			function Delete(dle){
+					$(dle).parents(".pro_item").remove();
+			};
+			
+			
+			
+			
+			
+		</script>
+	</body>
+
+</html>

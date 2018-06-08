@@ -1,0 +1,200 @@
+body{background: #F3F8FC !important;}
+.header .header-box .nav .coin a:first-child{color:#1660EB ;}
+/*这里是资金密码弹窗*/
+#Capital{width:100%;height: 100%;background: rgba(0,0,0,.5);position: fixed;top:0;left: 0;z-index: 999;display:none;}
+.fadeIn{display: block !important; }
+#Capital .capital-box{width:100%;height:100%;position: relative;}
+#Capital .capital-box .content{width:468px;height:316px;background:#fff;position: absolute;left:50%;top:50%;transform: translate(-50%,-50%);box-sizing: border-box;padding:10px 20px;border-radius: 5px;}
+#Capital .capital-box .content .title span{line-height: 20px;color:#333;font-size: 20px;margin-bottom: 40px;overflow: hidden;}
+#Capital .capital-box .content .title i{float: right;}
+#Capital .capital-box .content .title{height:66px;box-sizing: border-box;border-bottom: 1px solid #EBEDF0;padding-top:9px}
+#Capital .capital-box .content .con{margin-top:20px}
+#Capital .capital-box .content .con input.form-control{height:48px;background: #F9F9F9;color:#C2C2C2;font-size: 14px;box-shadow: 0 0 0 #000;}
+#Capital .capital-box .content #amount{margin-bottom:20px;height:48px;line-height: 48px;font-size: 14px;font-weight: 500;}
+#Capital .capital-box .content #amount span{display: inline-block;margin:0 20px 0 5px;color:#ccc}
+#Capital .capital-box .content .set{overflow: hidden;margin-top:30px}
+#Capital .capital-box .content .set button.btn{width:200px;height:48px;outline: none;font-size: 16px;}
+#Capital .capital-box .content .set button.can{background:#fff;box-sizing: border-box;border:1px solid #E8E8E8;text-align: center;float: left;}
+#Capital .capital-box .content .set button.cof{background:#1660EB;box-sizing: border-box;border:1px solid #E8E8E8;text-align: center;color:#fff;float: right;}
+
+
+
+.shares{width:80%;margin:0 auto;overflow: hidden;margin-top:10px;min-width: 1200px;}
+.shares .shares_title{width:100%;height:48px;line-height: 48px;box-sizing: border-box;padding:0 30px;background:#fff}
+.shares .shares_title i{display: inline-block;margin-right: 5px;}
+.shares .shares_title .info{display: inline-block;margin-right:50px;font-size: 14px;color:#333;}
+.shares .shares_title .currency{font-size: 18px;}
+.shares .shares_title i{}
+.shares .shares_title .Increase span{color:#1CC391}
+.shares .shares_title .Increase span em{font-style: normal;color:#DF6B3A}
+/*这里是k线*/
+.shares .k_line{width:100%;background:#fff;margin-top:3px;background:#fff;padding:30px;box-sizing: border-box;padding-bottom:0px;display: none;}
+
+
+.shares .price{width:100%;overflow: hidden;margin-top:10px;display: flex;margin-bottom: 10px;}
+.shares .price .left{width:60%;display: inline-block;float: left;}
+.shares .price .left .title{width:100%;height:48px;line-height: 48px;box-sizing: border-box;padding:0 30px;background:#fff;color:#1660EB}
+.shares .price .left .title a{display: inline-block;padding:0 5px;text-decoration: none;margin-right: 10px;color:#333}
+.shares .price .left .title a.tv{border-bottom:1px solid #1660EB;color:#1660EB}
+.shares .price .left .title span{float: right;}
+.shares .price .left .con{background:#fff;overflow: hidden;padding-bottom: 30px;margin-top:3px;height:448px;padding-top:10px}
+.shares .price .left .con .con_curren{overflow: hidden;width:100%;}
+.shares .price .left .con .market{display: none;display: none;}
+
+.shares .price .left .con .con_left{width:50%;display: inline-block;float: left;}
+.shares .price .left .con .con_left .con_title{font-size: 14px;position: relative;height:50px;line-height: 50px;background:#fff;padding:0 30px;box-sizing: border-box;width: 95%;}
+.shares .price .left .con .con_left .con_title .limt{display: inline-block;}
+.shares .price .left .con .con_left .con_title em{float: right;color:#1660EB;margin-right: 10px;cursor: pointer;}
+
+
+.shares .price .left .con .con_left .con_title .line{display: inline-block;width:81%;height:1px;background:#EBEDF0;position: absolute;left:30px;top:50px;z-index:6;}
+.shares .price .left .con .con_left .con_title span{color:#1660EB;display: inline-block;margin-right:2px}
+.shares .price .left .con .con_left .con_title span a{color:#1660EB;text-decoration: none;}
+.shares .price .left .con .con_left .sub{overflow: hidden;width:100%}
+.shares .price .left .con .con_left .sub .item{width:95%;overflow: hidden;padding:0 30px;box-sizing: border-box;}
+.shares .price .left .con .con_left .sub .item:nth-child(2){margin-top:20px}
+.shares .price .left .con .con_left .sub .item:nth-child(1){margin-top:10px}
+.shares .price .left .con .con_left .sub .item label{display: block;line-height: 30px;color:#666;font-size: 14px;font-weight: 400;margin-top:10px;margin-bottom: 15px;}
+.shares .price .left .con .con_left .sub .item input.form-control{box-shadow: 0 0 0 #000;}
+.shares .price .left .con .con_left .sub .progess{width:95%;overflow: hidden;margin: 8px auto;box-sizing: border-box;padding:0 30px
+}
+.shares .price .left .con .con_left .sub .item .pic{position: relative;}
+.shares .price .left .con .con_left .sub .item .pic span{display: inline-block;line-height: 34px;position: absolute;right:10px;top:0;color:#999}
+.shares .price .left .con .con_left .sub .item p{background:#E6ECFC;text-indent: 20px;line-height: 24px;}
+.shares .price .left .con .con_left .sub .quota{font-size: 16px;font-weight: 500;line-height: 15px;padding:0 30px;box-sizing: border-box;margin-top:35px}
+.shares .price .left .con .con_left .sub .Purchase{box-sizing: border-box;padding:0 30px;margin-top:30px}
+
+.shares .price .left .con .market .sub .Purchase{margin-top:70px}
+
+
+.shares .price .left .con .con_left .sub .Purchase button.btn{display: block;width:95%;background:#D1D3DF;color:#fff;font-size: 16px;}
+.shares .price .left .con .con_left .sub .Purchase button.logr{background: #07BE89;}
+.shares .price .left .con .con_left .sub .Purchase button.logc{background: #DF6B3A;}
+
+
+
+.shares .price .left .con .con_right{width:50%;display: inline-block;float: left;}
+
+/*这里是当前委托*/
+.Entrust{width:100%;box-sizing: border-box;margin-bottom:10px}
+.Entrust .title{width:100%;height:48px;line-height: 48px;box-sizing: border-box;padding:0 30px;font-size: 14px;color:#333;overflow: hidden;background:#fff;margin-bottom:3px}
+.Entrust .title .right{float: right;height:48px;}
+.Entrust .con{width:100%;overflow: hidden;background:#ffff;box-sizing: border-box;padding:10px 30px 30px;min-height: 150px;position: relative;}
+.Entrust .con p{color:#999;text-align: center;}
+.Entrust .con em{display: inline-block;border-radius: 4px;position: absolute;bottom: 10px;right:30px;width:60px;height:24px;box-sizing: border-box;border:1px solid #1660EB;text-align: center;color:#1660EB;font-size: 12px;line-height: 24px;}
+.Entrust .con em:hover{cursor: pointer;}
+.Entrust .title i{font-style: normal;font-size: 12px;color:#999;margin-left:10px}
+.Entrust tbody{border:none !important}
+.Entrust .title .right a{display: inline-block;margin-left:30px;text-decoration: none;color:#000;height:48px;font-size: 12px;}
+.Entrust .title .right a.tv{border-bottom: 3px solid #1660EB;color:#1660EB}
+.Entrust .con table{font-size: 12px;}
+.Entrust .con table tr{border: none;line-height: 40px;}
+.Entrust .con table thead tr:first-child{background:#f1f5ff;}
+.Entrust .con table tr td{border: none;line-height: 24px;color:#666;font-weight: 400;}
+.Entrust .con table tr th{border: none;line-height: 24px;color:#333;font-weight: 400;}
+.Entrust .con table tr:hover{}
+.curren table tr td:nth-last-child(2){color:#DF6B3A}
+.curren table tr td:last-child{color:#1660EB;cursor: pointer;}
+.his table tr td.win{color:#07BE89}
+
+
+
+
+.shares .price .right{width:100%;flex: 1;margin-left:10px;}
+.shares .price .right .title{width:100%;line-height:48px;font-size: 14px;color:#333;box-sizing: border-box;padding:0 30px;background:#fff}
+.shares .price .right .table_box{margin-top:3px;background:#fff;box-sizing: border-box;padding:20px 30px;width: 100%;overflow: hidden;height: 448px;}
+.shares .price .right .table_box .purch{background:#fff;z-index: 99;}
+.shares .price .right .table_box .line{width:100%;height:1px;background:#EBEDF0;margin:10px auto}
+.shares .price .right .table_box .purch tr td:first-child{color:#DF6B3A !important}
+.shares .price .right .table_box .sell tr td:first-child{color:#07BE89 !important}
+.shares .price .right .table_box .sell{margin-top: -22px;}
+.shares .price .right .table_box .sell th{opacity: 0;}
+
+.shares .price .right .table_box table{margin-bottom:0}
+.shares .price .right .table_box table tr td{border: none;line-height: 20px;height: 20px !important;box-sizing: border-box;padding-top:3px;padding-bottom: 3px;}
+.shares .price .right .table_box table tr th{border: none;color:#666666;font-size: 12px;font-weight: 400;line-height: 20px;height: 20px !important;box-sizing: border-box;padding-top:3px;padding-bottom: 3px;}
+.shares .price .right .table_box table tr th:nth-last-child(2){text-align: right;}
+.shares .price .right .table_box table tr th:last-child{text-align: right;}
+.shares .price .right .table_box table tr td:nth-last-child(2){text-align: right;}
+.shares .price .right .table_box table tr td:last-child{text-align: right;}
+.shares .price .right .table_box table tr{font-size: 12px;line-height: 20px;}
+.shares .price .right .table_box table tr:hover{background:#F3F8FC}
+.shares .price .right strong{font-weight: 400;font-size: 14px;color:#1660EB;float: right;}
+/*这里是深度图和实时成交*/
+.shares .deap{overflow: hidden;margin-top:10px;display: flex;margin-bottom: 10px;}
+.shares .deap .left{width:60%;display: inline-block;overflow: hidden;}
+.shares .deap .left .title{height:48px;line-height: 48px;box-sizing: border-box;padding-left:30px;font-size: 14px;background:#fff}
+.shares .deap .left .deap_con{width: 100%;height:450px;background:#fff;margin-top:3px;padding:10px 30px;box-sizing: border-box;}
+.shares .deap .right{flex: 1;margin-left:10px}
+.shares .deap .right .title{height:48px;line-height: 48px;box-sizing: border-box;padding-left:30px;font-size: 14px;background:#fff}
+.shares .deap .right .table-box{margin-top:3px;background: #fff;min-height: 400px;}
+.shares .deap .right .table-box .real_time{height:95%;overflow-y: scroll;width:102%;box-sizing: border-box;padding:0 30px}
+.shares .deap .right .table-box table tr{font-size: 12px;}
+.shares .deap .right .table-box table tr th{color:#666;border: none;font-weight: 400;}
+.shares .deap .right .table-box table tr td{border: none;}
+.shares .deap .right .table-box table tr td .win{color:#07BE89}
+.shares .deap .right .table-box table tr td .fault{color:#DF6B3A}
+.shares .deap .right .table-box table tr th:nth-last-child(2){text-align: right;}
+.shares .deap .right .table-box table tr td:nth-last-child(2){text-align: right;}
+.shares .deap .right .table-box table tr th:last-child{text-align: right;}
+.shares .deap .right .table-box table tr td:last-child{text-align: right;}
+
+
+ .slider-handle{background-image:linear-gradient(to bottom, #1660EB 0%, #1660EB 100%) !important}
+/*这里是币种资料*/
+.shares .matrial{overflow: hidden;margin-bottom: 40px;}
+.shares .matrial .title span{font-size: 14px;}
+.shares .matrial .title{width:100%;height:48px;background:#fff;box-sizing: border-box;padding:0 30px;font-size: 16px;line-height: 48px;cursor: pointer;}
+.shares .matrial .title em{color:#1660EB;float: right;font-size: 16px;}
+.shares .matrial .title em a{text-decoration: none;font-size: 12px;color:#1660EB}
+.shares .matrial .text{margin-top:3px;background:#fff;padding:0 30px;box-sizing: border-box;padding-bottom: 50px;}
+.shares .matrial .text .titleS{line-height: 30px;font-size: 14px;padding-top:10px}
+.shares .matrial .text .titleS span{font-size: 16px;font-weight: 600;font-size: 18px;margin-right: 14px;}
+.shares .matrial .text .pref{font-size: 14px;margin:23px 0 20px;color:#666}
+.shares .matrial .text .pre-con{font-size: 14px;color:#666;line-height: 24px;}
+.shares .matrial .text .issue{margin-top:40px;overflow:hidden;font-size: 14px;color:#666}
+.shares .matrial .text .isbot{margin-top:30px}
+.shares .matrial .text .issue .data{display: inline-block;line-height: 20px;margin-right: 70px;}
+.shares .matrial .text .issue .amount{display: inline-block;line-height: 20px;margin-right:70px}
+
+/*这里是深度图*/
+.layout{
+	position:relative;	
+}
+
+.layout canvas{
+	position:absolute;	
+}
+
+.layout #x{
+	top:405px;
+	left:0;	
+}
+
+.layout #y{
+	top:0px;
+	left:600px;	
+}
+.slider.slider-horizontal{width:100% !important;margin:10px auto;height:10px !important}
+/*这里是进度条*/
+.slider-handle{width:10px !important;height:10px !important;top:0px !important}
+.slider-tick{width:10px !important;height:10px !important}
+.slider.slider-horizontal .slider-track{height:4px !important;margin-top:-2px !important;}
+.slider .tooltip.top{opacity: 0 !important;}
+.slider.slider-horizontal .slider-tick-label-container{display: none;}
+.chart_container.light #chart_updated_time{display: none !important;}
+
+@media only screen and (min-width: 1200px) and (max-width: 1600px) {
+	.shares .k_line{height:500px}
+}
+
+@media only screen and (min-width: 1700px) and (max-width: 2600px) {
+	.shares .k_line{height:600px;overflow: hidden;}
+	/*.shares .price .left .con{height: 455px;}*/
+	
+	.shares .price .left .con .con_left .con_title .line{width:86%}
+}
+
+@media only screen and (min-width: 2600px) and (max-width: 4500px) {
+	.shares .k_line{min-height:800px;overflow: hidden;}
+}

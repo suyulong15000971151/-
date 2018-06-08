@@ -1,0 +1,146 @@
+*{
+	-webkit-box-sizing:border-box;
+}
+body{
+	background-color: #F3F8FC;
+	color:#999999;
+	font-size: 16px;
+}
+.log{
+	color: #1660EB;
+}
+#login{
+	width:780px;
+	height:470px; 
+	background:rgba(255,255,255,1);
+	box-shadow:0px 0px 24px rgba(146,172,193,0.3);
+	margin:0 auto;
+	margin-top:100px; 
+}
+.login_content{
+	width:420px;
+	height:347px;
+	margin:0 auto;
+	/*background-color: antiquewhite;*/
+	padding-top:59px;
+	font-size: 14px;
+}
+.login_content p{
+	width:48px;
+	height:23px; 
+	font-size:22px;
+	color:rgba(51,51,51,1);
+	line-height:12px;
+	margin:0 auto;
+}
+.login_message{
+	width:420px;
+	height:303px;
+	/*background-color: antiquewhite;*/
+	margin-top:14px;
+}
+.loginPhone,.checkPassword{
+	height:96px;
+	width:420px;
+	/*border:1px solid red;*/
+	position:relative;
+}
+.loginPhoneLeft,.checkPasswordLeft{
+	position: absolute;
+	bottom:11px;
+}
+.registerVerifyRight,.checkPasswordRight{
+	position: absolute;
+	right:0px;
+	bottom: 11px;
+}
+.phoneHint{
+	width:127px;
+	height:13px; 
+	font-size:12px;
+	position: absolute;
+	right:0px;
+	bottom: -25px;
+	color:#DF6B3A;
+	text-align: right;
+	display: none;
+}
+.bottomLine{
+	width:420px;
+	height:1px;
+    /*background:rgba(22,96,235,1);*/
+    background:#EBEDF0;
+    position:absolute;
+    bottom:0px;
+    margin-top:11px;
+}
+.active{
+	display: block;
+}
+.closeImg img{
+	width:20px;
+	height:14px;
+}
+.closeImg{
+	position: absolute;
+	right:0px;
+	bottom: 11px;
+	display: none;
+}
+.loginPhoneInput,.checkPasswordInput{
+	width: 200px;
+	border: none;
+	height: 20px;
+	font-size: 14px;
+	color:rgba(51,51,51,1);
+	margin-top: 10px;
+}
+.loginPhoneInput:focus,.checkPasswordInput:focus{
+	outline:0 !important;
+}
+.changeLine{
+	width:0px;
+	height:1px;
+    /*background:rgba(22,96,235,1);*/
+    background:rgba(22,96,235,1);
+    /*background:#EBEDF0;*/
+    position:absolute;
+    bottom:0px;
+    left: 50%;;
+    margin-top:11px;
+}
+.loginBtn{
+	width:420px;
+	height:44px; 
+	
+	border-radius: 4px;
+	margin-top:40px;
+	text-align: center;
+	color:rgba(255,255,255,1);
+	line-height:44px;
+	font-size: 16px;
+}
+.checkPasswordRight img{
+	width:20px;
+	height:14px;
+}
+.agreement{
+	width:420px;
+	height:13px; 
+	font-size:12px;
+	color:rgba(153,153,153,1);
+	line-height:12px;
+	margin-top:15px;
+	letter-spacing: 1px;
+}
+.agreementLeft{
+	width:294px;
+}
+.agreementRight{
+	width:55px;
+}
+.agreementRight a{
+	color:#1660EB;
+	text-decoration: underline;
+}
+
